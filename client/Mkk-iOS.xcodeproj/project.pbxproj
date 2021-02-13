@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B59BBF1A25D7769100A059C4 /* KMKNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF1925D7769100A059C4 /* KMKNetworkManager.swift */; };
+		B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */; };
+		B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */; };
 		B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7A62E25D6F7520076F12C /* AppDelegate.swift */; };
 		B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7A63025D6F7520076F12C /* SceneDelegate.swift */; };
 		B5E7A63325D6F7520076F12C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7A63225D6F7520076F12C /* ViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B59BBF1925D7769100A059C4 /* KMKNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKNetworkManager.swift; sourceTree = "<group>"; };
+		B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyVM.swift; sourceTree = "<group>"; };
+		B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyModel.swift; sourceTree = "<group>"; };
 		B5E7A62B25D6F7520076F12C /* Mkk-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mkk-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E7A62E25D6F7520076F12C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5E7A63025D6F7520076F12C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +46,8 @@
 		B59BBF1825D775CA00A059C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B59BBF1925D7769100A059C4 /* KMKNetworkManager.swift */,
+				B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -86,6 +94,7 @@
 		B5E7A64525D6F92C0076F12C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -179,7 +188,10 @@
 			files = (
 				B5E7A63325D6F7520076F12C /* ViewController.swift in Sources */,
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
+				B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */,
+				B59BBF1A25D7769100A059C4 /* KMKNetworkManager.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
+				B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
