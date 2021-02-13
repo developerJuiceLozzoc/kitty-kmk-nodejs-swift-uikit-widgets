@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV == production){
+if(process.env.NODE_ENV == "production"){
   module.exports = {
     "MONGO_USER": process.env.MONGO_USER,
     "MONGO_PASS": process.env.MONGO_PASS,
