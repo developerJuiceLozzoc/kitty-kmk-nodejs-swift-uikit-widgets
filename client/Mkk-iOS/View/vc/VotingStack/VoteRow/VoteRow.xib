@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1xW-zx-2CT" customClass="VoteRowStack" customModule="Mkk_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="210"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ant" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iqy-Ya-qVh">
+                    <rect key="frame" x="0.0" y="0.0" width="168" height="210"/>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="umk-o4-jiy">
+                    <rect key="frame" x="148.5" y="44" width="222.5" height="166"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="7WO-74-mOT">
+                            <rect key="frame" x="0.0" y="0.0" width="222.5" height="80"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTm-Bd-eMV" customClass="RadioVoteButton" customModule="Mkk_iOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="108" height="80"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Heu-mp-TV9" customClass="RadioVoteButton" customModule="Mkk_iOS" customModuleProvider="target">
+                                    <rect key="frame" x="114" y="0.0" width="108.5" height="80"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lEo-9M-Oik">
+                            <rect key="frame" x="0.0" y="86" width="222.5" height="80"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image=" elbow-w-aspect-ratio" translatesAutoresizingMaskIntoConstraints="NO" id="pls-Bo-D1L">
+                                    <rect key="frame" x="0.0" y="0.0" width="111" height="80"/>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwq-Zv-qn9" customClass="RadioVoteButton" customModule="Mkk_iOS" customModuleProvider="target">
+                                    <rect key="frame" x="111" y="0.0" width="111.5" height="80"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="5Te-yi-pfV"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="5Te-yi-pfV" firstAttribute="bottom" secondItem="umk-o4-jiy" secondAttribute="bottom" id="4zc-Ks-edw"/>
+                <constraint firstItem="5Te-yi-pfV" firstAttribute="trailing" secondItem="umk-o4-jiy" secondAttribute="trailing" id="gos-Hk-nyT"/>
+                <constraint firstItem="5Te-yi-pfV" firstAttribute="top" secondItem="iqy-Ya-qVh" secondAttribute="top" id="o6J-xt-aRt"/>
+                <constraint firstItem="iqy-Ya-qVh" firstAttribute="leading" secondItem="5Te-yi-pfV" secondAttribute="leading" id="oAu-3m-9cj"/>
+                <constraint firstItem="umk-o4-jiy" firstAttribute="leading" secondItem="iqy-Ya-qVh" secondAttribute="trailing" id="uvE-hc-eUU"/>
+                <constraint firstItem="5Te-yi-pfV" firstAttribute="top" secondItem="umk-o4-jiy" secondAttribute="top" id="v8A-52-BdO"/>
+                <constraint firstItem="iqy-Ya-qVh" firstAttribute="height" secondItem="1xW-zx-2CT" secondAttribute="height" id="xLJ-I9-kgT"/>
+                <constraint firstItem="iqy-Ya-qVh" firstAttribute="width" secondItem="5Te-yi-pfV" secondAttribute="width" multiplier="0.4" id="xns-vg-8EF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="celebImage" destination="iqy-Ya-qVh" id="B5C-dS-AaP"/>
+                <outletCollection property="radios" destination="lTm-Bd-eMV" collectionClass="NSMutableArray" id="TrU-nQ-u5E"/>
+                <outletCollection property="radios" destination="Heu-mp-TV9" collectionClass="NSMutableArray" id="boD-2d-h5W"/>
+                <outletCollection property="radios" destination="bwq-Zv-qn9" collectionClass="NSMutableArray" id="ToS-7a-rg4"/>
+            </connections>
+            <point key="canvasLocation" x="194.92753623188406" y="-205.58035714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name=" elbow-w-aspect-ratio" width="180" height="130"/>
+        <image name="ant" catalog="system" width="107" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

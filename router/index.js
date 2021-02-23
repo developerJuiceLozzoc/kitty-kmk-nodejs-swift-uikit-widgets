@@ -6,7 +6,7 @@ module.exports = express()
 
 module.exports.get("/game/new", function(req,res){
   var response = {
-
+    "votes": [0,1,2]
   }
   getRandomCeleb()
   .then(function(celebs){
