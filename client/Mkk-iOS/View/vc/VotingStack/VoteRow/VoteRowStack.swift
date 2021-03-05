@@ -9,7 +9,7 @@ import UIKit
 
 class VoteRowStack: UIView {
 
-    @IBOutlet weak var celebImage: UIImageView?
+    @IBOutlet weak var celebImage: UIImageView!
     @IBOutlet var radios: [RadioVoteButton]!
     @IBOutlet weak var decor: UIImageView?
     
@@ -27,13 +27,6 @@ class VoteRowStack: UIView {
                 self.radios[currentState.value].isChecked = true
             }
             
-        }
-    }
-    
-    var profilepic: UIImage? {
-        didSet {
-            guard let pic = profilepic else {return}
-            celebImage?.image = pic
         }
     }
     

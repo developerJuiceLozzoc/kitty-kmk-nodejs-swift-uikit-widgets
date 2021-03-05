@@ -9,22 +9,37 @@ import Foundation
 
 
 class GameSurveyVM {
-    var survey: GameSurvey? {
-        didSet {
-            print(survey) 
-        }
-    }
+    var survey: GameSurvey?
     weak var observer: NSObjectProtocol?
     private var model = GameSurveyModel()
+    var updatehandler: ( ()-> Void )?
+    
+    func bind( handler: @escaping ( () -> Void ) ){
+        updatehandler = handler
+    }
+    
     init(with survey: GameSurvey){
         self.survey = survey
     }
-    func saveGameResults(completion: ()->Void){
+    func saveGameResults(){
 //        post to server/
-        completion()
+        guard let survey = self.survey else {return}
+        model.submitGameResult(with: survey) { (result) in
+            switch result {
+            case .success(let survey):
+                self.survey = survey
+                self.updatehandler?()
+                break;
+            case .failure(let err):
+                print(err)
+                break
+            }
+        }
+      
     }
     
     func listenToVoteChanges(){
+        guard observer == nil else {return}
         DispatchQueue.global().async {
             self.observer = NotificationCenter.default.addObserver(forName: .voteDidChange, object: nil, queue: .current, using: { [weak self] (notification) in
                 
@@ -54,6 +69,18 @@ class GameSurveyVM {
     }
     func stopListenToVoteChanges(){
         NotificationCenter.default.removeObserver(observer)
+        observer = nil
     }
     
 }
+
+//MARK: Implmenting survey  confirmation datasource
+extension GameSurveyVM: KMKSurveyConfirmationDataSource {
+    func getLabelForCeleb(at index: Int) -> String {
+        guard let survey = self.survey else {return VOTE_LIST[index]}
+        return VOTE_LIST[survey.votes[index]]
+    }
+    
+    
+}
+

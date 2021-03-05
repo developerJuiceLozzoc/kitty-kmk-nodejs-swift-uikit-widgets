@@ -1,8 +1,9 @@
 const express = require("express")
 const mongoc = require("../model/connect")
-const { getRandomCeleb, createNewGameID } = require("../model")
+const { getRandomCeleb, createNewGameID,updateGameResultsWithID } = require("../model")
+const { GameSurveyMongo} = require("../model/schema")
 module.exports = express()
-
+//* a comment*/
 
 module.exports.get("/game/new", function(req,res){
   var response = {
@@ -17,7 +18,7 @@ module.exports.get("/game/new", function(req,res){
   })
   .then(function(gameid){
     console.log(gameid);
-    response.gameid = gameid
+    response._id = gameid
     res.status(201).json(response)
   })
   .catch(function(topleevel){
@@ -29,8 +30,22 @@ module.exports.get("/game/new", function(req,res){
 
 module.exports.post("/game/:gameid", function(req,res){
   let gameid = req.params.gameid
-  console.log(req.body);
-  res.status(200).send()
+  const {json} = req.body
+  if(!gameid){
+    res.status(500).send("Request invalid")
+    return
+  }
+
+  let game = GameSurveyMongo()
+
+  updateGameResultsWithID(gameid,game)
+  .then(function(){
+    res.status(200).end()
+
+  })
+  .catch(function(err){
+    res.status(300).send("error updateing ",gameid)
+  })
 
 
 })

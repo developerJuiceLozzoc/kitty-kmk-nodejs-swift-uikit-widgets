@@ -1,10 +1,12 @@
 const mongoc = require("./connect.js")
-const {Celeb,GameSurvey} = require("./schema.js")
+const {Celeb,GameSurveyMongo,GameSurveySwift} = require("./schema.js")
+const {ObjectId} = require("mongodb")
+const {MONGO_DB_NAME} = require("./configureEnv")
 
 /* Crud operations */
 /* Read, random, */
 function getRandomCeleb(){
-  let celebs = mongoc.db("marry-kiss-kill").collection("celebs")
+  let celebs = mongoc.db(MONGO_DB_NAME).collection("celebs")
   return new Promise( function(resolve,reject){
     celebs.aggregate([
         {
@@ -41,12 +43,15 @@ function getRandomCeleb(){
 /* Create */
 
 async function createNewGameID(celebs,resolve,reject){
-  const celebids = celebs.map(function(index,val){
+  const celebids = celebs.map(function(val,index){
     return val._id
   })
-  const game = new GameSurvey(celebids)
+  const game = new GameSurveyMongo(celebids)
   try {
-    let stuff = await mongoc.db("marry-kiss-kill").collection("gamesurveys").insertOne(game)
+    let stuff = await mongoc
+                      .db(MONGO_DB_NAME)
+                      .collection("gamesurveys")
+                      .insertOne(game)
     resolve(stuff.insertedId)
   }
   catch(e){
@@ -58,7 +63,7 @@ async function createNewGameID(celebs,resolve,reject){
 
 function insertCeleb(celeb,callback){
   if(celeb.constructor.name == "Celeb"){
-      mongoc.db("marry-kiss-kill").collection("celebs").insertOne(celeb,function(err){
+      mongoc.db(MONGO_DB_NAME).collection("celebs").insertOne(celeb,function(err){
       if(err){
         callback(err)
       }
@@ -73,16 +78,62 @@ function insertCeleb(celeb,callback){
 }
 
 
+/* update */
+
+/**
+ * Returns promise after updating a new game result,
+ *
+ * @param {ObjectId}  The recently created game survey Id.
+ * @param {GameSurveyMongo} The previous document with a,b and c modified.
+ */
+function updateGameResultsWithID(gameid,game){
+  const db = mongodb.db()
+
+
+  return new Promise(async function(resolve,reject){
+
+      if( game.constructor.name == "GameSurveyMongo" ){
+        db
+          .collection("gamesurveys")
+          .updateOne(
+            { "_id": ObjectId(gameid)},
+            { "result": game.result }
+          )
+          .then(function(status){
+            console.log(status);
+            resolve()
+          })
+          .catch(function(e){
+            reject(e)
+          })
+      }
+      else{
+        reject("You cannot save this document unles its this file.")
+      }
+
+  })
+
+
+}
+
+
+
+/* delete */
+
+function deleteExpiredGame(gameid,callback){
+
+}
+
+
 
 
 module.exports = {
   getRandomCeleb,
   WARNING_bulkwrite_kitties,
   createNewGameID,
+  updateGameResultsWithID,
+  insertCeleb,
 }
-
-
-
 
 function WARNING_bulkwrite_kitties(){
   var count = 0
@@ -102,3 +153,29 @@ function WARNING_bulkwrite_kitties(){
     }
     ,500);
 }
+
+/*
+manually type in the url
+
+const mongoconnect = require("./model/connect")
+const  {insertCeleb} = require("./model")
+const {Celeb} = require("./model/schema")
+var url = "https://i.imgur.com/82SIHDx.jpeg"
+ var kitty = new Celeb(url)
+ mongoconnect.connect((err,client) => {
+   if(err) {
+     console.log(err);
+   }
+   else{
+   insertCeleb(kitty,function(err){
+      if(err){
+      console.log(err);
+      }
+      client.close();
+    })
+   }
+
+ });
+
+
+*/
