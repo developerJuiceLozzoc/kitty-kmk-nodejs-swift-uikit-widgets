@@ -36,8 +36,15 @@ class GameSurveySwift {
 
 }
 
+class StaleSurveyReference {
+  constructor(gameid){
+    this.reference = gameid
+  }
+}
+
 module.exports = {
   Celeb,
+  StaleSurveyReference,
   GameSurveyMongo,
   GameSurveySwift,
 }

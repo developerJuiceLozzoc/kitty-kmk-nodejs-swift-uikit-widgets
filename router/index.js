@@ -1,6 +1,9 @@
 const express = require("express")
 const mongoc = require("../model/connect")
-const { getRandomCeleb, createNewGameID,updateGameResultsWithID } = require("../model")
+const { getRandomCeleb, insertStaleGameReference,
+  createNewGameID,updateGameResultsWithID,
+  updateStaleSurveyAsFulfilled,
+ } = require("../model")
 const { GameSurveyMongo} = require("../model/schema")
 module.exports = express()
 //* a comment*/
@@ -19,6 +22,9 @@ module.exports.get("/game/new", function(req,res){
   .then(function(gameid){
     console.log(gameid);
     response._id = gameid
+    return insertStaleGameReference(gameid)
+  })
+  .then(function(){
     res.status(201).json(response)
   })
   .catch(function(topleevel){
@@ -30,18 +36,20 @@ module.exports.get("/game/new", function(req,res){
 
 module.exports.post("/game/:gameid", function(req,res){
   let gameid = req.params.gameid
-  const {json} = req.body
+  const json = req.body
   if(!gameid){
     res.status(500).send("Request invalid")
     return
   }
 
-  let game = GameSurveyMongo()
+  let game = new GameSurveyMongo(json)
 
   updateGameResultsWithID(gameid,game)
   .then(function(){
+    return updateStaleSurveyAsFulfilled(gameid)
+  })
+  .then(function(){
     res.status(200).end()
-
   })
   .catch(function(err){
     res.status(300).send("error updateing ",gameid)
@@ -49,5 +57,3 @@ module.exports.post("/game/:gameid", function(req,res){
 
 
 })
-
-module.exports.post("/game")

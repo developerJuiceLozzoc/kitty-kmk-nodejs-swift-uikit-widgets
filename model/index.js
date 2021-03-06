@@ -1,5 +1,5 @@
 const mongoc = require("./connect.js")
-const {Celeb,GameSurveyMongo,GameSurveySwift} = require("./schema.js")
+const {Celeb,GameSurveyMongo,GameSurveySwift,StaleSurveyReference} = require("./schema.js")
 const {ObjectId} = require("mongodb")
 const {MONGO_DB_NAME} = require("./configureEnv")
 
@@ -63,7 +63,8 @@ async function createNewGameID(celebs,resolve,reject){
 
 function insertCeleb(celeb,callback){
   if(celeb.constructor.name == "Celeb"){
-      mongoc.db(MONGO_DB_NAME).collection("celebs").insertOne(celeb,function(err){
+      mongoc.db(MONGO_DB_NAME).collection("celebs")
+      .insertOne(celeb,function(err){
       if(err){
         callback(err)
       }
@@ -77,6 +78,45 @@ function insertCeleb(celeb,callback){
   }
 }
 
+/**
+ * Returns promise creating a new item in the stale collection, which is used to
+ * delete any unfilfilled surveys every morning,
+ *
+ * @param {ObjectId}  The recently created game survey Id.
+ */
+function insertStaleGameReference(gameid){
+  const db = mongoc.db()
+  return new Promise(function(resolve,reject){
+    const doc = new StaleSurveyReference(gameid)
+    db.collection("stale-surveys")
+    .insertOne(doc)
+    .then(function(status){
+      resolve()
+    })
+    .catch(function(err){
+      reject(err)
+    })
+  })
+}
+
+/* read */
+function mapStaleGames(){
+  const db = mongoc.db()
+  return new Promise(async function(resolve,reject){
+    let results = await db.collection("stale-surveys").find({})
+    let mappedids = {
+      references: [],
+      ids: []
+    }
+    await results.forEach(function(result){
+      mappedids.references.push(
+        result.reference
+      )
+      mappedids.ids.push(result._id)
+    })
+    resolve(mappedids)
+  })
+}
 
 /* update */
 
@@ -87,20 +127,20 @@ function insertCeleb(celeb,callback){
  * @param {GameSurveyMongo} The previous document with a,b and c modified.
  */
 function updateGameResultsWithID(gameid,game){
-  const db = mongodb.db()
+  const db = mongoc.db()
 
 
   return new Promise(async function(resolve,reject){
 
       if( game.constructor.name == "GameSurveyMongo" ){
+        const {actiona, actionb,actionc } = game
         db
           .collection("gamesurveys")
           .updateOne(
             { "_id": ObjectId(gameid)},
-            { "result": game.result }
+            { "$set": {actiona,actionb,actionc} }
           )
           .then(function(status){
-            console.log(status);
             resolve()
           })
           .catch(function(e){
@@ -120,19 +160,71 @@ function updateGameResultsWithID(gameid,game){
 
 /* delete */
 
-function deleteExpiredGame(gameid,callback){
+function updateStaleSurveyAsFulfilled(gameid){
+  const db = mongoc.db()
+  return new Promise(function(resolve,reject){
+    db.collection("stale-surveys")
+    .deleteOne({
+      "reference": ObjectId(gameid)
+    })
+    .then(function(status){
+      resolve()
+    })
+    .catch(function(err){
+      reject(err)
+    })
+  })
+}
 
+function bulk_deleteExpiredGames(gameids){
+  const db = mongoc.db()
+  return new Promise(function(resolve,reject){
+    db.collection("gamesurveys")
+    .deleteMany({
+      "_id": { "$in" : gameids }
+    })
+    .then(function(status){
+      resolve(status.deletedCount)
+    })
+    .catch(function(err){
+      reject(err)
+    })
+  })
+}
+
+function bulk_rinseStaleCollection(ids){
+  const db = mongoc.db()
+  return new Promise(function(resolve,reject){
+    db.collection("stale-surveys")
+    .deleteMany({
+      "_id": { "$in" : ids }
+    })
+    .then(function(status){
+      resolve(status.deletedCount)
+    })
+    .catch(function(err){
+      reject(err)
+    })
+  })
 }
 
 
 
 
+
+
 module.exports = {
+  mapStaleGames,
   getRandomCeleb,
   WARNING_bulkwrite_kitties,
   createNewGameID,
   updateGameResultsWithID,
   insertCeleb,
+  bulk_deleteExpiredGames,
+  bulk_rinseStaleCollection,
+  updateStaleSurveyAsFulfilled,
+  insertStaleGameReference,
+
 }
 
 function WARNING_bulkwrite_kitties(){

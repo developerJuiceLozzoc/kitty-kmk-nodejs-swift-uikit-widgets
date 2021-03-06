@@ -1,4 +1,3 @@
-const mongo = require("mongodb")
 const express = require("express")
 const mongoconnect = require("./model/connect")
 const bodyparser = require("body-parser")
