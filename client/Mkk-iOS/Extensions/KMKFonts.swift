@@ -15,7 +15,7 @@ extension UIFont {
         return font
     }
     static func kmkConfirmation() -> UIFont {
-        guard let font = UIFont(name: "American Typewriter", size:(CGFloat(22))) else {return UIFont.preferredFont(forTextStyle: .body)}
+        guard let font = UIFont(name: "American Typewriter", size:(CGFloat(21))) else {return UIFont.preferredFont(forTextStyle: .body)}
         return font
     }
 }

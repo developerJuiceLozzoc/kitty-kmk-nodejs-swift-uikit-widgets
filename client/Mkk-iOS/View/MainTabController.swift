@@ -11,18 +11,17 @@ class MainTabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tabBar.tintColor = UIColor.purple
+        
+        let collectionvc = UIStoryboard.init(name: "StatsExperience", bundle: nil).instantiateViewController(identifier: "collectionviewc")
+        collectionvc.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
+        let gamevc = UIStoryboard.init(name: "Game", bundle: nil).instantiateViewController(identifier: "maingame")
+        gamevc.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+        
+        viewControllers = [gamevc,collectionvc]
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

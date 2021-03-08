@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import UIKit
 
-let VOTE_LIST = ["Action A","Action B", "Action C"]
+                /* action a     action b            action c*/
+let VOTE_LIST = ["Adopt Kitty","Have Konversation", "Give Petz"]
 
 
 

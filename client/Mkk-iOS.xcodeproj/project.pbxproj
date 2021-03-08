@@ -25,7 +25,7 @@
 		B5D9458725E4A924005C6DC6 /* KMKSurveyConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9458625E4A924005C6DC6 /* KMKSurveyConfirmation.swift */; };
 		B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7A62E25D6F7520076F12C /* AppDelegate.swift */; };
 		B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7A63025D6F7520076F12C /* SceneDelegate.swift */; };
-		B5E7A63625D6F7520076F12C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63425D6F7520076F12C /* Main.storyboard */; };
+		B5E7A63625D6F7520076F12C /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63425D6F7520076F12C /* Game.storyboard */; };
 		B5E7A63825D6F7540076F12C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63725D6F7540076F12C /* Assets.xcassets */; };
 		B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -50,7 +50,7 @@
 		B5E7A62B25D6F7520076F12C /* Mkk-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mkk-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E7A62E25D6F7520076F12C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5E7A63025D6F7520076F12C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B5E7A63525D6F7520076F12C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B5E7A63525D6F7520076F12C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		B5E7A63725D6F7540076F12C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5E7A63A25D6F7540076F12C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5E7A63C25D6F7540076F12C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,9 +193,9 @@
 		B5E7A64825D6F9BF0076F12C /* boards */ = {
 			isa = PBXGroup;
 			children = (
-				B5E7A63425D6F7520076F12C /* Main.storyboard */,
-				B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */,
+				B5E7A63425D6F7520076F12C /* Game.storyboard */,
 				B59BBF2325D848D200A059C4 /* StatsExperience.storyboard */,
+				B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */,
 			);
 			path = boards;
 			sourceTree = "<group>";
@@ -260,7 +260,7 @@
 				B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */,
 				B51784CE25D890BE004472DB /* VoteRow.xib in Resources */,
 				B5E7A63825D6F7540076F12C /* Assets.xcassets in Resources */,
-				B5E7A63625D6F7520076F12C /* Main.storyboard in Resources */,
+				B5E7A63625D6F7520076F12C /* Game.storyboard in Resources */,
 				B59BBF2425D848D200A059C4 /* StatsExperience.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,12 +294,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B5E7A63425D6F7520076F12C /* Main.storyboard */ = {
+		B5E7A63425D6F7520076F12C /* Game.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B5E7A63525D6F7520076F12C /* Base */,
 			);
-			name = Main.storyboard;
+			name = Game.storyboard;
 			sourceTree = "<group>";
 		};
 		B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */ = {

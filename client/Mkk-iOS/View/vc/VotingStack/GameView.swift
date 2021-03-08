@@ -112,8 +112,9 @@ extension MainViewStack {
 }
 //MARK confirmation alert sheet
 extension MainViewStack: KMKSurveyConfirmationReader {
-    func getSurveyPhoto(at index: Int) -> UIImage? {
-        return imagesvm.images[index]
+    func getPhotoForVote(at index: Int) -> UIImage? {
+        guard let i = votevm?.survey?.votes[index] else {return nil}
+        return imagesvm.images[i]
     }
     
     func confirmSurvey() {

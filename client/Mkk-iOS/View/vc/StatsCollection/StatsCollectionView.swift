@@ -9,21 +9,18 @@ import UIKit
 
 class StatsCollectionView: UIViewController {
 
+    @IBOutlet weak var segments: UISegmentedControl!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        for (index,str) in VOTE_LIST.enumerated() {
+            segments.setTitle(str, forSegmentAt: index)
+        }
         // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }

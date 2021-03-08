@@ -29,6 +29,8 @@ class RadioVoteButton: UIButton {
     
     override func awakeFromNib() {
             self.addTarget(self, action:#selector(buttonClicked(sender:)), for: UIControl.Event.touchUpInside)
+        self.titleLabel?.numberOfLines = 3
+        self.titleLabel?.lineBreakMode = .byWordWrapping
     }
             
     @objc func buttonClicked(sender: UIButton) {
