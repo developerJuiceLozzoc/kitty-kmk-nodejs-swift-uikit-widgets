@@ -1,40 +1,15 @@
 const mongoc = require("./connect.js")
-const {Celeb,GameSurveyMongo,GameSurveySwift,StaleSurveyReference} = require("./schema.js")
+const {Celeb,GameSurveyMongo,GameSurveySwift,StaleSurveyReference,MongoCollectionSurvey} = require("./schema.js")
 const {ObjectId} = require("mongodb")
 const {MONGO_DB_NAME} = require("./configureEnv")
 
-/* Crud operations */
-/* Read, random, */
-function getRandomCeleb(){
-  let celebs = mongoc.db(MONGO_DB_NAME).collection("celebs")
-  return new Promise( function(resolve,reject){
-    celebs.aggregate([
-        {
-          '$match': {}
-        }, {
-          '$sample': {
-            'size': 3
-          }
-        }
-      ], async function(err, entity) {
-            if(err){
-              reject(err)
-              return;
-            }
-            else{
-              var celebs  = []
-              await entity.forEach(function(val){
-                celebs.push(val)
-              })
-              resolve(
-                celebs
-              )
-            }
-          }
-        )
-  })
+const SURVEYS = "gamesurveys"
+const CELEBS = "celebs"
+const STALE = "stale-surveys"
 
-}
+
+/* Crud operations */
+
 
 //-------------------------------------------
 //-------------------------------------------
@@ -99,6 +74,9 @@ function insertStaleGameReference(gameid){
   })
 }
 
+//-------------------------------------------
+//-------------------------------------------
+
 /* read */
 function mapStaleGames(){
   const db = mongoc.db()
@@ -117,6 +95,86 @@ function mapStaleGames(){
     resolve(mappedids)
   })
 }
+/**
+ * Returns promise with an array of games in the specified range and type,
+ *
+ * @param {Int}  the type of game we would like to retrieve
+ * @param {Int} the offset of results we would like to skip
+ * @param {Int} the limit of results to find
+ */
+function fetchSurveysInRange(type,offset,limit){
+  const db = mongoc.db()
+
+  return new Promise(async function(resolve,reject){
+    let scrambeled = []
+    const cursor = await db.collection(SURVEYS).find({}).skip(offset).limit(limit)
+    await cursor.forEach(function(val){
+      scrambeled.push(val)
+    })
+    resolve(scrambeled)
+
+  })
+}
+/**
+ * Returns promise that reduces to a dictionary.
+ *
+ * @param {[String]}  the celebrities to lookup and map to imgurls
+ */
+function getCelebImgUrlsFromSurveys(surveys){
+  const db = mongoc.db()
+  const cids = surveys.map(function(survey){
+    return survey.celebs
+  }).flat()
+  const query = {
+    "_id": { "$in": cids }
+  }
+  const response  = {
+    surveys,
+    "dict": new Map()
+  }
+  return new Promise(async function(resolve,reject){
+     let cursor = db.collection(CELEBS).find(query)
+     await cursor.forEach(function(doc){
+       response["dict"][`${doc._id}`] = doc.imgurl
+     })
+     resolve(response)
+  })
+}
+
+function getRandomCeleb(){
+  let celebs = mongoc.db(MONGO_DB_NAME).collection("celebs")
+  return new Promise( function(resolve,reject){
+    celebs.aggregate([
+        {
+          '$match': {}
+        }, {
+          '$sample': {
+            'size': 3
+          }
+        }
+      ], async function(err, entity) {
+            if(err){
+              reject(err)
+              return;
+            }
+            else{
+              var celebs  = []
+              await entity.forEach(function(val){
+                celebs.push(val)
+              })
+              resolve(
+                celebs
+              )
+            }
+          }
+        )
+  })
+
+}
+
+//-------------------------------------------
+//-------------------------------------------
+
 
 /* update */
 
@@ -157,6 +215,9 @@ function updateGameResultsWithID(gameid,game){
 }
 
 
+
+//-------------------------------------------
+//-------------------------------------------
 
 /* delete */
 
@@ -224,6 +285,8 @@ module.exports = {
   bulk_rinseStaleCollection,
   updateStaleSurveyAsFulfilled,
   insertStaleGameReference,
+  fetchSurveysInRange,
+  getCelebImgUrlsFromSurveys
 
 }
 

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="KMKCelebPic" id="gTV-IL-0wX" customClass="KMKStatsCell" customModule="Mkk_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="141" height="166"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="141" height="166"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0fP-BS-9vK">
+                        <rect key="frame" x="0.0" y="0.0" width="141" height="166"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="166" id="VJa-Rb-4ZF"/>
+                            <constraint firstAttribute="width" constant="141" id="bu6-2K-ZEG"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fN-Ja-bcV">
+                        <rect key="frame" x="101" y="126" width="40" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="0.12223199503311258" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="8JL-99-64U"/>
+                            <constraint firstAttribute="width" constant="40" id="RHa-mp-P2F"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="10">
+                            <color key="titleColor" systemColor="systemGrayColor"/>
+                            <color key="titleShadowColor" name="Lipstick"/>
+                        </state>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="8fN-Ja-bcV" firstAttribute="bottom" secondItem="0fP-BS-9vK" secondAttribute="bottom" id="2g2-Aw-LIX"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="0fP-BS-9vK" secondAttribute="top" constant="44" id="58K-wP-2Ec"/>
+                <constraint firstItem="0fP-BS-9vK" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="Jfd-SG-LZB"/>
+                <constraint firstItem="8fN-Ja-bcV" firstAttribute="trailing" secondItem="0fP-BS-9vK" secondAttribute="trailing" id="wOc-ht-YEh"/>
+            </constraints>
+            <size key="customSize" width="141" height="166"/>
+            <connections>
+                <outlet property="celeb" destination="0fP-BS-9vK" id="QLD-xD-IMJ"/>
+                <outlet property="count" destination="8fN-Ja-bcV" id="Fu9-43-Kc0"/>
+            </connections>
+            <point key="canvasLocation" x="190.57971014492756" y="144.64285714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Lipstick">
+            <color red="0.75300002098083496" green="0.0080000003799796104" blue="0.18400000035762787" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -29,9 +29,9 @@ class MainViewStack: UIViewController {
 
     
     @IBOutlet var formsViews: [UIView]!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+
+    override func viewWillAppear(_ animated: Bool) {
+        guard votevm == nil else {return}
         GameSurveyModel().fetchNewGame { (result) in
             switch(result){
                 case .success(let survey):
@@ -42,11 +42,6 @@ class MainViewStack: UIViewController {
                     break;
             }
         }
-        
-        
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
         votevm?.listenToVoteChanges()
     }
     override func viewWillDisappear(_ animated: Bool) {

@@ -7,6 +7,15 @@ class Celeb {
   }
 }
 
+
+class MongoCollectionSurvey {
+  constructor({id,imgurls,actions}){
+    self._id = id
+    self.imgurls = imgurls
+    self.actions = actions
+  }
+}
+
 class GameSurveyMongo {
   constructor(cnstrctr){
     if(Array.isArray(cnstrctr)){
@@ -43,6 +52,7 @@ class StaleSurveyReference {
 }
 
 module.exports = {
+  MongoCollectionSurvey,
   Celeb,
   StaleSurveyReference,
   GameSurveyMongo,

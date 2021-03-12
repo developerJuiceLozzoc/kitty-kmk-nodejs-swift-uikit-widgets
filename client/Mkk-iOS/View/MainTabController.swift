@@ -19,6 +19,8 @@ class MainTabController: UITabBarController {
         gamevc.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
         
         viewControllers = [gamevc,collectionvc]
+        
+        selectedIndex = 1
     }
     
 

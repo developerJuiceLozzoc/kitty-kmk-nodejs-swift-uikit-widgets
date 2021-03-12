@@ -2,7 +2,8 @@ const express = require("express")
 const mongoc = require("../model/connect")
 const { getRandomCeleb, insertStaleGameReference,
   createNewGameID,updateGameResultsWithID,
-  updateStaleSurveyAsFulfilled,
+  updateStaleSurveyAsFulfilled, fetchSurveysInRange,
+  getCelebImgUrlsFromSurveys,
  } = require("../model")
 const { GameSurveyMongo} = require("../model/schema")
 module.exports = express()
@@ -31,6 +32,22 @@ module.exports.get("/game/new", function(req,res){
     console.log("TOPCATCH: ", topleevel)
     res.status(400).send()
   })
+})
+
+module.exports.get("/game",function(req,res,next){
+  const {where,offset,limit} = req.query
+  fetchSurveysInRange(parseInt(where),parseInt(offset),parseInt(limit))
+  .then(function(surveys){
+    return getCelebImgUrlsFromSurveys(surveys)
+  })
+  .then(function(aggregated){
+    res.status(200).send(aggregated)
+  })
+  .catch(function(err){
+    print(err)
+    res.status(300).end()
+  })
+
 })
 
 

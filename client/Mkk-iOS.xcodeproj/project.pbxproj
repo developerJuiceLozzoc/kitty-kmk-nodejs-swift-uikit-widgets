@@ -21,6 +21,11 @@
 		B59BBF2925D8495D00A059C4 /* StatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2825D8495D00A059C4 /* StatsCollectionView.swift */; };
 		B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2B25D84DF100A059C4 /* MainTabController.swift */; };
 		B59BBF3025D8509500A059C4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2F25D8509500A059C4 /* Strings.swift */; };
+		B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */; };
+		B5CBA52925FA93B500621682 /* StatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52825FA93B500621682 /* StatsModel.swift */; };
+		B5CBA52C25FA944F00621682 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52B25FA944F00621682 /* Schema.swift */; };
+		B5CBA53025FBCEE000621682 /* KMKStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52E25FBCEE000621682 /* KMKStatsCell.swift */; };
+		B5CBA53125FBCEE000621682 /* KMKStatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5CBA52F25FBCEE000621682 /* KMKStatsCell.xib */; };
 		B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9458225E49E52005C6DC6 /* KMKFonts.swift */; };
 		B5D9458725E4A924005C6DC6 /* KMKSurveyConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9458625E4A924005C6DC6 /* KMKSurveyConfirmation.swift */; };
 		B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7A62E25D6F7520076F12C /* AppDelegate.swift */; };
@@ -45,6 +50,11 @@
 		B59BBF2825D8495D00A059C4 /* StatsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCollectionView.swift; sourceTree = "<group>"; };
 		B59BBF2B25D84DF100A059C4 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		B59BBF2F25D8509500A059C4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		B5CBA52825FA93B500621682 /* StatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsModel.swift; sourceTree = "<group>"; };
+		B5CBA52B25FA944F00621682 /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
+		B5CBA52E25FBCEE000621682 /* KMKStatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKStatsCell.swift; sourceTree = "<group>"; };
+		B5CBA52F25FBCEE000621682 /* KMKStatsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KMKStatsCell.xib; sourceTree = "<group>"; };
 		B5D9458225E49E52005C6DC6 /* KMKFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKFonts.swift; sourceTree = "<group>"; };
 		B5D9458625E4A924005C6DC6 /* KMKSurveyConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKSurveyConfirmation.swift; sourceTree = "<group>"; };
 		B5E7A62B25D6F7520076F12C /* Mkk-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mkk-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +111,8 @@
 				B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */,
 				B59BBF2F25D8509500A059C4 /* Strings.swift */,
 				B51784CA25D874E7004472DB /* NotificationObjects.swift */,
+				B5CBA52825FA93B500621682 /* StatsModel.swift */,
+				B5CBA52B25FA944F00621682 /* Schema.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,17 +120,11 @@
 		B59BBF3225D855D300A059C4 /* StatsCollection */ = {
 			isa = PBXGroup;
 			children = (
-				B59BBF3425D8564500A059C4 /* Celeb */,
 				B59BBF2825D8495D00A059C4 /* StatsCollectionView.swift */,
+				B5CBA52E25FBCEE000621682 /* KMKStatsCell.swift */,
+				B5CBA52F25FBCEE000621682 /* KMKStatsCell.xib */,
 			);
 			path = StatsCollection;
-			sourceTree = "<group>";
-		};
-		B59BBF3425D8564500A059C4 /* Celeb */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Celeb;
 			sourceTree = "<group>";
 		};
 		B5C09C9F25D86CE700702FB3 /* KMKCustomUI */ = {
@@ -177,6 +183,7 @@
 			children = (
 				B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */,
 				B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */,
+				B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -260,6 +267,7 @@
 				B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */,
 				B51784CE25D890BE004472DB /* VoteRow.xib in Resources */,
 				B5E7A63825D6F7540076F12C /* Assets.xcassets in Resources */,
+				B5CBA53125FBCEE000621682 /* KMKStatsCell.xib in Resources */,
 				B5E7A63625D6F7520076F12C /* Game.storyboard in Resources */,
 				B59BBF2425D848D200A059C4 /* StatsExperience.storyboard in Resources */,
 			);
@@ -272,10 +280,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */,
 				B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */,
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
+				B5CBA53025FBCEE000621682 /* KMKStatsCell.swift in Sources */,
 				B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */,
 				B51A4F4525D86A9D0035C50D /* RadioVoteButton.swift in Sources */,
+				B5CBA52925FA93B500621682 /* StatsModel.swift in Sources */,
 				B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */,
 				B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */,
 				B51784D725D8946A004472DB /* VoteRowStack.swift in Sources */,
@@ -286,6 +297,7 @@
 				B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */,
 				B59BBF3025D8509500A059C4 /* Strings.swift in Sources */,
 				B5D9458725E4A924005C6DC6 /* KMKSurveyConfirmation.swift in Sources */,
+				B5CBA52C25FA944F00621682 /* Schema.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
 				B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */,
 			);
