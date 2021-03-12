@@ -33,6 +33,8 @@ class StatsCollectionView: UIViewController {
         collectionView.prefetchDataSource = self
         
         
+        
+        
     }
 
    
@@ -56,6 +58,7 @@ extension StatsCollectionView: UICollectionViewDataSource, UICollectionViewDeleg
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "KMKCelebPic", for: indexPath) as? KMKStatsCell else {return UICollectionViewCell()}
         
         cell.count.setTitle("\(vm.dataSource[indexPath.item].surveys.count)", for: .normal)
+        cell.celeb.image = UIImage(systemName: "person.fill.questionmark")
         vm.setCachItemWithLoadedImage(in: segments.selectedSegmentIndex,location: indexPath.item, celeb: vm.dataSource[indexPath.item].cid, imageview: cell.celeb)
         return cell
     }
