@@ -1,6 +1,6 @@
 model/config.json
-
-
+client/Mkk-iOS/GoogleService-Info.plist
+client/Mkk-iOS/Pods
 # Logs
 logs
 *.log

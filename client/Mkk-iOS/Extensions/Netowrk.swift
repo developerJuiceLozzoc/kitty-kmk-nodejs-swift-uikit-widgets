@@ -9,15 +9,6 @@ import UIKit
 
 
 
-enum KMKNetworkError: String,Error{
-    case decodeFail = "Failed to code the GameSurvey Struct"
-    case urlError = "Failed to create a url"
-    case serverSaveError = "Server failed to respond to SaveSurvey"
-    case serverCreateError = "Server failed to return new game survey"
-    case invalidRequestError = "the object was not the format as expected"
-    case noImageFoundError = " the requested image was not availible"
-    case invalidClientRequest = "the server responded with errror"
-}
 
 
 class ImageLoader: Loader {
