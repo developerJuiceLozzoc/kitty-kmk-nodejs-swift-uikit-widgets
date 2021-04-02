@@ -45,12 +45,11 @@ class GameSurveyVM {
                 
                 guard let self = self else {return}
                 guard let payload = notification.object as? VoteIdentity else {return}
-                print(payload.entity,payload.value)
-                
+                    
                 guard let index = self.survey?.votes.firstIndex(of: payload.value) else {return}
                 self.survey?.votes.swapAt(payload.entity, index)
                 guard let votes = self.survey?.votes else {return}
-                
+                print(votes)
                 NotificationCenter.default.post(
                     name: .radiobttnUpdate,
                     object: SwapRadioButtons(
@@ -74,13 +73,13 @@ class GameSurveyVM {
     
 }
 
-//MARK: Implmenting survey  confirmation datasource
-extension GameSurveyVM: KMKSurveyConfirmationDataSource {
-    func getLabelForCeleb(at index: Int) -> String {
-        guard let survey = self.survey else {return VOTE_LIST[index]}
-        return VOTE_LIST[survey.votes[index]]
-    }
-    
-    
-}
+////MARK: Implmenting survey  confirmation datasource
+//extension GameSurveyVM: KMKSurveyConfirmationDataSource {
+//    func getLabelForCeleb(at index: Int) -> String {
+//        guard let survey = self.survey else {return VOTE_LIST[index]}
+//        return VOTE_LIST[survey.votes[index]]
+//    }
+//    
+//    
+//}
 

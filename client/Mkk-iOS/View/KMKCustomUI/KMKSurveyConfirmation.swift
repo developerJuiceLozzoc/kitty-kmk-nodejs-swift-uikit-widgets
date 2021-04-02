@@ -7,13 +7,7 @@
 
 import UIKit
 
-protocol KMKSurveyConfirmationReader {
-    func confirmSurvey()
-    func getPhotoForVote(at index: Int) -> UIImage?
-}
-protocol KMKSurveyConfirmationDataSource {
-    func getLabelForCeleb(at index: Int) -> String
-}
+
 /*
 possible visual swipe indicators
 r.joystick.down
@@ -24,7 +18,6 @@ class KMKSurveyConfirmation: UIViewController {
     
     var form: GameSurvey?
     var delegate: KMKSurveyConfirmationReader?
-    var datasource: KMKSurveyConfirmationDataSource?
 
     @IBOutlet var images: [UIImageView]!
 
@@ -53,7 +46,7 @@ class KMKSurveyConfirmation: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        guard let delegate = delegate, let ds = datasource else {return}
+        guard let delegate = delegate else {return}
         guard let form = self.form else {return}
         for i in 0...2 {
             names[i].text = VOTE_LIST[i]

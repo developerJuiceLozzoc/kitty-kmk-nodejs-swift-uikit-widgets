@@ -9,14 +9,30 @@ import Foundation
 import UIKit
 
 class ImagesViewModel {
-    var images: [UIImage?] = Array.init(repeating: UIImage(), count: 3)
+    var images: [UIImage?] = Array.init(repeating: nil, count: 3)
     var loader: Loader = ImageLoader()
     
+    func resetVM(){
+        for i in 0..<3{
+            images[i] = nil
+        }
+    }
+    
     func setIndexedImageView(reference imageview: UIImageView, index: Int, with url: URL?){
+        
         guard let url = url else {
             imageview.image = UIImage(systemName: "xmark.octagon")
             return
         }
+        
+        guard images[index] == nil else{
+            DispatchQueue.main.async {
+                imageview.image = self.images[index]
+
+            }
+            return
+        }
+
         loader.load(url: url) { result in
             DispatchQueue.main.async {
                 switch result {

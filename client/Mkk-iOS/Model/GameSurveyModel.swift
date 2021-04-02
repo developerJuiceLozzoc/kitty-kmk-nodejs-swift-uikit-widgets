@@ -7,12 +7,6 @@
 
 import Foundation
 
-protocol KMKApi {
-    func fetchNewGame(completion: @escaping (Result<GameSurvey,KMKNetworkError>)->Void)
-    // after submitting one, we expect to complete another.
-    func submitGameResult(with survey: GameSurvey, completion: @escaping (Result<GameSurvey,KMKNetworkError>) -> Void)
-
-}
 
 
 

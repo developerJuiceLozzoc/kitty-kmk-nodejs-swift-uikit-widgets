@@ -7,13 +7,7 @@
 
 import UIKit
 
-//protocol KMKApi {
-//    func fetch
-//}
-//
-//class NetworkManager: KMKApi {
-//
-//}
+
 
 enum KMKNetworkError: String,Error{
     case decodeFail = "Failed to code the GameSurvey Struct"
@@ -25,9 +19,6 @@ enum KMKNetworkError: String,Error{
     case invalidClientRequest = "the server responded with errror"
 }
 
-protocol Loader {
-    func load(url: URL, completion: @escaping (Result<UIImage,KMKNetworkError>) -> Void)
-}
 
 class ImageLoader: Loader {
     func load(url: URL, completion: @escaping (Result<UIImage,KMKNetworkError>) -> Void){
