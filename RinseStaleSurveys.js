@@ -37,3 +37,5 @@ mongoconnect.connect((err,client) => {
   }
 
 });
+
+// also i will have to send any current notifications pending by apps

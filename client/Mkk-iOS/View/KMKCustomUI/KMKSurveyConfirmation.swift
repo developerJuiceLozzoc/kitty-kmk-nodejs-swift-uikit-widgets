@@ -47,7 +47,6 @@ class KMKSurveyConfirmation: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         guard let delegate = delegate else {return}
-        guard let form = self.form else {return}
         for i in 0...2 {
             names[i].text = VOTE_LIST[i]
             self.images[i].image = delegate.getPhotoForVote(at: i)

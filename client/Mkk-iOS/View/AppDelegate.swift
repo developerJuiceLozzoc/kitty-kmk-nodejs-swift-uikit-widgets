@@ -82,8 +82,26 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         
         tabController.selectedIndex = 2
         guard let vc = tabController.selectedViewController as? UINavigationController else{ completionHandler();return;}
-        let saveVC = UIStoryboard.init(name: "ListMyKitties", bundle: nil).instantiateViewController(identifier: "ConfirmKittyScreen")
-        vc.pushViewController(saveVC, animated: true)
+        let jsonifer: CatApier = KittyJsoner()
+        if let BREED = KITTY_BREEDS.randomElement() {
+            jsonifer.getJsonByBreed(with: BREED) { (result) in
+                var json: [KittyApiResults]? = nil
+                switch result {
+                case .success(let res):
+                    json = res
+                case .failure(let err):
+                    print(err)
+                }
+                if let saveVC = UIStoryboard
+                    .init(name: "ListMyKitties", bundle: nil)
+                    .instantiateViewController(identifier: "ConfirmKittyScreen") as? SaveOrDiscardKittyTVC {
+                    saveVC.kitty = json
+                    vc.pushViewController(saveVC, animated: true)
+
+                }
+            }
+
+        }
 
             
     }

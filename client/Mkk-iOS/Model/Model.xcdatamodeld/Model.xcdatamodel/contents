@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Kitty" representedClassName="Kitty" syncable="YES" codeGenerationType="class">
+        <attribute name="birthday" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="img" optional="YES" attributeType="Binary"/>
+        <attribute name="imgurl" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="stats" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KStats"/>
     </entity>
     <entity name="KStats" representedClassName="KStats" syncable="YES" codeGenerationType="class">
-        <attribute name="dog_friendly" optional="YES" attributeType="String"/>
+        <attribute name="dog_friendly" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="energy_level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="kitty_description" optional="YES" attributeType="String"/>
@@ -18,7 +20,7 @@
         <attribute name="temperament" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Kitty" positionX="-63" positionY="-18" width="128" height="74"/>
+        <element name="Kitty" positionX="-63" positionY="-18" width="128" height="104"/>
         <element name="KStats" positionX="-54" positionY="9" width="128" height="179"/>
     </elements>
 </model>

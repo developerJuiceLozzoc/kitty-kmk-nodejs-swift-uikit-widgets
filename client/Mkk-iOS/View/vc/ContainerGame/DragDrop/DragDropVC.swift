@@ -46,6 +46,11 @@ class DragDropVC: UIViewController, KMKUseViewModel {
             imageview.addInteraction(UIDragInteraction(delegate: self))
             
         }
+        for i in 0...2{
+            imgvws[3+i].layer.borderWidth = 1
+            imgvws[3+i].layer.borderColor = UIColor.gray.cgColor
+            
+        }
         // Do any additional setup after loading the view.
     }
     

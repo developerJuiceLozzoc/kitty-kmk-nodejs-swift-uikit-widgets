@@ -1,14 +1,14 @@
 //
-//  SaveOrDiscardKittyVC.swift
+//  KitttyDetails.swift
 //  Mkk-iOS
 //
-//  Created by Conner M on 4/2/21.
+//  Created by Conner M on 4/3/21.
 //
 
 import UIKit
 
-class SaveOrDiscardKittyVC: UIViewController {
-
+class KitttyDetails: UIViewController {
+    var details: Kitty?
     override func viewDidLoad() {
         super.viewDidLoad()
 

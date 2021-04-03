@@ -1,4 +1,4 @@
-//
+
 //  ListKittiesTVC.swift
 //  Mkk-iOS
 //
@@ -8,82 +8,102 @@
 import UIKit
 
 class ListKittiesTVC: UITableViewController {
-
+    
+    var tempnetwrok = MockNetwork()
+    var cd = CoreData()
+    
+    var kitties: [Kitty]? {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.kitties = cd.fetchKitties()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    @IBAction func devTest(_ sender: Any) {
+        tempnetwrok.getJsonByBreed(with: "asdf") { [unowned self](result) in
+            switch result {
+                case .success(let kitties):
+                    DispatchQueue.main.async{
+                        self.performSegue(withIdentifier: "ConfirmKitty", sender: kitties)
+                    }
+                    
+                    
+                case .failure(let e):
+                    print(e)
+            }
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "ConfirmKitty"){
+            guard let vc = segue.destination as? SaveOrDiscardKittyTVC, let ks = sender as? [KittyApiResults] else {return}
+            vc.kitty = ks
+        }
+        else if (segue.identifier == "DetailsKitty"){
+            guard let vc = segue.destination as? KitttyDetails, let details = sender as? Kitty else {return}
+            vc.details = details
+        }
+    }
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        guard let arr = self.kitties else {return 0}
+        return arr.count
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = kitties?[indexPath.row].name
 
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let kitty = self.kitties?[indexPath.row] else{ return}
+        performSegue(withIdentifier: "DetailsKitty", sender: kitty)
     }
-    */
+    
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+}
+class MockNetwork: CatApier {
+    func getJsonByBreed(with breed: String, completion: @escaping (Result<[KittyApiResults], KMKNetworkError>) -> Void) {
+        let url = URL(fileURLWithPath: "/Users/yarg347/Documents/code/SwiftProjects/kitty-kmk/client/Mkk-iOSTests/MockNetwork.json")
+        URLSession.shared.dataTask(with: url){data,resp,err in
+                if let error = err {
+                    print (error)
+                    completion(.failure(.invalidRequestError))
+                    return
+                }
+                if let data = data {
+                    do{
+                        let swiftkitty = try JSONDecoder().decode([KittyApiResults].self, from: data)
+                        completion(.success(swiftkitty))
+                    }
+                    catch let err{
+                        print(err)
+                        completion(.failure(.decodeFail))
+                    }
+
+                }else{
+                    completion(.failure(.noBreedsFoundError))
+                    
+                }
+        }.resume()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func getKittyImageByBreed(with breed: String, completion: @escaping (Result<UIImage, KMKNetworkError>) -> Void) {
+        return
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }

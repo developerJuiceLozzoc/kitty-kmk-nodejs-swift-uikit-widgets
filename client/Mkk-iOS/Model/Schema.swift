@@ -20,10 +20,10 @@ struct KittyBreed: Codable {
     var temperament: String
     var description: String
     var life_span: String
-    var dog_friendly: Int16
-    var energy_level: Int16
-    var shedding_level: Int16
-    var stranger_friendly: Int16
+    var dog_friendly: Int
+    var energy_level: Int
+    var shedding_level: Int
+    var stranger_friendly: Int
     var origin: String
     
 }

@@ -22,7 +22,7 @@ class MainTabController: UITabBarController {
         
         viewControllers = [gamevc,collectionvc,listvc]
         
-        selectedIndex = 1
+        selectedIndex = 2
     }
     
 

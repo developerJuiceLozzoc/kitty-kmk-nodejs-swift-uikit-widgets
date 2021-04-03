@@ -13,9 +13,26 @@
 		B51784D325D8942C004472DB /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51784D225D8942C004472DB /* GameView.swift */; };
 		B51784D725D8946A004472DB /* VoteRowStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51784D625D8946A004472DB /* VoteRowStack.swift */; };
 		B51A4F4525D86A9D0035C50D /* RadioVoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A4F4425D86A9D0035C50D /* RadioVoteButton.swift */; };
+		B521F34A2618DA7400E7A87D /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F3492618DA7400E7A87D /* CoreData.swift */; };
+		B521F34E2618E49900E7A87D /* KitttyDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F34D2618E49900E7A87D /* KitttyDetails.swift */; };
+		B521F3542618E5A500E7A87D /* AdoptedKittyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F3522618E5A500E7A87D /* AdoptedKittyCell.swift */; };
+		B521F3552618E5A500E7A87D /* AdoptedKittyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B521F3532618E5A500E7A87D /* AdoptedKittyCell.xib */; };
 		B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544121A25EFD7B900C0D629 /* Netowrk.swift */; };
 		B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */; };
 		B567F60D2614BD40006384DB /* DragDropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B567F60C2614BD40006384DB /* DragDropVC.swift */; };
+		B57427F22618262700532B21 /* KittyStatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57427F02618262700532B21 /* KittyStatCell.swift */; };
+		B57427F32618262700532B21 /* KittyStatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57427F12618262700532B21 /* KittyStatCell.xib */; };
+		B57427F82618264A00532B21 /* KittyAdoptCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57427F62618264900532B21 /* KittyAdoptCollectionCell.swift */; };
+		B57427F92618264A00532B21 /* KittyAdoptCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57427F72618264900532B21 /* KittyAdoptCollectionCell.xib */; };
+		B57427FD2618AA3200532B21 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57427FC2618AA3200532B21 /* NetworkTests.swift */; };
+		B57428032618AC3A00532B21 /* MockNetwork.json in Resources */ = {isa = PBXBuildFile; fileRef = B57428022618AC3A00532B21 /* MockNetwork.json */; };
+		B57428062618B28B00532B21 /* MockNetwork.json in Resources */ = {isa = PBXBuildFile; fileRef = B57428022618AC3A00532B21 /* MockNetwork.json */; };
+		B574280B2618BC5800532B21 /* KittyNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57428092618BC5800532B21 /* KittyNameCell.swift */; };
+		B574280C2618BC5800532B21 /* KittyNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B574280A2618BC5800532B21 /* KittyNameCell.xib */; };
+		B57428112618BC6F00532B21 /* KittyConfirmBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574280F2618BC6F00532B21 /* KittyConfirmBtnCell.swift */; };
+		B57428122618BC6F00532B21 /* KittyConfirmBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57428102618BC6F00532B21 /* KittyConfirmBtnCell.xib */; };
+		B574281A2618C20E00532B21 /* SelfieClickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57428182618C20E00532B21 /* SelfieClickCell.swift */; };
+		B574281B2618C20E00532B21 /* SelfieClickCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57428192618C20E00532B21 /* SelfieClickCell.xib */; };
 		B577223625D89FC90024BA72 /* BossConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577223525D89FC90024BA72 /* BossConstrains.swift */; };
 		B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */; };
 		B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */; };
@@ -26,7 +43,7 @@
 		B5B54C46261611B000B18377 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C45261611B000B18377 /* ContainerViewController.swift */; };
 		B5B54C492616124600B18377 /* ContainerHandlerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C482616124600B18377 /* ContainerHandlerVC.swift */; };
 		B5B54C4D2616183C00B18377 /* EmptySegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C4C2616183C00B18377 /* EmptySegue.swift */; };
-		B5B54C712617A11D00B18377 /* Mkk_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C702617A11D00B18377 /* Mkk_iOSTests.swift */; };
+		B5B54C712617A11D00B18377 /* VoteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C702617A11D00B18377 /* VoteViewModelTests.swift */; };
 		B5B54C7A2617A13700B18377 /* GameSurveyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */; };
 		B5B54C7D2617A13A00B18377 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */; };
 		B5B54C802617A14F00B18377 /* Netowrk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544121A25EFD7B900C0D629 /* Netowrk.swift */; };
@@ -40,8 +57,8 @@
 		B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CA52617C6BF00B18377 /* Model.xcdatamodeld */; };
 		B5B54CAB2617CB6800B18377 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5B54CAA2617CB6800B18377 /* GoogleService-Info.plist */; };
 		B5B54CD92617D4DA00B18377 /* ListKittiesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */; };
-		B5B54CDF2617D50900B18377 /* SaveOrDiscardKittyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CDE2617D50900B18377 /* SaveOrDiscardKittyVC.swift */; };
 		B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CE52617F9E600B18377 /* KITTY_API_CONFIG.swift */; };
+		B5C8D15F2618151600C77525 /* SaveOrDiscardKittyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C8D15E2618151600C77525 /* SaveOrDiscardKittyTVC.swift */; };
 		B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */; };
 		B5CBA52925FA93B500621682 /* StatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52825FA93B500621682 /* StatsModel.swift */; };
 		B5CBA52C25FA944F00621682 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52B25FA944F00621682 /* Schema.swift */; };
@@ -76,9 +93,25 @@
 		B51784D225D8942C004472DB /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B51784D625D8946A004472DB /* VoteRowStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteRowStack.swift; sourceTree = "<group>"; };
 		B51A4F4425D86A9D0035C50D /* RadioVoteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioVoteButton.swift; sourceTree = "<group>"; };
+		B521F3492618DA7400E7A87D /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		B521F34D2618E49900E7A87D /* KitttyDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitttyDetails.swift; sourceTree = "<group>"; };
+		B521F3522618E5A500E7A87D /* AdoptedKittyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptedKittyCell.swift; sourceTree = "<group>"; };
+		B521F3532618E5A500E7A87D /* AdoptedKittyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdoptedKittyCell.xib; sourceTree = "<group>"; };
 		B544121A25EFD7B900C0D629 /* Netowrk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netowrk.swift; sourceTree = "<group>"; };
 		B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		B567F60C2614BD40006384DB /* DragDropVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropVC.swift; sourceTree = "<group>"; };
+		B57427F02618262700532B21 /* KittyStatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyStatCell.swift; sourceTree = "<group>"; };
+		B57427F12618262700532B21 /* KittyStatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyStatCell.xib; sourceTree = "<group>"; };
+		B57427F62618264900532B21 /* KittyAdoptCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyAdoptCollectionCell.swift; sourceTree = "<group>"; };
+		B57427F72618264900532B21 /* KittyAdoptCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyAdoptCollectionCell.xib; sourceTree = "<group>"; };
+		B57427FC2618AA3200532B21 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
+		B57428022618AC3A00532B21 /* MockNetwork.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockNetwork.json; sourceTree = "<group>"; };
+		B57428092618BC5800532B21 /* KittyNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyNameCell.swift; sourceTree = "<group>"; };
+		B574280A2618BC5800532B21 /* KittyNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyNameCell.xib; sourceTree = "<group>"; };
+		B574280F2618BC6F00532B21 /* KittyConfirmBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyConfirmBtnCell.swift; sourceTree = "<group>"; };
+		B57428102618BC6F00532B21 /* KittyConfirmBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyConfirmBtnCell.xib; sourceTree = "<group>"; };
+		B57428182618C20E00532B21 /* SelfieClickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieClickCell.swift; sourceTree = "<group>"; };
+		B57428192618C20E00532B21 /* SelfieClickCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelfieClickCell.xib; sourceTree = "<group>"; };
 		B577223525D89FC90024BA72 /* BossConstrains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossConstrains.swift; sourceTree = "<group>"; };
 		B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyVM.swift; sourceTree = "<group>"; };
 		B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyModel.swift; sourceTree = "<group>"; };
@@ -90,7 +123,7 @@
 		B5B54C482616124600B18377 /* ContainerHandlerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerHandlerVC.swift; sourceTree = "<group>"; };
 		B5B54C4C2616183C00B18377 /* EmptySegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySegue.swift; sourceTree = "<group>"; };
 		B5B54C6E2617A11D00B18377 /* Mkk-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mkk-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5B54C702617A11D00B18377 /* Mkk_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mkk_iOSTests.swift; sourceTree = "<group>"; };
+		B5B54C702617A11D00B18377 /* VoteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModelTests.swift; sourceTree = "<group>"; };
 		B5B54C722617A11D00B18377 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B54C8F2617A64100B18377 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		B5B54C9F2617C6AC00B18377 /* ListMyKitties.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListMyKitties.storyboard; sourceTree = "<group>"; };
@@ -98,8 +131,8 @@
 		B5B54CAA2617CB6800B18377 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B5B54CD22617CF4600B18377 /* Mkk-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mkk-iOS.entitlements"; sourceTree = "<group>"; };
 		B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesTVC.swift; sourceTree = "<group>"; };
-		B5B54CDE2617D50900B18377 /* SaveOrDiscardKittyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrDiscardKittyVC.swift; sourceTree = "<group>"; };
 		B5B54CE52617F9E600B18377 /* KITTY_API_CONFIG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KITTY_API_CONFIG.swift; sourceTree = "<group>"; };
+		B5C8D15E2618151600C77525 /* SaveOrDiscardKittyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrDiscardKittyTVC.swift; sourceTree = "<group>"; };
 		B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		B5CBA52825FA93B500621682 /* StatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsModel.swift; sourceTree = "<group>"; };
 		B5CBA52B25FA944F00621682 /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
@@ -166,6 +199,19 @@
 			path = VoteRow;
 			sourceTree = "<group>";
 		};
+		B521F3512618E57B00E7A87D /* NewKittyForm */ = {
+			isa = PBXGroup;
+			children = (
+				B57427F02618262700532B21 /* KittyStatCell.swift */,
+				B57427F12618262700532B21 /* KittyStatCell.xib */,
+				B57428092618BC5800532B21 /* KittyNameCell.swift */,
+				B574280A2618BC5800532B21 /* KittyNameCell.xib */,
+				B574280F2618BC6F00532B21 /* KittyConfirmBtnCell.swift */,
+				B57428102618BC6F00532B21 /* KittyConfirmBtnCell.xib */,
+			);
+			path = NewKittyForm;
+			sourceTree = "<group>";
+		};
 		B567F60A2614BD21006384DB /* ContainerGame */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +229,28 @@
 				B567F60C2614BD40006384DB /* DragDropVC.swift */,
 			);
 			path = DragDrop;
+			sourceTree = "<group>";
+		};
+		B57427EF2618260100532B21 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				B521F3512618E57B00E7A87D /* NewKittyForm */,
+				B57428152618BCE400532B21 /* KittyGrid */,
+				B521F3522618E5A500E7A87D /* AdoptedKittyCell.swift */,
+				B521F3532618E5A500E7A87D /* AdoptedKittyCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		B57428152618BCE400532B21 /* KittyGrid */ = {
+			isa = PBXGroup;
+			children = (
+				B57427F62618264900532B21 /* KittyAdoptCollectionCell.swift */,
+				B57427F72618264900532B21 /* KittyAdoptCollectionCell.xib */,
+				B57428182618C20E00532B21 /* SelfieClickCell.swift */,
+				B57428192618C20E00532B21 /* SelfieClickCell.xib */,
+			);
+			path = KittyGrid;
 			sourceTree = "<group>";
 		};
 		B577223325D89FAA0024BA72 /* Extensions */ = {
@@ -206,6 +274,7 @@
 				B5CBA52825FA93B500621682 /* StatsModel.swift */,
 				B5CBA52B25FA944F00621682 /* Schema.swift */,
 				B5B54C8F2617A64100B18377 /* Protocols.swift */,
+				B521F3492618DA7400E7A87D /* CoreData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,8 +292,10 @@
 		B5B54C6F2617A11D00B18377 /* Mkk-iOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				B5B54C702617A11D00B18377 /* Mkk_iOSTests.swift */,
+				B5B54C702617A11D00B18377 /* VoteViewModelTests.swift */,
 				B5B54C722617A11D00B18377 /* Info.plist */,
+				B57427FC2618AA3200532B21 /* NetworkTests.swift */,
+				B57428022618AC3A00532B21 /* MockNetwork.json */,
 			);
 			path = "Mkk-iOSTests";
 			sourceTree = "<group>";
@@ -232,8 +303,10 @@
 		B5B54CD72617D44900B18377 /* ListKitties */ = {
 			isa = PBXGroup;
 			children = (
+				B57427EF2618260100532B21 /* cells */,
 				B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */,
-				B5B54CDE2617D50900B18377 /* SaveOrDiscardKittyVC.swift */,
+				B5C8D15E2618151600C77525 /* SaveOrDiscardKittyTVC.swift */,
+				B521F34D2618E49900E7A87D /* KitttyDetails.swift */,
 			);
 			path = ListKitties;
 			sourceTree = "<group>";
@@ -421,6 +494,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57428032618AC3A00532B21 /* MockNetwork.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,13 +502,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B574280C2618BC5800532B21 /* KittyNameCell.xib in Resources */,
 				B5B54CAB2617CB6800B18377 /* GoogleService-Info.plist in Resources */,
+				B57427F32618262700532B21 /* KittyStatCell.xib in Resources */,
+				B57428122618BC6F00532B21 /* KittyConfirmBtnCell.xib in Resources */,
+				B574281B2618C20E00532B21 /* SelfieClickCell.xib in Resources */,
+				B521F3552618E5A500E7A87D /* AdoptedKittyCell.xib in Resources */,
 				B5B54CA02617C6AC00B18377 /* ListMyKitties.storyboard in Resources */,
 				B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */,
+				B57428062618B28B00532B21 /* MockNetwork.json in Resources */,
 				B51784CE25D890BE004472DB /* VoteRow.xib in Resources */,
 				B5E7A63825D6F7540076F12C /* Assets.xcassets in Resources */,
 				B5CBA53125FBCEE000621682 /* KMKStatsCell.xib in Resources */,
 				B5E7A63625D6F7520076F12C /* Game.storyboard in Resources */,
+				B57427F92618264A00532B21 /* KittyAdoptCollectionCell.xib in Resources */,
 				B59BBF2425D848D200A059C4 /* StatsExperience.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,11 +593,12 @@
 			files = (
 				B5B54C7D2617A13A00B18377 /* ImagesViewModel.swift in Sources */,
 				B5B54C8C2617A34700B18377 /* GameSurveyModel.swift in Sources */,
+				B57427FD2618AA3200532B21 /* NetworkTests.swift in Sources */,
 				B5B54C862617A16300B18377 /* NotificationObjects.swift in Sources */,
 				B5B54C932617A66100B18377 /* Protocols.swift in Sources */,
 				B5B54C7A2617A13700B18377 /* GameSurveyVM.swift in Sources */,
 				B5B54C802617A14F00B18377 /* Netowrk.swift in Sources */,
-				B5B54C712617A11D00B18377 /* Mkk_iOSTests.swift in Sources */,
+				B5B54C712617A11D00B18377 /* VoteViewModelTests.swift in Sources */,
 				B5B54C832617A15E00B18377 /* Schema.swift in Sources */,
 				B5B54C892617A16600B18377 /* Strings.swift in Sources */,
 			);
@@ -526,20 +608,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B574281A2618C20E00532B21 /* SelfieClickCell.swift in Sources */,
 				B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */,
+				B57427F22618262700532B21 /* KittyStatCell.swift in Sources */,
 				B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */,
+				B521F34A2618DA7400E7A87D /* CoreData.swift in Sources */,
+				B57428112618BC6F00532B21 /* KittyConfirmBtnCell.swift in Sources */,
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
+				B574280B2618BC5800532B21 /* KittyNameCell.swift in Sources */,
 				B5B54C492616124600B18377 /* ContainerHandlerVC.swift in Sources */,
 				B5CBA53025FBCEE000621682 /* KMKStatsCell.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
 				B5B54CD92617D4DA00B18377 /* ListKittiesTVC.swift in Sources */,
+				B521F3542618E5A500E7A87D /* AdoptedKittyCell.swift in Sources */,
 				B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */,
 				B51A4F4525D86A9D0035C50D /* RadioVoteButton.swift in Sources */,
 				B5CBA52925FA93B500621682 /* StatsModel.swift in Sources */,
 				B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */,
 				B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */,
 				B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */,
-				B5B54CDF2617D50900B18377 /* SaveOrDiscardKittyVC.swift in Sources */,
+				B5C8D15F2618151600C77525 /* SaveOrDiscardKittyTVC.swift in Sources */,
 				B51784D725D8946A004472DB /* VoteRowStack.swift in Sources */,
 				B5B54C4D2616183C00B18377 /* EmptySegue.swift in Sources */,
 				B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */,
@@ -547,8 +635,10 @@
 				B567F60D2614BD40006384DB /* DragDropVC.swift in Sources */,
 				B59BBF2925D8495D00A059C4 /* StatsCollectionView.swift in Sources */,
 				B5B54C46261611B000B18377 /* ContainerViewController.swift in Sources */,
+				B57427F82618264A00532B21 /* KittyAdoptCollectionCell.swift in Sources */,
 				B577223625D89FC90024BA72 /* BossConstrains.swift in Sources */,
 				B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */,
+				B521F34E2618E49900E7A87D /* KitttyDetails.swift in Sources */,
 				B59BBF3025D8509500A059C4 /* Strings.swift in Sources */,
 				B5D9458725E4A924005C6DC6 /* KMKSurveyConfirmation.swift in Sources */,
 				B5CBA52C25FA944F00621682 /* Schema.swift in Sources */,

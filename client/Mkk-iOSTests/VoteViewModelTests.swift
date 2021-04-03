@@ -1,5 +1,5 @@
 //
-//  Mkk_iOSTests.swift
+//  VoteViewModelTests.swift
 //  Mkk-iOSTests
 //
 //  Created by Conner M on 4/2/21.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-class Mkk_iOSTests: XCTestCase {
+class VoteViewModelTests: XCTestCase {
     
     var initalSurvey: GameSurvey!
     var vm: GameSurveyVM!
@@ -64,7 +64,7 @@ class Mkk_iOSTests: XCTestCase {
     
 
 }
-extension Mkk_iOSTests {
+extension VoteViewModelTests {
     func getPhotoForVote(at index: Int) -> Celebrity? {
 
         guard let i = vm.survey?.votes[index] else {return nil}

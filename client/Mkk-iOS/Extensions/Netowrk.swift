@@ -8,8 +8,36 @@
 import UIKit
 
 class KittyJsoner: CatApier {
-    func getJsonByBreed(with breed: String, completion: @escaping (Result<KittyBreed, KMKNetworkError>) -> Void) {
-        guard let url = URL(string: <#T##String#>)
+    func getKittyImageByBreed(with breed: String, completion: @escaping (Result<UIImage, KMKNetworkError>) -> Void) {
+        completion(.success(UIImage(systemName: "hare.fill")!))
+    }
+    
+    func getJsonByBreed(with breed: String, completion: @escaping (Result<[KittyApiResults], KMKNetworkError>) -> Void) {
+        guard let url = URL(string: "\(KITTY_URL)&breed_ids=\(breed)") else {
+            completion(.failure(.urlError)); return;
+        }
+        URLSession.shared.dataTask(with: url){data,resp,err in
+                if let error = err {
+                    print (error)
+                    completion(.failure(.invalidRequestError))
+                    return
+                }
+                if let data = data {
+                    do{
+                        let swiftkitty = try JSONDecoder().decode([KittyApiResults].self, from: data)
+                        completion(.success(swiftkitty))
+                    }
+                    catch let err{
+                        print(err)
+                        completion(.failure(.decodeFail))
+                    }
+
+                }else{
+                    completion(.failure(.noBreedsFoundError))
+                    
+                }
+        }.resume()
+        
     }
     
     func getKittyImageByBreed(with breed: String) {
