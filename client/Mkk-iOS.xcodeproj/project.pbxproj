@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88D8603C82A44D3C53BFEDE1 /* Pods_Mkk_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */; };
 		B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51784CA25D874E7004472DB /* NotificationObjects.swift */; };
 		B51784CE25D890BE004472DB /* VoteRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51784CD25D890BE004472DB /* VoteRow.xib */; };
 		B51784D325D8942C004472DB /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51784D225D8942C004472DB /* GameView.swift */; };
@@ -38,6 +39,9 @@
 		B5B54CA02617C6AC00B18377 /* ListMyKitties.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B54C9F2617C6AC00B18377 /* ListMyKitties.storyboard */; };
 		B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CA52617C6BF00B18377 /* Model.xcdatamodeld */; };
 		B5B54CAB2617CB6800B18377 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5B54CAA2617CB6800B18377 /* GoogleService-Info.plist */; };
+		B5B54CD92617D4DA00B18377 /* ListKittiesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */; };
+		B5B54CDF2617D50900B18377 /* SaveOrDiscardKittyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CDE2617D50900B18377 /* SaveOrDiscardKittyVC.swift */; };
+		B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CE52617F9E600B18377 /* KITTY_API_CONFIG.swift */; };
 		B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */; };
 		B5CBA52925FA93B500621682 /* StatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52825FA93B500621682 /* StatsModel.swift */; };
 		B5CBA52C25FA944F00621682 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52B25FA944F00621682 /* Schema.swift */; };
@@ -50,6 +54,7 @@
 		B5E7A63625D6F7520076F12C /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63425D6F7520076F12C /* Game.storyboard */; };
 		B5E7A63825D6F7540076F12C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63725D6F7540076F12C /* Assets.xcassets */; };
 		B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */; };
+		BE3D8116413BC900455838DF /* Pods_Mkk_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4FC131466976AA12FA0CB21F /* Pods-Mkk-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mkk_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2381C6BCA850B28816BCB03 /* Pods-Mkk-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOS.release.xcconfig"; path = "Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B51784CA25D874E7004472DB /* NotificationObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObjects.swift; sourceTree = "<group>"; };
 		B51784CD25D890BE004472DB /* VoteRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoteRow.xib; sourceTree = "<group>"; };
 		B51784D225D8942C004472DB /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -88,6 +96,10 @@
 		B5B54C9F2617C6AC00B18377 /* ListMyKitties.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListMyKitties.storyboard; sourceTree = "<group>"; };
 		B5B54CA62617C6BF00B18377 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B5B54CAA2617CB6800B18377 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B5B54CD22617CF4600B18377 /* Mkk-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mkk-iOS.entitlements"; sourceTree = "<group>"; };
+		B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesTVC.swift; sourceTree = "<group>"; };
+		B5B54CDE2617D50900B18377 /* SaveOrDiscardKittyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrDiscardKittyVC.swift; sourceTree = "<group>"; };
+		B5B54CE52617F9E600B18377 /* KITTY_API_CONFIG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KITTY_API_CONFIG.swift; sourceTree = "<group>"; };
 		B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		B5CBA52825FA93B500621682 /* StatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsModel.swift; sourceTree = "<group>"; };
 		B5CBA52B25FA944F00621682 /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
@@ -102,6 +114,9 @@
 		B5E7A63725D6F7540076F12C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5E7A63A25D6F7540076F12C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5E7A63C25D6F7540076F12C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mkk_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E04F2B701C1D71ABD1013919 /* Pods-Mkk-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88D8603C82A44D3C53BFEDE1 /* Pods_Mkk_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,12 +132,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE3D8116413BC900455838DF /* Pods_Mkk_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5CD7AB02317EACA0A9753D80 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */,
+				BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B51784D025D8938E004472DB /* VotingStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +229,15 @@
 			path = "Mkk-iOSTests";
 			sourceTree = "<group>";
 		};
+		B5B54CD72617D44900B18377 /* ListKitties */ = {
+			isa = PBXGroup;
+			children = (
+				B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */,
+				B5B54CDE2617D50900B18377 /* SaveOrDiscardKittyVC.swift */,
+			);
+			path = ListKitties;
+			sourceTree = "<group>";
+		};
 		B5C09C9F25D86CE700702FB3 /* KMKCustomUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +253,8 @@
 				B5E7A62D25D6F7520076F12C /* Mkk-iOS */,
 				B5B54C6F2617A11D00B18377 /* Mkk-iOSTests */,
 				B5E7A62C25D6F7520076F12C /* Products */,
+				E843461F8CE973D865C722E2 /* Pods */,
+				5CD7AB02317EACA0A9753D80 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -233,12 +270,14 @@
 		B5E7A62D25D6F7520076F12C /* Mkk-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B5B54CD22617CF4600B18377 /* Mkk-iOS.entitlements */,
 				B5B54CAA2617CB6800B18377 /* GoogleService-Info.plist */,
 				B577223325D89FAA0024BA72 /* Extensions */,
 				B5E7A64525D6F92C0076F12C /* ViewModel */,
 				B59BBF1825D775CA00A059C4 /* Model */,
 				B5E7A64425D6F9210076F12C /* View */,
 				B5E7A63C25D6F7540076F12C /* Info.plist */,
+				B5B54CE52617F9E600B18377 /* KITTY_API_CONFIG.swift */,
 			);
 			path = "Mkk-iOS";
 			sourceTree = "<group>";
@@ -270,6 +309,7 @@
 		B5E7A64725D6F9AD0076F12C /* vc */ = {
 			isa = PBXGroup;
 			children = (
+				B5B54CD72617D44900B18377 /* ListKitties */,
 				B567F60A2614BD21006384DB /* ContainerGame */,
 				B59BBF3225D855D300A059C4 /* StatsCollection */,
 			);
@@ -287,6 +327,17 @@
 			path = boards;
 			sourceTree = "<group>";
 		};
+		E843461F8CE973D865C722E2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */,
+				B2381C6BCA850B28816BCB03 /* Pods-Mkk-iOS.release.xcconfig */,
+				E04F2B701C1D71ABD1013919 /* Pods-Mkk-iOSTests.debug.xcconfig */,
+				4FC131466976AA12FA0CB21F /* Pods-Mkk-iOSTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -294,6 +345,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5B54C772617A11D00B18377 /* Build configuration list for PBXNativeTarget "Mkk-iOSTests" */;
 			buildPhases = (
+				B8BAD8F2DE2751B55A0960D7 /* [CP] Check Pods Manifest.lock */,
 				B5B54C6A2617A11D00B18377 /* Sources */,
 				B5B54C6B2617A11D00B18377 /* Frameworks */,
 				B5B54C6C2617A11D00B18377 /* Resources */,
@@ -312,9 +364,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5E7A63F25D6F7540076F12C /* Build configuration list for PBXNativeTarget "Mkk-iOS" */;
 			buildPhases = (
+				B613E67C6098A67182832A4C /* [CP] Check Pods Manifest.lock */,
 				B5E7A62725D6F7520076F12C /* Sources */,
 				B5E7A62825D6F7520076F12C /* Frameworks */,
 				B5E7A62925D6F7520076F12C /* Resources */,
+				99946051DC99F15D7BEF56A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -387,6 +441,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		99946051DC99F15D7BEF56A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B613E67C6098A67182832A4C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mkk-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8BAD8F2DE2751B55A0960D7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mkk-iOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B5B54C6A2617A11D00B18377 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -414,12 +532,14 @@
 				B5B54C492616124600B18377 /* ContainerHandlerVC.swift in Sources */,
 				B5CBA53025FBCEE000621682 /* KMKStatsCell.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
+				B5B54CD92617D4DA00B18377 /* ListKittiesTVC.swift in Sources */,
 				B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */,
 				B51A4F4525D86A9D0035C50D /* RadioVoteButton.swift in Sources */,
 				B5CBA52925FA93B500621682 /* StatsModel.swift in Sources */,
 				B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */,
 				B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */,
 				B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */,
+				B5B54CDF2617D50900B18377 /* SaveOrDiscardKittyVC.swift in Sources */,
 				B51784D725D8946A004472DB /* VoteRowStack.swift in Sources */,
 				B5B54C4D2616183C00B18377 /* EmptySegue.swift in Sources */,
 				B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */,
@@ -433,6 +553,7 @@
 				B5D9458725E4A924005C6DC6 /* KMKSurveyConfirmation.swift in Sources */,
 				B5CBA52C25FA944F00621682 /* Schema.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
+				B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */,
 				B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +590,7 @@
 /* Begin XCBuildConfiguration section */
 		B5B54C752617A11D00B18377 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E04F2B701C1D71ABD1013919 /* Pods-Mkk-iOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -489,6 +611,7 @@
 		};
 		B5B54C762617A11D00B18377 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FC131466976AA12FA0CB21F /* Pods-Mkk-iOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -558,7 +681,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -613,7 +736,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -625,9 +748,11 @@
 		};
 		B5E7A64025D6F7540076F12C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
@@ -646,9 +771,11 @@
 		};
 		B5E7A64125D6F7540076F12C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2381C6BCA850B28816BCB03 /* Pods-Mkk-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";

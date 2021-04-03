@@ -1,0 +1,6 @@
+framework module Pods_Mkk_iOS {
+  umbrella header "Pods-Mkk-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol CatApier {
+    func getJsonByBreed(with breed: String, completion: @escaping (Result<KittyBreed,KMKNetworkError>) -> Void)
+    func getKittyImageByBreed(with breed: String)
+}
+
 protocol KMKSurveyConfirmationReader {
     func confirmSurvey()
     func getPhotoForVote(at index: Int) -> UIImage?

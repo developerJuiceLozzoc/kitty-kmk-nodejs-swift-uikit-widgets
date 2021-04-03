@@ -1,0 +1,6 @@
+framework module Pods_Mkk_iOSTests {
+  umbrella header "Pods-Mkk-iOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

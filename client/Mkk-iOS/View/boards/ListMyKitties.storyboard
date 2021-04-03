@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--List KittiesTVC-->
         <scene sceneID="9AF-Lr-R3x">
             <objects>
-                <tableViewController id="Sek-8p-XeS" sceneMemberID="viewController">
+                <tableViewController id="Sek-8p-XeS" customClass="ListKittiesTVC" customModule="Mkk_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Py-9a-0ol">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,15 +41,27 @@
             </objects>
             <point key="canvasLocation" x="723.1884057971015" y="211.60714285714286"/>
         </scene>
-        <!--View Controller-->
+        <!--Save Or Discard KittyVC-->
         <scene sceneID="u1T-PV-PGW">
             <objects>
-                <viewController storyboardIdentifier="ConfirmKittyScreen" id="Brw-3y-Z0z" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfirmKittyScreen" id="Brw-3y-Z0z" customClass="SaveOrDiscardKittyVC" customModule="Mkk_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="peu-mt-LVP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0aa-KC-bh8">
+                                <rect key="frame" x="87" y="411" width="240" height="128"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="PLJ-r1-Sdg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0aa-KC-bh8" firstAttribute="height" secondItem="PLJ-r1-Sdg" secondAttribute="height" multiplier="0.165375" id="THo-xB-HFr"/>
+                            <constraint firstItem="0aa-KC-bh8" firstAttribute="centerY" secondItem="PLJ-r1-Sdg" secondAttribute="centerY" id="ahp-Ro-FD1"/>
+                            <constraint firstItem="0aa-KC-bh8" firstAttribute="centerX" secondItem="PLJ-r1-Sdg" secondAttribute="centerX" id="rw6-In-CqB"/>
+                            <constraint firstItem="0aa-KC-bh8" firstAttribute="width" secondItem="PLJ-r1-Sdg" secondAttribute="width" multiplier="0.57971" id="vi6-hZ-0Gn"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hoz-s9-xnJ"/>
                 </viewController>
@@ -95,6 +107,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

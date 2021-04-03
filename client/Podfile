@@ -6,6 +6,10 @@ target 'Mkk-iOS' do
   use_frameworks!
 
   # Pods for Mkk-iOS
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+
 
   target 'Mkk-iOSTests' do
     inherit! :search_paths

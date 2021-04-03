@@ -7,7 +7,17 @@
 
 import UIKit
 
-
+class KittyJsoner: CatApier {
+    func getJsonByBreed(with breed: String, completion: @escaping (Result<KittyBreed, KMKNetworkError>) -> Void) {
+        guard let url = URL(string: <#T##String#>)
+    }
+    
+    func getKittyImageByBreed(with breed: String) {
+        return 
+    }
+    
+    
+}
 
 
 

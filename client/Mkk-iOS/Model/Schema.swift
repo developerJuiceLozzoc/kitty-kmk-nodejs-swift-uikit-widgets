@@ -7,6 +7,27 @@
 
 import Foundation
 
+struct KittyApiResults: Codable {
+    var breeds: [KittyBreed]
+    var id: String
+    var url: String
+    
+}
+struct KittyBreed: Codable {
+
+    var id: String
+    var name: String
+    var temperament: String
+    var description: String
+    var life_span: String
+    var dog_friendly: Int16
+    var energy_level: Int16
+    var shedding_level: Int16
+    var stranger_friendly: Int16
+    var origin: String
+    
+}
+ 
 struct Celebrity: Codable {
     var name: String
     var imgurl: String
