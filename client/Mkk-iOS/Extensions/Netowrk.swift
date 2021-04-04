@@ -39,9 +39,69 @@ class KittyJsoner: CatApier {
         }.resume()
         
     }
+    func postNewNotification(withDeviceName name: String, completion: @escaping (Result<Bool,KMKNetworkError>)->Void){
+        guard let selected_breed = KITTY_BREEDS.randomElement() else { completion(.failure(.noBreedsFoundError));return;}
+        
+        
+        guard let url = URL(string: "\(SERVER_URL)/notifications/schedule?deviceid=\(name)&breed=\(selected_breed)") else {
+            completion(.failure(.urlError))
+            return
+        }
+        print(url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request){data,response,err in
+                if let error = err {
+                    print (error)
+                    completion(.failure(.invalidRequestError))
+                    return
+                }
+            if let resp = response as? HTTPURLResponse {
+                if(resp.statusCode != 201){
+                    completion(.failure(.serverCreateError))
+                }
+                else{
+                    completion(.success(true))
+                }
+            }
+            else{
+                completion(.failure(.decodeFail))
+            }
+        }.resume()
+        
+    }
     
     func getKittyImageByBreed(with breed: String) {
         return 
+    }
+    
+    func deleteOldNotification(id: String, with status: String, completion: @escaping (Result<Bool,KMKNetworkError>)->Void){
+        guard let url = URL(string: "\(SERVER_URL)/notifications?adoption_status=\(status)&notification_id=\(id)") else {
+            completion(.failure(.urlError))
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request){data,response,err in
+                if let error = err {
+                    print (error)
+                    completion(.failure(.invalidRequestError))
+                    return
+                }
+            if let resp = response as? HTTPURLResponse {
+                if(resp.statusCode != 201){
+                    completion(.failure(.serverCreateError))
+                }
+                else{
+                    completion(.success(true))
+                }
+            }
+            else{
+                completion(.failure(.decodeFail))
+            }
+        }.resume()
     }
     
     

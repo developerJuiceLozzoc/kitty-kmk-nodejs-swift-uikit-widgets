@@ -81,7 +81,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate ,let tabController = sD.window?.rootViewController as? UITabBarController else {completionHandler();return;}
         
         tabController.selectedIndex = 2
-        guard let vc = tabController.selectedViewController as? UINavigationController else{ completionHandler();return;}
+        guard let vc = tabController.selectedViewController as? UINavigationController, 
+            let breed = userInfo["KITTY_BREED"] as? String, let nid = userInfo["NOTIFICATION_ID"] as? String else{ completionHandler();return;}
+    
+        let knote = WanderingKittyNotification(KITTY_BREED: breed, NOTIFICATION_ID: nid)
+        
         let jsonifer: CatApier = KittyJsoner()
         if let BREED = KITTY_BREEDS.randomElement() {
             jsonifer.getJsonByBreed(with: BREED) { (result) in
@@ -92,13 +96,17 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                 case .failure(let err):
                     print(err)
                 }
-                if let saveVC = UIStoryboard
-                    .init(name: "ListMyKitties", bundle: nil)
-                    .instantiateViewController(identifier: "ConfirmKittyScreen") as? SaveOrDiscardKittyTVC {
-                    saveVC.kitty = json
-                    vc.pushViewController(saveVC, animated: true)
+                DispatchQueue.main.async {
+                    if let saveVC = UIStoryboard
+                        .init(name: "ListMyKitties", bundle: nil)
+                        .instantiateViewController(identifier: "ConfirmKittyScreen") as? SaveOrDiscardKittyTVC {
+                        saveVC.kitty = json
+                        saveVC.notification = knote
+                        vc.pushViewController(saveVC, animated: true)
 
+                    }
                 }
+                
             }
 
         }
@@ -111,12 +119,21 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
   }
 }
 
+
+
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-      print("Firebase registration token: \(String(describing: fcmToken))")
-
-      let dataDict:[String: String] = ["token": fcmToken ?? ""]
-      NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        if let prevToken = UserDefaults.standard.value(forKey: "FCMDeviceToken") as? String {
+            if fcmToken != prevToken {
+                print("--FCM Updating FCMToken first time")
+                UserDefaults.standard.setValue(fcmToken, forKey: "FCMDeviceToken")
+            }
+        }
+        else{
+            print("--FCM Saving FCMToken first time")
+            UserDefaults.standard.setValue(fcmToken, forKey: "FCMDeviceToken")
+        }
+    
 
     }
 }

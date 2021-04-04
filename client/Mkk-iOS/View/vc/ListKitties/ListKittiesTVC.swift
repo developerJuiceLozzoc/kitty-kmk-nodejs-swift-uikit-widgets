@@ -9,7 +9,6 @@ import UIKit
 
 class ListKittiesTVC: UITableViewController {
     
-    var tempnetwrok = MockNetwork()
     var cd = CoreData()
     
     var kitties: [Kitty]? {
@@ -21,12 +20,14 @@ class ListKittiesTVC: UITableViewController {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         self.kitties = cd.fetchKitties()
+    } 
 
+    @IBAction func CreateContactClicked(_ sender: Any) {
+        performSegue(withIdentifier: "ScheduleKitty", sender: nil)
     }
-
+    /*
     @IBAction func devTest(_ sender: Any) {
         tempnetwrok.getJsonByBreed(with: "asdf") { [unowned self](result) in
             switch result {
@@ -41,15 +42,21 @@ class ListKittiesTVC: UITableViewController {
             }
         }
     }
+ */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "ConfirmKitty"){
-            guard let vc = segue.destination as? SaveOrDiscardKittyTVC, let ks = sender as? [KittyApiResults] else {return}
-            vc.kitty = ks
+        switch segue.identifier {
+            case "ConfirmKitty":
+                guard let vc = segue.destination as? SaveOrDiscardKittyTVC, let ks = sender as? [KittyApiResults] else {return}
+                vc.kitty = ks
+            case "DetailsKitty":
+                guard let vc = segue.destination as? KitttyDetails, let details = sender as? Kitty else {return}
+                vc.details = details
+            case "ScheduleKitty":
+                break;
+            default:
+                break;
         }
-        else if (segue.identifier == "DetailsKitty"){
-            guard let vc = segue.destination as? KitttyDetails, let details = sender as? Kitty else {return}
-            vc.details = details
-        }
+        
     }
     // MARK: - Table view data source
 
@@ -74,36 +81,4 @@ class ListKittiesTVC: UITableViewController {
     }
     
 
-}
-class MockNetwork: CatApier {
-    func getJsonByBreed(with breed: String, completion: @escaping (Result<[KittyApiResults], KMKNetworkError>) -> Void) {
-        let url = URL(fileURLWithPath: "/Users/yarg347/Documents/code/SwiftProjects/kitty-kmk/client/Mkk-iOSTests/MockNetwork.json")
-        URLSession.shared.dataTask(with: url){data,resp,err in
-                if let error = err {
-                    print (error)
-                    completion(.failure(.invalidRequestError))
-                    return
-                }
-                if let data = data {
-                    do{
-                        let swiftkitty = try JSONDecoder().decode([KittyApiResults].self, from: data)
-                        completion(.success(swiftkitty))
-                    }
-                    catch let err{
-                        print(err)
-                        completion(.failure(.decodeFail))
-                    }
-
-                }else{
-                    completion(.failure(.noBreedsFoundError))
-                    
-                }
-        }.resume()
-    }
-    
-    func getKittyImageByBreed(with breed: String, completion: @escaping (Result<UIImage, KMKNetworkError>) -> Void) {
-        return
-    }
-    
-    
 }

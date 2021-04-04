@@ -1,7 +1,8 @@
 const mongoconnect = require("./model/connect")
 const { bulk_deleteExpiredGames,
   bulk_rinseStaleCollection,
-  mapStaleGames } = require("./model")
+  mapStaleGames,readAllScheduledNotifications } = require("./model")
+const  {postNotificationToDevice} = require("./model/FCMdao")
 
 mongoconnect.connect((err,client) => {
   if(err) {
@@ -25,6 +26,24 @@ mongoconnect.connect((err,client) => {
     })
     .then(function(numRecords){
       console.log(`Rinse completed successfully and deleted ${numRecords} records` );
+      return Promise.resolve()
+    })
+    .then(function(){
+      return readAllScheduledNotifications()
+    })
+    .then(function(cursor){
+      cursor.forEach(function(val){
+        if(val.device_token && val.suggested_kitty){
+          postNotificationToDevice({
+            vapid: val.device_token,
+             breed: val.suggested_kitty})
+          .then(function(){return})
+          .catch(function(e){
+            console.log("could not send notification",val);
+          })
+        }
+      })
+      return Promise.resolve()
     })
     .catch(function(err){
       console.log("woops",err);

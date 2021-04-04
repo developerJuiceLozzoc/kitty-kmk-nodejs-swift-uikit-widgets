@@ -21,8 +21,9 @@ class SaveOrDiscardKittyTVC: UITableViewController {
             }
         }
     }
-
-
+    var adoptionStatus: String = "false"
+    var network = KittyJsoner()
+    var notification: WanderingKittyNotification!
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -96,6 +97,7 @@ extension SaveOrDiscardKittyTVC: ConfirmKittyable {
         guard let KName = textcell.textField.text else {return}
         guard let currstat = self.kitty?[0].breeds[0] else {return}
         
+        guard KName.count > 0 else {return}
         
         let context = cd.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Kitty", in: context)!
@@ -123,6 +125,7 @@ extension SaveOrDiscardKittyTVC: ConfirmKittyable {
         kitty.stats = stats
         
         cd.saveContext()
+        adoptionStatus = "true"
         navigationController?.popViewController(animated: true)
         
         
@@ -151,7 +154,7 @@ extension SaveOrDiscardKittyTVC {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.backItem?.title = "Cancel Adoption" // why doesnt this work?
+//        self.navigationController?.navigationBar.backItem?.title = "Cancel Adoption" // why doesnt this work?
         guard let kitty = self.kitty else {return}
         datasource = Array.init(repeating: [], count: 2)
         let stats = kitty[0].breeds[0]
@@ -168,5 +171,15 @@ extension SaveOrDiscardKittyTVC {
         tableView.reloadData()
         
         
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        network.deleteOldNotification(id: notification.NOTIFICATION_ID, with: self.adoptionStatus) { (result) in
+            switch result {
+            case .success(let _):
+                break;
+            case .failure(let e):
+                print(e)
+            }
+        }
     }
 }

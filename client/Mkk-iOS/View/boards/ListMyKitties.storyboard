@@ -23,24 +23,42 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="YBv-me-PQN">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="44h-nr-oU8">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="fHz-NE-OpR">
-                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fHz-NE-OpR">
+                                <rect key="frame" x="373" y="10.5" width="21" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <state key="normal" image="person.badge.plus.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="devTest:" destination="Sek-8p-XeS" eventType="touchUpInside" id="5iD-NP-59x"/>
+                                    <action selector="CreateContactClicked:" destination="Sek-8p-XeS" eventType="touchUpInside" id="gq2-2v-LB4"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="mXY-bZ-eoB" kind="show" identifier="DetailsKitty" id="XFj-B0-Fo2"/>
+                        <segue destination="mXY-bZ-eoB" kind="show" identifier="ScheduleKitty" id="XFj-B0-Fo2"/>
                         <segue destination="FK1-OP-NAy" kind="show" identifier="ConfirmKitty" id="O04-hw-f0l"/>
+                        <segue destination="9sy-0x-eEC" kind="show" identifier="DetailsKitty" id="XY0-Bs-rT3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnS-dT-Nhh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="723.1884057971015" y="211.60714285714286"/>
+        </scene>
+        <!--Kittty Details-->
+        <scene sceneID="AE6-jI-U2d">
+            <objects>
+                <viewController id="9sy-0x-eEC" customClass="KitttyDetails" customModule="Mkk_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LiH-mQ-dK5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="9F2-zM-Yg0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hXe-um-rap"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7lM-eC-Nv3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1754" y="767"/>
         </scene>
         <!--Save Or Discard KittyTVC-->
         <scene sceneID="zBZ-MB-O57">
@@ -54,29 +72,55 @@
                             <outlet property="delegate" destination="FK1-OP-NAy" id="U2l-Sy-Pne"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Tat-wO-6uB">
-                        <barButtonItem key="backBarButtonItem" title="Cancel Adoption" id="HaV-Sr-vEm"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Tat-wO-6uB"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQx-Gl-w9Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1754" y="-118"/>
         </scene>
-        <!--View Controller-->
+        <!--Schedule Kitty-->
         <scene sceneID="87C-L3-Epz">
             <objects>
-                <viewController id="mXY-bZ-eoB" sceneMemberID="viewController">
+                <viewController id="mXY-bZ-eoB" customClass="ScheduleKitty" customModule="Mkk_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="848-G4-qQb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaY-3p-xYP">
+                                <rect key="frame" x="132" y="601" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="fwf-Rx-wys"/>
+                                    <constraint firstAttribute="height" constant="150" id="mzc-g0-tLp"/>
+                                </constraints>
+                                <state key="normal" title="Summon Cat"/>
+                                <connections>
+                                    <action selector="scheduleConfirm:" destination="mXY-bZ-eoB" eventType="touchUpInside" id="k2H-Pn-iW5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V9W-Dl-EX6">
+                                <rect key="frame" x="10" y="88" width="394" height="193"/>
+                                <state key="normal">
+                                    <string key="title">Confirm Below to summon a spirit from beyond this dimension. A random breed will return tomorrow and ask for companionship. You can name it and choose a form that it will take. </string>
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="buh-69-yLg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="V9W-Dl-EX6" firstAttribute="top" secondItem="buh-69-yLg" secondAttribute="top" id="0Pt-62-c0c"/>
+                            <constraint firstItem="vaY-3p-xYP" firstAttribute="centerX" secondItem="buh-69-yLg" secondAttribute="centerX" id="5QT-qG-Ijv"/>
+                            <constraint firstItem="V9W-Dl-EX6" firstAttribute="leading" secondItem="buh-69-yLg" secondAttribute="leading" constant="10" id="7BA-9G-RIR"/>
+                            <constraint firstItem="buh-69-yLg" firstAttribute="trailing" secondItem="V9W-Dl-EX6" secondAttribute="trailing" constant="10" id="doe-BL-G8m"/>
+                            <constraint firstItem="buh-69-yLg" firstAttribute="bottom" secondItem="vaY-3p-xYP" secondAttribute="bottom" constant="111" id="q8r-3J-jWU"/>
+                            <constraint firstItem="V9W-Dl-EX6" firstAttribute="height" secondItem="buh-69-yLg" secondAttribute="height" multiplier="0.249354" id="x6T-xG-xe4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pdo-dJ-ddk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mj7-YV-sHn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="624"/>
+            <point key="canvasLocation" x="2614" y="-119"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ryf-iN-KYx">
@@ -98,8 +142,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.badge.plus.fill" catalog="system" width="128" height="124"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

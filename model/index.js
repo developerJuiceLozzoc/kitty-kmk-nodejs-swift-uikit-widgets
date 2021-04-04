@@ -1,11 +1,14 @@
 const mongoc = require("./connect.js")
-const {Celeb,GameSurveyMongo,GameSurveySwift,StaleSurveyReference,MongoCollectionSurvey} = require("./schema.js")
+const {Celeb,KMKFutureNotification,
+  GameSurveyMongo,GameSurveySwift,
+  StaleSurveyReference,MongoCollectionSurvey} = require("./schema.js")
 const {ObjectId} = require("mongodb")
 const {MONGO_DB_NAME} = require("./configureEnv")
 
 const SURVEYS = "gamesurveys"
 const CELEBS = "celebs"
 const STALE = "stale-surveys"
+const NTFCNS = "future-kitty-pushes"
 
 
 /* Crud operations */
@@ -52,6 +55,24 @@ function insertCeleb(celeb,callback){
     return callback("The passed object was of the wrong type.")
   }
 }
+/**
+ * Creates inventory record which has the information to push
+ * to an ios device. this information is accessed reguarly
+ * and the nthe sever sends notification at that time
+ *
+ * @param {Int}  the type of game we would like to retrieve
+ * @param {Int} the offset of results we would like to skip
+ * @param {Int} the limit of results to find
+ *
+ * @return {Promise}
+ */
+function createScheduledNotification({ vapid, breed}){
+  const ScheduledNotification = new KMKFutureNotification( vapid, breed)
+
+  return mongoc.db(MONGO_DB_NAME).collection(NTFCNS)
+        .insertOne(ScheduledNotification)
+}
+
 
 /**
  * Returns promise creating a new item in the stale collection, which is used to
@@ -74,10 +95,23 @@ function insertStaleGameReference(gameid){
   })
 }
 
+
+
 //-------------------------------------------
 //-------------------------------------------
 
 /* read */
+
+function findNotificationById(id){
+  return new Promise(async function(resolve,reject){
+
+      let cursor = await mongoc.db(MONGO_DB_NAME)
+      .collection(NTFCNS)
+      .findOne({ "_id": new ObjectId(id) })
+      resolve(cursor)
+    })
+}
+
 function mapStaleGames(){
   const db = mongoc.db()
   return new Promise(async function(resolve,reject){
@@ -95,12 +129,26 @@ function mapStaleGames(){
     resolve(mappedids)
   })
 }
+
+
+function readAllScheduledNotifications(){
+  return new Promise(async function(resolve,reject){
+    let unsent = []
+    const cursor = await mongoc.db(MONGO_DB_NAME)
+    .collection(NTFCNS)
+    .find({})
+    resolve(cursor)
+    resolve(unsent)
+  })
+}
 /**
  * Returns promise with an array of games in the specified range and type,
  *
  * @param {Int}  the type of game we would like to retrieve
  * @param {Int} the offset of results we would like to skip
  * @param {Int} the limit of results to find
+ *
+ * @return {Promise}
  */
 function fetchSurveysInRange(type,offset,limit){
   const db = mongoc.db()
@@ -221,6 +269,11 @@ function updateGameResultsWithID(gameid,game){
 
 /* delete */
 
+function deleteNotification(id){
+  return mongoc.db(MONGO_DB_NAME)
+  .collection(NTFCNS)
+  .deleteOne({ "_id": new ObjectId(id)})
+}
 function updateStaleSurveyAsFulfilled(gameid){
   const db = mongoc.db()
   return new Promise(function(resolve,reject){
@@ -275,12 +328,13 @@ function bulk_rinseStaleCollection(ids){
 
 
 module.exports = {
-  mapStaleGames,
-  getRandomCeleb,
+  deleteNotification,
+  mapStaleGames, readAllScheduledNotifications,
+  getRandomCeleb, createScheduledNotification,
   WARNING_bulkwrite_kitties,
   createNewGameID,
   updateGameResultsWithID,
-  insertCeleb,
+  insertCeleb, findNotificationById,
   bulk_deleteExpiredGames,
   bulk_rinseStaleCollection,
   updateStaleSurveyAsFulfilled,

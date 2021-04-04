@@ -17,6 +17,7 @@
 		B521F34E2618E49900E7A87D /* KitttyDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F34D2618E49900E7A87D /* KitttyDetails.swift */; };
 		B521F3542618E5A500E7A87D /* AdoptedKittyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F3522618E5A500E7A87D /* AdoptedKittyCell.swift */; };
 		B521F3552618E5A500E7A87D /* AdoptedKittyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B521F3532618E5A500E7A87D /* AdoptedKittyCell.xib */; };
+		B521F35B2618EAF900E7A87D /* ScheduleKitty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F35A2618EAF900E7A87D /* ScheduleKitty.swift */; };
 		B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544121A25EFD7B900C0D629 /* Netowrk.swift */; };
 		B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */; };
 		B567F60D2614BD40006384DB /* DragDropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B567F60C2614BD40006384DB /* DragDropVC.swift */; };
@@ -97,6 +98,7 @@
 		B521F34D2618E49900E7A87D /* KitttyDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitttyDetails.swift; sourceTree = "<group>"; };
 		B521F3522618E5A500E7A87D /* AdoptedKittyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptedKittyCell.swift; sourceTree = "<group>"; };
 		B521F3532618E5A500E7A87D /* AdoptedKittyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdoptedKittyCell.xib; sourceTree = "<group>"; };
+		B521F35A2618EAF900E7A87D /* ScheduleKitty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleKitty.swift; sourceTree = "<group>"; };
 		B544121A25EFD7B900C0D629 /* Netowrk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netowrk.swift; sourceTree = "<group>"; };
 		B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		B567F60C2614BD40006384DB /* DragDropVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropVC.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */,
 				B5C8D15E2618151600C77525 /* SaveOrDiscardKittyTVC.swift */,
 				B521F34D2618E49900E7A87D /* KitttyDetails.swift */,
+				B521F35A2618EAF900E7A87D /* ScheduleKitty.swift */,
 			);
 			path = ListKitties;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				B574280B2618BC5800532B21 /* KittyNameCell.swift in Sources */,
 				B5B54C492616124600B18377 /* ContainerHandlerVC.swift in Sources */,
 				B5CBA53025FBCEE000621682 /* KMKStatsCell.swift in Sources */,
+				B521F35B2618EAF900E7A87D /* ScheduleKitty.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
 				B5B54CD92617D4DA00B18377 /* ListKittiesTVC.swift in Sources */,
 				B521F3542618E5A500E7A87D /* AdoptedKittyCell.swift in Sources */,

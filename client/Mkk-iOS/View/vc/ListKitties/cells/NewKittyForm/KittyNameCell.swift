@@ -15,6 +15,7 @@ class KittyNameCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        textField.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -23,4 +24,17 @@ class KittyNameCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    
 }
+extension KittyNameCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        return true
+    }
+}
+
+
+
+

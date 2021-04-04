@@ -27,6 +27,7 @@
   "homepage": "https://github.com/lozzoc/marrykisskill-server-nodejs#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "fcm-node": "^1.6.1",
     "mongodb": "^3.6.4",
     "project-name-generator": "^2.1.9"
   },

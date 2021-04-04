@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct WanderingKittyNotification {
+    var KITTY_BREED: String
+    var NOTIFICATION_ID: String
+    
+}
+
 struct KittyApiResults: Codable {
     var breeds: [KittyBreed]
     var id: String

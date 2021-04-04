@@ -17,7 +17,13 @@ class ImagesViewModel {
             images[i] = nil
         }
     }
-    
+    func tryRestoreImage(reference: UIImageView, index: Int){
+        guard index < images.count, let image = images[index] else{return}
+        DispatchQueue.main.async {
+            reference.image = image
+        }
+        
+    }
     func setIndexedImageView(reference imageview: UIImageView, index: Int, with url: URL?){
         
         guard let url = url else {

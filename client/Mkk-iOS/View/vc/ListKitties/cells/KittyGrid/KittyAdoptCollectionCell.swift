@@ -40,12 +40,14 @@ class KittyAdoptCollectionCell: UITableViewCell {
     
     func selectNewItem(with index: Int){
         selectedItem = index
+        print("slected new item", index)
         collection.reloadData()
     }
     
 }
 extension KittyAdoptCollectionCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
         return imgvm.images.count
     }
     
@@ -57,10 +59,12 @@ extension KittyAdoptCollectionCell: UICollectionViewDelegate, UICollectionViewDa
         cell.delegate = self
         
         
-//        print(urls?[indexPath.item])
-        
-        if let urls = self.urls, let url = URL(string: urls[indexPath.item]) {
+
+        if let urls = self.urls, indexPath.item < urls.count ,let url = URL(string: urls[indexPath.item]) {
             imgvm.setIndexedImageView(reference: cell.imageView, index: indexPath.item, with: url)
+        }
+        else{
+            imgvm.tryRestoreImage(reference: cell.imageView, index: indexPath.item)
         }
         
         
