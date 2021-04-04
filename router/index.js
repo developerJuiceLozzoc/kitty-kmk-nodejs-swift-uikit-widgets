@@ -147,7 +147,7 @@ module.exports.delete("/notifications",function(req,res){
       json[fullname] = 1
     }
     return new Promise(function(resolve,reject){
-      fs.writeFile("../stats/AdoptionRatesByBreed.json",function(error){
+      fs.writeFile("../stats/AdoptionRatesByBreed.json",JSON.stringify(json),function(error){
         if(err){
           reject(err)
         }
