@@ -124,32 +124,40 @@ module.exports.delete("/notifications",function(req,res){
   const {adoption_status,notification_id} = req.query
   findNotificationById(notification_id)
   .then(function(doc){
-    if(!doc){
+    if(!doc ){
       throw "The document is no exist"
     }
     if(!doc.suggested_kitty){
-      return deleteNotification(notification_id)
+      throw "Delete the document"
     }
     return new Promise(function(resolve,reject){
-      fs.readFile("../stats/AdoptionRatesByBreed.json",function(data,err){
-        resolve({
-          json: JSON.parse(data),
-          suggested_kitty: doc.suggested_kitty,
-        })
+      fs.readFile("./stats/AdoptionRatesByBreed.json",function(err,data){
+        if(err){
+          reject(err)
+        }
+        else {
+          resolve({
+            json: JSON.parse(data),
+            suggested_kitty: doc.suggested_kitty,
+            action: adoption_status == "true" ? 1 : -1
+          })
+        }
+
       })
     })
   })
-  .then(function({json,suggested_kitty}){
+  .then(function({json,suggested_kitty,action}){
     const fullname = BreedMap[suggested_kitty]
+    console.log(fullname);
     if(json[fullname]){
-      json[fullname] += 1
+      json[fullname] += action
     }else{
-      json[fullname] = 1
+      json[fullname] = action
     }
     return new Promise(function(resolve,reject){
-      fs.writeFile("../stats/AdoptionRatesByBreed.json",JSON.stringify(json),function(error){
-        if(err){
-          reject(err)
+      fs.writeFile("./stats/AdoptionRatesByBreed.json",JSON.stringify(json),function(error){
+        if(error){
+          reject(error)
         }
         else{
           resolve()
@@ -158,13 +166,19 @@ module.exports.delete("/notifications",function(req,res){
     })
   })
   .then(function(){
-    return deleteNotification(notification_id)
+  })
+  .catch(function(e){
+    console.log(e);
+  })
+  .finally(function(){
+    if(notification_id){
+      return deleteNotification(notification_id)
+    }
   })
   .then(function(){
     res.status(200).end()
   })
-  .catch(function(e){
-    console.log(e);
+  .catch(function(){
     res.status(300).end()
   })
 

@@ -97,9 +97,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                     print(err)
                 }
                 DispatchQueue.main.async {
+                    
                     if let saveVC = UIStoryboard
                         .init(name: "ListMyKitties", bundle: nil)
                         .instantiateViewController(identifier: "ConfirmKittyScreen") as? SaveOrDiscardKittyTVC {
+                        vc.popToRootViewController(animated: true) // in case they are on a nother workflow
                         saveVC.kitty = json
                         saveVC.notification = knote
                         vc.pushViewController(saveVC, animated: true)

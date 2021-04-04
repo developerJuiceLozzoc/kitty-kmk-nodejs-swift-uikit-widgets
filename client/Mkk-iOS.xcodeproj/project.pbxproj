@@ -34,6 +34,8 @@
 		B57428122618BC6F00532B21 /* KittyConfirmBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57428102618BC6F00532B21 /* KittyConfirmBtnCell.xib */; };
 		B574281A2618C20E00532B21 /* SelfieClickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57428182618C20E00532B21 /* SelfieClickCell.swift */; };
 		B574281B2618C20E00532B21 /* SelfieClickCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57428192618C20E00532B21 /* SelfieClickCell.xib */; };
+		B57512AF261A3CBB00527CD5 /* TemperamentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57512AD261A3CBB00527CD5 /* TemperamentCell.swift */; };
+		B57512B0261A3CBB00527CD5 /* TemperamentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57512AE261A3CBB00527CD5 /* TemperamentCell.xib */; };
 		B577223625D89FC90024BA72 /* BossConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577223525D89FC90024BA72 /* BossConstrains.swift */; };
 		B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */; };
 		B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */; };
@@ -114,6 +116,8 @@
 		B57428102618BC6F00532B21 /* KittyConfirmBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyConfirmBtnCell.xib; sourceTree = "<group>"; };
 		B57428182618C20E00532B21 /* SelfieClickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieClickCell.swift; sourceTree = "<group>"; };
 		B57428192618C20E00532B21 /* SelfieClickCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelfieClickCell.xib; sourceTree = "<group>"; };
+		B57512AD261A3CBB00527CD5 /* TemperamentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperamentCell.swift; sourceTree = "<group>"; };
+		B57512AE261A3CBB00527CD5 /* TemperamentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemperamentCell.xib; sourceTree = "<group>"; };
 		B577223525D89FC90024BA72 /* BossConstrains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossConstrains.swift; sourceTree = "<group>"; };
 		B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyVM.swift; sourceTree = "<group>"; };
 		B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyModel.swift; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 				B574280A2618BC5800532B21 /* KittyNameCell.xib */,
 				B574280F2618BC6F00532B21 /* KittyConfirmBtnCell.swift */,
 				B57428102618BC6F00532B21 /* KittyConfirmBtnCell.xib */,
+				B57512AD261A3CBB00527CD5 /* TemperamentCell.swift */,
+				B57512AE261A3CBB00527CD5 /* TemperamentCell.xib */,
 			);
 			path = NewKittyForm;
 			sourceTree = "<group>";
@@ -511,6 +517,7 @@
 				B57428122618BC6F00532B21 /* KittyConfirmBtnCell.xib in Resources */,
 				B574281B2618C20E00532B21 /* SelfieClickCell.xib in Resources */,
 				B521F3552618E5A500E7A87D /* AdoptedKittyCell.xib in Resources */,
+				B57512B0261A3CBB00527CD5 /* TemperamentCell.xib in Resources */,
 				B5B54CA02617C6AC00B18377 /* ListMyKitties.storyboard in Resources */,
 				B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */,
 				B57428062618B28B00532B21 /* MockNetwork.json in Resources */,
@@ -646,6 +653,7 @@
 				B59BBF3025D8509500A059C4 /* Strings.swift in Sources */,
 				B5D9458725E4A924005C6DC6 /* KMKSurveyConfirmation.swift in Sources */,
 				B5CBA52C25FA944F00621682 /* Schema.swift in Sources */,
+				B57512AF261A3CBB00527CD5 /* TemperamentCell.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
 				B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */,
 				B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */,

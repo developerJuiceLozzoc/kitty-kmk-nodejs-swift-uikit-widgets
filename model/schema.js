@@ -58,15 +58,7 @@ class StaleSurveyReference {
     this.reference = gameid
   }
 }
-let BreedMap
-module.exports = {
-  MongoCollectionSurvey,
-  Celeb, BreedMap,
-  StaleSurveyReference,
-  GameSurveyMongo,
-  GameSurveySwift,KMKFutureNotification
-}
-BreedMap= {
+const BreedMap  = {
   abys: 'Abyssinian',aege: 'Aegean',abob: 'American Bobtail',acur: 'American Curl',asho: 'American Shorthair',
   awir: 'American Wirehair',amau: 'Arabian Mau',amis: 'Australian Mist',bali: 'Balinese',bamb: 'Bambino',beng: 'Bengal',birm: 'Birman',bomb: 'Bombay',
   bslo: 'British Longhair',
@@ -123,4 +115,13 @@ BreedMap= {
   tang: 'Turkish Angora',
   tvan: 'Turkish Van',
   ycho: 'York Chocolate'
+}
+
+
+module.exports = {
+  MongoCollectionSurvey,
+  Celeb, BreedMap,
+  StaleSurveyReference,
+  GameSurveyMongo,
+  GameSurveySwift,KMKFutureNotification
 }
