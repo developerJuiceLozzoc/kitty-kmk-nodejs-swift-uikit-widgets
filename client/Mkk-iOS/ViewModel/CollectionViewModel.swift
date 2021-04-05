@@ -6,8 +6,6 @@
 //
 
 import UIKit
-typealias CelebBundle = (url: String, img: UIImage?)
-typealias KMKCollectionDS = (cid: String, surveys: [String])
 
 class CollectionViewModel {
     var imageCache: [String: CelebBundle] = [:]
@@ -15,8 +13,10 @@ class CollectionViewModel {
     
     var dataSource: [KMKCollectionDS] = []
     
-    var model: StatsModel = StatsModel()
+    var model: StatModelLoader = StatsModel()
     var loader: Loader = ImageLoader()
+    
+    
     var currentOffset: Int = 0
     var reachedEnd: Bool = false
 
@@ -46,52 +46,98 @@ class CollectionViewModel {
         }
     }
     func loadNextPage(type: Int, completion: @escaping () -> Void){
-        let psize = 27
+        let psize = 69
         let previousOffset = currentOffset
         
         model.loadPageOfCelebs(type: type, offset: previousOffset, amount: psize) { (result) in
             
             switch result {
                 case .success(let stuff):
-                    var dictionary: [String: [String] ] = [:]
-                    for survey in stuff.surveys{
-                        self.surveyCache[survey._id] = survey
-                        
-                        var name: String
-                        if(type == 0){
-                            name = survey.actiona
-                        }
-                        else if (type == 1){
-                            name = survey.actionb
-                        }
-                        else{
-                            name = survey.actionc
-                        }
-                        guard name.count > 0 else{ break; }
-                        let bundle: CelebBundle = CelebBundle(url: stuff.dict[name]!, img: nil)
-                        self.imageCache[name] = bundle
-                        
-                        if let _ = dictionary[name] {
-                            dictionary[name]!.append(survey._id)
-                        }
-                        else{
-                            dictionary[name] = []
-                            dictionary[name]!.append(survey._id)
-                        }
-                        
-                    }
-                    self.dataSource = dictionary.keys.map { (key) -> KMKCollectionDS in
-                        return KMKCollectionDS(cid: key, surveys: dictionary[key]!)
-                    }
- 
+                    self.setupDataSourceForType(for: type, with: stuff)
                     
                     completion()
                     break;
                 case .failure(let err):
+                    print(err)
                     completion()
                     break;
             }
         }
     }
+    
+    func setupDataSourceForType(for type: Int, with stuff: CelebResults){
+        var dictionary: [String: [String] ] = [:]
+        for survey in stuff.surveys{
+            self.surveyCache[survey._id] = survey
+            
+            var name: String
+            if(type == 0){
+                name = survey.actiona
+            }
+            else if (type == 1){
+                name = survey.actionb
+            }
+            else{
+                name = survey.actionc
+            }
+            
+            guard name.count > 0 else{ continue; }
+            
+            if let _ = dictionary[name] {
+                dictionary[name]!.append(survey._id)
+            }
+            else{
+                dictionary[name] = []
+                dictionary[name]!.append(survey._id)
+            }
+            
+            
+            guard self.imageCache[name] == nil else {continue}
+            let bundle: CelebBundle = CelebBundle(url: stuff.dict[name]!, img: nil)
+            self.imageCache[name] = bundle
+
+            
+        }
+        
+        
+        self.dataSource = dictionary.keys.map { (key) -> KMKCollectionDS in
+            return KMKCollectionDS(cid: key, surveys: dictionary[key] ?? [])
+        }
+
+    }
+    
+    func toggleBetweenSameSurveySource(with type: Int){
+        var dictionary: [String: [String] ] = [:]
+
+        for key in surveyCache.keys {
+            if let survey = surveyCache[key] {
+                var name: String
+                if(type == 0){
+                    name = survey.actiona
+                }
+                else if (type == 1){
+                    name = survey.actionb
+                }
+                else{
+                    name = survey.actionc
+                }
+                    
+                if let _ = dictionary[name] {
+                    dictionary[name]!.append(survey._id)
+                }
+                else{
+                    dictionary[name] = []
+                    dictionary[name]!.append(survey._id)
+                }
+            }
+        }
+        dataSource = dictionary.keys.map {
+            (key) -> KMKCollectionDS in
+
+                return KMKCollectionDS(cid: key, surveys: dictionary[key]!)
+        }
+            
+    }
+    
     
 }

@@ -36,6 +36,12 @@
 		B574281B2618C20E00532B21 /* SelfieClickCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57428192618C20E00532B21 /* SelfieClickCell.xib */; };
 		B57512AF261A3CBB00527CD5 /* TemperamentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57512AD261A3CBB00527CD5 /* TemperamentCell.swift */; };
 		B57512B0261A3CBB00527CD5 /* TemperamentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57512AE261A3CBB00527CD5 /* TemperamentCell.xib */; };
+		B57512B4261A77AA00527CD5 /* SurveyCacheViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57512B3261A77AA00527CD5 /* SurveyCacheViewModel.swift */; };
+		B57512B8261A79FC00527CD5 /* SurveysCollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57512B7261A79FC00527CD5 /* SurveysCollectionVIew.swift */; };
+		B57512BE261A7A1400527CD5 /* sample_survey.json in Resources */ = {isa = PBXBuildFile; fileRef = B57512BD261A7A1400527CD5 /* sample_survey.json */; };
+		B57512C1261A7CA600527CD5 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */; };
+		B57512C4261A7CF700527CD5 /* StatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52825FA93B500621682 /* StatsModel.swift */; };
+		B57512C7261A7CF700527CD5 /* StatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52825FA93B500621682 /* StatsModel.swift */; };
 		B577223625D89FC90024BA72 /* BossConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577223525D89FC90024BA72 /* BossConstrains.swift */; };
 		B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */; };
 		B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */; };
@@ -63,7 +69,6 @@
 		B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CE52617F9E600B18377 /* KITTY_API_CONFIG.swift */; };
 		B5C8D15F2618151600C77525 /* SaveOrDiscardKittyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C8D15E2618151600C77525 /* SaveOrDiscardKittyTVC.swift */; };
 		B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */; };
-		B5CBA52925FA93B500621682 /* StatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52825FA93B500621682 /* StatsModel.swift */; };
 		B5CBA52C25FA944F00621682 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52B25FA944F00621682 /* Schema.swift */; };
 		B5CBA53025FBCEE000621682 /* KMKStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52E25FBCEE000621682 /* KMKStatsCell.swift */; };
 		B5CBA53125FBCEE000621682 /* KMKStatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5CBA52F25FBCEE000621682 /* KMKStatsCell.xib */; };
@@ -118,6 +123,9 @@
 		B57428192618C20E00532B21 /* SelfieClickCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelfieClickCell.xib; sourceTree = "<group>"; };
 		B57512AD261A3CBB00527CD5 /* TemperamentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperamentCell.swift; sourceTree = "<group>"; };
 		B57512AE261A3CBB00527CD5 /* TemperamentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemperamentCell.xib; sourceTree = "<group>"; };
+		B57512B3261A77AA00527CD5 /* SurveyCacheViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCacheViewModel.swift; sourceTree = "<group>"; };
+		B57512B7261A79FC00527CD5 /* SurveysCollectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveysCollectionVIew.swift; sourceTree = "<group>"; };
+		B57512BD261A7A1400527CD5 /* sample_survey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sample_survey.json; sourceTree = "<group>"; };
 		B577223525D89FC90024BA72 /* BossConstrains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossConstrains.swift; sourceTree = "<group>"; };
 		B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyVM.swift; sourceTree = "<group>"; };
 		B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyModel.swift; sourceTree = "<group>"; };
@@ -304,6 +312,8 @@
 				B5B54C722617A11D00B18377 /* Info.plist */,
 				B57427FC2618AA3200532B21 /* NetworkTests.swift */,
 				B57428022618AC3A00532B21 /* MockNetwork.json */,
+				B57512B7261A79FC00527CD5 /* SurveysCollectionVIew.swift */,
+				B57512BD261A7A1400527CD5 /* sample_survey.json */,
 			);
 			path = "Mkk-iOSTests";
 			sourceTree = "<group>";
@@ -381,6 +391,7 @@
 		B5E7A64525D6F92C0076F12C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B57512B3261A77AA00527CD5 /* SurveyCacheViewModel.swift */,
 				B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */,
 				B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */,
 				B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */,
@@ -504,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B57428032618AC3A00532B21 /* MockNetwork.json in Resources */,
+				B57512BE261A7A1400527CD5 /* sample_survey.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,8 +613,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57512C1261A7CA600527CD5 /* CollectionViewModel.swift in Sources */,
 				B5B54C7D2617A13A00B18377 /* ImagesViewModel.swift in Sources */,
 				B5B54C8C2617A34700B18377 /* GameSurveyModel.swift in Sources */,
+				B57512B8261A79FC00527CD5 /* SurveysCollectionVIew.swift in Sources */,
 				B57427FD2618AA3200532B21 /* NetworkTests.swift in Sources */,
 				B5B54C862617A16300B18377 /* NotificationObjects.swift in Sources */,
 				B5B54C932617A66100B18377 /* Protocols.swift in Sources */,
@@ -611,6 +625,7 @@
 				B5B54C712617A11D00B18377 /* VoteViewModelTests.swift in Sources */,
 				B5B54C832617A15E00B18377 /* Schema.swift in Sources */,
 				B5B54C892617A16600B18377 /* Strings.swift in Sources */,
+				B57512C4261A7CF700527CD5 /* StatsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,9 +649,10 @@
 				B521F3542618E5A500E7A87D /* AdoptedKittyCell.swift in Sources */,
 				B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */,
 				B51A4F4525D86A9D0035C50D /* RadioVoteButton.swift in Sources */,
-				B5CBA52925FA93B500621682 /* StatsModel.swift in Sources */,
 				B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */,
 				B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */,
+				B57512B4261A77AA00527CD5 /* SurveyCacheViewModel.swift in Sources */,
+				B57512C7261A7CF700527CD5 /* StatsModel.swift in Sources */,
 				B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */,
 				B5C8D15F2618151600C77525 /* SaveOrDiscardKittyTVC.swift in Sources */,
 				B51784D725D8946A004472DB /* VoteRowStack.swift in Sources */,

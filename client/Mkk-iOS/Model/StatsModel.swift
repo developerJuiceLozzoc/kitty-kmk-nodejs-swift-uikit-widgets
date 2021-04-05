@@ -9,7 +9,7 @@ import Foundation
 
 
 
-class StatsModel {
+class StatsModel: StatModelLoader {
     func loadPageOfCelebs(type: Int, offset: Int,amount: Int,completion: @escaping (Result<CelebResults,KMKNetworkError>)->Void){
         guard let url = URL(string: "\(SERVER_URL)/game?where=\(type)&offset=\(offset)&limit=\(amount)") else {completion(.failure(.invalidRequestError));return}
         let request = URLRequest(url: url)

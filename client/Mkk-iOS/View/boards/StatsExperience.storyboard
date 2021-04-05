@@ -23,6 +23,9 @@
                                     <segment title="Second"/>
                                     <segment title=""/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentDidChange:" destination="sNp-9P-Jkv" eventType="valueChanged" id="rsl-xf-j1S"/>
+                                </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jhf-08-Zc9">
                                 <rect key="frame" x="0.0" y="82" width="414" height="780"/>
@@ -57,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mjw-wC-CTf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263.768115942029" y="99.776785714285708"/>
+            <point key="canvasLocation" x="258" y="102"/>
         </scene>
     </scenes>
     <resources>

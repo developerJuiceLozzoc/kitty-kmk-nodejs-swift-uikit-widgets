@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol StatModelLoader {
+    func loadPageOfCelebs(type: Int, offset: Int,amount: Int,completion: @escaping (Result<CelebResults,KMKNetworkError>)->Void)
+}
+
 protocol CatApier {
     func getJsonByBreed(with breed: String, completion: @escaping (Result<[KittyApiResults],KMKNetworkError>) -> Void)
     func getKittyImageByBreed(with breed: String, completion: @escaping (Result<UIImage,KMKNetworkError>) -> Void)
@@ -41,3 +45,5 @@ protocol ConfirmKittyable {
 
 typealias kittystuff = (pretty: String, value: String)
 
+typealias CelebBundle = (url: String, img: UIImage?)
+typealias KMKCollectionDS = (cid: String, surveys: [String])

@@ -8,6 +8,10 @@
 import XCTest
 
 class MockNetwork: CatApier {
+    func postNewNotification(withDeviceName name: String, completion: @escaping (Result<Bool, KMKNetworkError>) -> Void) {
+        completion(.success(true))
+    }
+    
     func getJsonByBreed(with breed: String, completion: @escaping (Result<[KittyApiResults], KMKNetworkError>) -> Void) {
         guard let path = Bundle(for: Self.self).path(forResource: "MockNetwork", ofType: "json") else {
             completion(.failure(.urlError)); return;

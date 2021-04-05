@@ -14,7 +14,7 @@ class KMKStatsCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        count.setTitleColor(UIColor(named: "Lipstick")!, for: .selected)
+        count.setTitleColor(UIColor(named: "Lipstick")!, for: .normal)
         count.layer.cornerRadius = 10
     }
 

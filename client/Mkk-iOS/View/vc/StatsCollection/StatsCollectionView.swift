@@ -14,6 +14,16 @@ class StatsCollectionView: UIViewController {
     
     var vm = CollectionViewModel()
     
+    @IBAction func segmentDidChange(_ sender: UISegmentedControl) {
+        
+        DispatchQueue.global().async {
+            self.vm.toggleBetweenSameSurveySource(with: sender.selectedSegmentIndex)
+            DispatchQueue.main.async{
+                self.collectionView.reloadData()
+            }
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         for (index,str) in VOTE_LIST.enumerated() {
