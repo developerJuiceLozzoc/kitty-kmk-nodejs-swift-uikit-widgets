@@ -127,23 +127,34 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h8Y-kO-HVk">
+                                <rect key="frame" x="0.0" y="289" width="414" height="333"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="buh-69-yLg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="V9W-Dl-EX6" firstAttribute="top" secondItem="buh-69-yLg" secondAttribute="top" id="0Pt-62-c0c"/>
                             <constraint firstItem="vaY-3p-xYP" firstAttribute="centerX" secondItem="buh-69-yLg" secondAttribute="centerX" id="5QT-qG-Ijv"/>
+                            <constraint firstItem="h8Y-kO-HVk" firstAttribute="width" secondItem="buh-69-yLg" secondAttribute="width" id="6QG-8g-Odx"/>
                             <constraint firstItem="V9W-Dl-EX6" firstAttribute="leading" secondItem="buh-69-yLg" secondAttribute="leading" constant="10" id="7BA-9G-RIR"/>
+                            <constraint firstItem="vaY-3p-xYP" firstAttribute="top" secondItem="h8Y-kO-HVk" secondAttribute="bottom" constant="-21" id="7O4-uD-XeI"/>
                             <constraint firstItem="buh-69-yLg" firstAttribute="trailing" secondItem="V9W-Dl-EX6" secondAttribute="trailing" constant="10" id="doe-BL-G8m"/>
+                            <constraint firstItem="h8Y-kO-HVk" firstAttribute="height" secondItem="buh-69-yLg" secondAttribute="height" multiplier="0.430233" id="nkv-mC-dag"/>
                             <constraint firstItem="buh-69-yLg" firstAttribute="bottom" secondItem="vaY-3p-xYP" secondAttribute="bottom" constant="111" id="q8r-3J-jWU"/>
                             <constraint firstItem="V9W-Dl-EX6" firstAttribute="height" secondItem="buh-69-yLg" secondAttribute="height" multiplier="0.249354" id="x6T-xG-xe4"/>
+                            <constraint firstItem="h8Y-kO-HVk" firstAttribute="leading" secondItem="buh-69-yLg" secondAttribute="leading" id="zwd-rA-bDX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pdo-dJ-ddk"/>
+                    <connections>
+                        <outlet property="imageresult" destination="h8Y-kO-HVk" id="CyJ-h5-X6k"/>
+                        <outlet property="message" destination="V9W-Dl-EX6" id="jar-94-TCs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mj7-YV-sHn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2532" y="212"/>
+            <point key="canvasLocation" x="2530.434782608696" y="211.60714285714286"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ryf-iN-KYx">

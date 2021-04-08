@@ -58,11 +58,13 @@ class KittyJsoner: CatApier {
                     return
                 }
             if let resp = response as? HTTPURLResponse {
-                if(resp.statusCode != 201){
-                    completion(.failure(.serverCreateError))
-                }
-                else{
+                switch(resp.statusCode){
+                case 201:
                     completion(.success(true))
+                case 400:
+                    completion(.failure(.invalidClientRequest))
+                default:
+                    completion(.failure(.serverCreateError))
                 }
             }
             else{

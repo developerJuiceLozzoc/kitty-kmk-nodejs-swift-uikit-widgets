@@ -6,7 +6,8 @@ const { getRandomCeleb, insertStaleGameReference,
   updateStaleSurveyAsFulfilled, fetchSurveysInRange,
   getCelebImgUrlsFromSurveys, findNotificationById,
   createScheduledNotification, readAllScheduledNotifications,
-deleteNotification,} = require("../model")
+deleteNotification, findNotificationByDeviceToken} = require("../model")
+
 
 const  {postNotificationToDevice} = require("../model/FCMdao")
 const { GameSurveyMongo, BreedMap} = require("../model/schema")
@@ -84,14 +85,37 @@ module.exports.post("/game/:gameid", function(req,res){
 
 module.exports.post("/notifications/schedule",function(req,res){
   const { deviceid , breed } = req.query
-  createScheduledNotification({ vapid: deviceid, breed})
+  var status = null
+  findNotificationByDeviceToken(deviceid)
+  .then(function(value){
+    console.log(value);
+    if(value){
+      status = 400
+      throw "device has already one schedules"
+    }
+    else{
+      Promise.resolve()
+    }
+
+  })
+  .catch(function(){
+    res.status(400).end()
+    throw "err"
+  })
+  .then(function(){
+    return createScheduledNotification({ vapid: deviceid, breed})
+  })
   .then(function(success){
     res.status(201).end()
   })
   .catch(function(err){
     console.log(err);
-    res.status(422).end()
+    res.status(status || 422).end()
   })
+  .finally(function(){
+
+  })
+
 
 })
 

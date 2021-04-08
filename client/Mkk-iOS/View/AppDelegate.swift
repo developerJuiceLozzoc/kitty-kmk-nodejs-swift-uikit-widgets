@@ -87,8 +87,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let knote = WanderingKittyNotification(KITTY_BREED: breed, NOTIFICATION_ID: nid)
         
         let jsonifer: CatApier = KittyJsoner()
-        if let BREED = KITTY_BREEDS.randomElement() {
-            jsonifer.getJsonByBreed(with: BREED) { (result) in
+
+            jsonifer.getJsonByBreed(with: breed) { (result) in
                 var json: [KittyApiResults]? = nil
                 switch result {
                 case .success(let res):
@@ -111,7 +111,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                 
             }
 
-        }
 
             
     }
