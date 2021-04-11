@@ -15,9 +15,9 @@ class StatsCollectionView: UIViewController {
     var vm = CollectionViewModel()
     
     @IBAction func segmentDidChange(_ sender: UISegmentedControl) {
-        
+        let index = sender.selectedSegmentIndex;
         DispatchQueue.global().async {
-            self.vm.toggleBetweenSameSurveySource(with: sender.selectedSegmentIndex)
+            self.vm.toggleBetweenSameSurveySource(with: index)
             DispatchQueue.main.async{
                 self.collectionView.reloadData()
             }

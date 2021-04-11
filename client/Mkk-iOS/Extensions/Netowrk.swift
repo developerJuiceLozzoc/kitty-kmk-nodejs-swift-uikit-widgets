@@ -47,7 +47,6 @@ class KittyJsoner: CatApier {
             completion(.failure(.urlError))
             return
         }
-        print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
