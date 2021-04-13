@@ -245,8 +245,8 @@ function updateAdoptionStats(value,breedName) {
   const filter = {
     "TYPE": "adoption-rates"
   }
-  let updateDoc = { quantity: value }
-  updateDoc[breedName] = 1
+  let updateDoc = {}
+  updateDoc[breedName] = value
 
   return stats.updateOne(
       filter,

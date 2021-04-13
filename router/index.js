@@ -164,7 +164,7 @@ module.exports.delete("/notifications", function (req, res) {
       }
       return new Promise(async function (resolve, reject) {
         try{
-          let status = await updateAdoptionStats(adoption_status == "true" ? 1 : -1,doc.suggested_kitty)
+          let status = await updateAdoptionStats(adoption_status == "true" ? 1 : -1,BreedMap[doc.suggested_kitty])
           if(status.modifiedCount == 1){
             resolve()
           }
@@ -176,10 +176,6 @@ module.exports.delete("/notifications", function (req, res) {
           reject(e)
         }
       });
-    })
-    .then(function () {})
-    .catch(function (e) {
-      console.log(e);
     })
     .finally(function () {
       if (notification_id) {
