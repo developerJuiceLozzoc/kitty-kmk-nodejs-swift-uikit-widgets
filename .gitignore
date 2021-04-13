@@ -1,6 +1,6 @@
 model/config.json
 client/Mkk-iOS/GoogleService-Info.plist
-
+client/Pods
 client/Mkk-iOS/KITTY_API_CONFIG.swift
 
 
