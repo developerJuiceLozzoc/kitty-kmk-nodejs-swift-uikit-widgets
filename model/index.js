@@ -100,6 +100,16 @@ function insertStaleGameReference(gameid) {
 
 /* read */
 
+function retrieveAdoptionStats(){
+  return new Promise(async function (resolve, reject) {
+    let cursor = await mongoc
+      .db(MONGO_DB_NAME)
+      .collection("stats")
+      .findOne({ "TYPE": "adoption-rates" });
+    resolve(cursor);
+  });
+}
+
 function findNotificationById(id) {
   return new Promise(async function (resolve, reject) {
     let cursor = await mongoc
@@ -230,6 +240,19 @@ function getRandomCeleb() {
 
 /* update */
 
+function updateAdoptionStats(value,breedName) {
+  let stats = mongoc.db(MONGO_DB_NAME).collection("stats");
+  const filter = {
+    "TYPE": "adoption-rates"
+  }
+  let updateDoc = { quantity: value }
+  updateDoc[breedName] = 1
+
+  return stats.updateOne(
+      filter,
+      { "$inc": updateDoc},
+    )
+}
 /**
  * Returns promise after updating a new game result,
  *
@@ -319,6 +342,8 @@ function bulk_rinseStaleCollection(ids) {
 }
 
 module.exports = {
+
+  updateAdoptionStats,retrieveAdoptionStats,
   deleteNotification,
   mapStaleGames, findNotificationByDeviceToken,
   readAllScheduledNotifications,

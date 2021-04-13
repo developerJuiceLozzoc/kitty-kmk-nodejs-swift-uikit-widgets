@@ -14,6 +14,7 @@ const {
   readAllScheduledNotifications,
   deleteNotification,
   findNotificationByDeviceToken,
+  updateAdoptionStats,retrieveAdoptionStats,
 } = require("../model");
 
 const { postNotificationToDevice } = require("../model/FCMdao");
@@ -23,9 +24,14 @@ module.exports = express();
 //* a comment*/
 
 module.exports.get("/stats/adoption", function (req, res) {
-  res
-    .status(200)
-    .sendFile(path.join(__dirname, "../stats/AdoptionRatesByBreed.json"));
+  retrieveAdoptionStats()
+  .then(function(stats){
+    res.status(200).json(stats)
+  })
+  .catch(function(err){
+    console.log(err);
+    res.status(300).end()
+  })
 });
 
 module.exports.get("/game/new", function (req, res) {
@@ -156,40 +162,19 @@ module.exports.delete("/notifications", function (req, res) {
       if (!doc.suggested_kitty) {
         throw "Delete the document";
       }
-      return new Promise(function (resolve, reject) {
-        fs.readFile("./stats/AdoptionRatesByBreed.json", function (err, data) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve({
-              json: JSON.parse(data),
-              suggested_kitty: doc.suggested_kitty,
-              action: adoption_status == "true" ? 1 : -1,
-            });
+      return new Promise(async function (resolve, reject) {
+        try{
+          let status = await updateAdoptionStats(adoption_status == "true" ? 1 : -1,doc.suggested_kitty)
+          if(status.modifiedCount == 1){
+            resolve()
           }
-        });
-      });
-    })
-    .then(function ({ json, suggested_kitty, action }) {
-      const fullname = BreedMap[suggested_kitty];
-      console.log(fullname);
-      if (json[fullname]) {
-        json[fullname] += action;
-      } else {
-        json[fullname] = action;
-      }
-      return new Promise(function (resolve, reject) {
-        fs.writeFile(
-          "./stats/AdoptionRatesByBreed.json",
-          JSON.stringify(json),
-          function (error) {
-            if (error) {
-              reject(error);
-            } else {
-              resolve();
-            }
+          else{
+            reject("Did not update document")
           }
-        );
+        }
+        catch(e){
+          reject(e)
+        }
       });
     })
     .then(function () {})
