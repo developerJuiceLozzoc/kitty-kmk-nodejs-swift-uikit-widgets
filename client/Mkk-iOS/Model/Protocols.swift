@@ -47,3 +47,5 @@ typealias kittystuff = (pretty: String, value: String)
 
 typealias CelebBundle = (url: String, img: UIImage?)
 typealias KMKCollectionDS = (cid: String, surveys: [String])
+
+typealias KittyListRow = (name: String, id: String)

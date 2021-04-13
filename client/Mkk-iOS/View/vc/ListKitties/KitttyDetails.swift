@@ -8,7 +8,7 @@
 import UIKit
 
 class KitttyDetails: UIViewController {
-    var details: Kitty? {
+    var details: KittyRealm? {
         didSet {
             guard let details = self.details else {return}
             parseKittyAndSetupUI(with: details)
@@ -31,50 +31,40 @@ class KitttyDetails: UIViewController {
 
 
     }
-    func parseKittyAndSetupUI(with CDKitty: Kitty){
-        var stats: KittyBreed
-        stats = KittyBreed(
-            id: CDKitty.stats?.id ?? "Unknown Breed",
-            name: CDKitty.stats?.name ?? "Unknown Name",
-            temperament: CDKitty.stats?.temperament ?? "Unknown, Not Enough Info",
-            description: CDKitty.stats?.kitty_description ?? "No Desc",
-            life_span: CDKitty.stats?.life_span ?? "6-9",
-            dog_friendly: Int(CDKitty.stats?.dog_friendly ?? 0),
-            energy_level: Int(CDKitty.stats?.energy_level ?? 2),
-            shedding_level: Int(CDKitty.stats?.shedding_level ?? 5),
-            stranger_friendly: Int(CDKitty.stats?.stranger_friendly ?? 5),
-            origin: CDKitty.stats?.origin ?? "Planet Earth")
+    func parseKittyAndSetupUI(with RLMKitty: KittyRealm){
         
-        populateDataSource(kitty: CDKitty,with: stats)
+        
+        populateDataSource(kitty: RLMKitty)
         DispatchQueue.main.async {
-            self.populateUI(with: CDKitty, stats: stats)
+            self.populateUI(with: RLMKitty)
         }
     }
-    func populateUI(with deets: Kitty, stats: KittyBreed ){
-        guard let data = deets.img else {return}
+    func populateUI(with deets: KittyRealm){
+        guard let photoLink = deets.photoLink, let data = photoLink.img else {return}
         picture.image = UIImage(data: data)
         tableView.reloadData()
     }
     
-    func populateDataSource(kitty:Kitty,with stats: KittyBreed){
+    func populateDataSource(kitty:KittyRealm){
+        guard let photoLink = kitty.photoLink, let statsLink = kitty.statsLink else {return}
         self.datasource = Array.init(repeating: [], count: 3)
         let birthday = Date(timeIntervalSince1970: kitty.birthday)
         let df = DateFormatter()
         df.dateFormat = "MMM dd, yyyy"
         
-        datasource[0].append((pretty: "Name",value: kitty.name! ))
+        datasource[0].append((pretty: "Name",value: kitty.name ))
         datasource[0].append((pretty: "Adopted on", value: df.string(from: birthday)))
-        datasource[0].append((pretty: "character", value: stats.temperament))
+        datasource[0].append((pretty: "character", value: statsLink.temperament))
 
-        datasource[1].append((pretty: "Breed Name",value: stats.name ))
-        datasource[1].append((pretty: "Description", value: stats.description))
-        datasource[1].append((pretty: "Country of Origin", value: stats.origin))
+        datasource[1].append((pretty: "Breed Name",value: statsLink.name ))
+        datasource[1].append((pretty: "Description", value: statsLink.description))
+        datasource[1].append((pretty: "Country of Origin", value: statsLink.origin))
         
-        datasource[2].append((pretty: "Life Span", value:"\(stats.life_span) years"))
-        datasource[2].append((pretty: "Dog Friendlyness", value: String.init(repeating: " 🥰 ", count: stats.dog_friendly)))
-        datasource[2].append((pretty: "Energy Lvl", value: String.init(repeating: " ⚡️ ", count: stats.energy_level)))
-        datasource[2].append((pretty: "Hair Shedding Amnt", value: String.init(repeating: " 🤧 ", count: stats.shedding_level)))
-        datasource[2].append((pretty: "Stranger Friendly Lvl", value: String.init(repeating: " 😎 ", count: stats.stranger_friendly)))
+        datasource[2].append((pretty: "Life Span", value:"\(statsLink.life_span) years"))
+        datasource[2].append((pretty: "Dog Friendlyness", value: String.init(repeating: " 🥰 ", count: statsLink.dog_friendly)))
+        datasource[2].append((pretty: "Energy Lvl", value: String.init(repeating: " ⚡️ ", count: statsLink.energy_level)))
+        datasource[2].append((pretty: "Hair Shedding Amnt", value: String.init(repeating: " 🤧 ", count: statsLink.shedding_level)))
+        datasource[2].append((pretty: "Stranger Friendly Lvl", value: String.init(repeating: " 😎 ", count: statsLink.stranger_friendly)))
     }
     
     
@@ -115,7 +105,6 @@ extension KitttyDetails: UITableViewDelegate, UITableViewDataSource{
                 let val = datasource[indexPath.section][indexPath.row].value
                 let attr = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title3)]
                 let text = NSAttributedString(string: val, attributes: attr)
-                print(text)
                 cell.statContent.attributedText = text
 
             }

@@ -11,6 +11,7 @@ import CoreData
 
 class SaveOrDiscardKittyTVC: UITableViewController {
     var cd = CoreData()
+    var rlm = RealmCrud()
     var datasource: [[kittystuff]] = Array.init(repeating: [], count: 2)
     var collectionDataSource: [UIImage?] = []
     var kitty: [KittyApiResults]? {
@@ -53,6 +54,7 @@ class SaveOrDiscardKittyTVC: UITableViewController {
         if(indexPath.section < 2){
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "BasicLabelCell") as? KittyStatCell else {return UITableViewCell()}
             cell.info = datasource[indexPath.section][indexPath.row]
+
             return cell
         }
         else {
@@ -95,34 +97,12 @@ extension SaveOrDiscardKittyTVC: ConfirmKittyable {
         
         guard let chosenid = collectioncell.selectedItem, let url = collectioncell.urls?[chosenid], let uiimg = collectioncell.imgvm.images[chosenid] else {return}
         guard let KName = textcell.textField.text else {return}
-        guard let currstat = self.kitty?[0].breeds[0] else {return}
+        guard let currstat = self.kitty?[0].breeds[0] , let data = uiimg.pngData() else {return}
         
         guard KName.count > 0 else {return}
         
-        let context = cd.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Kitty", in: context)!
-        let statentity = NSEntityDescription.entity(forEntityName: "KStats", in: context)!
+        rlm.addTodooeyToRealm(name: KName, stats: currstat, imgurl: url, imgdata: data)
         
-        let kitty = Kitty(entity: entity, insertInto: context)
-        kitty.imgurl = url
-        kitty.name = KName
-        kitty.img = uiimg.pngData()
-        kitty.birthday = Date().timeIntervalSince1970
-        
-        let stats = KStats(entity: statentity, insertInto: context)
-        
-        stats.dog_friendly = Int16(currstat.dog_friendly)
-        stats.energy_level = Int16(currstat.energy_level)
-        stats.shedding_level = Int16(currstat.shedding_level)
-        stats.stranger_friendly = Int16(currstat.stranger_friendly)
-        
-        stats.id = currstat.id
-        stats.kitty_description = currstat.description
-        stats.life_span = currstat.life_span
-        stats.name = currstat.name
-        stats.origin = currstat.origin
-        stats.temperament = currstat.temperament
-        kitty.stats = stats
         
         cd.saveContext()
         adoptionStatus = "true"
@@ -181,5 +161,50 @@ extension SaveOrDiscardKittyTVC {
                 print(e)
             }
         }
+    }
+}
+//MARK: - coredata
+extension SaveOrDiscardKittyTVC {
+    func confirmAdoptionCoreData() {
+        guard let textcell = tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? KittyNameCell else {return}
+        guard let collectioncell = tableView.cellForRow(at: IndexPath(row: 1, section: 2))  as? KittyAdoptCollectionCell  else {return}
+        
+        guard let chosenid = collectioncell.selectedItem, let url = collectioncell.urls?[chosenid], let uiimg = collectioncell.imgvm.images[chosenid] else {return}
+        guard let KName = textcell.textField.text else {return}
+        guard let currstat = self.kitty?[0].breeds[0] else {return}
+        
+        guard KName.count > 0 else {return}
+        
+        let context = cd.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Kitty", in: context)!
+        let statentity = NSEntityDescription.entity(forEntityName: "KStats", in: context)!
+        
+        let kitty = Kitty(entity: entity, insertInto: context)
+        kitty.imgurl = url
+        kitty.name = KName
+        kitty.img = uiimg.pngData()
+        kitty.birthday = Date().timeIntervalSince1970
+        
+        let stats = KStats(entity: statentity, insertInto: context)
+        
+        stats.dog_friendly = Int16(currstat.dog_friendly)
+        stats.energy_level = Int16(currstat.energy_level)
+        stats.shedding_level = Int16(currstat.shedding_level)
+        stats.stranger_friendly = Int16(currstat.stranger_friendly)
+        
+        stats.id = currstat.id
+        stats.kitty_description = currstat.description
+        stats.life_span = currstat.life_span
+        stats.name = currstat.name
+        stats.origin = currstat.origin
+        stats.temperament = currstat.temperament
+        kitty.stats = stats
+        
+        cd.saveContext()
+        adoptionStatus = "true"
+        navigationController?.popViewController(animated: true)
+        
+        
+        
     }
 }

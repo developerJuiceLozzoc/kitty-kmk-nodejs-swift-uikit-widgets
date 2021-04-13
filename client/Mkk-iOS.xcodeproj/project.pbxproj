@@ -49,6 +49,9 @@
 		B59BBF2925D8495D00A059C4 /* StatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2825D8495D00A059C4 /* StatsCollectionView.swift */; };
 		B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2B25D84DF100A059C4 /* MainTabController.swift */; };
 		B59BBF3025D8509500A059C4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2F25D8509500A059C4 /* Strings.swift */; };
+		B5A46C0926250A6E00F9E154 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A46C0826250A6E00F9E154 /* RealmModel.swift */; };
+		B5A46C0D26250AB000F9E154 /* RealmCrud.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A46C0C26250AB000F9E154 /* RealmCrud.swift */; };
+		B5A46C3B262518BF00F9E154 /* breeds.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A46C3A262518BF00F9E154 /* breeds.json */; };
 		B5B54C46261611B000B18377 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C45261611B000B18377 /* ContainerViewController.swift */; };
 		B5B54C492616124600B18377 /* ContainerHandlerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C482616124600B18377 /* ContainerHandlerVC.swift */; };
 		B5B54C4D2616183C00B18377 /* EmptySegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C4C2616183C00B18377 /* EmptySegue.swift */; };
@@ -133,6 +136,9 @@
 		B59BBF2825D8495D00A059C4 /* StatsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCollectionView.swift; sourceTree = "<group>"; };
 		B59BBF2B25D84DF100A059C4 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		B59BBF2F25D8509500A059C4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		B5A46C0826250A6E00F9E154 /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		B5A46C0C26250AB000F9E154 /* RealmCrud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCrud.swift; sourceTree = "<group>"; };
+		B5A46C3A262518BF00F9E154 /* breeds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = breeds.json; sourceTree = "<group>"; };
 		B5B54C45261611B000B18377 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		B5B54C482616124600B18377 /* ContainerHandlerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerHandlerVC.swift; sourceTree = "<group>"; };
 		B5B54C4C2616183C00B18377 /* EmptySegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySegue.swift; sourceTree = "<group>"; };
@@ -283,14 +289,14 @@
 		B59BBF1825D775CA00A059C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B5B54CA52617C6BF00B18377 /* Model.xcdatamodeld */,
+				B5A46C0726250A5A00F9E154 /* CoreData */,
+				B5A46C0426250A5200F9E154 /* Realm */,
 				B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */,
 				B59BBF2F25D8509500A059C4 /* Strings.swift */,
 				B51784CA25D874E7004472DB /* NotificationObjects.swift */,
 				B5CBA52825FA93B500621682 /* StatsModel.swift */,
 				B5CBA52B25FA944F00621682 /* Schema.swift */,
 				B5B54C8F2617A64100B18377 /* Protocols.swift */,
-				B521F3492618DA7400E7A87D /* CoreData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,6 +309,25 @@
 				B5CBA52F25FBCEE000621682 /* KMKStatsCell.xib */,
 			);
 			path = StatsCollection;
+			sourceTree = "<group>";
+		};
+		B5A46C0426250A5200F9E154 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				B5A46C3A262518BF00F9E154 /* breeds.json */,
+				B5A46C0826250A6E00F9E154 /* RealmModel.swift */,
+				B5A46C0C26250AB000F9E154 /* RealmCrud.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		B5A46C0726250A5A00F9E154 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B521F3492618DA7400E7A87D /* CoreData.swift */,
+				B5B54CA52617C6BF00B18377 /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		B5B54C6F2617A11D00B18377 /* Mkk-iOSTests */ = {
@@ -526,6 +551,7 @@
 				B574280C2618BC5800532B21 /* KittyNameCell.xib in Resources */,
 				B5B54CAB2617CB6800B18377 /* GoogleService-Info.plist in Resources */,
 				B57427F32618262700532B21 /* KittyStatCell.xib in Resources */,
+				B5A46C3B262518BF00F9E154 /* breeds.json in Resources */,
 				B57428122618BC6F00532B21 /* KittyConfirmBtnCell.xib in Resources */,
 				B574281B2618C20E00532B21 /* SelfieClickCell.xib in Resources */,
 				B521F3552618E5A500E7A87D /* AdoptedKittyCell.xib in Resources */,
@@ -656,11 +682,13 @@
 				B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */,
 				B5C8D15F2618151600C77525 /* SaveOrDiscardKittyTVC.swift in Sources */,
 				B51784D725D8946A004472DB /* VoteRowStack.swift in Sources */,
+				B5A46C0D26250AB000F9E154 /* RealmCrud.swift in Sources */,
 				B5B54C4D2616183C00B18377 /* EmptySegue.swift in Sources */,
 				B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */,
 				B51784D325D8942C004472DB /* GameView.swift in Sources */,
 				B567F60D2614BD40006384DB /* DragDropVC.swift in Sources */,
 				B59BBF2925D8495D00A059C4 /* StatsCollectionView.swift in Sources */,
+				B5A46C0926250A6E00F9E154 /* RealmModel.swift in Sources */,
 				B5B54C46261611B000B18377 /* ContainerViewController.swift in Sources */,
 				B57427F82618264A00532B21 /* KittyAdoptCollectionCell.swift in Sources */,
 				B577223625D89FC90024BA72 /* BossConstrains.swift in Sources */,
@@ -872,6 +900,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -879,7 +908,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lozzoc.Mkk-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -896,6 +925,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -903,7 +933,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lozzoc.Mkk-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;

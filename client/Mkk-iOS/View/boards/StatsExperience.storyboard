@@ -39,21 +39,30 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="6MZ-6G-Mq9">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="color" red="0.20400503280000001" green="0.18266981839999999" blue="0.191331327" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="la6-KT-taE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Jhf-08-Zc9" firstAttribute="leading" secondItem="la6-KT-taE" secondAttribute="leading" id="3OY-e8-gqf"/>
+                            <constraint firstItem="6MZ-6G-Mq9" firstAttribute="bottom" secondItem="la6-KT-taE" secondAttribute="bottom" id="3tv-vC-hkY"/>
+                            <constraint firstItem="6MZ-6G-Mq9" firstAttribute="trailing" secondItem="la6-KT-taE" secondAttribute="trailing" id="5bg-By-9vZ"/>
+                            <constraint firstItem="6MZ-6G-Mq9" firstAttribute="top" secondItem="la6-KT-taE" secondAttribute="top" id="7qv-W0-Sv8"/>
                             <constraint firstItem="tbJ-FQ-t6g" firstAttribute="width" secondItem="la6-KT-taE" secondAttribute="width" id="9Zh-cp-p8T"/>
                             <constraint firstItem="tbJ-FQ-t6g" firstAttribute="centerX" secondItem="la6-KT-taE" secondAttribute="centerX" id="LkV-8i-MgM"/>
                             <constraint firstItem="tbJ-FQ-t6g" firstAttribute="height" secondItem="la6-KT-taE" secondAttribute="height" multiplier="0.0366748" id="RXN-Vn-Toz"/>
                             <constraint firstItem="Jhf-08-Zc9" firstAttribute="top" secondItem="tbJ-FQ-t6g" secondAttribute="bottom" constant="8" symbolic="YES" id="U6T-V1-Qfz"/>
+                            <constraint firstItem="6MZ-6G-Mq9" firstAttribute="leading" secondItem="la6-KT-taE" secondAttribute="leading" id="ZbZ-Ec-pWf"/>
                             <constraint firstItem="Jhf-08-Zc9" firstAttribute="width" secondItem="la6-KT-taE" secondAttribute="width" id="Zhi-KG-5Fl"/>
                             <constraint firstItem="tbJ-FQ-t6g" firstAttribute="top" secondItem="la6-KT-taE" secondAttribute="top" id="i0d-f6-6nB"/>
                             <constraint firstItem="la6-KT-taE" firstAttribute="bottom" secondItem="Jhf-08-Zc9" secondAttribute="bottom" id="k9m-U9-yVM"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activiySpinner" destination="6MZ-6G-Mq9" id="RvQ-EU-ljb"/>
                         <outlet property="collectionView" destination="Jhf-08-Zc9" id="7jw-ad-eln"/>
                         <outlet property="segments" destination="tbJ-FQ-t6g" id="ify-VR-u7q"/>
                     </connections>

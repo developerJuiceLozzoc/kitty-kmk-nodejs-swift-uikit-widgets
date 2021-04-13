@@ -8,7 +8,7 @@
 import UIKit
 
 class ScheduleKitty: UIViewController {
-
+    let re = RealmCrud()
     let network: CatApier = KittyJsoner()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +56,5 @@ class ScheduleKitty: UIViewController {
         }
         
     }
-    
-   
+
 }

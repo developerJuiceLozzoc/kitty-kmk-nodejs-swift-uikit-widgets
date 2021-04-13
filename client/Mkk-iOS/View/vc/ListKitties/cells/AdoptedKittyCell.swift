@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class AdoptedKittyCell: UITableViewCell {
 
+class AdoptedKittyCell: SwipeTableViewCell {
+
+    @IBOutlet weak var nameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+
         // Initialization code
     }
 

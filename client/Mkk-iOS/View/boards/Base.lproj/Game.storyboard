@@ -48,6 +48,10 @@
                                     <action selector="ToReview:" destination="qkp-FH-myo" eventType="touchUpInside" id="KBd-Hc-PaO"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="PJH-lg-RVP">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="color" red="0.20400503280000001" green="0.18266981839999999" blue="0.191331327" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oyj-SH-bD4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -56,17 +60,22 @@
                             <constraint firstItem="PcP-Kj-hFJ" firstAttribute="width" secondItem="oyj-SH-bD4" secondAttribute="width" multiplier="0.62" id="4Ba-yb-J5M"/>
                             <constraint firstItem="fM7-8m-xdm" firstAttribute="height" secondItem="oyj-SH-bD4" secondAttribute="height" multiplier="0.891198" constant="-9" id="DWv-gj-SSf"/>
                             <constraint firstItem="fM7-8m-xdm" firstAttribute="width" secondItem="oyj-SH-bD4" secondAttribute="width" id="Goq-vf-noQ"/>
+                            <constraint firstItem="oyj-SH-bD4" firstAttribute="bottom" secondItem="PJH-lg-RVP" secondAttribute="bottom" id="L3u-iZ-cRA"/>
                             <constraint firstItem="PcP-Kj-hFJ" firstAttribute="centerX" secondItem="oyj-SH-bD4" secondAttribute="centerX" id="OH2-6t-wvC"/>
+                            <constraint firstItem="oyj-SH-bD4" firstAttribute="trailing" secondItem="PJH-lg-RVP" secondAttribute="trailing" id="Odj-Ql-mZI"/>
+                            <constraint firstItem="PJH-lg-RVP" firstAttribute="leading" secondItem="oyj-SH-bD4" secondAttribute="leading" id="Wyh-o4-vMc"/>
                             <constraint firstItem="PcP-Kj-hFJ" firstAttribute="height" secondItem="oyj-SH-bD4" secondAttribute="height" multiplier="0.0366748" id="XI2-XY-XcD"/>
                             <constraint firstItem="fM7-8m-xdm" firstAttribute="top" secondItem="bdh-UG-vwY" secondAttribute="bottom" constant="8" symbolic="YES" id="YaO-zm-7uj"/>
                             <constraint firstItem="bdh-UG-vwY" firstAttribute="trailing" secondItem="oyj-SH-bD4" secondAttribute="trailing" constant="-10" id="fnS-54-gps"/>
                             <constraint firstItem="oyj-SH-bD4" firstAttribute="bottom" secondItem="fM7-8m-xdm" secondAttribute="bottom" constant="9" id="lMg-Io-ZGw"/>
+                            <constraint firstItem="PJH-lg-RVP" firstAttribute="top" secondItem="oyj-SH-bD4" secondAttribute="top" id="xJP-Cg-fUT"/>
                             <constraint firstItem="fM7-8m-xdm" firstAttribute="leading" secondItem="oyj-SH-bD4" secondAttribute="leading" id="zK5-98-fRn"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="ENL-tq-fmB"/>
                     <navigationItem key="navigationItem" id="ho5-Q3-zAH"/>
                     <connections>
+                        <outlet property="activitySpinner" destination="PJH-lg-RVP" id="gco-Zv-AEz"/>
                         <segue destination="86l-1c-g7t" kind="presentation" identifier="ConfirmFormSubmissionAlert" modalPresentationStyle="pageSheet" id="eyp-7m-iO9"/>
                     </connections>
                 </viewController>

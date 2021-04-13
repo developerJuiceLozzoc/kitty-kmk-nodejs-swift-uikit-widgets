@@ -12,6 +12,7 @@ class StatsCollectionView: UIViewController {
     @IBOutlet weak var segments: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var activiySpinner: UIActivityIndicatorView!
     var vm = CollectionViewModel()
     
     @IBAction func segmentDidChange(_ sender: UISegmentedControl) {
@@ -32,8 +33,11 @@ class StatsCollectionView: UIViewController {
         
         let nib = UINib.init(nibName: "KMKStatsCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "KMKCelebPic")
+        activiySpinner.startAnimating()
         vm.loadNextPage(type: segments.selectedSegmentIndex) {
+            
             DispatchQueue.main.async {
+                self.activiySpinner.stopAnimating()
                 self.collectionView.reloadData()
 
             }

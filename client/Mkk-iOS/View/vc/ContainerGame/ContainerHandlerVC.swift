@@ -13,6 +13,7 @@ class ContainerHandlerVC: UIViewController, KMKUseViewModel {
     var container: ContainerViewController!
     var votevm: GameSurveyVM?
     var imagesvm: ImagesViewModel? = ImagesViewModel()
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     
     
     @IBAction func segmentChagne(_ sender: Any) {
@@ -58,18 +59,23 @@ class ContainerHandlerVC: UIViewController, KMKUseViewModel {
 extension ContainerHandlerVC {
     override func viewWillAppear(_ animated: Bool) {
 
-        guard votevm == nil else {
-            return}
-
+        guard votevm == nil else {return}
+        activitySpinner.startAnimating()
+        self.activitySpinner.color = .black
         GameSurveyModel().fetchNewGame { (result) in
             switch(result){
                 case .success(let survey):
                     DispatchQueue.main.async{
+                        self.activitySpinner.stopAnimating()
                         self.votevm = GameSurveyVM(with: survey)
                         self.container.segueIdentifierReceivedFromParent("classic")
                     }
                     break
                 case .failure(let err):
+                    DispatchQueue.main.async{
+                        self.activitySpinner.stopAnimating()
+                        self.activitySpinner.color = .red
+                    }
                     print(err)
                     break;
             }

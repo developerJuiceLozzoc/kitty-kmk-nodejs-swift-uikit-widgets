@@ -9,8 +9,8 @@ target 'Mkk-iOS' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
-
-
+    pod 'RealmSwift'
+  pod 'SwipeCellKit'
   target 'Mkk-iOSTests' do
     inherit! :search_paths
     # Pods for testing

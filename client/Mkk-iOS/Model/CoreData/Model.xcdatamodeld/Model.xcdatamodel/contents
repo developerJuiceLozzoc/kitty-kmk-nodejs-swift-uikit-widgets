@@ -5,7 +5,12 @@
         <attribute name="img" optional="YES" attributeType="Binary"/>
         <attribute name="imgurl" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <relationship name="photoLink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KittyPhoto"/>
         <relationship name="stats" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KStats"/>
+    </entity>
+    <entity name="KittyPhoto" representedClassName="KittyPhoto" syncable="YES" codeGenerationType="class">
+        <attribute name="imgurl" optional="YES" attributeType="String"/>
+        <attribute name="photo" optional="YES" attributeType="Binary"/>
     </entity>
     <entity name="KStats" representedClassName="KStats" syncable="YES" codeGenerationType="class">
         <attribute name="dog_friendly" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -20,7 +25,8 @@
         <attribute name="temperament" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Kitty" positionX="-63" positionY="-18" width="128" height="104"/>
-        <element name="KStats" positionX="-54" positionY="9" width="128" height="179"/>
+        <element name="Kitty" positionX="-329.2578125" positionY="-187.33203125" width="128" height="133"/>
+        <element name="KittyPhoto" positionX="-52.6015625" positionY="54.5625" width="128" height="59"/>
+        <element name="KStats" positionX="-614.33203125" positionY="47.5625" width="128" height="179"/>
     </elements>
 </model>

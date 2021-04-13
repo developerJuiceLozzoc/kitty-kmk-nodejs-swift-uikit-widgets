@@ -31,9 +31,13 @@ struct KittyBreed: Codable {
     var shedding_level: Int
     var stranger_friendly: Int
     var origin: String
+    var image: imgtype?
     
 }
- 
+struct imgtype: Codable {
+    var url: String?
+}
+
 struct Celebrity: Codable {
     var name: String
     var imgurl: String
