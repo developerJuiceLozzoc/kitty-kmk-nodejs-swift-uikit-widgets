@@ -9,7 +9,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Cat🐈‍⬛  Owner Sim</string>
+	<string>Curious 4 Cats</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -29,7 +29,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.550773485559-i6p5tjskohtv46pet0jhprg15e180c3l</string>
+				<string>com.googleusercontent.apps.550773485559-g48vb0d62gvhf5to8nf3eok09m06qsh0</string>
 			</array>
 		</dict>
 	</array>
