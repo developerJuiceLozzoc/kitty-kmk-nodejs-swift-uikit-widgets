@@ -8,6 +8,59 @@
 import UIKit
 
 class KittyJsoner: CatApier {
+    func dispatchNotificationsImmediately(completion: @escaping (Result<Void, KMKNetworkError>) -> Void) {
+        guard let url = URL(string: "\(SERVER_URL)/notifications/dispatch") else {
+            completion(.failure(.urlError)); return;
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        URLSession.shared.dataTask(with: request){data,response,err in
+            if let resp = response as? HTTPURLResponse {
+                switch(resp.statusCode){
+                case 200:
+                    completion(.success(Void()))
+                case 400:
+                    completion(.failure(.invalidClientRequest))
+                default:
+                    completion(.failure(.serverCreateError))
+                }
+            }
+            else{
+                completion(.failure(.decodeFail))
+            }
+        }.resume()
+    }
+    
+    
+    
+    func fetchRemoteFeatureToggles(completion: @escaping (Result<ZeusFeatureToggles, KMKNetworkError>) -> Void) {
+        guard let url = URL(string: "\(SERVER_URL)/ZeusToggles") else {
+            completion(.failure(.urlError)); return;
+        }
+        URLSession.shared.dataTask(with: url){data,response,err in
+            if let resp = response as? HTTPURLResponse {
+                switch(resp.statusCode){
+                case 200:
+                    do {
+                        let toggles = try JSONDecoder().decode(ZeusFeatureToggles.self, from: data!)
+                        completion(.success(toggles))
+                    }
+                    catch let err {
+                        print(err)
+                        completion(.failure(.decodeFail))
+                    }
+                case 400:
+                    completion(.failure(.invalidClientRequest))
+                default:
+                    completion(.failure(.serverCreateError))
+                }
+            }
+            else{
+                completion(.failure(.decodeFail))
+            }
+        }.resume()
+    }
+    
     func getKittyImageByBreed(with breed: String, completion: @escaping (Result<UIImage, KMKNetworkError>) -> Void) {
         completion(.success(UIImage(systemName: "hare.fill")!))
     }

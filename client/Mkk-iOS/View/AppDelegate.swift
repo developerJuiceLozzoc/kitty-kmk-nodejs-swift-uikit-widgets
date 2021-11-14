@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(dict)
 
       // Print full message.
-      print(userInfo)
+      print("foreground push",userInfo)
 
       completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -67,10 +67,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     let userInfo = notification.request.content.userInfo
 
-    // Print full message.
-    print(userInfo)
-
-    completionHandler([[.banner, .sound]])
+      completionHandler([[.banner,.list, .sound]])
   }
 
   func userNotificationCenter(_ center: UNUserNotificationCenter,

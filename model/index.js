@@ -100,6 +100,16 @@ function insertStaleGameReference(gameid) {
 
 /* read */
 
+function readRemoteFeatureToggles() {
+  return new Promise(async function (resolv,rej) {
+    let cursor = await mongoc
+    .db(MONGO_DB_NAME)
+    .collection("remote-toggles")
+    .findOne({ "ZEUS": "TEST-FLIGHT-TOGGLES" });
+    resolv(cursor);
+  })
+}
+
 function retrieveAdoptionStats(){
   return new Promise(async function (resolve, reject) {
     let cursor = await mongoc
@@ -146,10 +156,8 @@ function mapStaleGames() {
 
 function readAllScheduledNotifications() {
   return new Promise(async function (resolve, reject) {
-    let unsent = [];
     const cursor = await mongoc.db(MONGO_DB_NAME).collection(NTFCNS).find({});
     resolve(cursor);
-    resolve(unsent);
   });
 }
 /**
@@ -342,7 +350,7 @@ function bulk_rinseStaleCollection(ids) {
 }
 
 module.exports = {
-
+readRemoteFeatureToggles,
   updateAdoptionStats,retrieveAdoptionStats,
   deleteNotification,
   mapStaleGames, findNotificationByDeviceToken,

@@ -2,7 +2,7 @@
 //  Data.swift
 //  TodoLocalStorage
 //
-//  Created by Field Employee on 1/14/21.
+//  Created by Conner M on 1/14/21.
 //
 
 import Foundation
@@ -24,6 +24,23 @@ class KittyRealm: Object {
 
 
 }
+
+/*javascript redux action creator similar
+
+func createKittyActionCreator(kitty) {
+    return {
+        type,
+        value: {
+            @objc dynamic var uid:String = UUID().uuidString
+            @objc dynamic var birthday: Double = Date().timeIntervalSince1970
+            @objc dynamic var name: String = ""
+            @objc dynamic var photoLink: KPhotoRealm?
+            @objc dynamic var statsLink: KStatsRealm?
+
+        }
+    }
+}
+ */
 
 
 class KStatsRealm: Object {

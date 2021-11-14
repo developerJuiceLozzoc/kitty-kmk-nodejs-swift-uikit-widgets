@@ -11,6 +11,9 @@ class MainTabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // api request to fetch the toggles, and set that in static memory.
+        
+        
         tabBar.tintColor = UIColor.purple
         
         let listvc = UIStoryboard.init(name: "ListMyKitties", bundle: nil).instantiateViewController(identifier: "List_Kitties")

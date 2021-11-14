@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct ZeusFeatureToggles: Codable {
+    var instantPushKitty: Bool
+}
+
 struct WanderingKittyNotification {
     var KITTY_BREED: String
     var NOTIFICATION_ID: String

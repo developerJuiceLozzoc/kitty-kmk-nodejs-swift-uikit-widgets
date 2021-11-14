@@ -57,7 +57,7 @@ class KitttyDetails: UIViewController {
         datasource[0].append((pretty: "character", value: statsLink.temperament))
 
         datasource[1].append((pretty: "Breed Name",value: statsLink.name ))
-        datasource[1].append((pretty: "Description", value: statsLink.description))
+        datasource[1].append((pretty: "Description", value: statsLink.kitty_description))
         datasource[1].append((pretty: "Country of Origin", value: statsLink.origin))
         
         datasource[2].append((pretty: "Life Span", value:"\(statsLink.life_span) years"))

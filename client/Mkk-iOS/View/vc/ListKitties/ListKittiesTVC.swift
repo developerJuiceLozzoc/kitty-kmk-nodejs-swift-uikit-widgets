@@ -51,6 +51,20 @@ class ListKittiesTVC: UITableViewController  {
     }
     override func viewDidLoad() {
         
+        let api = KittyJsoner()
+        api.fetchRemoteFeatureToggles { result in
+            switch(result) {
+            case .success(let toggles):
+                ZeusToggles.shared.toggles = toggles
+                ZeusToggles.shared.didLoad = true
+            case .failure(let e):
+                print(e)
+                ZeusToggles.shared.didLoad = true
+
+            }
+            
+        }
+        
         
         tableView.rowHeight = 45.0
         let nib = UINib.init(nibName: "AdoptedKittyCell", bundle: nil)

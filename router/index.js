@@ -15,6 +15,7 @@ const {
   deleteNotification,
   findNotificationByDeviceToken,
   updateAdoptionStats,retrieveAdoptionStats,
+  readRemoteFeatureToggles,
 } = require("../model");
 
 const { postNotificationToDevice } = require("../model/FCMdao");
@@ -22,6 +23,17 @@ const { GameSurveyMongo, BreedMap } = require("../model/schema");
 const path = require("path");
 module.exports = express();
 //* a comment*/
+
+module.exports.get('/ZeusToggles', function (req,res){
+  readRemoteFeatureToggles()
+  .then(function(toggles){
+    res.status(200).json(toggles);
+  })
+  .catch(function(err){
+    console.log(err);
+    res.status(300).end()
+  })
+})
 
 module.exports.get("/stats/adoption", function (req, res) {
   retrieveAdoptionStats()
@@ -109,9 +121,9 @@ module.exports.post("/notifications/schedule", function (req, res) {
         Promise.resolve();
       }
     })
-    .catch(function () {
+    .catch(function (e) {
       res.status(400).end();
-      throw "err";
+      throw e;
     })
     .then(function () {
       return createScheduledNotification({ vapid: deviceid, breed });
@@ -127,9 +139,11 @@ module.exports.post("/notifications/schedule", function (req, res) {
 });
 
 module.exports.post("/notifications/dispatch", function (req, res) {
+  console.log("dispathcing notification");
   readAllScheduledNotifications()
     .then(function (cursor) {
       cursor.forEach(function (val) {
+        console.log(val);
         if (val.device_token && val.suggested_kitty) {
           postNotificationToDevice({
             vapid: val.device_token,
@@ -148,6 +162,7 @@ module.exports.post("/notifications/dispatch", function (req, res) {
     })
     .catch(function (err) {
       console.log(err);
+      console.log("error dispatching notification");
       res.status(300).end();
     });
 });

@@ -15,10 +15,11 @@ class RealmCrud {
     func fetchKitties() -> Results<KittyRealm> {
         return realm.objects(KittyRealm.self)
     }
+    
     func sortKittiesTimely(sort: Bool, kitties: Results<KittyRealm> ) -> Results<KittyRealm>{
         return kitties.sorted(byKeyPath: "birthday", ascending: sort)
     }
-   
+    
     func addTodooeyToRealm(name: String, stats: KittyBreed,imgurl: String,imgdata: Data){
 
         do{
