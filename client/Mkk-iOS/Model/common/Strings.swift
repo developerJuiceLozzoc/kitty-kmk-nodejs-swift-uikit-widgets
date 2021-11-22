@@ -30,8 +30,8 @@ let KITTY_BREEDS: [String]  = [
 
 
 let VOTE_CELL_REUSE:String = "This cell has a picture and a thick segmented control."
-//let SERVER_URL = "https://kissmarrykill.herokuapp.com"
-let SERVER_URL = "http://localhost:3000"
+let SERVER_URL = "https://kissmarrykill.herokuapp.com"
+//let SERVER_URL = "http://localhost:3000"
 //let SERVER_URL = "http://10.1.10.76:3000"
 //let SERVER_URL = "http://10.0.0.74:3000"
 

@@ -17,7 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         Messaging.messaging().delegate = self
+        
+        KittyJsoner().fetchRemoteFeatureToggles { result in
+            switch(result) {
+            case .success(let toggles):
+                ZeusToggles.shared.toggles = toggles
+                ZeusToggles.shared.didLoad = true
+            case .failure(let e):
+                print(e)
+                ZeusToggles.shared.didLoad = true
 
+            }
+            
+        }
+        
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(
@@ -65,7 +78,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               willPresent notification: UNNotification,
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    let userInfo = notification.request.content.userInfo
+//    let userInfo = notification.request.content.userInfo
 
       completionHandler([[.banner,.list, .sound]])
   }
@@ -74,7 +87,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
-    if let menu = userInfo["ADD_KITTY"] as? NSString {
+    if userInfo["ADD_KITTY"] as? NSString != nil {
         guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate ,let tabController = sD.window?.rootViewController as? UITabBarController else {completionHandler();return;}
         
         tabController.selectedIndex = 2
@@ -94,10 +107,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                     print(err)
                 }
                 DispatchQueue.main.async {
-                    
                     if let saveVC = UIStoryboard
                         .init(name: "ListMyKitties", bundle: nil)
-                        .instantiateViewController(identifier: "ConfirmKittyScreen") as? SaveOrDiscardKittyTVC {
+                        .instantiateViewController(identifier: "ConfirmKittyScreen") as? SaveOrDiscardHostingController {
                         vc.popToRootViewController(animated: true) // in case they are on a nother workflow
                         saveVC.kitty = json
                         saveVC.notification = knote

@@ -51,25 +51,11 @@ class ListKittiesTVC: UITableViewController  {
     }
     override func viewDidLoad() {
         
-        let api = KittyJsoner()
-        api.fetchRemoteFeatureToggles { result in
-            switch(result) {
-            case .success(let toggles):
-                ZeusToggles.shared.toggles = toggles
-                ZeusToggles.shared.didLoad = true
-            case .failure(let e):
-                print(e)
-                ZeusToggles.shared.didLoad = true
-
-            }
-            
-        }
-        
-        
         tableView.rowHeight = 45.0
         let nib = UINib.init(nibName: "AdoptedKittyCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "BasicSwipeCell")
         self.kitties = rlm.fetchKitties()
+        tableView.separatorStyle = .none
         
         
     }
@@ -128,7 +114,6 @@ class ListKittiesTVC: UITableViewController  {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BasicSwipeCell") as? AdoptedKittyCell else {return UITableViewCell()}
         cell.delegate = self 
         cell.nameLabel.text = contentDataSource[indexPath.section][indexPath.row].name
-
         return cell
     }
 
@@ -145,30 +130,9 @@ class ListKittiesTVC: UITableViewController  {
     
 
 }
-//extension ListKittiesTVC {
-//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let deleteAction = UIContextualAction(style: .destructive,
-//                                              title: "Delete") { [weak self] _, _, complete in
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//            complete(true)
-//        }
-//        deleteAction.backgroundColor = .red
-//
-//        return UISwipeActionsConfiguration(actions: [deleteAction])
-//
-//    }
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//            if editingStyle == .delete {
-//                tableView.beginUpdates()
-//                self.contentDataSource[indexPath.section].remove(at: indexPath.row)
-//                tableView.deleteRows(at: [indexPath], with: .none)
-//                tableView.endUpdates()
-//            }
-//        }
-//}
+
 
 extension ListKittiesTVC: SwipeTableViewCellDelegate {
-
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else {return nil}
@@ -187,11 +151,6 @@ extension ListKittiesTVC: SwipeTableViewCellDelegate {
             self.rlm.deleteItemWithRealm(ref: kitty)
 
             action.fulfill(with: .delete)
-
-
-
-
-
 
         }
         deleteAction.image = UIImage(named: "Trash")

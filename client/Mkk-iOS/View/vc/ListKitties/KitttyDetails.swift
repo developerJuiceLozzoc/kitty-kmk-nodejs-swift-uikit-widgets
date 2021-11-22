@@ -28,19 +28,16 @@ class KitttyDetails: UIViewController {
         tableView.register(nib2, forCellReuseIdentifier: "Temperament")
         tableView.dataSource = self
         tableView.delegate = self
-
+        self.populateUI(with: details)
 
     }
     func parseKittyAndSetupUI(with RLMKitty: KittyRealm){
         
         
         populateDataSource(kitty: RLMKitty)
-        DispatchQueue.main.async {
-            self.populateUI(with: RLMKitty)
-        }
     }
-    func populateUI(with deets: KittyRealm){
-        guard let photoLink = deets.photoLink, let data = photoLink.img else {return}
+    func populateUI(with deets: KittyRealm?){
+        guard let photoLink = deets?.photoLink, let data = photoLink.img else {return}
         picture.image = UIImage(data: data)
         tableView.reloadData()
     }
@@ -48,12 +45,9 @@ class KitttyDetails: UIViewController {
     func populateDataSource(kitty:KittyRealm){
         guard let photoLink = kitty.photoLink, let statsLink = kitty.statsLink else {return}
         self.datasource = Array.init(repeating: [], count: 3)
-        let birthday = Date(timeIntervalSince1970: kitty.birthday)
-        let df = DateFormatter()
-        df.dateFormat = "MMM dd, yyyy"
         
         datasource[0].append((pretty: "Name",value: kitty.name ))
-        datasource[0].append((pretty: "Adopted on", value: df.string(from: birthday)))
+        datasource[0].append((pretty: "Adopted on", value: doubleDateToString(from: kitty.birthday)))
         datasource[0].append((pretty: "character", value: statsLink.temperament))
 
         datasource[1].append((pretty: "Breed Name",value: statsLink.name ))

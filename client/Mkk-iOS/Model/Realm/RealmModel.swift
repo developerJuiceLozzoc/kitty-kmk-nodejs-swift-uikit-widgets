@@ -50,6 +50,7 @@ class KStatsRealm: Object {
     @objc dynamic  var kitty_description: String = ""
     @objc dynamic  var life_span: String = ""
     @objc dynamic  var dog_friendly: Int = 0
+    @objc dynamic  var intelligence: Int = 0
     @objc dynamic  var energy_level: Int = 0
     @objc dynamic var shedding_level: Int = 0
     @objc dynamic  var stranger_friendly: Int = 0

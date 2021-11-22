@@ -67,7 +67,6 @@ struct KMKProgressRectangle: View {
 
             }
         }
-        .padding(edge, 10)
     }
 }
 
@@ -75,7 +74,7 @@ struct KMKProgressRectangle_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
             KMKProgressRectangle(percent: 0.1, alignment: .leading, edge: .leading)
-            KMKProgressRectangle(percent: 0.25, alignment: .leading, edge: .leading)
+            KMKProgressRectangle(percent: 0.25, alignment: .trailing, edge: .trailing)
             KMKProgressRectangle(percent: 0.75, alignment: .leading, edge: .leading)
             
             

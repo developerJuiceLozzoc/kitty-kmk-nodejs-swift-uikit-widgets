@@ -48,30 +48,6 @@ struct CoreDataItemContextViewMedium: View {
     }
 }
 
-struct CoreDataItemContextView: View {
-    var pictureURL: String
-    var breedName: String
-    /*
-     * toggles and
-     * stars 1 out of 5 stars
-     
-     
-     * 2 ratings as stars, next to each other,
-     * if they conflict or something
-     */
-    var body: some View {
-        VStack {
-//            Image(uiImage: UIImage(contentsOfFile: pictureURL) ?? UIImage() )
-//                .size(width: 90, height: 70)
-            
-            Rectangle()
-                .size(width: 90, height: 70)
-            Text("hellow world")
-            Spacer()
-            
-        }
-    }
-}
 
 struct SavedDataInfotainmentEntryView : View {
     var entry: Provider.Entry
@@ -79,19 +55,7 @@ struct SavedDataInfotainmentEntryView : View {
     
     var body: some View {
 
-        CoreDataItemContextView(pictureURL: "https://placekitten.com/200/200", breedName: "Siameze")
-//        VStack {
-//            HStack {
-//                Text("1")
-//                Text("2")
-//            }
-//            HStack {
-//
-//                Text("3")
-//                Text("4")
-//            }
-//        }
-        
+    Text("hi")
         
     }
 }

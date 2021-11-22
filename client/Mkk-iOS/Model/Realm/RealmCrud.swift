@@ -41,6 +41,7 @@ class RealmCrud {
                 newStats.shedding_level = stats.shedding_level
                 newStats.stranger_friendly =   stats.stranger_friendly
                 newStats.origin = stats.origin
+                newStats.intelligence = stats.intelligence
                 
                 
                 

@@ -15,6 +15,22 @@ struct StarStatHead2Head {
 }
 
 
+func renderPetName(name: String) -> some View {
+    let count = name.split(separator: " ").count
+    var size: CGFloat
+    switch count {
+        case 1:
+            size = 20
+            if name.count > 11 {
+                size = 17
+            }
+        case 2:
+            size = 16
+        default:
+            size = 12
+    }
+    return Text(name).font(.system(size: size, weight: .light, design: .default))
+}
 
 
 struct InfoXRowYStars: View {
@@ -24,29 +40,33 @@ struct InfoXRowYStars: View {
             ForEach(0..<datasource.names.count){ i in
                 HStack {
                     KMKProgressRectangle(percent: datasource.ratings[0][i] / 5.0, alignment: .leading, edge: .leading)
-                    Spacer()
-                    Text(datasource.names[i])
-                    Spacer()
+                    renderPetName(name: datasource.names[i])
                     KMKProgressRectangle(percent: datasource.ratings[1][i] / 5.0, alignment: .trailing,edge: .trailing)
                     
                 }
             }
         }
-        
+        .frame(maxWidth: .infinity)
     }
 }
 
-let dummydata = StarStatHead2Head(names: ["cat","kitty","meowster","ricky martin"], ratings: [[1,1,6,1,1],[3,1,5,3,2]])
+let dummydata = StarStatHead2Head(names: ["cat","kitty mclovin","meowster","ricky martin charles"], ratings: [[1,1,6,1,1],[3,1,5,3,2]])
 
 struct JumbotronLayout: View {
     let ThickDarkInnerBorderPosition: CGFloat = 8 // 3 - 25
     let DimOuterBorderPosition: CGFloat = 8 // 0 - 15
+    var imageLeft: Image!
+    var imageRight: Image!
+    var nameLeft: String!
+    var nameRight: String!
+    var stats:StarStatHead2Head!
+    
     
     var body: some View {
         VStack {
             ZStack {
                 HStack{
-                    Image("kat1")
+                    imageLeft
                         .resizable()
                         .aspectRatio(0.78, contentMode: .fit)
                     Spacer()
@@ -54,7 +74,7 @@ struct JumbotronLayout: View {
                 
                 HStack{
                     Spacer()
-                    Image("kat2")
+                    imageRight
                         .resizable()
                         .aspectRatio(0.78, contentMode: .fit)
                     
@@ -62,15 +82,14 @@ struct JumbotronLayout: View {
             }
             .cornerRadius(10)
             HStack{
-                Text("Name 1")
+                Text(nameLeft)
                 Spacer()
-                Text("name 2")
+                Text(nameRight)
             }
             .cornerRadius(10)
             Divider()
             
-            InfoXRowYStars(datasource:
-                                dummydata)
+            InfoXRowYStars(datasource: stats)
                 .padding()
             
             
@@ -92,7 +111,7 @@ struct JumbotronLayout_Previews: PreviewProvider {
 //            .previewContext(WidgetPreviewContext(family: .systemSmall))
 //        JumbotronLayout()
 //            .previewContext(WidgetPreviewContext(family: .systemMedium))
-        JumbotronLayout()
+        JumbotronLayout(imageLeft: Image("kat1"), imageRight: Image("kat2"), nameLeft: "Charles Vanderburg", nameRight: "Ricky Martin", stats: dummydata)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

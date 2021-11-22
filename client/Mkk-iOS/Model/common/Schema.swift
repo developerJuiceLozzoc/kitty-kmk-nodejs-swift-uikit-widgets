@@ -33,6 +33,7 @@ struct KittyBreed: Codable {
     var dog_friendly: Int
     var energy_level: Int
     var shedding_level: Int
+    var intelligence: Int
     var stranger_friendly: Int
     var origin: String
     var image: imgtype?

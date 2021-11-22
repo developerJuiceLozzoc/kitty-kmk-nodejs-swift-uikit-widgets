@@ -9,7 +9,7 @@ import UIKit
 import SwipeCellKit
 
 
-class AdoptedKittyCell: SwipeTableViewCell {
+class AdoptedKittyCell: SwipeTableViewCell  {
 
     @IBOutlet weak var nameLabel: UILabel!
     

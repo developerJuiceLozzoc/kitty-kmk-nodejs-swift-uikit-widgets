@@ -21,11 +21,15 @@
 		B54651AC26F6A85600A16F38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B54651AB26F6A85600A16F38 /* Assets.xcassets */; };
 		B54651AE26F6A85600A16F38 /* SavedDataInfotainment.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B54651AA26F6A85400A16F38 /* SavedDataInfotainment.intentdefinition */; };
 		B54651AF26F6A85600A16F38 /* SavedDataInfotainment.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B54651AA26F6A85400A16F38 /* SavedDataInfotainment.intentdefinition */; };
-		B54651B226F6A85600A16F38 /* SavedDataInfotainmentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B54651A226F6A85400A16F38 /* SavedDataInfotainmentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B54651D026F78C6900A16F38 /* JumbotronLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54651CF26F78C6900A16F38 /* JumbotronLayout.swift */; };
 		B54651D126F78F8E00A16F38 /* JumbotronLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54651CF26F78C6900A16F38 /* JumbotronLayout.swift */; };
 		B54651D526F7E13700A16F38 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54651D326F7E11F00A16F38 /* ProgressBar.swift */; };
 		B54651D626F7E14300A16F38 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54651D326F7E11F00A16F38 /* ProgressBar.swift */; };
+		B547291E274A949A005DCF8A /* SaveOrDiscardHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */; };
+		B5472920274AA0ED005DCF8A /* ConfirmOrDiscardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */; };
+		B5472922274AA91A005DCF8A /* SwiftUIStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472921274AA91A005DCF8A /* SwiftUIStyles.swift */; };
+		B5472924274B30FE005DCF8A /* KittyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472923274B30FE005DCF8A /* KittyDetailsView.swift */; };
+		B5472926274B4D56005DCF8A /* KittieDetailsSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472925274B4D56005DCF8A /* KittieDetailsSwiftUI.swift */; };
 		B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */; };
 		B57427F22618262700532B21 /* KittyStatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57427F02618262700532B21 /* KittyStatCell.swift */; };
 		B57427F32618262700532B21 /* KittyStatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57427F12618262700532B21 /* KittyStatCell.xib */; };
@@ -82,17 +86,12 @@
 		B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7A63025D6F7520076F12C /* SceneDelegate.swift */; };
 		B5E7A63825D6F7540076F12C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63725D6F7540076F12C /* Assets.xcassets */; };
 		B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */; };
+		B5F43179274990B4008DAE78 /* ListKittiesSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F43178274990B4008DAE78 /* ListKittiesSwiftUI.swift */; };
+		B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4317B27499289008DAE78 /* ListKittiesView.swift */; };
 		BE3D8116413BC900455838DF /* Pods_Mkk_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B54651B026F6A85600A16F38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B5E7A62325D6F7520076F12C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B54651A126F6A85400A16F38;
-			remoteInfo = SavedDataInfotainmentExtension;
-		};
 		B5B54C732617A11D00B18377 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B5E7A62325D6F7520076F12C /* Project object */;
@@ -101,20 +100,6 @@
 			remoteInfo = "Mkk-iOS";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		B54651B626F6A85600A16F38 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				B54651B226F6A85600A16F38 /* SavedDataInfotainmentExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4FC131466976AA12FA0CB21F /* Pods-Mkk-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +121,11 @@
 		B54651AD26F6A85600A16F38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B54651CF26F78C6900A16F38 /* JumbotronLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumbotronLayout.swift; sourceTree = "<group>"; };
 		B54651D326F7E11F00A16F38 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrDiscardHostingController.swift; sourceTree = "<group>"; };
+		B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrDiscardView.swift; sourceTree = "<group>"; };
+		B5472921274AA91A005DCF8A /* SwiftUIStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIStyles.swift; sourceTree = "<group>"; };
+		B5472923274B30FE005DCF8A /* KittyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyDetailsView.swift; sourceTree = "<group>"; };
+		B5472925274B4D56005DCF8A /* KittieDetailsSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittieDetailsSwiftUI.swift; sourceTree = "<group>"; };
 		B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		B57427F02618262700532B21 /* KittyStatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyStatCell.swift; sourceTree = "<group>"; };
 		B57427F12618262700532B21 /* KittyStatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyStatCell.xib; sourceTree = "<group>"; };
@@ -186,6 +176,8 @@
 		B5E7A63725D6F7540076F12C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5E7A63A25D6F7540076F12C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5E7A63C25D6F7540076F12C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5F43178274990B4008DAE78 /* ListKittiesSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesSwiftUI.swift; sourceTree = "<group>"; };
+		B5F4317B27499289008DAE78 /* ListKittiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesView.swift; sourceTree = "<group>"; };
 		B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mkk_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E04F2B701C1D71ABD1013919 /* Pods-Mkk-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -277,6 +269,7 @@
 				B5CBA52B25FA944F00621682 /* Schema.swift */,
 				B59BBF2F25D8509500A059C4 /* Strings.swift */,
 				B5DBA93C2741AF9B0075A45D /* ZeusToggles.swift */,
+				B5472921274AA91A005DCF8A /* SwiftUIStyles.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -407,6 +400,7 @@
 		B5B54CD72617D44900B18377 /* ListKitties */ = {
 			isa = PBXGroup;
 			children = (
+				B5F43178274990B4008DAE78 /* ListKittiesSwiftUI.swift */,
 				B57427EF2618260100532B21 /* cells */,
 				B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */,
 				B5C8D15E2618151600C77525 /* SaveOrDiscardKittyTVC.swift */,
@@ -457,6 +451,7 @@
 		B5E7A64425D6F9210076F12C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B5F4317A27499275008DAE78 /* swiftui */,
 				B5E7A64825D6F9BF0076F12C /* boards */,
 				B5E7A64725D6F9AD0076F12C /* vc */,
 				B5E7A63725D6F7540076F12C /* Assets.xcassets */,
@@ -482,6 +477,8 @@
 			isa = PBXGroup;
 			children = (
 				B5B54CD72617D44900B18377 /* ListKitties */,
+				B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */,
+				B5472925274B4D56005DCF8A /* KittieDetailsSwiftUI.swift */,
 			);
 			path = vc;
 			sourceTree = "<group>";
@@ -493,6 +490,16 @@
 				B5B54C9F2617C6AC00B18377 /* ListMyKitties.storyboard */,
 			);
 			path = boards;
+			sourceTree = "<group>";
+		};
+		B5F4317A27499275008DAE78 /* swiftui */ = {
+			isa = PBXGroup;
+			children = (
+				B5F4317B27499289008DAE78 /* ListKittiesView.swift */,
+				B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */,
+				B5472923274B30FE005DCF8A /* KittyDetailsView.swift */,
+			);
+			path = swiftui;
 			sourceTree = "<group>";
 		};
 		E843461F8CE973D865C722E2 /* Pods */ = {
@@ -554,12 +561,10 @@
 				B5E7A62825D6F7520076F12C /* Frameworks */,
 				B5E7A62925D6F7520076F12C /* Resources */,
 				99946051DC99F15D7BEF56A0 /* [CP] Embed Pods Frameworks */,
-				B54651B626F6A85600A16F38 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B54651B126F6A85600A16F38 /* PBXTargetDependency */,
 			);
 			name = "Mkk-iOS";
 			productName = "Mkk-iOS";
@@ -747,9 +752,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F43179274990B4008DAE78 /* ListKittiesSwiftUI.swift in Sources */,
 				B574281A2618C20E00532B21 /* SelfieClickCell.swift in Sources */,
 				B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */,
 				B5DBA93F2741B7CB0075A45D /* LoadingButton.swift in Sources */,
+				B547291E274A949A005DCF8A /* SaveOrDiscardHostingController.swift in Sources */,
 				B54651AF26F6A85600A16F38 /* SavedDataInfotainment.intentdefinition in Sources */,
 				B57427F22618262700532B21 /* KittyStatCell.swift in Sources */,
 				B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */,
@@ -757,16 +764,20 @@
 				B57428112618BC6F00532B21 /* KittyConfirmBtnCell.swift in Sources */,
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
 				B574280B2618BC5800532B21 /* KittyNameCell.swift in Sources */,
+				B5472926274B4D56005DCF8A /* KittieDetailsSwiftUI.swift in Sources */,
 				B521F35B2618EAF900E7A87D /* ScheduleKitty.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
 				B5B54CD92617D4DA00B18377 /* ListKittiesTVC.swift in Sources */,
 				B521F3542618E5A500E7A87D /* AdoptedKittyCell.swift in Sources */,
+				B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */,
 				B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */,
 				B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */,
 				B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */,
 				B57512B4261A77AA00527CD5 /* SurveyCacheViewModel.swift in Sources */,
 				B57512C7261A7CF700527CD5 /* StatsModel.swift in Sources */,
 				B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */,
+				B5472924274B30FE005DCF8A /* KittyDetailsView.swift in Sources */,
+				B5472922274AA91A005DCF8A /* SwiftUIStyles.swift in Sources */,
 				B5DBA93D2741AF9B0075A45D /* ZeusToggles.swift in Sources */,
 				B5C8D15F2618151600C77525 /* SaveOrDiscardKittyTVC.swift in Sources */,
 				B5A46C0D26250AB000F9E154 /* RealmCrud.swift in Sources */,
@@ -783,6 +794,7 @@
 				B54651D026F78C6900A16F38 /* JumbotronLayout.swift in Sources */,
 				B57512AF261A3CBB00527CD5 /* TemperamentCell.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
+				B5472920274AA0ED005DCF8A /* ConfirmOrDiscardView.swift in Sources */,
 				B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */,
 				B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */,
 			);
@@ -791,11 +803,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B54651B126F6A85600A16F38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B54651A126F6A85400A16F38 /* SavedDataInfotainmentExtension */;
-			targetProxy = B54651B026F6A85600A16F38 /* PBXContainerItemProxy */;
-		};
 		B5B54C742617A11D00B18377 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B5E7A62A25D6F7520076F12C /* Mkk-iOS */;
@@ -1021,7 +1028,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
@@ -1047,7 +1053,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2381C6BCA850B28816BCB03 /* Pods-Mkk-iOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";

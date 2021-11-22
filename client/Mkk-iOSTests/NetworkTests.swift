@@ -8,6 +8,14 @@
 import XCTest
 
 class MockNetwork: CatApier {
+    func dispatchNotificationsImmediately(completion: @escaping (Result<Void, KMKNetworkError>) -> Void) {
+        
+    }
+    
+    func fetchRemoteFeatureToggles(completion: @escaping (Result<ZeusFeatureToggles, KMKNetworkError>) -> Void) {
+        
+    }
+    
     func postNewNotification(withDeviceName name: String, completion: @escaping (Result<Bool, KMKNetworkError>) -> Void) {
         completion(.success(true))
     }
