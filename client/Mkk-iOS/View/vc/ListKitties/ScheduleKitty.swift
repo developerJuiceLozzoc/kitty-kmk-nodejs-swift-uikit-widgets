@@ -8,7 +8,6 @@
 import UIKit
 
 class ScheduleKitty: UIViewController {
-    let re = RealmCrud()
     let network: CatApier = KittyJsoner()
     var FeatureTogglesLoaded: Bool = false
     
@@ -49,9 +48,19 @@ class ScheduleKitty: UIViewController {
             }
             return}
         
+        summonBttn.setTitle("Please wait ...", for: .normal)
+        message.setTitle("We have now called out and are waiting for response from the ether.", for: .normal)
+        
         network.postNewNotification(withDeviceName: DeviceToken) { (result) in
             var kitty:UIImage? = nil
             var message: String = ""
+            DispatchQueue.main.async {
+                self.summonBttn.setTitle("You may only have 1 pet waiting for you at a time.", for: .focused)
+                self.summonBttn.setTitle("Summon Cat", for: .normal)
+
+            }
+            
+            
             switch result {
                 case .success(_):
                     kitty = UIImage(named:"kittens-drinking-milk")

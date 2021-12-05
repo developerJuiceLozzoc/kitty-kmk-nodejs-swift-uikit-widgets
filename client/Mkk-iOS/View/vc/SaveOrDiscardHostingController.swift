@@ -46,6 +46,7 @@ class SaveOrDiscardHostingController: UIViewController {
             
         }
     }
+    
     private func createContentView(with kat: KittyBreed){
         
         let v = ConfirmOrDiscardView(stats: kat, onAdoptionClick: { name,stats, data in

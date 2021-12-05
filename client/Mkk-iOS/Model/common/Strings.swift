@@ -28,6 +28,14 @@ let KITTY_BREEDS: [String]  = [
     "ycho"
   ]
 
+let MOCK_NAMES: [String] = [
+    "Edith Benson" ,   "Kenley Charlton",
+    "Queena Webley",    "Lee Morton",
+    "Heather Kimberly",    "Nelson Lindsey",
+    "Aspen Addington",    "Doyle Rodney",
+    "Ena Kendal",    "Athelstan Chatham"
+    ]
+
 
 let VOTE_CELL_REUSE:String = "This cell has a picture and a thick segmented control."
 let SERVER_URL = "https://kissmarrykill.herokuapp.com"

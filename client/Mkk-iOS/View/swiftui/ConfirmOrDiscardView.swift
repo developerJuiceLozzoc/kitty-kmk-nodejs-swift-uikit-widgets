@@ -68,7 +68,7 @@ struct ConfirmOrDiscardView: View {
                     Text("Name").foregroundColor(Color("form-label-color"))
                     Spacer()
                     TextField(
-                            "Steven Burg McFartyPants",
+                        MOCK_NAMES.randomElement() ?? "Steven Burg McFartyPants",
                             text: $sirname
                         )
                 }
