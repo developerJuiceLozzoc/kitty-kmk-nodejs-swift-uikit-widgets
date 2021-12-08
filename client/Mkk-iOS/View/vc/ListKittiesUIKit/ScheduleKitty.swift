@@ -55,9 +55,7 @@ class ScheduleKitty: UIViewController {
             var kitty:UIImage? = nil
             var message: String = ""
             DispatchQueue.main.async {
-                self.summonBttn.setTitle("You may only have 1 pet waiting for you at a time.", for: .focused)
                 self.summonBttn.setTitle("Summon Cat", for: .normal)
-
             }
             
             
@@ -94,7 +92,7 @@ class ScheduleKitty: UIViewController {
                     switch e {
                     case .invalidClientRequest:
                         kitty = UIImage(named:"pets-field-flowers-two-")
-                        message = "Hold up, we can only dispatch One kitty spirit per day"
+                        message = "Hold up, we can only dispatch One kitty spirit per day, or you already have a pending notification for new encounter."
                         break;
                     default:
                         kitty = UIImage(named:"roxy-butt")

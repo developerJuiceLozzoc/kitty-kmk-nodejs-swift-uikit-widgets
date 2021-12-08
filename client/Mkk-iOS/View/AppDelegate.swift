@@ -88,11 +88,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
     if userInfo["ADD_KITTY"] as? NSString != nil {
-        guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate ,let tabController = sD.window?.rootViewController as? UITabBarController else {completionHandler();return;}
+//        guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate ,let tabController = sD.window?.rootViewController as? UITabBarController else {completionHandler();return;}
         
-        tabController.selectedIndex = 2
-        guard let vc = tabController.selectedViewController as? UINavigationController, 
-            let breed = userInfo["KITTY_BREED"] as? String, let nid = userInfo["NOTIFICATION_ID"] as? String else{ completionHandler();return;}
+//        tabController.selectedIndex = 2
+        guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate ,let vc = sD.window?.rootViewController as? UINavigationController else {completionHandler();return;}
+
+        guard let breed = userInfo["KITTY_BREED"] as? String, let nid = userInfo["NOTIFICATION_ID"] as? String else{ completionHandler();return;}
     
         let knote = WanderingKittyNotification(KITTY_BREED: breed, NOTIFICATION_ID: nid)
         

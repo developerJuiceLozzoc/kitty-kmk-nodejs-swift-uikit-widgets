@@ -89,6 +89,7 @@
 		B5F43179274990B4008DAE78 /* ListKittiesSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F43178274990B4008DAE78 /* ListKittiesSwiftUI.swift */; };
 		B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4317B27499289008DAE78 /* ListKittiesView.swift */; };
 		BE3D8116413BC900455838DF /* Pods_Mkk_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; };
+		C695B6322761515200FB00F7 /* ScheduleKittyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C695B6312761515200FB00F7 /* ScheduleKittyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +181,7 @@
 		B5F4317B27499289008DAE78 /* ListKittiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesView.swift; sourceTree = "<group>"; };
 		B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mkk_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C695B6312761515200FB00F7 /* ScheduleKittyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleKittyView.swift; sourceTree = "<group>"; };
 		E04F2B701C1D71ABD1013919 /* Pods-Mkk-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,29 +238,6 @@
 				B57512AE261A3CBB00527CD5 /* TemperamentCell.xib */,
 			);
 			path = NewKittyForm;
-			sourceTree = "<group>";
-		};
-		B546519A26F0292D00A16F38 /* miniapps */ = {
-			isa = PBXGroup;
-			children = (
-				B546519C26F02A4100A16F38 /* New Group */,
-				B546519B26F029D100A16F38 /* listSavedItems */,
-			);
-			path = miniapps;
-			sourceTree = "<group>";
-		};
-		B546519B26F029D100A16F38 /* listSavedItems */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = listSavedItems;
-			sourceTree = "<group>";
-		};
-		B546519C26F02A4100A16F38 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		B546519D26F02FA400A16F38 /* common */ = {
@@ -397,7 +376,7 @@
 			path = "Mkk-iOSTests";
 			sourceTree = "<group>";
 		};
-		B5B54CD72617D44900B18377 /* ListKitties */ = {
+		B5B54CD72617D44900B18377 /* ListKittiesUIKit */ = {
 			isa = PBXGroup;
 			children = (
 				B5F43178274990B4008DAE78 /* ListKittiesSwiftUI.swift */,
@@ -407,7 +386,7 @@
 				B521F34D2618E49900E7A87D /* KitttyDetails.swift */,
 				B521F35A2618EAF900E7A87D /* ScheduleKitty.swift */,
 			);
-			path = ListKitties;
+			path = ListKittiesUIKit;
 			sourceTree = "<group>";
 		};
 		B5E7A62225D6F7520076F12C = {
@@ -439,7 +418,6 @@
 				B5E7A64525D6F92C0076F12C /* ViewModel */,
 				B59BBF1825D775CA00A059C4 /* Model */,
 				B5E7A64425D6F9210076F12C /* View */,
-				B546519A26F0292D00A16F38 /* miniapps */,
 				B5B54CD22617CF4600B18377 /* Mkk-iOS.entitlements */,
 				B577223325D89FAA0024BA72 /* Extensions */,
 				B5E7A63C25D6F7540076F12C /* Info.plist */,
@@ -476,7 +454,7 @@
 		B5E7A64725D6F9AD0076F12C /* vc */ = {
 			isa = PBXGroup;
 			children = (
-				B5B54CD72617D44900B18377 /* ListKitties */,
+				B5B54CD72617D44900B18377 /* ListKittiesUIKit */,
 				B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */,
 				B5472925274B4D56005DCF8A /* KittieDetailsSwiftUI.swift */,
 			);
@@ -498,6 +476,7 @@
 				B5F4317B27499289008DAE78 /* ListKittiesView.swift */,
 				B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */,
 				B5472923274B30FE005DCF8A /* KittyDetailsView.swift */,
+				C695B6312761515200FB00F7 /* ScheduleKittyView.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -791,6 +770,7 @@
 				B521F34E2618E49900E7A87D /* KitttyDetails.swift in Sources */,
 				B59BBF3025D8509500A059C4 /* Strings.swift in Sources */,
 				B5CBA52C25FA944F00621682 /* Schema.swift in Sources */,
+				C695B6322761515200FB00F7 /* ScheduleKittyView.swift in Sources */,
 				B54651D026F78C6900A16F38 /* JumbotronLayout.swift in Sources */,
 				B57512AF261A3CBB00527CD5 /* TemperamentCell.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
