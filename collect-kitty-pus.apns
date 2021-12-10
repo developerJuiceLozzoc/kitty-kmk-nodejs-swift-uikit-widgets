@@ -1,0 +1,12 @@
+{
+	"Simulator Target Bundle": "com.lozzoc.realmcatcollection",
+	"aps": {
+		"alert": {
+			"title" : "Cadillac Lyric is open for reservations.",
+      			"body" : "Click to open the myCadillac app and see it for yourself"
+		}
+	},
+	"ADD_KITTY": "yes",
+	"KITTY_BREED": "esho",
+	"NOTIFICATION_ID": "asdf"
+}
