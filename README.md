@@ -10,3 +10,30 @@ on your device.
 
 If you would like to view the information we(the owners) collection you can
 refer here: [PRIVACY_POLICY](privacy.html)
+
+
+## Pages:
+
+tab view controller
+
+tab view 1:
+kitty maintence such as feeding bowl, water and also the choose your toy
+purchase specific kitty-
+using a toy - random breed
+going to facebookmarketplace - breedbyname
+asking a friend -> several cats at once difference breeds?
+
+tab view 2:
+there will defitely need to be some sort of filter
+list your kitties, 
+grid view?
+ scenekit view? 2d or 3d? watch the kats walked mindlessly around
+ 
+ 
+ ## Experiec
+ 
+ how the hell does someone figuer out how to use the app
+ 
+ first time clickes
+ 
+ 
