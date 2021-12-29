@@ -6,3 +6,69 @@
 //
 
 import Foundation
+
+
+class KittyPlistManager {
+    let ItemFavoritesFilePath = "ItemFavorites.plist"
+
+    func LoadItemFavorites() -> KittyPlaygroundState?
+    {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+        let docuDir = paths.firstObject as! String
+        let path = "\(docuDir)/\(ItemFavoritesFilePath)"
+        let dict = NSDictionary(contentsOfFile: path)
+  
+        var toysPreviously: [ToyItemUsed] = []
+        
+        guard let foodInBowlValue = dict?.object(forKey: "foodbowl") as? Int, let waterInBowlAmnt = dict?.object(forKey: "waterbowl") as? Int else {
+            return nil
+        }
+        
+        
+        if let arrayitems = dict?.object(forKey: "toys") as? NSArray
+        {
+            for i in 0..<arrayitems.count {
+                guard let itemDict = arrayitems[i] as? NSDictionary else { return nil }
+    
+                let toy = ToyItemUsed(dictionary: itemDict)
+                guard toy.type != .unknown else {return nil}
+        
+                toysPreviously.append(toy)
+            }
+        }
+        
+        return KittyPlaygroundState(foodbowl: foodInBowlValue, waterbowl: waterInBowlAmnt, toys: toysPreviously)
+    }
+    func SaveItemFavorites(items : KittyPlaygroundState) -> Bool
+    {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+        let docuDir = paths.firstObject as! String
+        let path = "\(docuDir)/\(ItemFavoritesFilePath)"
+        let filemanager = FileManager.default
+
+        let array = [NSMutableDictionary]()
+        let dict = NSMutableDictionary()
+        dict.setObject(items.foodbowl, forKey: "foodbowl" as NSCopying)
+        dict.setObject(items.waterbowl, forKey: "waterbowl" as NSCopying)
+        dict.setObject(array, forKey: "toys" as NSCopying)
+
+        
+        //check if file exists
+        if(!filemanager.fileExists(atPath: path))
+        {
+            let created = filemanager.createFile(atPath: path, contents: nil, attributes: nil)
+             if(created)
+             {
+                 let succeeded = dict.write(toFile: path, atomically: true)
+                 return succeeded
+             }
+             return false
+        }
+        else
+        {
+            let succeeded = dict.write(toFile: path, atomically: true)
+            return succeeded
+        }
+    }
+
+}

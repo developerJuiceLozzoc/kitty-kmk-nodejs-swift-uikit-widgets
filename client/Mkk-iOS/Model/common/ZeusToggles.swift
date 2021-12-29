@@ -9,7 +9,13 @@ import Foundation
 
 
 class ZeusToggles {
-    static var shared: ZeusToggles = ZeusToggles()
-    var didLoad: Bool = false
-    var toggles: ZeusFeatureToggles = ZeusFeatureToggles(instantPushKitty: false)
+    
+    static let shared: ZeusToggles = ZeusToggles()
+    var didLoad: Bool
+    var toggles: ZeusFeatureToggles
+    
+    private init() {
+        self.didLoad = false
+        self.toggles = ZeusFeatureToggles(instantPushKitty: false)
+    }
 }

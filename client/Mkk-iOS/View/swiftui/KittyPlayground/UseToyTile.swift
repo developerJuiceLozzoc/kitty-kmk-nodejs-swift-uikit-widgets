@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct UseToyTile: View {
+    @State var showToyMenu = false
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            showToyMenu.toggle()
+        }) {
+            Text("Show License Agreement")
+        }
+        .sheet(isPresented: $showToyMenu, onDismiss: onDismissToyDrawer) {
+            
+        }
+
+    }
+    
+    func onDismissToyDrawer() {
+        // check if toys have been selected
+        showToyMenu.toggle()
     }
 }
 

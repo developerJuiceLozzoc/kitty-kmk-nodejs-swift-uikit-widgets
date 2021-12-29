@@ -102,11 +102,6 @@ class ListKittiesSwiftUI: UIViewController {
         
     }
 
-    @IBAction func createContactClicked(_ sender: Any) {
-        performSegue(withIdentifier: "ScheduleKitty", sender: nil)
-
-    }
-    
     func kittyKlicked(with id: String) {
         guard let kitty = self.kitties?.first(where: { (k) -> Bool in
             return (k.uid == id)

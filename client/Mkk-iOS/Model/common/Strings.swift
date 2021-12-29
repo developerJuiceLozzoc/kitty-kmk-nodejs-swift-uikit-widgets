@@ -43,6 +43,35 @@ let SERVER_URL = "https://kissmarrykill.herokuapp.com"
 //let SERVER_URL = "http://10.1.10.76:3000"
 //let SERVER_URL = "http://10.0.0.74:3000"
 
+struct ToyItemUsed {
+    let dateAdded: Double
+    let type: ToyType
+    
+    init (dateAdded: Double, type: ToyType){
+        self.dateAdded = dateAdded
+        self.type = type
+    }
+    init(dictionary: NSDictionary) {
+        if let dAdded = Double(dictionary["dateAdded"] as? String ?? "-1"),
+           let typeInt = Int(dictionary["type"] as? String ?? "-1") {
+            self.dateAdded = dAdded
+            self.type = ToyType(rawValue: typeInt) ?? .unknown
+        } else {
+            self.dateAdded = -1
+            self.type = .unknown
+        }
+    }
+}
+
+enum ToyType: Int {
+    case yarnball = 0
+    case shinystring
+    case stuffedtoy
+    case chewytoy
+    case scratchpost
+    case unknown
+}
+
 
 enum KMKNetworkError: String,Error{
     case decodeFail = "Failed to code the GameSurvey Struct"
@@ -53,6 +82,12 @@ enum KMKNetworkError: String,Error{
     case noImageFoundError = " the requested image was not availible"
     case noBreedsFoundError = "no breed images found wiht requested idv"
     case invalidClientRequest = "the server responded with errror"
+}
+
+enum ActionCellGestureType: String {
+    case scrub = "swipe(scrub) right to left repeatedly" // Drag 
+    case pour = "with two fingers, slowly pull from top to bottom, careful not to overpour"
+    case tap = "one finger tap"
 }
 
 extension Notification.Name {

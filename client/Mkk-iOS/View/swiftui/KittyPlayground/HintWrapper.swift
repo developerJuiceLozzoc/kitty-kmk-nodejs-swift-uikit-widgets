@@ -7,14 +7,36 @@
 
 import SwiftUI
 
-struct HintWrapper: View {
+struct HintWrapper<Content: View>: View {
+    var content: () -> Content
+    var type: ActionCellGestureType
+    init(@ViewBuilder content: @escaping () -> Content, of type: ActionCellGestureType) {
+        self.content = content
+        self.type = type
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            content() 
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("Help!")
+                }
+                Spacer()
+                
+            }
+            .padding()
+            
+        }
+
     }
 }
 
 struct HintWrapper_Previews: PreviewProvider {
     static var previews: some View {
-        HintWrapper()
+        HintWrapper(content: {
+            Text("Racecar tacocat")
+        }, of: .tap)
     }
 }

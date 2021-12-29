@@ -37,6 +37,8 @@ struct KittyBreed: Codable {
     var stranger_friendly: Int
     var origin: String
     var image: imgtype?
+    // var mageLvl: Int // just a made up stat because all these other stats might as well be fake too
+    // var images: aggregate the entire array of kitties to retriev 50 urls and lazy load them
     
 }
 struct imgtype: Codable {

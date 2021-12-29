@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,15 +19,7 @@
                         <viewLayoutGuide key="safeArea" id="6r8-6Q-P1J"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9Bv-hX-i5G">
-                        <barButtonItem key="rightBarButtonItem" image="person.fill.badge.plus" catalog="system" id="pMk-hl-sZg">
-                            <color key="tintColor" name="ultra-violet-1"/>
-                            <connections>
-                                <action selector="createContactClicked:" destination="f0s-E6-fzC" id="upq-qN-gnD"/>
-                                <segue destination="mXY-bZ-eoB" kind="show" identifier="ScheduleKitty" id="DWV-Ns-48g"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="9Bv-hX-i5G"/>
                     <connections>
                         <segue destination="m6n-eT-zXD" kind="show" identifier="ConfirmKitty" id="equ-x0-Qq4"/>
                         <segue destination="hne-9j-EHF" kind="show" identifier="DetailsKitty" id="wbq-fJ-00x"/>
@@ -55,62 +46,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m2r-KS-mD5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1540.5797101449277" y="-368.30357142857139"/>
-        </scene>
-        <!--Schedule Kitty-->
-        <scene sceneID="87C-L3-Epz">
-            <objects>
-                <viewController id="mXY-bZ-eoB" customClass="ScheduleKitty" customModule="Mkk_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="848-G4-qQb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaY-3p-xYP" customClass="LoadingButton" customModule="Mkk_iOS" customModuleProvider="target">
-                                <rect key="frame" x="10.5" y="601" width="393" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="mzc-g0-tLp"/>
-                                </constraints>
-                                <state key="normal" title="Summon Cat"/>
-                                <connections>
-                                    <action selector="scheduleConfirm:" destination="mXY-bZ-eoB" eventType="touchUpInside" id="k2H-Pn-iW5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V9W-Dl-EX6">
-                                <rect key="frame" x="10" y="88" width="394" height="193"/>
-                                <state key="normal">
-                                    <string key="title">Confirm Below to summon a spirit from beyond this dimension. A random breed will return tomorrow and ask for companionship. You can name it and choose a form that it will take. </string>
-                                    <color key="titleColor" systemColor="labelColor"/>
-                                </state>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h8Y-kO-HVk">
-                                <rect key="frame" x="0.0" y="289" width="414" height="333"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="buh-69-yLg"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="V9W-Dl-EX6" firstAttribute="top" secondItem="buh-69-yLg" secondAttribute="top" id="0Pt-62-c0c"/>
-                            <constraint firstItem="vaY-3p-xYP" firstAttribute="centerX" secondItem="buh-69-yLg" secondAttribute="centerX" id="5QT-qG-Ijv"/>
-                            <constraint firstItem="h8Y-kO-HVk" firstAttribute="width" secondItem="buh-69-yLg" secondAttribute="width" id="6QG-8g-Odx"/>
-                            <constraint firstItem="V9W-Dl-EX6" firstAttribute="leading" secondItem="buh-69-yLg" secondAttribute="leading" constant="10" id="7BA-9G-RIR"/>
-                            <constraint firstItem="vaY-3p-xYP" firstAttribute="top" secondItem="h8Y-kO-HVk" secondAttribute="bottom" constant="-21" id="7O4-uD-XeI"/>
-                            <constraint firstItem="buh-69-yLg" firstAttribute="trailing" secondItem="V9W-Dl-EX6" secondAttribute="trailing" constant="10" id="doe-BL-G8m"/>
-                            <constraint firstItem="vaY-3p-xYP" firstAttribute="width" secondItem="buh-69-yLg" secondAttribute="width" multiplier="0.95" id="mv3-5E-rhk"/>
-                            <constraint firstItem="h8Y-kO-HVk" firstAttribute="height" secondItem="buh-69-yLg" secondAttribute="height" multiplier="0.430233" id="nkv-mC-dag"/>
-                            <constraint firstItem="buh-69-yLg" firstAttribute="bottom" secondItem="vaY-3p-xYP" secondAttribute="bottom" constant="111" id="q8r-3J-jWU"/>
-                            <constraint firstItem="V9W-Dl-EX6" firstAttribute="height" secondItem="buh-69-yLg" secondAttribute="height" multiplier="0.249354" id="x6T-xG-xe4"/>
-                            <constraint firstItem="h8Y-kO-HVk" firstAttribute="leading" secondItem="buh-69-yLg" secondAttribute="leading" id="zwd-rA-bDX"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Pdo-dJ-ddk"/>
-                    <connections>
-                        <outlet property="imageresult" destination="h8Y-kO-HVk" id="CyJ-h5-X6k"/>
-                        <outlet property="message" destination="V9W-Dl-EX6" id="jar-94-TCs"/>
-                        <outlet property="summonBttn" destination="vaY-3p-xYP" id="y5O-Hk-3ge"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mj7-YV-sHn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2615.9420289855075" y="103.79464285714285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DRf-WC-Ugu">
@@ -148,14 +83,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="person.fill.badge.plus" catalog="system" width="128" height="124"/>
         <image name="xmark.app" catalog="system" width="128" height="114"/>
-        <namedColor name="ultra-violet-1">
-            <color red="0.49799999594688416" green="0.10199999809265137" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
