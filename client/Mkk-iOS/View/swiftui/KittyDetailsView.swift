@@ -19,17 +19,19 @@ struct KittyDetailsView: View {
     init(stats: KittyBreed, pfp: UIImage, name: String, birthday: Double) {
         self.pfp = pfp
         self.description = stats.description
+        
         self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
         self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
         self.section1Details.append((name: "Adopted On", value: stats.intelligence, stringValue: doubleDateToString(from: birthday), varient: 1))
         self.section1Details.append((name: "Intelligence", value: stats.intelligence, stringValue:"🧠", varient: 0))
         self.section1Details.append((name: "Lifespan", value: stats.intelligence, stringValue:"\(stats.life_span) years", varient: 1))
+        self.section1Details.append((name: "Shedding Lvl", value: stats.shedding_level, stringValue:"🐾", varient: 0))
         
         self.emojieSectionDetails.append((name: "Intelligence", value: stats.intelligence, stringValue:"🧠", varient: 0))
         self.emojieSectionDetails.append((name: "Stranger Friendly", value: stats.stranger_friendly, stringValue:"🧟‍♂️", varient: 0))
         self.emojieSectionDetails.append((name: "Energy Lvl", value: stats.energy_level, stringValue:"⚡️", varient: 0))
         self.emojieSectionDetails.append((name: "Dog Friendly", value: stats.dog_friendly, stringValue:"🐶", varient: 0))
-        self.emojieSectionDetails.append((name: "Shedding Lvl", value: stats.shedding_level, stringValue:"🐾", varient: 0))
+        
         
     }
     
@@ -45,16 +47,21 @@ struct KittyDetailsView: View {
                     ForEach(0..<section1Details.count, id: \.self) {
                         EmojiSectionView(screenWidth: metrics.size.width, ds: section1Details[$0])
                     }
+                } header: {
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Kitty Breed")
                 }
                 Section {
-                    Text(self.description)
-                        
+                    Text(description)
                 } header: {
-                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Breed")
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Description")
                 }
+                Section {
+                    ForEach(0..<emojieSectionDetails.count, id: \.self) {
+                        EmojiSectionView(screenWidth: metrics.size.width, ds: emojieSectionDetails[$0])
+                    }
+                } header: {
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Personality Traits")
 
-                ForEach(0..<emojieSectionDetails.count, id: \.self) {
-                    EmojiSectionView(screenWidth: metrics.size.width, ds: emojieSectionDetails[$0])
                 }
                 
                 

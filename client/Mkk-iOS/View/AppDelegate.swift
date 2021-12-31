@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -71,6 +72,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       completionHandler(UIBackgroundFetchResult.newData)
     }
 }
+
+func getRootTabController() -> UITabBarController? {
+    guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate else {return nil}
+    return sD.window?.rootViewController as? UITabBarController
+}
+
+
+
+func getRootNavFromTabController(from controller: UITabBarController, on tab: Int) -> UINavigationController? {
+    controller.selectedIndex = tab
+    return controller.selectedViewController as? UINavigationController
+}
+
+
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
 
@@ -88,10 +103,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
     if userInfo["ADD_KITTY"] as? NSString != nil {
-//        guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate ,let tabController = sD.window?.rootViewController as? UITabBarController else {completionHandler();return;}
         
-//        tabController.selectedIndex = 2
-        guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate ,let vc = sD.window?.rootViewController as? UINavigationController else {completionHandler();return;}
+        guard let tbc = getRootTabController(), let vc = getRootNavFromTabController(from: tbc, on: 1) else {
+            completionHandler()
+            return
+            
+        }
 
         guard let breed = userInfo["KITTY_BREED"] as? String, let nid = userInfo["NOTIFICATION_ID"] as? String else{ completionHandler();return;}
     

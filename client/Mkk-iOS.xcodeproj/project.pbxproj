@@ -100,6 +100,7 @@
 		C695B6322761515200FB00F7 /* ScheduleKittyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C695B6312761515200FB00F7 /* ScheduleKittyView.swift */; };
 		C6F45DDE277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; };
 		C6F45DDF277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +216,7 @@
 		C6202D34277B99C2003F4D32 /* PlaygroundState.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PlaygroundState.plist; sourceTree = "<group>"; };
 		C6202D36277BA053003F4D32 /* KittyPlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyPlistManager.swift; sourceTree = "<group>"; };
 		C695B6312761515200FB00F7 /* ScheduleKittyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleKittyView.swift; sourceTree = "<group>"; };
+		C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKImagePicker.swift; sourceTree = "<group>"; };
 		E04F2B701C1D71ABD1013919 /* Pods-Mkk-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -510,9 +512,9 @@
 		B5F4317A27499275008DAE78 /* swiftui */ = {
 			isa = PBXGroup;
 			children = (
+				C6FB3E5C277F83090010C076 /* ConfirmOrDiscardKitty */,
 				C6202D22277AA5E7003F4D32 /* KittyPlayground */,
 				B5F4317B27499289008DAE78 /* ListKittiesView.swift */,
-				B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */,
 				B5472923274B30FE005DCF8A /* KittyDetailsView.swift */,
 				C695B6312761515200FB00F7 /* ScheduleKittyView.swift */,
 			);
@@ -537,6 +539,15 @@
 				C6202D32277B949C003F4D32 /* ActionButtonViewControllerTests.swift */,
 			);
 			path = KittyPlayground;
+			sourceTree = "<group>";
+		};
+		C6FB3E5C277F83090010C076 /* ConfirmOrDiscardKitty */ = {
+			isa = PBXGroup;
+			children = (
+				B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */,
+				C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */,
+			);
+			path = ConfirmOrDiscardKitty;
 			sourceTree = "<group>";
 		};
 		E843461F8CE973D865C722E2 /* Pods */ = {
@@ -843,6 +854,7 @@
 				B57512AF261A3CBB00527CD5 /* TemperamentCell.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
 				B5472920274AA0ED005DCF8A /* ConfirmOrDiscardView.swift in Sources */,
+				C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */,
 				B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */,
 				B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */,
 			);

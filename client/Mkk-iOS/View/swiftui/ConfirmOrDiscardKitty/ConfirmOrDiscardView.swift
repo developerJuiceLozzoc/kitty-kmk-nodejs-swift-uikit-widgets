@@ -28,6 +28,7 @@ struct ConfirmOrDiscardView: View {
     @State var imageSelected: Int = -1
     @State var sirname: String = ""
     @State var selectedImage: Int = -1
+    @State var selectedImageData: Data? = nil
     var onAdoptionClick: ((String,KittyBreed,Data) -> Void)?
     
     var emojieSectionDetails = [RowCellDataSource]()
@@ -38,6 +39,7 @@ struct ConfirmOrDiscardView: View {
     init(stats: KittyBreed, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
         self.description = stats.description
         self.stats = stats
+        self.onAdoptionClick = onAdoptionClick
         
         self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
         self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
@@ -86,36 +88,7 @@ struct ConfirmOrDiscardView: View {
                             text: $sirname
                         )
                 }
-                ScrollView {
-                    LazyVGrid(columns: Array(repeating: .init(.fixed(50)), count: 3)) {
-                        ForEach(0..<ds.datas.count) { i in
-                            let data: Data? = ds.loadImage(for: i)
-                            let loadingData: Data = UIImage(named: "placeholder-image")?.pngData() ?? Data()
-                            let uiimage = UIImage(data: data ?? loadingData) ?? UIImage()
-                            ZStack {
-                                Image(uiImage: uiimage)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                if(selectedImage == i){
-                                    VStack {
-                                        Spacer()
-                                        Text("🤩")
-                                            .font(.system(.title))
-                                    }
-                                }
-                                
-                            }.onTapGesture {
-                                    if selectedImage == i {
-                                        selectedImage = -1
-                                    } else {
-                                        selectedImage = i
-                                    }
-                                }
-                            
-                        }
-                        
-                    }
-                }.frame(height: 420)
+                KMKImagePicker( selectedImage: $selectedImage, selectedImageData: $selectedImageData, width: metrics.size.width)
                 
                 
                     
@@ -124,7 +97,7 @@ struct ConfirmOrDiscardView: View {
             }
             Section {
                 Button {
-                    guard sirname.count > 0, selectedImage != -1, let selectedImageData = ds.datas[selectedImage]   else {return}
+                    guard sirname.count > 0, selectedImage != -1, let selectedImageData = selectedImageData  else {return}
                     onAdoptionClick?(sirname, stats, selectedImageData)
                 } label: {
                     Text("Adopt this Kitty")
