@@ -22,46 +22,61 @@ let dummyBreed =  KittyBreed(
     image: imgtype(url: "https://placekitten.com/300/300"))
 let pix = ["https://placekitten.com/300/300","https://placekitten.com/350/350","https://placekitten.com/250/250"]
 
-let dummyEnv = KittyPFPViewModel()
 
 
 struct ConfirmOrDiscardView: View {
-    var stats: KittyBreed
     @State var imageSelected: Int = -1
     @State var sirname: String = ""
     @State var selectedImage: Int = -1
     var onAdoptionClick: ((String,KittyBreed,Data) -> Void)?
-    @EnvironmentObject var ds: KittyPFPViewModel
+    
+    var emojieSectionDetails = [RowCellDataSource]()
+    var section1Details = [RowCellDataSource]()
+    let description: String
+    let stats: KittyBreed
+
+    init(stats: KittyBreed, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
+        self.description = stats.description
+        self.stats = stats
+        
+        self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
+        self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
+        self.section1Details.append((name: "Lifespan", value: stats.intelligence, stringValue:"\(stats.life_span) years", varient: 1))
+        self.section1Details.append((name: "Shedding Lvl", value: stats.shedding_level, stringValue:"🐾", varient: 0))
+        
+        self.emojieSectionDetails.append((name: "Intelligence", value: stats.intelligence, stringValue:"🧠", varient: 0))
+        self.emojieSectionDetails.append((name: "Stranger Friendly", value: stats.stranger_friendly, stringValue:"🧟‍♂️", varient: 0))
+        self.emojieSectionDetails.append((name: "Energy Lvl", value: stats.energy_level, stringValue:"⚡️", varient: 0))
+        self.emojieSectionDetails.append((name: "Dog Friendly", value: stats.dog_friendly, stringValue:"🐶", varient: 0))
+        
+        
+    }
     
 
     var body: some View {
         GeometryReader { metrics in
         List {
             Section {
-                if #available(iOS 15.0, *) {
-                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.name, label: "Breed", width: metrics.size.width)
-                    .listRowSeparatorTint(Color("ultra-violet-1"))
-                    TemperamentView(traits: parseTemperament(with: stats.temperament))
-                    .listRowSeparatorTint(Color("ultra-violet-1"))
-                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.description, label: "About", width: metrics.size.width)
-                    .listRowSeparatorTint(Color("ultra-violet-1"))
-                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.origin, label: "Country     of Origin       ", width: metrics.size.width)
-                    .listRowSeparatorTint(Color("ultra-violet-1"))
-
-
-                } else {
-                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.name, label: "Breed", width: metrics.size.width)
-                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.temperament, label: "Temperament", width: metrics.size.width)
-                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.description, label: "Description", width: metrics.size.width)
-
-
+                ForEach(0..<section1Details.count, id: \.self) {
+                    EmojiSectionView(screenWidth: metrics.size.width, ds: section1Details[$0])
                 }
             } header: {
-                KMKSwiftUIStyles.i.renderSectionHeader(with: "Kitty Description")
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "Kitty Breed")
             }
-//            ForEach(0...1, id: \.self) {
-                EmojiSectionView(screenWidth: metrics.size.width, ds: (name: "asdfds", value: 4, stringValue: "🐾", varient: 0))
-//            }
+            Section {
+                Text(description)
+            } header: {
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "Description")
+            }
+            Section {
+                ForEach(0..<emojieSectionDetails.count, id: \.self) {
+                    EmojiSectionView(screenWidth: metrics.size.width, ds: emojieSectionDetails[$0])
+                }
+            } header: {
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "Personality Traits")
+
+            }
+            
             Section {
                 HStack{
                     Text("Name").foregroundColor(Color("form-label-color"))
@@ -72,11 +87,13 @@ struct ConfirmOrDiscardView: View {
                         )
                 }
                 ScrollView {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+                    LazyVGrid(columns: Array(repeating: .init(.fixed(50)), count: 3)) {
                         ForEach(0..<ds.datas.count) { i in
-                            
+                            let data: Data? = ds.loadImage(for: i)
+                            let loadingData: Data = UIImage(named: "placeholder-image")?.pngData() ?? Data()
+                            let uiimage = UIImage(data: data ?? loadingData) ?? UIImage()
                             ZStack {
-                                Image(uiImage: UIImage(data: ds.datas[i]) ?? UIImage())
+                                Image(uiImage: uiimage)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                 if(selectedImage == i){
@@ -107,8 +124,8 @@ struct ConfirmOrDiscardView: View {
             }
             Section {
                 Button {
-                    guard sirname.count > 0, selectedImage != -1  else {return}
-                    onAdoptionClick?(sirname, stats, ds.datas[selectedImage])
+                    guard sirname.count > 0, selectedImage != -1, let selectedImageData = ds.datas[selectedImage]   else {return}
+                    onAdoptionClick?(sirname, stats, selectedImageData)
                 } label: {
                     Text("Adopt this Kitty")
                         .padding()
@@ -123,12 +140,12 @@ struct ConfirmOrDiscardView: View {
     }
 }
 
-struct ConfirmOrDiscardView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ConfirmOrDiscardView(stats: dummyBreed).preferredColorScheme(.dark).environmentObject(dummyEnv)
-            ConfirmOrDiscardView(stats: dummyBreed).preferredColorScheme(.light)
-                .environmentObject(dummyEnv)
-        }
-    }
-}
+//struct ConfirmOrDiscardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            ConfirmOrDiscardView(stats: dummyBreed, onAdoptionClick: { name,stats, data in }).preferredColorScheme(.dark).environmentObject(dummyEnv)
+//            ConfirmOrDiscardView(stats: dummyBreed, onAdoptionClick: { name,stats, data in }).preferredColorScheme(.light)
+//                .environmentObject(dummyEnv)
+//        }
+//    }
+//}
