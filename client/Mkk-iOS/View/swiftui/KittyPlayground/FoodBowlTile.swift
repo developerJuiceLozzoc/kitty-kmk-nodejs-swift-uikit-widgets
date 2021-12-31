@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FoodBowlTile: View {
-    @State var pounds: Int
+    @Binding var store: KittyPlaygroundState
     @State var currentPourState: PouringState = .idle
     @State var pouringSpeed: PouringSpeedEnum = .notpouring
     let MAX_VOLUME = 80
@@ -19,31 +19,32 @@ struct FoodBowlTile: View {
        
         VStack{
             ZStack {
-                Text("\(Int(CGFloat(pounds)/CGFloat(MAX_VOLUME)*100))% Left")
+                Text("\(Int(CGFloat(self.store.foodbowl)/CGFloat(MAX_VOLUME)*100))% Left")
                 Circle()
-                    .trim(from: 0, to: CGFloat(pounds) / CGFloat(MAX_VOLUME))
+                    .trim(from: 0, to: CGFloat(self.store.foodbowl) / CGFloat(MAX_VOLUME))
                     .stroke(Color.blue)
                     .rotationEffect(Angle(degrees: 125))
             }
             .padding()
         }
         .onAppear(perform: {
-            pounds = 5
+            self.store.foodbowl = 5
             return
         })
         .frame( width: tilewidth, height: 150)
+        .background(
+            KMKSwiftUIStyles.i.renderDashboardTileBG()
+        )
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color("Lipstick"), lineWidth: 4)
-                .shadow(color: .gray, radius:0.5, x: -2.5, y: -5)
+            KMKSwiftUIStyles.i.renderDashboardTileBorder()
         )
         .overlay(
             ScrubbingGestureWrapper { pourMagnitude, gesture in
                 if(gesture.state == .ended){
                     currentPourState = .idle
                     pouringSpeed = .notpouring
-                    if pounds > MAX_VOLUME {
-                        pounds = MAX_VOLUME
+                    if self.store.foodbowl > MAX_VOLUME {
+                        self.store.foodbowl = MAX_VOLUME
                         print("oh no you spilled water everywhere")
                     }
                     return
@@ -52,12 +53,12 @@ struct FoodBowlTile: View {
                 if currentPourState == .idle {
                     currentPourState = .transition
                     return
-                } else if pounds > MAX_VOLUME {
+                } else if self.store.foodbowl > MAX_VOLUME {
                     print("oh no you spilled food everywhere")
-                    pounds = MAX_VOLUME
+                    self.store.foodbowl = MAX_VOLUME
                     return
                 }
-                pounds += Int(pourMagnitude / 50)
+                self.store.foodbowl += Int(pourMagnitude / 50)
                 
                 
             }.frame( width: UIScreen.main.bounds.size.width / 2 - 25, height: 150)
@@ -134,7 +135,9 @@ struct ScrubbingGestureWrapper: UIViewRepresentable {
 }
 
 struct FoodBowl_Previews: PreviewProvider {
+    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy)])
+
     static var previews: some View {
-        FoodBowlTile(pounds: 50)
+        FoodBowlTile(store: $value)
     }
 }

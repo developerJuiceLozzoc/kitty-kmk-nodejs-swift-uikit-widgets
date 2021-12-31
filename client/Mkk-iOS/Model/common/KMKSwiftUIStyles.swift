@@ -1,5 +1,5 @@
 //
-//  SwiftUIStyles.swift
+//  SwiftUIKMKSwiftUIStyles.i.swift
 //  Mkk-iOS
 //
 //  Created by Conner M on 11/21/21.
@@ -50,39 +50,58 @@ struct TemperamentView: View {
     }
 }
 
+
+//name
+//value
+/*
+
+ Section {
+ } header: {
+     KMKSwiftUIStyles.i.renderSectionHeader(with: "Personality Traits")
+ }
+ */
 struct EmojiSectionView: View {
-    var stats: KittyBreed
-    var styles = SwiftUIStyles()
     var screenWidth: CGFloat
+    var ds: RowCellDataSource
     var body: some View {
-        Section {
             if #available(iOS 15.0, *) {
-                styles.renderTextWithLabel(with: "\(stats.life_span) years", label: "Life Span", width: screenWidth)
-                .listRowSeparatorTint(Color("ultra-violet-1"))
-                
-                styles.renderLabelWithEmojis(with: "🧠", label: "Intelligence", value: stats.intelligence, width: screenWidth)
+                if ds.varient == 0 {
+                    KMKSwiftUIStyles.i.renderLabelWithEmojis(with: ds.stringValue, label: ds.name, value: ds.value, width: screenWidth)
+                        .listRowSeparatorTint(Color("ultra-violet-1"))
+                } else if ds.varient == 1 {
+                    KMKSwiftUIStyles.i.renderTextWithLabel(with: ds.stringValue, label: ds.name, width: screenWidth)
                     .listRowSeparatorTint(Color("ultra-violet-1"))
-                styles.renderLabelWithEmojis(with: "⚡️", label: "Energy Lvl", value: stats.energy_level, width: screenWidth)
-                    .listRowSeparatorTint(Color("ultra-violet-1"))
-                styles.renderLabelWithEmojis(with: "🧟‍♂️", label: "Stranger Friendly", value: stats.stranger_friendly, width: screenWidth)
-                    .listRowSeparatorTint(Color("ultra-violet-1"))
-                styles.renderLabelWithEmojis(with: "🐶", label: "Dog Friendly", value: stats.dog_friendly, width: screenWidth)
-                    .listRowSeparatorTint(Color("ultra-violet-1"))
-                
+                }
             } else {
-                styles.renderTextWithLabel(with: "\(stats.life_span) years", label: "Life Span", width: screenWidth)
-                styles.renderLabelWithEmojis(with: "🧠", label: "Intelligence", value: stats.intelligence, width: screenWidth)
-                styles.renderLabelWithEmojis(with: "⚡️", label: "Energy Lvl", value: stats.energy_level, width: screenWidth)
-                styles.renderLabelWithEmojis(with: "🧟‍♂️", label: "Stranger Friendly", value: stats.stranger_friendly, width: screenWidth)
-                styles.renderLabelWithEmojis(with: "🐶", label: "Dog Friendly", value: stats.dog_friendly, width: screenWidth)
+                if ds.varient == 0 {
+                    KMKSwiftUIStyles.i.renderLabelWithEmojis(with: ds.stringValue, label: ds.name, value: ds.value, width: screenWidth)
+                } else if ds.varient == 1 {
+                    KMKSwiftUIStyles.i.renderTextWithLabel(with: ds.stringValue, label: ds.name, width: screenWidth)
+                }
+                
             }
-        } header: {
-            styles.renderSectionHeader(with: "Personality Traits")
-        }
+        
     }
 }
 
-class SwiftUIStyles {
+class KMKSwiftUIStyles {
+    static let i: KMKSwiftUIStyles = KMKSwiftUIStyles()
+    
+    private init() {}
+    
+    func renderDashboardTileBorder() -> some View {
+        RoundedRectangle(cornerRadius: 8)
+            .stroke(
+                LinearGradient(
+                    gradient: Gradient(colors: [Color("border-gradient-topleft"), Color("border-gradient-bottomright")]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing),
+                lineWidth: 2)
+            .shadow(color: .gray, radius:5, x: 1, y: -1)
+    }
+    func renderDashboardTileBG() -> some View {
+        AngularGradient(gradient: Gradient(colors: [Color("dashboard-tile-bg-gradient-1"), Color("dashboard-tile-bg-gradient-end")]), center: .center)
+    }
     func renderSubmitButtonBG() -> some View {
         return LinearGradient(colors: [Color("submit-green"),Color("submit-end")], startPoint: .leading, endPoint: .trailing)
     }

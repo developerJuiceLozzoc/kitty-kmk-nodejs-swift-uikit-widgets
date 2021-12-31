@@ -20,27 +20,29 @@ enum PouringSpeedEnum: String {
 }
 
 struct PourWaterTile: View {
-    @State var liters: Int
+    @Binding var store: KittyPlaygroundState
     @State var currentPourState: PouringState = .idle
     @State var pouringSpeed: PouringSpeedEnum = .notpouring
     let steadyThreshold: Double = 20
     let dumpingThreshold: Double = 50
     let tilewidth = UIScreen.main.bounds.size.width / 2 - 25
-    
+    let maxLiters = 100
+    static let tileHeight: CGFloat = 300
+
     func fillWater() {
         DispatchQueue.main.async {
             switch self.pouringSpeed {
             case .steady:
-                liters += 5
+                self.store.waterbowl += 5
                 break
             case .notpouring:
                 return
             case .dumping:
-                liters += 15
+                self.store.waterbowl += 15
             }
         }
-        if liters >= 100 {
-            liters = 100
+        if self.store.waterbowl >= maxLiters {
+            self.store.waterbowl = maxLiters
             return
         } else {
             DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
@@ -48,7 +50,6 @@ struct PourWaterTile: View {
                 fillWater()
             }
         }
-        print(liters)
         
     }
     
@@ -58,29 +59,30 @@ struct PourWaterTile: View {
             Text("WaterBowl")
             Text("\(currentPourState.rawValue)")
             Text("\(pouringSpeed.rawValue)")
-            Text("\(liters)")
+            Text("\(self.store.waterbowl)")
             Spacer()
             RoundedRectangle(cornerRadius: 4)
                 .foregroundColor(.blue)
-                .frame(width: tilewidth, height: 300 / 2 * CGFloat(liters)/100)
-                .animation(.default,value: liters)
+                .frame(width: tilewidth, height: PourWaterTile.tileHeight / 2 * CGFloat(self.store.waterbowl)/CGFloat(maxLiters))
+                .animation(.default,value: self.store.waterbowl)
         }
         .onAppear(perform: {
-            liters = 1
+            self.store.waterbowl = 1
         })
-        .frame( width: tilewidth, height: 300)
+        .frame( width: tilewidth, height: PourWaterTile.tileHeight)
+        .background(
+            KMKSwiftUIStyles.i.renderDashboardTileBG()
+        )
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color("Lipstick"), lineWidth: 4)
-                .shadow(color: .gray, radius:0.5, x: -2.5, y: -5)
+            KMKSwiftUIStyles.i.renderDashboardTileBorder()
         )
         .overlay(
             TwoFingerDragDownWrapper { taptranslation, dragvelocity, gesture in
                 if(gesture.state == .ended){
                     currentPourState = .idle
                     pouringSpeed = .notpouring
-                    if liters > 100 {
-                        liters = 100
+                    if self.store.waterbowl  > maxLiters {
+                        self.store.waterbowl = maxLiters
                         print("oh no you spilled water everywhere")
                     }
                     return
@@ -110,7 +112,7 @@ struct PourWaterTile: View {
                 }
                 
                 
-            }.frame( width: UIScreen.main.bounds.size.width / 2 - 25, height: 300)
+            }.frame( width: UIScreen.main.bounds.size.width / 2 - 25, height: PourWaterTile.tileHeight)
         )
     }
 }
@@ -153,10 +155,12 @@ struct TwoFingerDragDownWrapper: UIViewRepresentable {
 }
 
 struct PourWaterTile_Previews: PreviewProvider {
+    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy)])
+
     static var previews: some View {
         HStack(spacing: 21){
-            PourWaterTile(liters: 50)
-            PourWaterTile(liters: 50)
+            PourWaterTile(store: $value)
+            PourWaterTile(store: $value)
         }
     }
 }

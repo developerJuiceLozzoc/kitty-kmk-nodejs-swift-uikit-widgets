@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,7 +27,7 @@
 		B54651D626F7E14300A16F38 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54651D326F7E11F00A16F38 /* ProgressBar.swift */; };
 		B547291E274A949A005DCF8A /* SaveOrDiscardHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */; };
 		B5472920274AA0ED005DCF8A /* ConfirmOrDiscardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */; };
-		B5472922274AA91A005DCF8A /* SwiftUIStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472921274AA91A005DCF8A /* SwiftUIStyles.swift */; };
+		B5472922274AA91A005DCF8A /* KMKSwiftUIStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472921274AA91A005DCF8A /* KMKSwiftUIStyles.swift */; };
 		B5472924274B30FE005DCF8A /* KittyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472923274B30FE005DCF8A /* KittyDetailsView.swift */; };
 		B5472926274B4D56005DCF8A /* KittieDetailsSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472925274B4D56005DCF8A /* KittieDetailsSwiftUI.swift */; };
 		B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */; };
@@ -88,7 +88,6 @@
 		B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */; };
 		B5F43179274990B4008DAE78 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F43178274990B4008DAE78 /* ListKittiesHostingController.swift */; };
 		B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4317B27499289008DAE78 /* ListKittiesView.swift */; };
-		BE3D8116413BC900455838DF /* Pods_Mkk_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; };
 		C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */; };
 		C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */; };
 		C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */; };
@@ -99,6 +98,8 @@
 		C6202D35277B99C2003F4D32 /* PlaygroundState.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6202D34277B99C2003F4D32 /* PlaygroundState.plist */; };
 		C6202D37277BA053003F4D32 /* KittyPlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D36277BA053003F4D32 /* KittyPlistManager.swift */; };
 		C695B6322761515200FB00F7 /* ScheduleKittyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C695B6312761515200FB00F7 /* ScheduleKittyView.swift */; };
+		C6F45DDE277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; };
+		C6F45DDF277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,20 @@
 			remoteInfo = "Mkk-iOS";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C6F45DE0277CFAAA002D9824 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C6F45DDF277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4FC131466976AA12FA0CB21F /* Pods-Mkk-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,7 +148,7 @@
 		B54651D326F7E11F00A16F38 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrDiscardHostingController.swift; sourceTree = "<group>"; };
 		B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrDiscardView.swift; sourceTree = "<group>"; };
-		B5472921274AA91A005DCF8A /* SwiftUIStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIStyles.swift; sourceTree = "<group>"; };
+		B5472921274AA91A005DCF8A /* KMKSwiftUIStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKSwiftUIStyles.swift; sourceTree = "<group>"; };
 		B5472923274B30FE005DCF8A /* KittyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyDetailsView.swift; sourceTree = "<group>"; };
 		B5472925274B4D56005DCF8A /* KittieDetailsSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittieDetailsSwiftUI.swift; sourceTree = "<group>"; };
 		B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
@@ -225,7 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE3D8116413BC900455838DF /* Pods_Mkk_iOS.framework in Frameworks */,
+				C6F45DDE277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +281,7 @@
 				B5CBA52B25FA944F00621682 /* Schema.swift */,
 				B59BBF2F25D8509500A059C4 /* Strings.swift */,
 				B5DBA93C2741AF9B0075A45D /* ZeusToggles.swift */,
-				B5472921274AA91A005DCF8A /* SwiftUIStyles.swift */,
+				B5472921274AA91A005DCF8A /* KMKSwiftUIStyles.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -583,6 +598,7 @@
 				B5E7A62825D6F7520076F12C /* Frameworks */,
 				B5E7A62925D6F7520076F12C /* Resources */,
 				99946051DC99F15D7BEF56A0 /* [CP] Embed Pods Frameworks */,
+				C6F45DE0277CFAAA002D9824 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -615,7 +631,7 @@
 				};
 			};
 			buildConfigurationList = B5E7A62625D6F7520076F12C /* Build configuration list for PBXProject "Mkk-iOS" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -806,7 +822,7 @@
 				B57512C7261A7CF700527CD5 /* StatsModel.swift in Sources */,
 				B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */,
 				B5472924274B30FE005DCF8A /* KittyDetailsView.swift in Sources */,
-				B5472922274AA91A005DCF8A /* SwiftUIStyles.swift in Sources */,
+				B5472922274AA91A005DCF8A /* KMKSwiftUIStyles.swift in Sources */,
 				B5DBA93D2741AF9B0075A45D /* ZeusToggles.swift in Sources */,
 				C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */,
 				B5C8D15F2618151600C77525 /* SaveOrDiscardKittyTVC.swift in Sources */,

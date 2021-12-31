@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct KittyActionButtonContainer: View {
-    @State var ds: KittyPlaygroundState?
+    @State var ds: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [])
     var model = KittyPlistManager()
     var body: some View {
         HStack(spacing: 21){
-            PourWaterTile(liters:  50)
+            
             VStack {
-                FoodBowlTile(pounds: 50)
-                UseToyTile()
+                PourWaterTile(store: $ds)
+                Spacer()
             }
-        }.onAppear {
+            VStack {
+                Spacer()
+                FoodBowlTile(store: $ds)
+                UseToyTile(store: $ds)
+            }
+        }
+        .frame(width: UIScreen.main.bounds.size.width, height: PourWaterTile.tileHeight + 75)
+        .onAppear {
             guard ds == nil else { return }
             if let store = model.LoadItemFavorites() {
                 ds = store
@@ -32,6 +39,6 @@ struct KittyActionButtonContainer: View {
 
 struct KittyActionButtonContainer_Previews: PreviewProvider {
     static var previews: some View {
-        KittyActionButtonContainer()
+        KittyActionButtonContainer(ds: KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: 0, type: .chewytoy)]))
     }
 }

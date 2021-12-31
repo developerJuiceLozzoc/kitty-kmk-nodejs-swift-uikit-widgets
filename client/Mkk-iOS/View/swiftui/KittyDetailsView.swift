@@ -8,12 +8,30 @@
 import SwiftUI
 import UIKit
 
+typealias RowCellDataSource = (name: String, value: Int, stringValue: String, varient: Int)
+
 struct KittyDetailsView: View {
-    var styles = SwiftUIStyles()
-    var stats: KittyBreed
     var pfp: UIImage
-    var name: String
-    var birthday: Double
+    var description: String
+    var emojieSectionDetails = [RowCellDataSource]()
+    var section1Details = [RowCellDataSource]()
+
+    init(stats: KittyBreed, pfp: UIImage, name: String, birthday: Double) {
+        self.pfp = pfp
+        self.description = stats.description
+        self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
+        self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
+        self.section1Details.append((name: "Adopted On", value: stats.intelligence, stringValue: doubleDateToString(from: birthday), varient: 1))
+        self.section1Details.append((name: "Intelligence", value: stats.intelligence, stringValue:"🧠", varient: 0))
+        self.section1Details.append((name: "Lifespan", value: stats.intelligence, stringValue:"\(stats.life_span) years", varient: 1))
+        
+        self.emojieSectionDetails.append((name: "Intelligence", value: stats.intelligence, stringValue:"🧠", varient: 0))
+        self.emojieSectionDetails.append((name: "Stranger Friendly", value: stats.stranger_friendly, stringValue:"🧟‍♂️", varient: 0))
+        self.emojieSectionDetails.append((name: "Energy Lvl", value: stats.energy_level, stringValue:"⚡️", varient: 0))
+        self.emojieSectionDetails.append((name: "Dog Friendly", value: stats.dog_friendly, stringValue:"🐶", varient: 0))
+        self.emojieSectionDetails.append((name: "Shedding Lvl", value: stats.shedding_level, stringValue:"🐾", varient: 0))
+        
+    }
     
     var body: some View {
         GeometryReader { metrics in
@@ -24,39 +42,20 @@ struct KittyDetailsView: View {
                 .frame(maxHeight: 200)
             List {
                 Section {
-                    if #available(iOS 15.0, *) {
-                    styles.renderImportantTextWithLabel(with: name, label: "Name", width: metrics.size.width)
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-
-                    styles.renderImportantTextWithLabel(with: doubleDateToString(from: birthday), label: "Adopted On", width: metrics.size.width)
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-                        TemperamentView(traits: parseTemperament(with: stats.temperament))
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-
-                    } else {
-                        styles.renderImportantTextWithLabel(with: name, label: "Name", width: metrics.size.width)
-                        styles.renderImportantTextWithLabel(with: doubleDateToString(from: birthday), label: "Adopted On", width: metrics.size.width)
-                        TemperamentView(traits: parseTemperament(with: stats.temperament))
-
+                    ForEach(0..<section1Details.count, id: \.self) {
+                        EmojiSectionView(screenWidth: metrics.size.width, ds: section1Details[$0])
                     }
                 }
                 Section {
-                    if #available(iOS 15.0, *) {
-                        styles.renderTextWithLabel(with: stats.name, label: "Breed", width: metrics.size.width)
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-                        styles.renderTextWithLabel(with: stats.description, label: "Desc", width: metrics.size.width)
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-                        styles.renderImportantTextWithLabel(with: stats.origin, label: "Origin Country", width: metrics.size.width)
-                                .listRowSeparatorTint(Color("ultra-violet-1"))
-                    } else {
-                        styles.renderTextWithLabel(with: doubleDateToString(from: birthday), label: "Adopted On", width: metrics.size.width)
-                        styles.renderTextWithLabel(with: stats.description, label: "Desc", width: metrics.size.width)
-                        styles.renderImportantTextWithLabel(with: stats.origin, label: "Origin Country", width: metrics.size.width)
-                    }
+                    Text(self.description)
+                        
                 } header: {
-                    styles.renderSectionHeader(with: "Breed")
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Breed")
                 }
-                EmojiSectionView(stats: stats, screenWidth: metrics.size.width)
+
+                ForEach(0..<emojieSectionDetails.count, id: \.self) {
+                    EmojiSectionView(screenWidth: metrics.size.width, ds: emojieSectionDetails[$0])
+                }
                 
                 
                

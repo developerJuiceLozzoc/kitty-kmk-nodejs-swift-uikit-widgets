@@ -21,23 +21,22 @@ let dummylist = ListKittiesDataSource(
 struct ListKittiesView: View {
     @EnvironmentObject var ds: ListKittiesDataSource
     var onKittyClick: ((String) -> Void)?
-    var styles = SwiftUIStyles()
     var body: some View {
         List {
             ForEach(0..<ds.sectionTitleDataSource.count){ i in
-                Section(header: styles.renderSectionHeader(with:ds.sectionTitleDataSource[i])) {
+                Section(header: KMKSwiftUIStyles.i.renderSectionHeader(with:ds.sectionTitleDataSource[i])) {
                     ForEach(0..<ds.contentDataSource[i].count) { j in
                         if #available(iOS 15.0, *) {
-                            styles.renderKittyName(with: ds.contentDataSource[i][j].name)
+                            KMKSwiftUIStyles.i.renderKittyName(with: ds.contentDataSource[i][j].name)
                                 .listRowSeparatorTint(Color("ultra-violet-1"))
-                                .listRowBackground(styles.renderListRowBG())
+                                .listRowBackground(KMKSwiftUIStyles.i.renderListRowBG())
                                 .onTapGesture {
                                     onKittyClick?(ds.contentDataSource[i][j].id)
                                 }
                                 
                         } else {
-                            styles.renderKittyName(with: ds.contentDataSource[i][j].name)
-                                .listRowBackground(styles.renderListRowBG())
+                            KMKSwiftUIStyles.i.renderKittyName(with: ds.contentDataSource[i][j].name)
+                                .listRowBackground(KMKSwiftUIStyles.i.renderListRowBG())
                                 .onTapGesture {
                                     onKittyClick?(ds.contentDataSource[i][j].id)
                                 }

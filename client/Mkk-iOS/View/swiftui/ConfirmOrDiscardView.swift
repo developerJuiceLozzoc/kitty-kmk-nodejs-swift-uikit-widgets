@@ -27,7 +27,6 @@ let dummyEnv = KittyPFPViewModel()
 
 struct ConfirmOrDiscardView: View {
     var stats: KittyBreed
-    var styles = SwiftUIStyles()
     @State var imageSelected: Int = -1
     @State var sirname: String = ""
     @State var selectedImage: Int = -1
@@ -40,29 +39,29 @@ struct ConfirmOrDiscardView: View {
         List {
             Section {
                 if #available(iOS 15.0, *) {
-                    styles.renderTextWithLabel(with: stats.name, label: "Breed", width: metrics.size.width)
+                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.name, label: "Breed", width: metrics.size.width)
                     .listRowSeparatorTint(Color("ultra-violet-1"))
                     TemperamentView(traits: parseTemperament(with: stats.temperament))
                     .listRowSeparatorTint(Color("ultra-violet-1"))
-                    styles.renderTextWithLabel(with: stats.description, label: "About", width: metrics.size.width)
+                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.description, label: "About", width: metrics.size.width)
                     .listRowSeparatorTint(Color("ultra-violet-1"))
-                    styles.renderTextWithLabel(with: stats.origin, label: "Country     of Origin       ", width: metrics.size.width)
+                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.origin, label: "Country     of Origin       ", width: metrics.size.width)
                     .listRowSeparatorTint(Color("ultra-violet-1"))
 
 
                 } else {
-                    styles.renderTextWithLabel(with: stats.name, label: "Breed", width: metrics.size.width)
-                    styles.renderTextWithLabel(with: stats.temperament, label: "Temperament", width: metrics.size.width)
-                    styles.renderTextWithLabel(with: stats.description, label: "Description", width: metrics.size.width)
+                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.name, label: "Breed", width: metrics.size.width)
+                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.temperament, label: "Temperament", width: metrics.size.width)
+                    KMKSwiftUIStyles.i.renderTextWithLabel(with: stats.description, label: "Description", width: metrics.size.width)
 
 
                 }
             } header: {
-                styles.renderSectionHeader(with: "Kitty Description")
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "Kitty Description")
             }
-            
-            EmojiSectionView(stats: stats, screenWidth: metrics.size.width)
-            
+//            ForEach(0...1, id: \.self) {
+                EmojiSectionView(screenWidth: metrics.size.width, ds: (name: "asdfds", value: 4, stringValue: "🐾", varient: 0))
+//            }
             Section {
                 HStack{
                     Text("Name").foregroundColor(Color("form-label-color"))
@@ -104,7 +103,7 @@ struct ConfirmOrDiscardView: View {
                 
                     
             } header: {
-                styles.renderSectionHeader(with: "Choose Form for Soul to materialize")
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "Choose Form for Soul to materialize")
             }
             Section {
                 Button {
@@ -116,7 +115,7 @@ struct ConfirmOrDiscardView: View {
                         .foregroundColor(Color("submit-fg-green"))
                 }
             }header: {
-                styles.renderSectionHeader(with: "Decision")
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "Decision")
             }
 
         }
