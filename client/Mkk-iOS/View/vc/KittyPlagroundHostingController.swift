@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-struct KittyPlaygroundState {
+struct KittyPlaygroundState: Equatable {
     var foodbowl: Int
     var waterbowl: Int
     var toys: [ToyItemUsed]
@@ -17,7 +17,13 @@ struct KittyPlaygroundState {
 
 class KittyPlagroundHostingController: UIViewController {
 
-    var contentView: KittyActionButtonContainer!
+    var contentView: KittyActionButtonContainer! /*{
+        didSet {
+            guard let contentView = self.contentView else {
+                return
+            }
+        }
+    }*/
     override func viewDidLoad() {
         super.viewDidLoad()
         self.contentView = KittyActionButtonContainer()

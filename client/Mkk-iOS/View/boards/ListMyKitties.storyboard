@@ -21,7 +21,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9Bv-hX-i5G"/>
                     <connections>
-                        <segue destination="m6n-eT-zXD" kind="show" identifier="ConfirmKitty" id="equ-x0-Qq4"/>
+                        <segue destination="m6n-eT-zXD" kind="presentation" identifier="ConfirmKitty" id="equ-x0-Qq4"/>
                         <segue destination="hne-9j-EHF" kind="show" identifier="DetailsKitty" id="wbq-fJ-00x"/>
                     </connections>
                 </viewController>
@@ -34,7 +34,7 @@
             <objects>
                 <viewController storyboardIdentifier="ConfirmKittyScreen" id="m6n-eT-zXD" customClass="SaveOrDiscardHostingController" customModule="Mkk_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="shJ-0n-li8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Gbc-yo-h94"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -45,7 +45,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m2r-KS-mD5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1540.5797101449277" y="-368.30357142857139"/>
+            <point key="canvasLocation" x="407" y="-629"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DRf-WC-Ugu">

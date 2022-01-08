@@ -92,6 +92,8 @@ class KittyJsoner: CatApier {
         }.resume()
         
     }
+    
+    
     func postNewNotification(withDeviceName name: String, completion: @escaping (Result<Bool,KMKNetworkError>)->Void){
         guard let selected_breed = KITTY_BREEDS.randomElement() else { completion(.failure(.noBreedsFoundError));return;}
         

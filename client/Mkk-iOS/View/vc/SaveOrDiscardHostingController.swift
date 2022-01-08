@@ -59,24 +59,24 @@ class SaveOrDiscardHostingController: UIViewController {
     
     private func createContentView(with kat: KittyBreed){
         
-        let v = ConfirmOrDiscardView(stats: kat, onAdoptionClick: { name,stats, data in
-            DispatchQueue.main.async {
-                self.rlm.addTodooeyToRealm(name: name, stats: stats, imgurl: "", imgdata: data)
-                self.confirmAdoption()
-            }
-            
-        }).environmentObject(vm)
-                                      
-        let contentView = UIHostingController(rootView: v )
-        
-        addChild(contentView)
-        view.addSubview(contentView.view)
-        
-        contentView.view.translatesAutoresizingMaskIntoConstraints = false
-        contentView.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        contentView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        contentView.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        contentView.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+//        let v = ConfirmOrDiscardView(stats: kat, onAdoptionClick: { name,stats, data in
+//            DispatchQueue.main.async {
+//                self.rlm.addTodooeyToRealm(name: name, stats: stats, imgurl: "", imgdata: data)
+//                self.confirmAdoption()
+//            }
+//
+//        }).environmentObject(vm)
+//
+//        let contentView = UIHostingController(rootView: v )
+//
+//        addChild(contentView)
+//        view.addSubview(contentView.view)
+//
+//        contentView.view.translatesAutoresizingMaskIntoConstraints = false
+//        contentView.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//        contentView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+//        contentView.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+//        contentView.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
 
 
@@ -85,14 +85,7 @@ class SaveOrDiscardHostingController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        network.deleteOldNotification(id: notification.NOTIFICATION_ID, with: self.adoptionStatus) { (result) in
-            switch result {
-            case .success( _):
-                break;
-            case .failure(let e):
-                print(e)
-            }
-        }
+        
         guard let count = kitty?.count, count > 0 else {return}
         self.vm.datas = Array.init(repeating: nil, count: count)
         

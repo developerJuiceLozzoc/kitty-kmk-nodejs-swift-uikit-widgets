@@ -61,14 +61,14 @@ struct PourWaterTile: View {
             Text("\(pouringSpeed.rawValue)")
             Text("\(self.store.waterbowl)")
             Spacer()
-            RoundedRectangle(cornerRadius: 4)
-                .foregroundColor(.blue)
-                .frame(width: tilewidth, height: PourWaterTile.tileHeight / 2 * CGFloat(self.store.waterbowl)/CGFloat(maxLiters))
-                .animation(.default,value: self.store.waterbowl)
+            if self.store.waterbowl > 0 {
+                RoundedRectangle(cornerRadius: 4)
+                    .foregroundColor(.blue)
+                    .frame(width: tilewidth, height: PourWaterTile.tileHeight / 2 * CGFloat(self.store.waterbowl)/CGFloat(maxLiters))
+                    .animation(.default,value: self.store.waterbowl)
+            }
+            
         }
-        .onAppear(perform: {
-            self.store.waterbowl = 1
-        })
         .frame( width: tilewidth, height: PourWaterTile.tileHeight)
         .background(
             KMKSwiftUIStyles.i.renderDashboardTileBG()
@@ -155,7 +155,7 @@ struct TwoFingerDragDownWrapper: UIViewRepresentable {
 }
 
 struct PourWaterTile_Previews: PreviewProvider {
-    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy)])
+    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 20)])
 
     static var previews: some View {
         HStack(spacing: 21){

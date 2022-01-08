@@ -7,21 +7,6 @@
 
 import SwiftUI
 
-let dummyBreed =  KittyBreed(
-    id: "69",
-    name: "Shorthair",
-    temperament: "needy, active, intelligent, playful, likes-sniffing",
-    description: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal.",
-    life_span: "6 - 9",
-    dog_friendly: 5,
-    energy_level: 1,
-    shedding_level: 1,
-    intelligence: 5,
-    stranger_friendly: 5,
-    origin: "United States",
-    image: imgtype(url: "https://placekitten.com/300/300"))
-let pix = ["https://placekitten.com/300/300","https://placekitten.com/350/350","https://placekitten.com/250/250"]
-
 
 
 struct ConfirmOrDiscardView: View {
@@ -29,18 +14,24 @@ struct ConfirmOrDiscardView: View {
     @State var sirname: String = ""
     @State var selectedImage: Int = -1
     @State var selectedImageData: Data? = nil
+    @Binding var isPresented: Bool
     var onAdoptionClick: ((String,KittyBreed,Data) -> Void)?
     
     var emojieSectionDetails = [RowCellDataSource]()
     var section1Details = [RowCellDataSource]()
-    let description: String
-    let stats: KittyBreed
+    let kitty: UnownedKittyInPlayground
+    
+    
+    init(kitty: UnownedKittyInPlayground, isPresented: Binding<Bool>, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
+        self.kitty = kitty
+        self._isPresented = isPresented
 
-    init(stats: KittyBreed, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
-        self.description = stats.description
-        self.stats = stats
         self.onAdoptionClick = onAdoptionClick
-        
+       
+        guard let statsLink = kitty.statsLink  else { return } 
+
+        let stats = KittyBreed(fromRealm: statsLink)
+
         self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
         self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
         self.section1Details.append((name: "Lifespan", value: stats.intelligence, stringValue:"\(stats.life_span) years", varient: 1))
@@ -66,7 +57,7 @@ struct ConfirmOrDiscardView: View {
                 KMKSwiftUIStyles.i.renderSectionHeader(with: "Kitty Breed")
             }
             Section {
-                Text(description)
+                Text(kitty.statsLink?.kitty_description ?? "Description")
             } header: {
                 KMKSwiftUIStyles.i.renderSectionHeader(with: "Description")
             }
@@ -97,8 +88,9 @@ struct ConfirmOrDiscardView: View {
             }
             Section {
                 Button {
-                    guard sirname.count > 0, selectedImage != -1, let selectedImageData = selectedImageData  else {return}
-                    onAdoptionClick?(sirname, stats, selectedImageData)
+                    guard sirname.count > 0, selectedImage != -1, let selectedImageData = selectedImageData, let statsLink = kitty.statsLink  else {return}
+                    onAdoptionClick?(sirname, KittyBreed(fromRealm: statsLink), selectedImageData)
+                    isPresented.toggle()
                 } label: {
                     Text("Adopt this Kitty")
                         .padding()

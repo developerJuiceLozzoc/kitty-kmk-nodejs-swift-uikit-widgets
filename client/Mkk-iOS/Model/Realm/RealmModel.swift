@@ -15,14 +15,21 @@ class KPhotoRealm: Object {
 
 }
 
+
+class UnownedKittyInPlayground: Object, Identifiable {
+    @objc dynamic var uid:String = UUID().uuidString
+    @objc dynamic var statsLink: KStatsRealm?
+    let imgurls = List<String>()
+    let toysInteracted = List<Int>()
+}
+
 class KittyRealm: Object {
     @objc dynamic var uid:String = UUID().uuidString
     @objc dynamic var birthday: Double = Date().timeIntervalSince1970
     @objc dynamic var name: String = ""
     @objc dynamic var photoLink: KPhotoRealm?
     @objc dynamic var statsLink: KStatsRealm?
-
-
+    let toysInteracted = List<Int>()
 }
 
 /*javascript redux action creator similar
@@ -55,7 +62,6 @@ class KStatsRealm: Object {
     @objc dynamic var shedding_level: Int = 0
     @objc dynamic  var stranger_friendly: Int = 0
     @objc dynamic  var origin: String = ""
-    
 }
 
 class WanderingKittyRealm: Object {

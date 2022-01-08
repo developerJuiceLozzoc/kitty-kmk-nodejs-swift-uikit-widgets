@@ -28,10 +28,10 @@ class KittyPlistManager {
         if let arrayitems = dict?.object(forKey: "toys") as? NSArray
         {
             for i in 0..<arrayitems.count {
-                guard let itemDict = arrayitems[i] as? NSDictionary else { return nil }
+                guard let itemDict = arrayitems[i] as? NSDictionary else { continue }
     
                 let toy = ToyItemUsed(dictionary: itemDict)
-                guard toy.type != .unknown else {return nil}
+                guard toy.type != .unknown else { continue }
         
                 toysPreviously.append(toy)
             }
@@ -46,7 +46,13 @@ class KittyPlistManager {
         let path = "\(docuDir)/\(ItemFavoritesFilePath)"
         let filemanager = FileManager.default
 
-        let array = [NSMutableDictionary]()
+        let array: [NSMutableDictionary] = items.toys.map { toy in
+            let dict = NSMutableDictionary()
+            dict["timesInteracted"] = toy.timesInteracted
+            dict["type"] = toy.type.rawValue
+            dict["dateAdded"] = toy.dateAdded
+            return dict
+        }
         let dict = NSMutableDictionary()
         dict.setObject(items.foodbowl, forKey: "foodbowl" as NSCopying)
         dict.setObject(items.waterbowl, forKey: "waterbowl" as NSCopying)

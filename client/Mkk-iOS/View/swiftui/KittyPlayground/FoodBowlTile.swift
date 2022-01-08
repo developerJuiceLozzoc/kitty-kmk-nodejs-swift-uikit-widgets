@@ -12,6 +12,7 @@ struct FoodBowlTile: View {
     @State var currentPourState: PouringState = .idle
     @State var pouringSpeed: PouringSpeedEnum = .notpouring
     let MAX_VOLUME = 80
+    static let tileHeight: CGFloat = 150
 
     let tilewidth = UIScreen.main.bounds.size.width / 2 - 25
     
@@ -27,11 +28,7 @@ struct FoodBowlTile: View {
             }
             .padding()
         }
-        .onAppear(perform: {
-            self.store.foodbowl = 5
-            return
-        })
-        .frame( width: tilewidth, height: 150)
+        .frame( width: tilewidth, height: FoodBowlTile.tileHeight)
         .background(
             KMKSwiftUIStyles.i.renderDashboardTileBG()
         )
@@ -61,7 +58,7 @@ struct FoodBowlTile: View {
                 self.store.foodbowl += Int(pourMagnitude / 50)
                 
                 
-            }.frame( width: UIScreen.main.bounds.size.width / 2 - 25, height: 150)
+            }.frame( width: UIScreen.main.bounds.size.width / 2 - 25, height: FoodBowlTile.tileHeight)
         )
     }
 }
@@ -135,7 +132,7 @@ struct ScrubbingGestureWrapper: UIViewRepresentable {
 }
 
 struct FoodBowl_Previews: PreviewProvider {
-    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy)])
+    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 50)])
 
     static var previews: some View {
         FoodBowlTile(store: $value)

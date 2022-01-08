@@ -76,5 +76,4 @@ extension KittyAdoptCollectionCell: UICollectionViewDelegate, UICollectionViewDa
         
     }
     
-      
 }

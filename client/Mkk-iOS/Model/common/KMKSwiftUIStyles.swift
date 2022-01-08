@@ -50,6 +50,46 @@ struct TemperamentView: View {
     }
 }
 
+struct KMKCustomSwipeUp<Content: View>: View {
+    var content: () -> Content
+    @Binding var gestureActivated: Bool
+    @State var gestureInProgress: Bool = false
+    
+    var body: some View {
+        content()
+        .frame(height: 100)
+        .background(
+            KMKSwiftUIStyles.i.renderSelectableTileBG(isSelected: gestureInProgress)
+        )
+        .overlay(
+            KMKSwiftUIStyles.i.renderDashboardTileBorder()
+        )
+        .onTapGesture {
+            gestureInProgress = true
+            gestureActivated.toggle()
+
+        }
+        .gesture(
+            DragGesture()
+                .onChanged { g in
+                    if !gestureInProgress {
+                        gestureInProgress = true
+                    }
+                }
+                .onEnded { g in
+                    if g.startLocation.y > g.location.y {
+                        gestureActivated.toggle()
+                    }
+            }
+        )
+        .onAppear {
+            if gestureInProgress {
+                gestureInProgress = false
+            }
+        }
+    }
+}
+
 
 //name
 //value
@@ -98,6 +138,23 @@ class KMKSwiftUIStyles {
                     endPoint: .bottomTrailing),
                 lineWidth: 2)
             .shadow(color: .gray, radius:5, x: 1, y: -1)
+    }
+    func renderSelectedTile(isSelected: Bool, text: String) -> some View {
+        Text(text)
+            .frame(width: (UIScreen.main.bounds.width-50)/3, height: (UIScreen.main.bounds.width-50)/3)
+            .background(
+                KMKSwiftUIStyles.i.renderSelectableTileBG(isSelected: isSelected)
+            )
+            .overlay (
+                KMKSwiftUIStyles.i.renderDashboardTileBorder()
+            )
+    }
+    func renderSelectableTileBG(isSelected: Bool?) -> some View {
+        if isSelected == nil || isSelected == false {
+            return AngularGradient(gradient: Gradient(colors: [Color.white, Color.white]), center: .center)
+        } else {
+            return AngularGradient(gradient: Gradient(colors: [Color("dashboard-tile-bg-gradient-1"), Color("dashboard-tile-bg-gradient-end")]), center: .center)
+        }
     }
     func renderDashboardTileBG() -> some View {
         AngularGradient(gradient: Gradient(colors: [Color("dashboard-tile-bg-gradient-1"), Color("dashboard-tile-bg-gradient-end")]), center: .center)
@@ -154,5 +211,21 @@ class KMKSwiftUIStyles {
     func renderListRowBG() -> some View {
         return LinearGradient(colors: [Color("list-kitty-name-gradient-end-color"),Color.purple], startPoint: .trailing, endPoint: .leading)
     }
+    
+    func toyImageForToyType(of type: ToyType) -> Image {
+        switch type {
+        case .chewytoy:
+            return Image("toy_chew-toy")
+        case .scratchpost:
+            return Image("toy_scratching-post")
+        case .shinystring:
+            return Image("toy_shiny-toy")
+        case .yarnball:
+            return Image("toy_yarn-ball")
+        default:
+             return Image("pizza-100")
+        }
+    }
+    
 
 }

@@ -88,6 +88,7 @@
 		B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */; };
 		B5F43179274990B4008DAE78 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F43178274990B4008DAE78 /* ListKittiesHostingController.swift */; };
 		B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4317B27499289008DAE78 /* ListKittiesView.swift */; };
+		C6082C0327810D420005D81F /* WhileYouWereAwayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */; };
 		C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */; };
 		C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */; };
 		C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */; };
@@ -98,9 +99,11 @@
 		C6202D35277B99C2003F4D32 /* PlaygroundState.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6202D34277B99C2003F4D32 /* PlaygroundState.plist */; };
 		C6202D37277BA053003F4D32 /* KittyPlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D36277BA053003F4D32 /* KittyPlistManager.swift */; };
 		C695B6322761515200FB00F7 /* ScheduleKittyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C695B6312761515200FB00F7 /* ScheduleKittyView.swift */; };
-		C6F45DDE277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; };
-		C6F45DDF277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C69EDAFA278A364300FE619E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAF9278A364300FE619E /* Date.swift */; };
+		C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAFB278A486300FE619E /* KMKButtons.swift */; };
+		C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */; };
 		C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */; };
+		C6FB3E602780C3AF0010C076 /* WanderingKittyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,20 +115,6 @@
 			remoteInfo = "Mkk-iOS";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		C6F45DE0277CFAAA002D9824 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C6F45DDF277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4FC131466976AA12FA0CB21F /* Pods-Mkk-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +195,7 @@
 		B5F4317B27499289008DAE78 /* ListKittiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesView.swift; sourceTree = "<group>"; };
 		B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mkk_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhileYouWereAwayAlert.swift; sourceTree = "<group>"; };
 		C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KittyActionButtonContainer.swift; sourceTree = "<group>"; };
 		C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PourWaterTile.swift; sourceTree = "<group>"; };
 		C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBowlTile.swift; sourceTree = "<group>"; };
@@ -216,7 +206,11 @@
 		C6202D34277B99C2003F4D32 /* PlaygroundState.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PlaygroundState.plist; sourceTree = "<group>"; };
 		C6202D36277BA053003F4D32 /* KittyPlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyPlistManager.swift; sourceTree = "<group>"; };
 		C695B6312761515200FB00F7 /* ScheduleKittyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleKittyView.swift; sourceTree = "<group>"; };
+		C69EDAF9278A364300FE619E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		C69EDAFB278A486300FE619E /* KMKButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKButtons.swift; sourceTree = "<group>"; };
+		C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyItumListView.swift; sourceTree = "<group>"; };
 		C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKImagePicker.swift; sourceTree = "<group>"; };
+		C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyModel.swift; sourceTree = "<group>"; };
 		E04F2B701C1D71ABD1013919 /* Pods-Mkk-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,7 +236,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6F45DDE277CFAAA002D9824 /* Pods_Mkk_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +356,7 @@
 				B544121A25EFD7B900C0D629 /* Netowrk.swift */,
 				B5B54C4C2616183C00B18377 /* EmptySegue.swift */,
 				B5DBA93E2741B7CB0075A45D /* LoadingButton.swift */,
+				C69EDAF9278A364300FE619E /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -377,6 +371,7 @@
 				B5CBA52825FA93B500621682 /* StatsModel.swift */,
 				C6202D34277B99C2003F4D32 /* PlaygroundState.plist */,
 				C6202D36277BA053003F4D32 /* KittyPlistManager.swift */,
+				C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -517,6 +512,7 @@
 				B5F4317B27499289008DAE78 /* ListKittiesView.swift */,
 				B5472923274B30FE005DCF8A /* KittyDetailsView.swift */,
 				C695B6312761515200FB00F7 /* ScheduleKittyView.swift */,
+				C69EDAFB278A486300FE619E /* KMKButtons.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -529,6 +525,8 @@
 				C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */,
 				C6202D2B277AB19F003F4D32 /* UseToyTile.swift */,
 				C6202D2D277AB2A0003F4D32 /* HintWrapper.swift */,
+				C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */,
+				C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */,
 			);
 			path = KittyPlayground;
 			sourceTree = "<group>";
@@ -609,13 +607,14 @@
 				B5E7A62825D6F7520076F12C /* Frameworks */,
 				B5E7A62925D6F7520076F12C /* Resources */,
 				99946051DC99F15D7BEF56A0 /* [CP] Embed Pods Frameworks */,
-				C6F45DE0277CFAAA002D9824 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Mkk-iOS";
+			packageProductDependencies = (
+			);
 			productName = "Mkk-iOS";
 			productReference = B5E7A62B25D6F7520076F12C /* Mkk-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -650,6 +649,8 @@
 				Base,
 			);
 			mainGroup = B5E7A62225D6F7520076F12C;
+			packageReferences = (
+			);
 			productRefGroup = B5E7A62C25D6F7520076F12C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -808,6 +809,7 @@
 				B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */,
 				C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */,
 				B5DBA93F2741B7CB0075A45D /* LoadingButton.swift in Sources */,
+				C69EDAFA278A364300FE619E /* Date.swift in Sources */,
 				B547291E274A949A005DCF8A /* SaveOrDiscardHostingController.swift in Sources */,
 				B54651AF26F6A85600A16F38 /* SavedDataInfotainment.intentdefinition in Sources */,
 				B57427F22618262700532B21 /* KittyStatCell.swift in Sources */,
@@ -820,7 +822,9 @@
 				B521F35B2618EAF900E7A87D /* ScheduleKitty.swift in Sources */,
 				C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
+				C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */,
 				C6202D37277BA053003F4D32 /* KittyPlistManager.swift in Sources */,
+				C6082C0327810D420005D81F /* WhileYouWereAwayAlert.swift in Sources */,
 				B5B54CD92617D4DA00B18377 /* ListKittiesTVC.swift in Sources */,
 				C6202D2C277AB19F003F4D32 /* UseToyTile.swift in Sources */,
 				B521F3542618E5A500E7A87D /* AdoptedKittyCell.swift in Sources */,
@@ -829,6 +833,7 @@
 				C6202D2E277AB2A0003F4D32 /* HintWrapper.swift in Sources */,
 				B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */,
 				B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */,
+				C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */,
 				B57512B4261A77AA00527CD5 /* SurveyCacheViewModel.swift in Sources */,
 				B57512C7261A7CF700527CD5 /* StatsModel.swift in Sources */,
 				B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */,
@@ -854,6 +859,7 @@
 				B57512AF261A3CBB00527CD5 /* TemperamentCell.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
 				B5472920274AA0ED005DCF8A /* ConfirmOrDiscardView.swift in Sources */,
+				C6FB3E602780C3AF0010C076 /* WanderingKittyModel.swift in Sources */,
 				C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */,
 				B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */,
 				B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */,

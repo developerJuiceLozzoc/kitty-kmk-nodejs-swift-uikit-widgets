@@ -8,6 +8,19 @@
 import Foundation
 import UIKit
 
+/* image screen
+ screen 1 view
+ screen 1 view model
+ screen 1 model
+ */
+
+
+/*
+
+ what if screen 1 view model, is used
+ in another screen, screen 2
+ */
+
 class ImagesViewModel {
     var images: [UIImage?] = Array.init(repeating: nil, count: 3)
     var loader: Loader = ImageLoader()

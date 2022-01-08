@@ -8,6 +8,23 @@
 import SwiftUI
 import UIKit
 
+
+let dummyBreed =  KittyBreed(
+    id: "69",
+    name: "Shorthair",
+    temperament: "needy, active, intelligent, playful, likes-sniffing",
+    description: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal.",
+    life_span: "6 - 9",
+    dog_friendly: 5,
+    energy_level: 1,
+    shedding_level: 1,
+    intelligence: 5,
+    stranger_friendly: 5,
+    origin: "United States",
+    image: imgtype(url: "https://placekitten.com/300/300"))
+let pix = ["https://placekitten.com/300/300","https://placekitten.com/350/350","https://placekitten.com/250/250"]
+
+
 typealias RowCellDataSource = (name: String, value: Int, stringValue: String, varient: Int)
 
 struct KittyDetailsView: View {
@@ -23,7 +40,6 @@ struct KittyDetailsView: View {
         self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
         self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
         self.section1Details.append((name: "Adopted On", value: stats.intelligence, stringValue: doubleDateToString(from: birthday), varient: 1))
-        self.section1Details.append((name: "Intelligence", value: stats.intelligence, stringValue:"🧠", varient: 0))
         self.section1Details.append((name: "Lifespan", value: stats.intelligence, stringValue:"\(stats.life_span) years", varient: 1))
         self.section1Details.append((name: "Shedding Lvl", value: stats.shedding_level, stringValue:"🐾", varient: 0))
         
