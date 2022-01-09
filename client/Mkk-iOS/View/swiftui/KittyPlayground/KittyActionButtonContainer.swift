@@ -15,10 +15,59 @@ struct KittyActionButtonContainer: View {
     @State var ds: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [])
     @State var reference: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [])
     @State var showWanderingKittiesRecap: Bool = false
+    @State var backgroundNotificationClearDidFail = false
+    @State var currentAlertType: KMKAlertType = .removeNotifFailureBackground
     
     var model = KittyPlistManager()
+    var network: KittyJsoner = KittyJsoner()
     let realmModel = RealmCrud()
     
+    func registerForPush() {
+        guard
+            let DeviceToken = UserDefaults.standard.value(forKey: "FCMDeviceToken") as? String else { return }
+            network.postNewNotification(withDeviceName: DeviceToken) { (result) in
+                switch result {
+                    case .success(_):
+                    currentAlertType = .succRegisterForPush
+                    backgroundNotificationClearDidFail.toggle()
+                    if ZeusToggles.shared.toggles.instantPushKitty {
+                        
+                        network.dispatchNotificationsImmediately { result in
+                            switch result {
+                            case .success( _):
+                                
+                                return
+                            case .failure(let err):
+                                print(err)
+                                }
+                        }
+                    }
+                    case .failure(let _):
+                    currentAlertType = .failedRegisterForPush
+                    backgroundNotificationClearDidFail.toggle()
+
+                        
+                }
+            }
+    }
+    
+    func tryDeleteNotification() {
+        guard let nid = KittyPlistManager.getNotificationToken() else {return}
+        network.deleteOldNotification(id: nid, with: "adopted") { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    ds.toys = []
+                    KittyPlistManager.removeNotificationToken()
+                default:
+                    currentAlertType = .removeNotifFailureBackground
+                    backgroundNotificationClearDidFail.toggle()
+
+                }
+            }
+        }
+        
+    }
     var body: some View {
         VStack{
             HStack(spacing: 21){
@@ -29,7 +78,18 @@ struct KittyActionButtonContainer: View {
                 VStack {
                     Spacer()
                     FoodBowlTile(store: $ds)
-                    UseToyTile(store: $ds)
+                    UseToyTile(store: $ds, onSheetDisappear: {
+                        guard ds != reference else {return}
+                        
+                        if ds.toys.isEmpty {
+                            tryDeleteNotification()
+                        }
+                        if !ds.toys.isEmpty &&
+                                KittyPlistManager.getNotificationToken() == nil &&
+                            ZeusToggles.shared.didLoad {
+                            registerForPush()
+                        }
+                    })
                 }
             }
             .frame(width: UIScreen.main.bounds.size.width, height: PourWaterTile.tileHeight + 75)
@@ -45,6 +105,9 @@ struct KittyActionButtonContainer: View {
                 }, gestureActivated: $showWanderingKittiesRecap)
                 
             }
+        }
+        .alert(isPresented: $backgroundNotificationClearDidFail) {
+            KMKSwiftUIStyles.i.renderAlertForType(type: currentAlertType)
         }
         .sheet(isPresented: $showWanderingKittiesRecap, onDismiss: nil) {
             WhileYouWereAwayAlert(ds: ds)
@@ -67,45 +130,9 @@ struct KittyActionButtonContainer: View {
                     reference = ds
                 }
                 else {
-                    ds = reference
+                    ds = reference // restore changes?
                     print("something went wrong saving preferences")
                 }
-            }
-            let network = KittyJsoner()
-            if ds.toys.isEmpty, let nid = UserDefaults.standard.string(forKey: "current-notification-event") {
-                
-                network.deleteOldNotification(id: nid, with: "adopted") { (result) in
-                    switch result {
-                        default:
-                        UserDefaults.standard.removeObject(forKey: "current-notification-event")
-                    }
-                }
-            } else {
-                guard
-                    let DeviceToken = UserDefaults.standard.value(forKey: "FCMDeviceToken") as? String,
-                        UserDefaults.standard.string(forKey: "current-notification-event") == nil,
-                    ZeusToggles.shared.didLoad else { return }
-                    network.postNewNotification(withDeviceName: DeviceToken) { (result) in
-                        switch result {
-                            case .success(_):
-                            if(ZeusToggles.shared.toggles.instantPushKitty){
-                                // post to the server to dilver notification instantly
-                                network.dispatchNotificationsImmediately { result in
-                                    switch result {
-                                    case .success( _):
-                                        return
-                                    case .failure(let err):
-                                        print(err)
-                                        }
-                                }
-                            }
-                            case .failure(let e):
-                                print(e)
-                                
-                        }
-                    }
-                
-                
             }
         }
     }

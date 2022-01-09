@@ -79,6 +79,21 @@ enum ToyType: Int, CaseIterable {
     }
 }
 
+enum NetworkState: Int {
+    case idle = 0
+    case loading
+    case failed
+    case success
+}
+
+enum KMKAlertType: Int {
+    case removeNotifSuccess = 0
+    case removeNotifFailureBackground
+    case removeNotifFailureForeground
+    case failedRegisterForPush
+    case succRegisterForPush
+}
+
 
 enum KMKNetworkError: String,Error{
     case decodeFail = "Failed to code the GameSurvey Struct"

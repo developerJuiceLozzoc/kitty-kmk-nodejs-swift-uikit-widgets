@@ -109,7 +109,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     if userInfo["ADD_KITTY"] as? NSString != nil {
 
         guard let nid = userInfo["NOTIFICATION_ID"] as? String else{ completionHandler();return;}
-        UserDefaults.standard.set(nid, forKey: "current-notification-event")
+        KittyPlistManager.setNotificationToken(with: nid)
         var breeds: [String] = []
         for _ in 0..<Int.random(in: 1...3) {
             breeds.append(KITTY_BREEDS.randomElement() ?? "ycho")

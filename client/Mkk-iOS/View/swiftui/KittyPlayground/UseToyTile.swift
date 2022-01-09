@@ -19,13 +19,23 @@ import SwiftUI
  */
 
 //store all the tooys in plist? or only the current ones being selected
-
+struct AlertText {
+    var title: String
+    var message: String
+}
 
 struct UseToyTile: View {
 
     @Binding var store: KittyPlaygroundState
-    @State var showToyMenu = true
+    @State var shouldShowAlertNoMoreNotifications = false
+    @State var showToyMenu = false
     @State var shouldShowWanderingModelInstead: Bool = false
+    @State var networkState = NetworkState.idle
+    @State var alert = AlertText(title: "", message: "")
+    var network: KittyJsoner = KittyJsoner()
+    var onSheetDisappear: () -> ()
+    
+    
     let ALL_TOYS: [ToyType] = ToyType.allCases.map { return $0 }.filter { return $0 != .unknown   }
     
     
@@ -45,7 +55,7 @@ struct UseToyTile: View {
         .onTapGesture(count: 1, perform: {
             showToyMenu.toggle()
         })
-        .sheet(isPresented: $showToyMenu, onDismiss: onDismissToyDrawer) {
+        .sheet(isPresented: $showToyMenu, onDismiss: onSheetDisappear) {
             let colums: [GridItem] = Array.init(repeating: .init(.fixed((UIScreen.main.bounds.width-10)/3)), count: 3)
             
             Text("")
@@ -53,10 +63,40 @@ struct UseToyTile: View {
             List {
                 Section {
                     KMKLongPressYellow(onLongPress: {
-                        store.toys = []
+                        if let nid = KittyPlistManager.getNotificationToken()  {
+                            networkState = .loading
+                            network.deleteOldNotification(id: nid, with: "adopted") { (result) in
+                                DispatchQueue.main.async {
+                                   
+                                    switch result {
+                                    case .success(_):
+                                        networkState = .success
+                                        store.toys = []
+                                        KittyPlistManager.removeNotificationToken()
+                                        shouldShowAlertNoMoreNotifications.toggle()
+                                        
+                                    default:
+                                        networkState = .failed
+                                        shouldShowAlertNoMoreNotifications.toggle()
+                                         
+                                    }
+                                }
+                                
+                            }
+                        }
                     })
                     .listRowBackground(Color("suggesting-yellow").opacity(0.25))
-                    
+                    .alert(isPresented: $shouldShowAlertNoMoreNotifications) {
+                        switch networkState {
+                        case .success:
+                            return KMKSwiftUIStyles.i.renderAlertForType(type: .removeNotifSuccess)
+                        default:
+                            return KMKSwiftUIStyles.i.renderAlertForType(type: .removeNotifFailureForeground)
+                        }
+                    }
+                    if networkState == .loading {
+                        Text("Loading... Please wait")
+                    }
                     
                 } header: {
                     KMKSwiftUIStyles.i.renderSectionHeader(with: "Clean up toys from area")
@@ -96,14 +136,7 @@ struct UseToyTile: View {
         }
 
     }
-    
-    func onDismissToyDrawer() {
-//        print(check if toys are put away)
-        /*
-        if all the toys are put away
-         
-         */
-    }
+
 }
 
 struct UseToyTile_Previews: PreviewProvider {
@@ -111,8 +144,9 @@ struct UseToyTile_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            UseToyTile(store: $value)
-                        .preferredColorScheme(.dark)
+            UseToyTile(store: $value, onSheetDisappear: {
+                
+            }).preferredColorScheme(.dark)
         }
 
     }

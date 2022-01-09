@@ -10,6 +10,18 @@ import Foundation
 
 class KittyPlistManager {
     let ItemFavoritesFilePath = "ItemFavorites.plist"
+    
+    
+    static func removeNotificationToken() {
+        UserDefaults.standard.removeObject(forKey: "current-notification-event")
+    }
+    static func setNotificationToken(with str: String) {
+        UserDefaults.standard.set(str, forKey: "current-notification-event")
+
+    }
+    static func getNotificationToken() -> String? {
+        return UserDefaults.standard.string(forKey: "current-notification-event")
+    }
 
     func LoadItemFavorites() -> KittyPlaygroundState?
     {

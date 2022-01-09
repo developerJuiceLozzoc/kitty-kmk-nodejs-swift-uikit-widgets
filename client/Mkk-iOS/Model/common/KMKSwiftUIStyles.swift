@@ -227,5 +227,20 @@ class KMKSwiftUIStyles {
         }
     }
     
+    func renderAlertForType(type: KMKAlertType) -> Alert {
+        switch type {
+        case .succRegisterForPush:
+            return Alert(title: Text("Success"), message: Text("Your preferences have been updated."))
+        case .failedRegisterForPush:
+            return Alert(title: Text("Error Occured Scheduling Notifications"), message: Text("Sorry but the ether has failed to persist your request for notifications."))
+        case .removeNotifFailureForeground:
+            return Alert(title: Text("An Error occured!"), message: Text("Please try to manully reset the play ground with the gesture again."))
+        case .removeNotifFailureBackground:
+            return Alert(title: Text("Sorry to interrupt however there is an Error."), message: Text("We tried updating your preferences, but failed, please try again manually using the Clean Up button in the toy menu"))
+        case .removeNotifSuccess:
+            return Alert(title: Text("You have now cleaned up"), message: Text("Now that all the toys are removed, you will no longer receive notifications ie no more kitties daily."))
+        }
+    }
+    
 
 }
