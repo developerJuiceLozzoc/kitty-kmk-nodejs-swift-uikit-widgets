@@ -19,8 +19,11 @@ class MainTabController: UITabBarController {
         let listvc = UIStoryboard.init(name: "ListMyKitties", bundle: nil).instantiateViewController(identifier: "List_Kitties")
         listvc.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
         
-        viewControllers = [listvc]
-        selectedIndex = 0
+        let playgroundvc = KittyPlagroundHostingController()
+        playgroundvc.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "leaf.circle"), selectedImage: UIImage(systemName: "leaf.circle.fill"))
+        
+        viewControllers = [playgroundvc,listvc]
+        selectedIndex = 1
     }
     
 

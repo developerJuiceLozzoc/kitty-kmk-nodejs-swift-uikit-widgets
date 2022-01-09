@@ -21,7 +21,6 @@ let KITTY_BREEDS: [String]  = [
     "ebur", "esho", "hbro", "hima", "jbob", "java",
     "khao", "kora", "kuri", "lape", "mcoo", "mala",
     "manx", "munc", "nebe", "norw", "ocic", "orie",
-    
     "pers", "pixi", "raga", "ragd", "rblu", "sava",
     "sfol", "srex", "siam", "sibe", "singsstrub", "snow",
     "soma", "sphy", "tonk", "toyg", "tang", "tvan",
@@ -43,6 +42,43 @@ let SERVER_URL = "https://kissmarrykill.herokuapp.com"
 //let SERVER_URL = "http://10.1.10.76:3000"
 //let SERVER_URL = "http://10.0.0.74:3000"
 
+struct ToyItemUsed: Hashable {
+    let dateAdded: Double
+    let type: ToyType
+    var timesInteracted = 0
+    
+    init (dateAdded: Double, type: ToyType, hits: Int){
+        self.dateAdded = dateAdded
+        self.type = type
+        self.timesInteracted = hits
+    }
+    init(dictionary: NSDictionary) {
+        if let dAdded = dictionary.object(forKey: "dateAdded") as? Double,
+           let typeInt = dictionary.object(forKey: "type") as? Int,
+           let hits = dictionary.object(forKey: "timesInteracted") as? Int {
+            self.dateAdded = dAdded
+            self.type = ToyType(rawValue: typeInt) ?? .unknown
+            self.timesInteracted = hits
+        } else {
+            self.dateAdded = -1
+            self.type = .unknown
+            self.timesInteracted = -1
+        }
+    }
+}
+
+enum ToyType: Int, CaseIterable {
+    case yarnball = 0
+    case shinystring
+    case chewytoy
+    case scratchpost
+    case unknown
+    
+    func toString() -> String {
+        return ["Yarn Ball","Shiny String","Chewy Toy","Scratch Post", "Unknown"][self.rawValue]
+    }
+}
+
 
 enum KMKNetworkError: String,Error{
     case decodeFail = "Failed to code the GameSurvey Struct"
@@ -53,6 +89,12 @@ enum KMKNetworkError: String,Error{
     case noImageFoundError = " the requested image was not availible"
     case noBreedsFoundError = "no breed images found wiht requested idv"
     case invalidClientRequest = "the server responded with errror"
+}
+
+enum ActionCellGestureType: String {
+    case scrub = "swipe(scrub) right to left repeatedly" // Drag 
+    case pour = "with two fingers, slowly pull from top to bottom, careful not to overpour"
+    case tap = "one finger tap"
 }
 
 extension Notification.Name {

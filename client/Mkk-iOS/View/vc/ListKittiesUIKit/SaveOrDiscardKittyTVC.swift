@@ -155,7 +155,7 @@ extension SaveOrDiscardKittyTVC {
     override func viewWillDisappear(_ animated: Bool) {
         network.deleteOldNotification(id: notification.NOTIFICATION_ID, with: self.adoptionStatus) { (result) in
             switch result {
-            case .success(let _):
+            case .success(_):
                 break;
             case .failure(let e):
                 print(e)

@@ -43,7 +43,7 @@ class KitttyDetails: UIViewController {
     }
     
     func populateDataSource(kitty:KittyRealm){
-        guard let photoLink = kitty.photoLink, let statsLink = kitty.statsLink else {return}
+        guard let _ = kitty.photoLink, let statsLink = kitty.statsLink else {return}
         self.datasource = Array.init(repeating: [], count: 3)
         
         datasource[0].append((pretty: "Name",value: kitty.name ))

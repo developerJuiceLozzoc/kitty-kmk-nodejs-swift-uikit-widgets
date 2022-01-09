@@ -7,9 +7,11 @@
 
 import UIKit
 import Firebase
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    var wkm: WanderingKittyModel = WanderingKittyModel()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -71,6 +73,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       completionHandler(UIBackgroundFetchResult.newData)
     }
 }
+
+func getRootTabController() -> UITabBarController? {
+    guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate else {return nil}
+    return sD.window?.rootViewController as? UITabBarController
+}
+
+
+
+func getRootNavFromTabController(from controller: UITabBarController, on tab: Int) -> UINavigationController? {
+    controller.selectedIndex = tab
+    return controller.selectedViewController as? UINavigationController
+}
+
+
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
 
@@ -78,9 +94,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               willPresent notification: UNNotification,
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//    let userInfo = notification.request.content.userInfo
+      let userInfo = notification.request.content.userInfo
 
+      
+//      guard userInfo["ADD_KITTY"] as? NSString != nil else {return}
       completionHandler([[.banner,.list, .sound]])
+
   }
 
   func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -88,40 +107,19 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
     if userInfo["ADD_KITTY"] as? NSString != nil {
-//        guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate ,let tabController = sD.window?.rootViewController as? UITabBarController else {completionHandler();return;}
+
+        guard let nid = userInfo["NOTIFICATION_ID"] as? String else{ completionHandler();return;}
+        UserDefaults.standard.set(nid, forKey: "current-notification-event")
+        var breeds: [String] = []
+        for _ in 0..<Int.random(in: 1...3) {
+            breeds.append(KITTY_BREEDS.randomElement() ?? "ycho")
+        }
         
-//        tabController.selectedIndex = 2
-        guard let scene = UIApplication.shared.connectedScenes.first, let sD = scene.delegate as? SceneDelegate ,let vc = sD.window?.rootViewController as? UINavigationController else {completionHandler();return;}
+        wkm.retrieveAndStoreKitties(with: breeds)
 
-        guard let breed = userInfo["KITTY_BREED"] as? String, let nid = userInfo["NOTIFICATION_ID"] as? String else{ completionHandler();return;}
-    
-        let knote = WanderingKittyNotification(KITTY_BREED: breed, NOTIFICATION_ID: nid)
-        
-        let jsonifer: CatApier = KittyJsoner()
-
-            jsonifer.getJsonByBreed(with: breed) { (result) in
-                var json: [KittyApiResults]? = nil
-                switch result {
-                case .success(let res):
-                    json = res
-                case .failure(let err):
-                    print(err)
-                }
-                DispatchQueue.main.async {
-                    if let saveVC = UIStoryboard
-                        .init(name: "ListMyKitties", bundle: nil)
-                        .instantiateViewController(identifier: "ConfirmKittyScreen") as? SaveOrDiscardHostingController {
-                        vc.popToRootViewController(animated: true) // in case they are on a nother workflow
-                        saveVC.kitty = json
-                        saveVC.notification = knote
-                        vc.pushViewController(saveVC, animated: true)
-
-                    }
-                }
-                
-            }
-
-
+        DispatchQueue.main.async {
+            getRootTabController()?.selectedIndex = 0
+        }
             
     }
 

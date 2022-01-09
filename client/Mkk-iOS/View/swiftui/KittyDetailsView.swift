@@ -8,12 +8,48 @@
 import SwiftUI
 import UIKit
 
+
+let dummyBreed =  KittyBreed(
+    id: "69",
+    name: "Shorthair",
+    temperament: "needy, active, intelligent, playful, likes-sniffing",
+    description: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal.",
+    life_span: "6 - 9",
+    dog_friendly: 5,
+    energy_level: 1,
+    shedding_level: 1,
+    intelligence: 5,
+    stranger_friendly: 5,
+    origin: "United States",
+    image: imgtype(url: "https://placekitten.com/300/300"))
+let pix = ["https://placekitten.com/300/300","https://placekitten.com/350/350","https://placekitten.com/250/250"]
+
+
+typealias RowCellDataSource = (name: String, value: Int, stringValue: String, varient: Int)
+
 struct KittyDetailsView: View {
-    var styles = SwiftUIStyles()
-    var stats: KittyBreed
     var pfp: UIImage
-    var name: String
-    var birthday: Double
+    var description: String
+    var emojieSectionDetails = [RowCellDataSource]()
+    var section1Details = [RowCellDataSource]()
+
+    init(stats: KittyBreed, pfp: UIImage, name: String, birthday: Double) {
+        self.pfp = pfp
+        self.description = stats.description
+        
+        self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
+        self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
+        self.section1Details.append((name: "Adopted On", value: stats.intelligence, stringValue: doubleDateToString(from: birthday), varient: 1))
+        self.section1Details.append((name: "Lifespan", value: stats.intelligence, stringValue:"\(stats.life_span) years", varient: 1))
+        self.section1Details.append((name: "Shedding Lvl", value: stats.shedding_level, stringValue:"🐾", varient: 0))
+        
+        self.emojieSectionDetails.append((name: "Intelligence", value: stats.intelligence, stringValue:"🧠", varient: 0))
+        self.emojieSectionDetails.append((name: "Stranger Friendly", value: stats.stranger_friendly, stringValue:"🧟‍♂️", varient: 0))
+        self.emojieSectionDetails.append((name: "Energy Lvl", value: stats.energy_level, stringValue:"⚡️", varient: 0))
+        self.emojieSectionDetails.append((name: "Dog Friendly", value: stats.dog_friendly, stringValue:"🐶", varient: 0))
+        
+        
+    }
     
     var body: some View {
         GeometryReader { metrics in
@@ -24,39 +60,25 @@ struct KittyDetailsView: View {
                 .frame(maxHeight: 200)
             List {
                 Section {
-                    if #available(iOS 15.0, *) {
-                    styles.renderImportantTextWithLabel(with: name, label: "Name", width: metrics.size.width)
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-
-                    styles.renderImportantTextWithLabel(with: doubleDateToString(from: birthday), label: "Adopted On", width: metrics.size.width)
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-                        TemperamentView(traits: parseTemperament(with: stats.temperament))
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-
-                    } else {
-                        styles.renderImportantTextWithLabel(with: name, label: "Name", width: metrics.size.width)
-                        styles.renderImportantTextWithLabel(with: doubleDateToString(from: birthday), label: "Adopted On", width: metrics.size.width)
-                        TemperamentView(traits: parseTemperament(with: stats.temperament))
-
-                    }
-                }
-                Section {
-                    if #available(iOS 15.0, *) {
-                        styles.renderTextWithLabel(with: stats.name, label: "Breed", width: metrics.size.width)
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-                        styles.renderTextWithLabel(with: stats.description, label: "Desc", width: metrics.size.width)
-                            .listRowSeparatorTint(Color("ultra-violet-1"))
-                        styles.renderImportantTextWithLabel(with: stats.origin, label: "Origin Country", width: metrics.size.width)
-                                .listRowSeparatorTint(Color("ultra-violet-1"))
-                    } else {
-                        styles.renderTextWithLabel(with: doubleDateToString(from: birthday), label: "Adopted On", width: metrics.size.width)
-                        styles.renderTextWithLabel(with: stats.description, label: "Desc", width: metrics.size.width)
-                        styles.renderImportantTextWithLabel(with: stats.origin, label: "Origin Country", width: metrics.size.width)
+                    ForEach(0..<section1Details.count, id: \.self) {
+                        EmojiSectionView(screenWidth: metrics.size.width, ds: section1Details[$0])
                     }
                 } header: {
-                    styles.renderSectionHeader(with: "Breed")
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Kitty Breed")
                 }
-                EmojiSectionView(stats: stats, screenWidth: metrics.size.width)
+                Section {
+                    Text(description)
+                } header: {
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Description")
+                }
+                Section {
+                    ForEach(0..<emojieSectionDetails.count, id: \.self) {
+                        EmojiSectionView(screenWidth: metrics.size.width, ds: emojieSectionDetails[$0])
+                    }
+                } header: {
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Personality Traits")
+
+                }
                 
                 
                
