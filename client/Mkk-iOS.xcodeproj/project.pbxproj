@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0178B6DE9157D3E7691ACD72 /* Pods_Mkk_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CB06D6B838C0A949E881 /* Pods_Mkk_iOS.framework */; };
 		88D8603C82A44D3C53BFEDE1 /* Pods_Mkk_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */; };
 		B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51784CA25D874E7004472DB /* NotificationObjects.swift */; };
 		B521F34A2618DA7400E7A87D /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F3492618DA7400E7A87D /* CoreData.swift */; };
@@ -236,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0178B6DE9157D3E7691ACD72 /* Pods_Mkk_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,8 +615,6 @@
 			dependencies = (
 			);
 			name = "Mkk-iOS";
-			packageProductDependencies = (
-			);
 			productName = "Mkk-iOS";
 			productReference = B5E7A62B25D6F7520076F12C /* Mkk-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -649,8 +649,6 @@
 				Base,
 			);
 			mainGroup = B5E7A62225D6F7520076F12C;
-			packageReferences = (
-			);
 			productRefGroup = B5E7A62C25D6F7520076F12C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1098,7 +1096,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1106,7 +1104,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lozzoc.realmcatcollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -1123,7 +1121,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1131,7 +1129,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lozzoc.realmcatcollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
