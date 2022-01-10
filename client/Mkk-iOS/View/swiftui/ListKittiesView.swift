@@ -20,32 +20,75 @@ let dummylist = ListKittiesDataSource(
 
 struct ListKittiesView: View {
     @EnvironmentObject var ds: ListKittiesDataSource
+    @State var showTutorial = false
     var onKittyClick: ((String) -> Void)?
     var body: some View {
         List {
+            Section {
+                ScrollView {
+                    List {
+                        
+                    }
+                }.frame(height: UIScreen.main.bounds.height/4)
+            } header: {
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "Recently Accessed")
+            }
+            
+            Section {
+                ScrollView {
+                    List {
+                        
+                    }
+                }.frame(height: UIScreen.main.bounds.height/4)
+            } header: {
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "Recently Adopted")
+            }
+            
             ForEach(0..<ds.sectionTitleDataSource.count){ i in
                 Section(header: KMKSwiftUIStyles.i.renderSectionHeader(with:ds.sectionTitleDataSource[i])) {
                     ForEach(0..<ds.contentDataSource[i].count) { j in
-                        if #available(iOS 15.0, *) {
-                            KMKSwiftUIStyles.i.renderKittyName(with: ds.contentDataSource[i][j].name)
-                                .listRowSeparatorTint(Color("ultra-violet-1"))
-                                .listRowBackground(KMKSwiftUIStyles.i.renderListRowBG())
-                                .onTapGesture {
-                                    onKittyClick?(ds.contentDataSource[i][j].id)
-                                }
-                                
-                        } else {
-                            KMKSwiftUIStyles.i.renderKittyName(with: ds.contentDataSource[i][j].name)
-                                .listRowBackground(KMKSwiftUIStyles.i.renderListRowBG())
-                                .onTapGesture {
-                                    onKittyClick?(ds.contentDataSource[i][j].id)
-                                }
-                                
+                    CatListRowItem(name: ds.contentDataSource[i][j].name)
+                        .onTapGesture {
+                            onKittyClick?(ds.contentDataSource[i][j].id)
                         }
-                        
                         
                     }
                 }
+            }
+        }
+        .overlay(
+            VStack {
+                HStack {
+                    Spacer()
+                    Image("questionmark.circle")
+                        .resizable()
+                        
+                        .frame(width: 30, height: 30)
+                        .padding()
+                        .onTapGesture {
+                            showTutorial.toggle()
+                        }
+                }
+                Spacer()
+            }
+        )
+        .popover(isPresented: $showTutorial, content: {
+            if #available(iOS 15.0, *) {
+                ListTutorialPopup()
+                    .textSelection(.enabled)
+                    .onDisappear {
+                        ZeusToggles.shared.setHasReadListTutorial()
+                    }
+            } else {
+                ListTutorialPopup()
+                    .onDisappear {
+                        ZeusToggles.shared.setHasReadListTutorial()
+                    }
+            }
+        })
+        .onAppear {
+            if !ZeusToggles.shared.hasReadListTutorialCheck() {
+                showTutorial.toggle()
             }
         }
     }

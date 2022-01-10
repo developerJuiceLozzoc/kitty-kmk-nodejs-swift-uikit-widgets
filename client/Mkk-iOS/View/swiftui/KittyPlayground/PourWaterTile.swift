@@ -57,14 +57,17 @@ struct PourWaterTile: View {
        
         VStack{
             Text("WaterBowl")
-            Text("\(currentPourState.rawValue)")
-            Text("\(pouringSpeed.rawValue)")
-            Text("\(self.store.waterbowl)")
+            if self.store.waterbowl > 100 {
+                Text("Ooops you spilled water everywhere")
+                    .font(.caption)
+                    .lineLimit(2)
+            }
+   
             Spacer()
             if self.store.waterbowl > 0 {
                 RoundedRectangle(cornerRadius: 4)
                     .foregroundColor(.blue)
-                    .frame(width: tilewidth, height: PourWaterTile.tileHeight / 2 * CGFloat(self.store.waterbowl)/CGFloat(maxLiters))
+                    .frame(width: tilewidth, height: PourWaterTile.tileHeight / 1.33 * CGFloat(self.store.waterbowl)/CGFloat(maxLiters))
                     .animation(.default,value: self.store.waterbowl)
             }
             

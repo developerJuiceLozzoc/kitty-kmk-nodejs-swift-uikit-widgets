@@ -32,6 +32,7 @@ struct UseToyTile: View {
     @State var shouldShowWanderingModelInstead: Bool = false
     @State var networkState = NetworkState.idle
     @State var alert = AlertText(title: "", message: "")
+    @State var helppop = false
     var network: KittyJsoner = KittyJsoner()
     var onSheetDisappear: () -> ()
     
@@ -39,7 +40,29 @@ struct UseToyTile: View {
     let ALL_TOYS: [ToyType] = ToyType.allCases.map { return $0 }.filter { return $0 != .unknown   }
     
     
-
+    func explicitClearNotification() {
+        if let nid = KittyPlistManager.getNotificationToken()  {
+            networkState = .loading
+            network.deleteOldNotification(id: nid, with: "adopted") { (result) in
+                DispatchQueue.main.async {
+                   
+                    switch result {
+                    case .success(_):
+                        networkState = .success
+                        store.toys = []
+                        KittyPlistManager.removeNotificationToken()
+                        shouldShowAlertNoMoreNotifications.toggle()
+                        
+                    default:
+                        networkState = .failed
+                        shouldShowAlertNoMoreNotifications.toggle()
+                         
+                    }
+                }
+                
+            }
+        }
+    }
 
     var body: some View {
         VStack{
@@ -63,27 +86,7 @@ struct UseToyTile: View {
             List {
                 Section {
                     KMKLongPressYellow(onLongPress: {
-                        if let nid = KittyPlistManager.getNotificationToken()  {
-                            networkState = .loading
-                            network.deleteOldNotification(id: nid, with: "adopted") { (result) in
-                                DispatchQueue.main.async {
-                                   
-                                    switch result {
-                                    case .success(_):
-                                        networkState = .success
-                                        store.toys = []
-                                        KittyPlistManager.removeNotificationToken()
-                                        shouldShowAlertNoMoreNotifications.toggle()
-                                        
-                                    default:
-                                        networkState = .failed
-                                        shouldShowAlertNoMoreNotifications.toggle()
-                                         
-                                    }
-                                }
-                                
-                            }
-                        }
+                       explicitClearNotification()
                     })
                     .listRowBackground(Color("suggesting-yellow").opacity(0.25))
                     .alert(isPresented: $shouldShowAlertNoMoreNotifications) {

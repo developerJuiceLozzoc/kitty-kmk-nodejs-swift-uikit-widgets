@@ -16,11 +16,29 @@ struct FoodBowlTile: View {
 
     let tilewidth = UIScreen.main.bounds.size.width / 2 - 25
     
+    func imageForPercent() -> Image {
+        if CGFloat(self.store.foodbowl) > 80.0 * 0.75 {
+          return Image("pizza-100")
+        } else if CGFloat(self.store.foodbowl) > 80.0 * 0.50 {
+            return Image("pizza-75")
+        } else if CGFloat(self.store.foodbowl) > 80.0 * 0.25 {
+            return Image("pizza-50")
+        } else {
+            return Image("pizza-25")
+        }
+    }
+    
     var body: some View {
        
         VStack{
             ZStack {
-                Text("\(Int(CGFloat(self.store.foodbowl)/CGFloat(MAX_VOLUME)*100))% Left")
+                VStack{
+                    Text("Food Bowl")
+                    imageForPercent()
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50)
+                }
                 Circle()
                     .trim(from: 0, to: CGFloat(self.store.foodbowl) / CGFloat(MAX_VOLUME))
                     .stroke(Color.blue)

@@ -33,7 +33,7 @@ struct KMKLongPressYellow: View {
                                  
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .foregroundColor(isDetectingLongPress ? Color("form-label-colorf") : Color.black)
+        .foregroundColor(isDetectingLongPress ? Color("form-label-color") : Color.black)
         .background(isDetectingLongPress ? Color("suggesting-yellow") : Color.clear)
         .contentShape(Rectangle())
         .gesture(longPress)

@@ -60,7 +60,6 @@ class ListKittiesSwiftUI: UIViewController {
             ds.sectionTitleDataSource.append(breedname)
             ds.contentDataSource.append(breeddict[breedname]!)
         }
-        print(ds)
     }
     
     override func viewDidLoad() {

@@ -17,10 +17,10 @@ class MainTabController: UITabBarController {
         tabBar.tintColor = UIColor.purple
         
         let listvc = UIStoryboard.init(name: "ListMyKitties", bundle: nil).instantiateViewController(identifier: "List_Kitties")
-        listvc.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+        listvc.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
         
         let playgroundvc = KittyPlagroundHostingController()
-        playgroundvc.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "leaf.circle"), selectedImage: UIImage(systemName: "leaf.circle.fill"))
+        playgroundvc.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house"), selectedImage: UIImage(named: "house.circle.fill"))
         
         viewControllers = [playgroundvc,listvc]
         selectedIndex = 1

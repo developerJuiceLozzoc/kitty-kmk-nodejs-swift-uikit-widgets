@@ -49,6 +49,17 @@ class WanderingKittyModel {
             toysPlayedWithHits.append(toyHitsTracked)
         }
         playground?.toys = toysPlayedWithHits
+        playground?.foodbowl -= Int.random(in: 25...50)
+        playground?.waterbowl -= Int.random(in: 25...66)
+        
+        if let water = playground?.waterbowl, let food = playground?.foodbowl {
+            if water <= 0 {
+                playground?.waterbowl = 1
+            }
+            if food <= 0 {
+                playground?.foodbowl = 1
+            }
+        }
        
         
         guard let breed = cat.first?.breeds.first, let pg = playground else { return }

@@ -8,6 +8,7 @@
 import Foundation
 
 
+
 class KittyPlistManager {
     let ItemFavoritesFilePath = "ItemFavorites.plist"
     
