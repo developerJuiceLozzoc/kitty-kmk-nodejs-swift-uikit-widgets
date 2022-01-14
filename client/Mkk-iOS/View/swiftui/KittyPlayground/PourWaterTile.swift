@@ -27,7 +27,9 @@ struct PourWaterTile: View {
     let dumpingThreshold: Double = 50
     let tilewidth = UIScreen.main.bounds.size.width / 2 - 25
     let maxLiters = 100
+    let tileToWaterBowlModifier: CGFloat = 1.5
     static let tileHeight: CGFloat = 300
+    
 
     func fillWater() {
         DispatchQueue.main.async {
@@ -52,24 +54,70 @@ struct PourWaterTile: View {
         }
         
     }
+    func renderSpriteUsingState() -> some View {
+        let image = Image("WaterGallon")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 48, height: 48)
+        
+        switch self.currentPourState {
+        case .idle:
+            return image
+                .transformEffect(CGAffineTransform(rotationAngle: 0))
+                .transformEffect(CGAffineTransform(translationX: 0, y: 0))
+
+        case .pouring:
+            return image
+                .transformEffect(CGAffineTransform(rotationAngle: -3.14/1.25))
+                .transformEffect(CGAffineTransform(translationX: 20, y: 50))
+
+        case .transition:
+            return image
+                .transformEffect(CGAffineTransform(rotationAngle: -3.14/1.75))
+                .transformEffect(CGAffineTransform(translationX: 20, y: 50))
+        case .overflowing:
+            return image
+                .transformEffect(CGAffineTransform(rotationAngle: -3.14))
+                .transformEffect(CGAffineTransform(translationX: 50, y: 48))
+
+        }
+    }
     
     var body: some View {
        
         VStack{
-            Text("WaterBowl")
+            Text("Water Bowl")
             if self.store.waterbowl > 100 {
                 Text("Ooops you spilled water everywhere")
                     .font(.caption)
                     .lineLimit(2)
             }
+            renderSpriteUsingState()
    
             Spacer()
-            if self.store.waterbowl > 0 {
+            ZStack {
                 RoundedRectangle(cornerRadius: 4)
-                    .foregroundColor(.blue)
-                    .frame(width: tilewidth, height: PourWaterTile.tileHeight / 1.33 * CGFloat(self.store.waterbowl)/CGFloat(maxLiters))
-                    .animation(.default,value: self.store.waterbowl)
+                    .stroke(lineWidth: 2)
+                    .frame(width: tilewidth - 20, height: PourWaterTile.tileHeight / tileToWaterBowlModifier)
+                    
+                
+                VStack {
+                    Spacer()
+                    if self.store.waterbowl > 0 {
+                        RoundedRectangle(cornerRadius: 4)
+                            .foregroundColor(currentPourState == .idle ? .blue : Color("water"))
+                            .frame(width: tilewidth - 20, height: PourWaterTile.tileHeight / tileToWaterBowlModifier * CGFloat(self.store.waterbowl)/CGFloat(maxLiters))
+
+                            .animation(.default,value: self.store.waterbowl)
+                    }
+                }
+
+               
             }
+            .frame(width: tilewidth - 20, height: PourWaterTile.tileHeight / tileToWaterBowlModifier)
+            .padding(.bottom,10)
+
+            
             
         }
         .frame( width: tilewidth, height: PourWaterTile.tileHeight)
@@ -95,7 +143,7 @@ struct PourWaterTile: View {
                     currentPourState = .transition
                     return
                 } else if dragvelocity > 0 && taptranslation > 0 {
-                    if taptranslation > 8 && currentPourState != .pouring {
+                    if taptranslation > 15 && currentPourState != .pouring {
                         currentPourState = .pouring
                         fillWater()
                     }
@@ -158,7 +206,7 @@ struct TwoFingerDragDownWrapper: UIViewRepresentable {
 }
 
 struct PourWaterTile_Previews: PreviewProvider {
-    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 20)])
+    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 100, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 20)])
 
     static var previews: some View {
         HStack(spacing: 21){

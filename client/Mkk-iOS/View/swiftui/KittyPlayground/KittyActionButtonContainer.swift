@@ -108,7 +108,6 @@ struct KittyActionButtonContainer: View {
                 }
             }
             .onDisappear {
-                print("ONSDIAPSOIFDJSL:SDKFN")
                 if ds != reference {
                     if model.SaveItemFavorites(items: ds) {
                         reference = ds

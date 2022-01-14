@@ -16,7 +16,7 @@ class MainTabController: UITabBarController {
         
         tabBar.tintColor = UIColor.purple
         
-        let listvc = UIStoryboard.init(name: "ListMyKitties", bundle: nil).instantiateViewController(identifier: "List_Kitties")
+        let listvc = ListKittiesHostingController()
         listvc.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
         
         let playgroundvc = KittyPlagroundHostingController()

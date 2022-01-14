@@ -23,32 +23,15 @@ class UnownedKittyInPlayground: Object, Identifiable {
     let toysInteracted = List<Int>()
 }
 
-class KittyRealm: Object {
+class KittyRealm: Object, Identifiable {
     @objc dynamic var uid:String = UUID().uuidString
     @objc dynamic var birthday: Double = Date().timeIntervalSince1970
+    @objc dynamic var dateLastAccessed: Double = -1
     @objc dynamic var name: String = ""
     @objc dynamic var photoLink: KPhotoRealm?
     @objc dynamic var statsLink: KStatsRealm?
     let toysInteracted = List<Int>()
 }
-
-/*javascript redux action creator similar
-
-func createKittyActionCreator(kitty) {
-    return {
-        type,
-        value: {
-            @objc dynamic var uid:String = UUID().uuidString
-            @objc dynamic var birthday: Double = Date().timeIntervalSince1970
-            @objc dynamic var name: String = ""
-            @objc dynamic var photoLink: KPhotoRealm?
-            @objc dynamic var statsLink: KStatsRealm?
-
-        }
-    }
-}
- */
-
 
 class KStatsRealm: Object {
     @objc dynamic  var breedid: String = ""

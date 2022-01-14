@@ -114,9 +114,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         for _ in 0..<Int.random(in: 1...3) {
             breeds.append(KITTY_BREEDS.randomElement() ?? "ycho")
         }
-        
+            
         wkm.retrieveAndStoreKitties(with: breeds)
-
+    
         DispatchQueue.main.async {
             getRootTabController()?.selectedIndex = 0
         }

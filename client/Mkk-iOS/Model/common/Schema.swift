@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct KittyPlaygroundState: Equatable {
+    var foodbowl: Int
+    var waterbowl: Int
+    var toys: [ToyItemUsed]
+}
+
 struct ZeusFeatureToggles: Codable {
     var instantPushKitty: Bool
 }

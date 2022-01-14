@@ -16,15 +16,16 @@ struct FoodBowlTile: View {
 
     let tilewidth = UIScreen.main.bounds.size.width / 2 - 25
     
-    func imageForPercent() -> Image {
+    
+    func calculateFoodLevel() -> Int {
         if CGFloat(self.store.foodbowl) > 80.0 * 0.75 {
-          return Image("pizza-100")
+          return 3
         } else if CGFloat(self.store.foodbowl) > 80.0 * 0.50 {
-            return Image("pizza-75")
+            return 2
         } else if CGFloat(self.store.foodbowl) > 80.0 * 0.25 {
-            return Image("pizza-50")
+            return 1
         } else {
-            return Image("pizza-25")
+            return 0
         }
     }
     
@@ -34,10 +35,7 @@ struct FoodBowlTile: View {
             ZStack {
                 VStack{
                     Text("Food Bowl")
-                    imageForPercent()
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50)
+                    FoodLevelIndicator(lvl: self.calculateFoodLevel())
                 }
                 Circle()
                     .trim(from: 0, to: CGFloat(self.store.foodbowl) / CGFloat(MAX_VOLUME))
@@ -150,7 +148,7 @@ struct ScrubbingGestureWrapper: UIViewRepresentable {
 }
 
 struct FoodBowl_Previews: PreviewProvider {
-    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 50)])
+    @State static var value = KittyPlaygroundState(foodbowl: 0, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 50)])
 
     static var previews: some View {
         FoodBowlTile(store: $value)

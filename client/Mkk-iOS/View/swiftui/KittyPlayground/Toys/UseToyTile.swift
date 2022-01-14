@@ -33,6 +33,7 @@ struct UseToyTile: View {
     @State var networkState = NetworkState.idle
     @State var alert = AlertText(title: "", message: "")
     @State var helppop = false
+    @State var containsNotification: Bool = false
     var network: KittyJsoner = KittyJsoner()
     var onSheetDisappear: () -> ()
     
@@ -81,29 +82,31 @@ struct UseToyTile: View {
         .sheet(isPresented: $showToyMenu, onDismiss: onSheetDisappear) {
             let colums: [GridItem] = Array.init(repeating: .init(.fixed((UIScreen.main.bounds.width-10)/3)), count: 3)
             
-            Text("")
-                .padding(.top,40)
+
             List {
-                Section {
-                    KMKLongPressYellow(onLongPress: {
-                       explicitClearNotification()
-                    })
-                    .listRowBackground(Color("suggesting-yellow").opacity(0.25))
-                    .alert(isPresented: $shouldShowAlertNoMoreNotifications) {
-                        switch networkState {
-                        case .success:
-                            return KMKSwiftUIStyles.i.renderAlertForType(type: .removeNotifSuccess)
-                        default:
-                            return KMKSwiftUIStyles.i.renderAlertForType(type: .removeNotifFailureForeground)
+                if store.toys.count > 0 && containsNotification{
+                    Section {
+                        KMKLongPressYellow(onLongPress: {
+                           explicitClearNotification()
+                        })
+                        .listRowBackground(Color("suggesting-yellow").opacity(0.25))
+                        .alert(isPresented: $shouldShowAlertNoMoreNotifications) {
+                            switch networkState {
+                            case .success:
+                                return KMKSwiftUIStyles.i.renderAlertForType(type: .removeNotifSuccess)
+                            default:
+                                return KMKSwiftUIStyles.i.renderAlertForType(type: .removeNotifFailureForeground)
+                            }
                         }
+                        if networkState == .loading {
+                            Text("Loading... Please wait")
+                        }
+                        
+                    } header: {
+                        KMKSwiftUIStyles.i.renderSectionHeader(with: "Clean up toys from area")
                     }
-                    if networkState == .loading {
-                        Text("Loading... Please wait")
-                    }
-                    
-                } header: {
-                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Clean up toys from area")
                 }
+                
                 Section {
                     ForEach(store.toys, id: \.self) {
                         ToyItumListView(ds: $0 )
@@ -113,6 +116,8 @@ struct UseToyTile: View {
                 }
                 
                 
+            }.onAppear {
+                containsNotification = KittyPlistManager.getNotificationToken() != nil
             }
             
             LazyVGrid(columns: colums) {

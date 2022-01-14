@@ -11,10 +11,6 @@
 		88D8603C82A44D3C53BFEDE1 /* Pods_Mkk_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */; };
 		B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51784CA25D874E7004472DB /* NotificationObjects.swift */; };
 		B521F34A2618DA7400E7A87D /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F3492618DA7400E7A87D /* CoreData.swift */; };
-		B521F34E2618E49900E7A87D /* KitttyDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F34D2618E49900E7A87D /* KitttyDetails.swift */; };
-		B521F3542618E5A500E7A87D /* AdoptedKittyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F3522618E5A500E7A87D /* AdoptedKittyCell.swift */; };
-		B521F3552618E5A500E7A87D /* AdoptedKittyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B521F3532618E5A500E7A87D /* AdoptedKittyCell.xib */; };
-		B521F35B2618EAF900E7A87D /* ScheduleKitty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521F35A2618EAF900E7A87D /* ScheduleKitty.swift */; };
 		B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544121A25EFD7B900C0D629 /* Netowrk.swift */; };
 		B54651A426F6A85400A16F38 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54651A326F6A85400A16F38 /* WidgetKit.framework */; };
 		B54651A626F6A85400A16F38 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54651A526F6A85400A16F38 /* SwiftUI.framework */; };
@@ -32,21 +28,9 @@
 		B5472924274B30FE005DCF8A /* KittyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472923274B30FE005DCF8A /* KittyDetailsView.swift */; };
 		B5472926274B4D56005DCF8A /* KittieDetailsSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472925274B4D56005DCF8A /* KittieDetailsSwiftUI.swift */; };
 		B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */; };
-		B57427F22618262700532B21 /* KittyStatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57427F02618262700532B21 /* KittyStatCell.swift */; };
-		B57427F32618262700532B21 /* KittyStatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57427F12618262700532B21 /* KittyStatCell.xib */; };
-		B57427F82618264A00532B21 /* KittyAdoptCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57427F62618264900532B21 /* KittyAdoptCollectionCell.swift */; };
-		B57427F92618264A00532B21 /* KittyAdoptCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57427F72618264900532B21 /* KittyAdoptCollectionCell.xib */; };
 		B57427FD2618AA3200532B21 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57427FC2618AA3200532B21 /* NetworkTests.swift */; };
 		B57428032618AC3A00532B21 /* MockNetwork.json in Resources */ = {isa = PBXBuildFile; fileRef = B57428022618AC3A00532B21 /* MockNetwork.json */; };
 		B57428062618B28B00532B21 /* MockNetwork.json in Resources */ = {isa = PBXBuildFile; fileRef = B57428022618AC3A00532B21 /* MockNetwork.json */; };
-		B574280B2618BC5800532B21 /* KittyNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57428092618BC5800532B21 /* KittyNameCell.swift */; };
-		B574280C2618BC5800532B21 /* KittyNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B574280A2618BC5800532B21 /* KittyNameCell.xib */; };
-		B57428112618BC6F00532B21 /* KittyConfirmBtnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574280F2618BC6F00532B21 /* KittyConfirmBtnCell.swift */; };
-		B57428122618BC6F00532B21 /* KittyConfirmBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57428102618BC6F00532B21 /* KittyConfirmBtnCell.xib */; };
-		B574281A2618C20E00532B21 /* SelfieClickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57428182618C20E00532B21 /* SelfieClickCell.swift */; };
-		B574281B2618C20E00532B21 /* SelfieClickCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57428192618C20E00532B21 /* SelfieClickCell.xib */; };
-		B57512AF261A3CBB00527CD5 /* TemperamentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57512AD261A3CBB00527CD5 /* TemperamentCell.swift */; };
-		B57512B0261A3CBB00527CD5 /* TemperamentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57512AE261A3CBB00527CD5 /* TemperamentCell.xib */; };
 		B57512B4261A77AA00527CD5 /* SurveyCacheViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57512B3261A77AA00527CD5 /* SurveyCacheViewModel.swift */; };
 		B57512B8261A79FC00527CD5 /* SurveysCollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57512B7261A79FC00527CD5 /* SurveysCollectionVIew.swift */; };
 		B57512BE261A7A1400527CD5 /* sample_survey.json in Resources */ = {isa = PBXBuildFile; fileRef = B57512BD261A7A1400527CD5 /* sample_survey.json */; };
@@ -72,11 +56,8 @@
 		B5B54C8C2617A34700B18377 /* GameSurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */; };
 		B5B54C902617A64100B18377 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C8F2617A64100B18377 /* Protocols.swift */; };
 		B5B54C932617A66100B18377 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C8F2617A64100B18377 /* Protocols.swift */; };
-		B5B54CA02617C6AC00B18377 /* ListMyKitties.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B54C9F2617C6AC00B18377 /* ListMyKitties.storyboard */; };
 		B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CA52617C6BF00B18377 /* Model.xcdatamodeld */; };
-		B5B54CD92617D4DA00B18377 /* ListKittiesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */; };
 		B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54CE52617F9E600B18377 /* KITTY_API_CONFIG.swift */; };
-		B5C8D15F2618151600C77525 /* SaveOrDiscardKittyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C8D15E2618151600C77525 /* SaveOrDiscardKittyTVC.swift */; };
 		B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */; };
 		B5CBA52C25FA944F00621682 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52B25FA944F00621682 /* Schema.swift */; };
 		B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9458225E49E52005C6DC6 /* KMKFonts.swift */; };
@@ -87,7 +68,6 @@
 		B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7A63025D6F7520076F12C /* SceneDelegate.swift */; };
 		B5E7A63825D6F7540076F12C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63725D6F7540076F12C /* Assets.xcassets */; };
 		B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */; };
-		B5F43179274990B4008DAE78 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F43178274990B4008DAE78 /* ListKittiesHostingController.swift */; };
 		B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4317B27499289008DAE78 /* ListKittiesView.swift */; };
 		C6082C0327810D420005D81F /* WhileYouWereAwayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */; };
 		C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */; };
@@ -99,10 +79,12 @@
 		C6202D33277B949C003F4D32 /* ActionButtonViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D32277B949C003F4D32 /* ActionButtonViewControllerTests.swift */; };
 		C6202D35277B99C2003F4D32 /* PlaygroundState.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6202D34277B99C2003F4D32 /* PlaygroundState.plist */; };
 		C6202D37277BA053003F4D32 /* KittyPlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D36277BA053003F4D32 /* KittyPlistManager.swift */; };
+		C678C6582790C68200078926 /* FoodLevelIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678C6572790C68200078926 /* FoodLevelIndicator.swift */; };
 		C695B6322761515200FB00F7 /* ScheduleKittyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C695B6312761515200FB00F7 /* ScheduleKittyView.swift */; };
 		C69EDAFA278A364300FE619E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAF9278A364300FE619E /* Date.swift */; };
 		C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAFB278A486300FE619E /* KMKButtons.swift */; };
 		C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */; };
+		C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */; };
 		C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */; };
 		C6FB3E602780C3AF0010C076 /* WanderingKittyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */; };
 /* End PBXBuildFile section */
@@ -123,10 +105,6 @@
 		B2381C6BCA850B28816BCB03 /* Pods-Mkk-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOS.release.xcconfig"; path = "Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B51784CA25D874E7004472DB /* NotificationObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObjects.swift; sourceTree = "<group>"; };
 		B521F3492618DA7400E7A87D /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		B521F34D2618E49900E7A87D /* KitttyDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitttyDetails.swift; sourceTree = "<group>"; };
-		B521F3522618E5A500E7A87D /* AdoptedKittyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptedKittyCell.swift; sourceTree = "<group>"; };
-		B521F3532618E5A500E7A87D /* AdoptedKittyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdoptedKittyCell.xib; sourceTree = "<group>"; };
-		B521F35A2618EAF900E7A87D /* ScheduleKitty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleKitty.swift; sourceTree = "<group>"; };
 		B544121A25EFD7B900C0D629 /* Netowrk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netowrk.swift; sourceTree = "<group>"; };
 		B54651A226F6A85400A16F38 /* SavedDataInfotainmentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SavedDataInfotainmentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54651A326F6A85400A16F38 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -143,20 +121,8 @@
 		B5472923274B30FE005DCF8A /* KittyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyDetailsView.swift; sourceTree = "<group>"; };
 		B5472925274B4D56005DCF8A /* KittieDetailsSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittieDetailsSwiftUI.swift; sourceTree = "<group>"; };
 		B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
-		B57427F02618262700532B21 /* KittyStatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyStatCell.swift; sourceTree = "<group>"; };
-		B57427F12618262700532B21 /* KittyStatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyStatCell.xib; sourceTree = "<group>"; };
-		B57427F62618264900532B21 /* KittyAdoptCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyAdoptCollectionCell.swift; sourceTree = "<group>"; };
-		B57427F72618264900532B21 /* KittyAdoptCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyAdoptCollectionCell.xib; sourceTree = "<group>"; };
 		B57427FC2618AA3200532B21 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		B57428022618AC3A00532B21 /* MockNetwork.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockNetwork.json; sourceTree = "<group>"; };
-		B57428092618BC5800532B21 /* KittyNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyNameCell.swift; sourceTree = "<group>"; };
-		B574280A2618BC5800532B21 /* KittyNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyNameCell.xib; sourceTree = "<group>"; };
-		B574280F2618BC6F00532B21 /* KittyConfirmBtnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyConfirmBtnCell.swift; sourceTree = "<group>"; };
-		B57428102618BC6F00532B21 /* KittyConfirmBtnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KittyConfirmBtnCell.xib; sourceTree = "<group>"; };
-		B57428182618C20E00532B21 /* SelfieClickCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieClickCell.swift; sourceTree = "<group>"; };
-		B57428192618C20E00532B21 /* SelfieClickCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelfieClickCell.xib; sourceTree = "<group>"; };
-		B57512AD261A3CBB00527CD5 /* TemperamentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperamentCell.swift; sourceTree = "<group>"; };
-		B57512AE261A3CBB00527CD5 /* TemperamentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemperamentCell.xib; sourceTree = "<group>"; };
 		B57512B3261A77AA00527CD5 /* SurveyCacheViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCacheViewModel.swift; sourceTree = "<group>"; };
 		B57512B7261A79FC00527CD5 /* SurveysCollectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveysCollectionVIew.swift; sourceTree = "<group>"; };
 		B57512BD261A7A1400527CD5 /* sample_survey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sample_survey.json; sourceTree = "<group>"; };
@@ -173,12 +139,9 @@
 		B5B54C702617A11D00B18377 /* VoteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModelTests.swift; sourceTree = "<group>"; };
 		B5B54C722617A11D00B18377 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B54C8F2617A64100B18377 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		B5B54C9F2617C6AC00B18377 /* ListMyKitties.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListMyKitties.storyboard; sourceTree = "<group>"; };
 		B5B54CA62617C6BF00B18377 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B5B54CD22617CF4600B18377 /* Mkk-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mkk-iOS.entitlements"; sourceTree = "<group>"; };
-		B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesTVC.swift; sourceTree = "<group>"; };
 		B5B54CE52617F9E600B18377 /* KITTY_API_CONFIG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KITTY_API_CONFIG.swift; sourceTree = "<group>"; };
-		B5C8D15E2618151600C77525 /* SaveOrDiscardKittyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrDiscardKittyTVC.swift; sourceTree = "<group>"; };
 		B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		B5CBA52825FA93B500621682 /* StatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsModel.swift; sourceTree = "<group>"; };
 		B5CBA52B25FA944F00621682 /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
@@ -192,7 +155,6 @@
 		B5E7A63725D6F7540076F12C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5E7A63A25D6F7540076F12C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5E7A63C25D6F7540076F12C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5F43178274990B4008DAE78 /* ListKittiesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesHostingController.swift; sourceTree = "<group>"; };
 		B5F4317B27499289008DAE78 /* ListKittiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesView.swift; sourceTree = "<group>"; };
 		B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mkk_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,10 +168,12 @@
 		C6202D32277B949C003F4D32 /* ActionButtonViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonViewControllerTests.swift; sourceTree = "<group>"; };
 		C6202D34277B99C2003F4D32 /* PlaygroundState.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PlaygroundState.plist; sourceTree = "<group>"; };
 		C6202D36277BA053003F4D32 /* KittyPlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyPlistManager.swift; sourceTree = "<group>"; };
+		C678C6572790C68200078926 /* FoodLevelIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLevelIndicator.swift; sourceTree = "<group>"; };
 		C695B6312761515200FB00F7 /* ScheduleKittyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleKittyView.swift; sourceTree = "<group>"; };
 		C69EDAF9278A364300FE619E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C69EDAFB278A486300FE619E /* KMKButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKButtons.swift; sourceTree = "<group>"; };
 		C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyItumListView.swift; sourceTree = "<group>"; };
+		C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesHostingController.swift; sourceTree = "<group>"; };
 		C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKImagePicker.swift; sourceTree = "<group>"; };
 		C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyModel.swift; sourceTree = "<group>"; };
 		E04F2B701C1D71ABD1013919 /* Pods-Mkk-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOSTests/Pods-Mkk-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,21 +217,6 @@
 				B54651A526F6A85400A16F38 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B521F3512618E57B00E7A87D /* NewKittyForm */ = {
-			isa = PBXGroup;
-			children = (
-				B57427F02618262700532B21 /* KittyStatCell.swift */,
-				B57427F12618262700532B21 /* KittyStatCell.xib */,
-				B57428092618BC5800532B21 /* KittyNameCell.swift */,
-				B574280A2618BC5800532B21 /* KittyNameCell.xib */,
-				B574280F2618BC6F00532B21 /* KittyConfirmBtnCell.swift */,
-				B57428102618BC6F00532B21 /* KittyConfirmBtnCell.xib */,
-				B57512AD261A3CBB00527CD5 /* TemperamentCell.swift */,
-				B57512AE261A3CBB00527CD5 /* TemperamentCell.xib */,
-			);
-			path = NewKittyForm;
 			sourceTree = "<group>";
 		};
 		B546519D26F02FA400A16F38 /* common */ = {
@@ -326,28 +275,6 @@
 			children = (
 			);
 			path = viewmodel;
-			sourceTree = "<group>";
-		};
-		B57427EF2618260100532B21 /* cells */ = {
-			isa = PBXGroup;
-			children = (
-				B521F3512618E57B00E7A87D /* NewKittyForm */,
-				B57428152618BCE400532B21 /* KittyGrid */,
-				B521F3522618E5A500E7A87D /* AdoptedKittyCell.swift */,
-				B521F3532618E5A500E7A87D /* AdoptedKittyCell.xib */,
-			);
-			path = cells;
-			sourceTree = "<group>";
-		};
-		B57428152618BCE400532B21 /* KittyGrid */ = {
-			isa = PBXGroup;
-			children = (
-				B57427F62618264900532B21 /* KittyAdoptCollectionCell.swift */,
-				B57427F72618264900532B21 /* KittyAdoptCollectionCell.xib */,
-				B57428182618C20E00532B21 /* SelfieClickCell.swift */,
-				B57428192618C20E00532B21 /* SelfieClickCell.xib */,
-			);
-			path = KittyGrid;
 			sourceTree = "<group>";
 		};
 		B577223325D89FAA0024BA72 /* Extensions */ = {
@@ -409,19 +336,6 @@
 				B57512BD261A7A1400527CD5 /* sample_survey.json */,
 			);
 			path = "Mkk-iOSTests";
-			sourceTree = "<group>";
-		};
-		B5B54CD72617D44900B18377 /* ListKittiesUIKit */ = {
-			isa = PBXGroup;
-			children = (
-				B5F43178274990B4008DAE78 /* ListKittiesHostingController.swift */,
-				B57427EF2618260100532B21 /* cells */,
-				B5B54CD82617D4DA00B18377 /* ListKittiesTVC.swift */,
-				B5C8D15E2618151600C77525 /* SaveOrDiscardKittyTVC.swift */,
-				B521F34D2618E49900E7A87D /* KitttyDetails.swift */,
-				B521F35A2618EAF900E7A87D /* ScheduleKitty.swift */,
-			);
-			path = ListKittiesUIKit;
 			sourceTree = "<group>";
 		};
 		B5E7A62225D6F7520076F12C = {
@@ -489,10 +403,10 @@
 		B5E7A64725D6F9AD0076F12C /* vc */ = {
 			isa = PBXGroup;
 			children = (
-				B5B54CD72617D44900B18377 /* ListKittiesUIKit */,
 				B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */,
 				B5472925274B4D56005DCF8A /* KittieDetailsSwiftUI.swift */,
 				C6202D2F277B82B4003F4D32 /* KittyPlagroundHostingController.swift */,
+				C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */,
 			);
 			path = vc;
 			sourceTree = "<group>";
@@ -501,7 +415,6 @@
 			isa = PBXGroup;
 			children = (
 				B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */,
-				B5B54C9F2617C6AC00B18377 /* ListMyKitties.storyboard */,
 			);
 			path = boards;
 			sourceTree = "<group>";
@@ -522,12 +435,11 @@
 		C6202D22277AA5E7003F4D32 /* KittyPlayground */ = {
 			isa = PBXGroup;
 			children = (
+				C678C6592790EA6B00078926 /* Toys */,
+				C678C6562790C64800078926 /* FoodBowl */,
 				C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */,
 				C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */,
-				C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */,
-				C6202D2B277AB19F003F4D32 /* UseToyTile.swift */,
 				C6202D2D277AB2A0003F4D32 /* HintWrapper.swift */,
-				C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */,
 				C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */,
 			);
 			path = KittyPlayground;
@@ -539,6 +451,24 @@
 				C6202D32277B949C003F4D32 /* ActionButtonViewControllerTests.swift */,
 			);
 			path = KittyPlayground;
+			sourceTree = "<group>";
+		};
+		C678C6562790C64800078926 /* FoodBowl */ = {
+			isa = PBXGroup;
+			children = (
+				C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */,
+				C678C6572790C68200078926 /* FoodLevelIndicator.swift */,
+			);
+			path = FoodBowl;
+			sourceTree = "<group>";
+		};
+		C678C6592790EA6B00078926 /* Toys */ = {
+			isa = PBXGroup;
+			children = (
+				C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */,
+				C6202D2B277AB19F003F4D32 /* UseToyTile.swift */,
+			);
+			path = Toys;
 			sourceTree = "<group>";
 		};
 		C6FB3E5C277F83090010C076 /* ConfirmOrDiscardKitty */ = {
@@ -683,18 +613,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5DBA93B27418FC50075A45D /* GoogleService-Info.plist in Resources */,
-				B574280C2618BC5800532B21 /* KittyNameCell.xib in Resources */,
-				B57427F32618262700532B21 /* KittyStatCell.xib in Resources */,
 				B5A46C3B262518BF00F9E154 /* breeds.json in Resources */,
-				B57428122618BC6F00532B21 /* KittyConfirmBtnCell.xib in Resources */,
-				B574281B2618C20E00532B21 /* SelfieClickCell.xib in Resources */,
-				B521F3552618E5A500E7A87D /* AdoptedKittyCell.xib in Resources */,
-				B57512B0261A3CBB00527CD5 /* TemperamentCell.xib in Resources */,
-				B5B54CA02617C6AC00B18377 /* ListMyKitties.storyboard in Resources */,
 				B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */,
 				B57428062618B28B00532B21 /* MockNetwork.json in Resources */,
 				B5E7A63825D6F7540076F12C /* Assets.xcassets in Resources */,
-				B57427F92618264A00532B21 /* KittyAdoptCollectionCell.xib in Resources */,
 				C6202D35277B99C2003F4D32 /* PlaygroundState.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -802,30 +724,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5F43179274990B4008DAE78 /* ListKittiesHostingController.swift in Sources */,
-				B574281A2618C20E00532B21 /* SelfieClickCell.swift in Sources */,
 				B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */,
 				C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */,
 				B5DBA93F2741B7CB0075A45D /* LoadingButton.swift in Sources */,
 				C69EDAFA278A364300FE619E /* Date.swift in Sources */,
 				B547291E274A949A005DCF8A /* SaveOrDiscardHostingController.swift in Sources */,
 				B54651AF26F6A85600A16F38 /* SavedDataInfotainment.intentdefinition in Sources */,
-				B57427F22618262700532B21 /* KittyStatCell.swift in Sources */,
 				B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */,
 				B521F34A2618DA7400E7A87D /* CoreData.swift in Sources */,
-				B57428112618BC6F00532B21 /* KittyConfirmBtnCell.swift in Sources */,
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
-				B574280B2618BC5800532B21 /* KittyNameCell.swift in Sources */,
 				B5472926274B4D56005DCF8A /* KittieDetailsSwiftUI.swift in Sources */,
-				B521F35B2618EAF900E7A87D /* ScheduleKitty.swift in Sources */,
 				C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
 				C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */,
 				C6202D37277BA053003F4D32 /* KittyPlistManager.swift in Sources */,
 				C6082C0327810D420005D81F /* WhileYouWereAwayAlert.swift in Sources */,
-				B5B54CD92617D4DA00B18377 /* ListKittiesTVC.swift in Sources */,
 				C6202D2C277AB19F003F4D32 /* UseToyTile.swift in Sources */,
-				B521F3542618E5A500E7A87D /* AdoptedKittyCell.swift in Sources */,
 				B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */,
 				B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */,
 				C6202D2E277AB2A0003F4D32 /* HintWrapper.swift in Sources */,
@@ -836,25 +750,23 @@
 				B57512C7261A7CF700527CD5 /* StatsModel.swift in Sources */,
 				B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */,
 				B5472924274B30FE005DCF8A /* KittyDetailsView.swift in Sources */,
+				C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */,
 				B5472922274AA91A005DCF8A /* KMKSwiftUIStyles.swift in Sources */,
 				B5DBA93D2741AF9B0075A45D /* ZeusToggles.swift in Sources */,
 				C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */,
-				B5C8D15F2618151600C77525 /* SaveOrDiscardKittyTVC.swift in Sources */,
 				B5A46C0D26250AB000F9E154 /* RealmCrud.swift in Sources */,
 				B5B54C4D2616183C00B18377 /* EmptySegue.swift in Sources */,
 				B54651D626F7E14300A16F38 /* ProgressBar.swift in Sources */,
 				B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */,
 				B5A46C0926250A6E00F9E154 /* RealmModel.swift in Sources */,
-				B57427F82618264A00532B21 /* KittyAdoptCollectionCell.swift in Sources */,
 				B577223625D89FC90024BA72 /* BossConstrains.swift in Sources */,
 				B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */,
 				C6202D30277B82B4003F4D32 /* KittyPlagroundHostingController.swift in Sources */,
-				B521F34E2618E49900E7A87D /* KitttyDetails.swift in Sources */,
+				C678C6582790C68200078926 /* FoodLevelIndicator.swift in Sources */,
 				B59BBF3025D8509500A059C4 /* Strings.swift in Sources */,
 				B5CBA52C25FA944F00621682 /* Schema.swift in Sources */,
 				C695B6322761515200FB00F7 /* ScheduleKittyView.swift in Sources */,
 				B54651D026F78C6900A16F38 /* JumbotronLayout.swift in Sources */,
-				B57512AF261A3CBB00527CD5 /* TemperamentCell.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
 				B5472920274AA0ED005DCF8A /* ConfirmOrDiscardView.swift in Sources */,
 				C6FB3E602780C3AF0010C076 /* WanderingKittyModel.swift in Sources */,

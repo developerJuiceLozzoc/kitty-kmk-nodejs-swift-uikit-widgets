@@ -209,6 +209,7 @@ struct EmojiSectionView: View {
 struct CatListRowItem: View {
     var name: String
     var body: some View {
+
         HStack {
             if #available(iOS 15.0, *) {
                  Text(name)

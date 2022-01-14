@@ -8,12 +8,6 @@
 import UIKit
 import SwiftUI
 
-struct KittyPlaygroundState: Equatable {
-    var foodbowl: Int
-    var waterbowl: Int
-    var toys: [ToyItemUsed]
-}
-
 
 class KittyPlagroundHostingController: UIViewController {
 

@@ -6,86 +6,83 @@
 //
 
 import SwiftUI
-
-let dummylist = ListKittiesDataSource(
-    content: [
-        [(name: "Name 1", id:"0")],
-        [(name: "Name 1", id:"1")],
-    [(name: "Saint Charles 3rd", id:"2"),
-     (name: "St. Vincent", id:"3"),
-     (name: "HEHEHEEHEAHAHAAHAH", id:"0")]
-    ],
-    sections: ["Breed number 1", "Breed 2", "BREEEDSUPERDUPER"])
-
+import UIKit
+import RealmSwift
 
 struct ListKittiesView: View {
-    @EnvironmentObject var ds: ListKittiesDataSource
+    @ObservedResults(KittyRealm.self, sortDescriptor:
+        SortDescriptor(keyPath: "uid", ascending: true))
+    var ownedKittiesUID
+    
+    @ObservedResults(KittyRealm.self, sortDescriptor:
+        SortDescriptor(keyPath: "dateLastAccessed", ascending: true))
+    var ownedKittiesAccessed
+    
+    @ObservedResults(KittyRealm.self, sortDescriptor:
+        SortDescriptor(keyPath: "birthday", ascending: true))
+    var ownedKittiesAdopted
+    
     @State var showTutorial = false
     var onKittyClick: ((String) -> Void)?
+    
+    func detailsViewForKitty(kitty: KittyRealm) -> KittyDetailsView {
+         let img = UIImage(data: kitty.photoLink?.img ?? Data()) ?? UIImage()
+        let kstats = kitty.statsLink ?? KStatsRealm()
+        
+        let stats = KittyBreed(fromRealm: kstats)
+        
+        return KittyDetailsView(stats: stats, pfp: img, name: kitty.name, birthday: kitty.birthday)
+    }
+    
+    
     var body: some View {
-        List {
-            Section {
-                ScrollView {
-                    List {
-                        
-                    }
-                }.frame(height: UIScreen.main.bounds.height/4)
-            } header: {
-                KMKSwiftUIStyles.i.renderSectionHeader(with: "Recently Accessed")
-            }
-            
-            Section {
-                ScrollView {
-                    List {
-                        
-                    }
-                }.frame(height: UIScreen.main.bounds.height/4)
-            } header: {
-                KMKSwiftUIStyles.i.renderSectionHeader(with: "Recently Adopted")
-            }
-            
-            ForEach(0..<ds.sectionTitleDataSource.count){ i in
-                Section(header: KMKSwiftUIStyles.i.renderSectionHeader(with:ds.sectionTitleDataSource[i])) {
-                    ForEach(0..<ds.contentDataSource[i].count) { j in
-                    CatListRowItem(name: ds.contentDataSource[i][j].name)
-                        .onTapGesture {
-                            onKittyClick?(ds.contentDataSource[i][j].id)
+        VStack {
+            List {
+                Section {
+                    ScrollView {
+                        List {
+                            ForEach(0..<(ownedKittiesAccessed.count > 10 ? 10 : ownedKittiesAccessed.count), id: \.self) { i in
+                                NavigationLink {
+                                    detailsViewForKitty(kitty: ownedKittiesAccessed[i])
+                                } label: {
+                                    Text(ownedKittiesAccessed[i].name)
+                                }
+                            }
                         }
-                        
-                    }
+                    }.frame(height: UIScreen.main.bounds.height/4)
+                } header: {
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Recently Accessed")
                 }
+                
+                Section {
+                    ScrollView {
+                        List {
+                            ForEach(0..<(ownedKittiesAdopted.count > 10 ? 10 : ownedKittiesAdopted.count), id: \.self) { i in
+                                NavigationLink {
+                                    detailsViewForKitty(kitty: ownedKittiesAdopted[i])
+                                } label: {
+                                    Text(ownedKittiesAdopted[i].name)
+                                }
+                            }
+                        }
+                    }.frame(height: UIScreen.main.bounds.height/4)
+                } header: {
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Recently Adopted")
+                }
+                Section {
+                        ForEach(0..<ownedKittiesUID.count, id: \.self) { i in
+                                NavigationLink {
+                                    detailsViewForKitty(kitty: ownedKittiesUID[i])
+                                } label: {
+                                    Text(ownedKittiesUID[i].name)
+                                }
+                    }.frame(height: UIScreen.main.bounds.height/4)
+                } header: {
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "All")
+                }
+                
             }
         }
-        .overlay(
-            VStack {
-                HStack {
-                    Spacer()
-                    Image("questionmark.circle")
-                        .resizable()
-                        
-                        .frame(width: 30, height: 30)
-                        .padding()
-                        .onTapGesture {
-                            showTutorial.toggle()
-                        }
-                }
-                Spacer()
-            }
-        )
-        .popover(isPresented: $showTutorial, content: {
-            if #available(iOS 15.0, *) {
-                ListTutorialPopup()
-                    .textSelection(.enabled)
-                    .onDisappear {
-                        ZeusToggles.shared.setHasReadListTutorial()
-                    }
-            } else {
-                ListTutorialPopup()
-                    .onDisappear {
-                        ZeusToggles.shared.setHasReadListTutorial()
-                    }
-            }
-        })
         .onAppear {
             if !ZeusToggles.shared.hasReadListTutorialCheck() {
                 showTutorial.toggle()
@@ -96,6 +93,8 @@ struct ListKittiesView: View {
 
 struct ListKittiesSwiftui_Previews: PreviewProvider {
     static var previews: some View {
-        ListKittiesView().environmentObject(dummylist)
+        ListKittiesView(onKittyClick: { id in
+            print(id)
+        })
     }
 }
