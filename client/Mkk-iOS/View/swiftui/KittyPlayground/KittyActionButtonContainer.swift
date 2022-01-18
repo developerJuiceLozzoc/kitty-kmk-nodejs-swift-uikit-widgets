@@ -32,8 +32,7 @@ struct KittyActionButtonContainer: View {
             UNUserNotificationCenter.current().requestAuthorization(
                 options: authOptions){ authorized, error in
                 if authorized {
-                    guard
-                    let DeviceToken = UserDefaults.standard.string(forKey: "FCMDeviceToken") else { return }
+                    guard let DeviceToken = UserDefaults.standard.string(forKey: "FCMDeviceToken") else { return }
                     DispatchQueue.global().async {
                         dispatchPushRegistration(with: DeviceToken)
 
@@ -52,7 +51,6 @@ struct KittyActionButtonContainer: View {
                     currentAlertType = .succRegisterForPush
                     backgroundNotificationClearDidFail.toggle()
                     if ZeusToggles.shared.toggles.instantPushKitty {
-
                         network.dispatchNotificationsImmediately { result in
                             switch result {
                             case .success( _):
@@ -106,7 +104,9 @@ struct KittyActionButtonContainer: View {
                         if !ds.toys.isEmpty &&
                                 KittyPlistManager.getNotificationToken() == nil &&
                             ZeusToggles.shared.didLoad {
-                            registerForNotifications()
+                            if model.SaveItemFavorites(items: ds){
+                                registerForNotifications()
+                            }
                         }
                     })
                 }

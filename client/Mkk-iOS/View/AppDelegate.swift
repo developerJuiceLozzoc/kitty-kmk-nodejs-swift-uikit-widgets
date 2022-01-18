@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         Messaging.messaging().delegate = self
+        application.registerForRemoteNotifications()
+
         
         KittyJsoner().fetchRemoteFeatureToggles { result in
             switch(result) {
@@ -82,9 +84,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               willPresent notification: UNNotification,
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
       let userInfo = notification.request.content.userInfo
-
-      
-//      guard userInfo["ADD_KITTY"] as? NSString != nil else {return}
       completionHandler([[.banner,.list, .sound]])
 
   }
