@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RealmSwift
+import Firebase
 
 struct KittyActionButtonContainer: View {
     @ObservedResults(UnownedKittyInPlayground.self, sortDescriptor:
@@ -23,27 +24,46 @@ struct KittyActionButtonContainer: View {
     var network: KittyJsoner = KittyJsoner()
     let realmModel = RealmCrud()
     
-    func registerForPush() {
-        guard
-            let DeviceToken = UserDefaults.standard.value(forKey: "FCMDeviceToken") as? String else { return }
-            network.postNewNotification(withDeviceName: DeviceToken) { (result) in
+    func registerForNotifications() {
+        DispatchQueue.main.async {
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            UNUserNotificationCenter.current().delegate = delegate
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions){ authorized, error in
+                if authorized {
+                    guard
+                    let DeviceToken = UserDefaults.standard.string(forKey: "FCMDeviceToken") else { return }
+                    DispatchQueue.global().async {
+                        dispatchPushRegistration(with: DeviceToken)
+
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    func dispatchPushRegistration(with token: String) {
+        
+            network.postNewNotification(withDeviceName: token) { (result) in
                 switch result {
                     case .success(_):
                     currentAlertType = .succRegisterForPush
                     backgroundNotificationClearDidFail.toggle()
                     if ZeusToggles.shared.toggles.instantPushKitty {
-                        
+
                         network.dispatchNotificationsImmediately { result in
                             switch result {
                             case .success( _):
-                                
+
                                 return
                             case .failure(let err):
                                 print(err)
                                 }
                         }
                     }
-                    case .failure(let _):
+                    case .failure(_):
                     currentAlertType = .failedRegisterForPush
                     backgroundNotificationClearDidFail.toggle()
                 }
@@ -86,7 +106,7 @@ struct KittyActionButtonContainer: View {
                         if !ds.toys.isEmpty &&
                                 KittyPlistManager.getNotificationToken() == nil &&
                             ZeusToggles.shared.didLoad {
-                            registerForPush()
+                            registerForNotifications()
                         }
                     })
                 }
@@ -135,11 +155,11 @@ struct KittyActionButtonContainer: View {
             VStack {
                 HStack {
                     Spacer()
-                    Image("questionmark.circle")
+                    Image(systemName: "questionmark.circle")
                         .resizable()
-                        
                         .frame(width: 30, height: 30)
                         .padding()
+                        .foregroundColor(Color("ultra-violet-1"))
                         .onTapGesture {
                             showTutorial.toggle()
                         }

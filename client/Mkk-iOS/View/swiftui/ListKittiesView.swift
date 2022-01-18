@@ -22,7 +22,7 @@ struct ListKittiesView: View {
         SortDescriptor(keyPath: "birthday", ascending: true))
     var ownedKittiesAdopted
     
-    @State var showTutorial = false
+    @Binding var showTutorial: Bool
     var onKittyClick: ((String) -> Void)?
     
     func detailsViewForKitty(kitty: KittyRealm) -> KittyDetailsView {
@@ -39,44 +39,41 @@ struct ListKittiesView: View {
         VStack {
             List {
                 Section {
-                    ScrollView {
-                        List {
-                            ForEach(0..<(ownedKittiesAccessed.count > 10 ? 10 : ownedKittiesAccessed.count), id: \.self) { i in
-                                NavigationLink {
-                                    detailsViewForKitty(kitty: ownedKittiesAccessed[i])
-                                } label: {
-                                    Text(ownedKittiesAccessed[i].name)
-                                }
+                    ForEach(0..<ownedKittiesAccessed.count, id: \.self) { i in
+                        if i < 7 {
+                            NavigationLink {
+                                detailsViewForKitty(kitty: ownedKittiesAccessed[i])
+                            } label: {
+                                Text(ownedKittiesAccessed[i].name)
                             }
                         }
-                    }.frame(height: UIScreen.main.bounds.height/4)
+                    }
+
                 } header: {
                     KMKSwiftUIStyles.i.renderSectionHeader(with: "Recently Accessed")
                 }
                 
                 Section {
-                    ScrollView {
-                        List {
-                            ForEach(0..<(ownedKittiesAdopted.count > 10 ? 10 : ownedKittiesAdopted.count), id: \.self) { i in
-                                NavigationLink {
-                                    detailsViewForKitty(kitty: ownedKittiesAdopted[i])
-                                } label: {
-                                    Text(ownedKittiesAdopted[i].name)
-                                }
+                    ForEach(0..<ownedKittiesAdopted.count, id: \.self) { i in
+                        if i < 7 {
+                            NavigationLink {
+                                detailsViewForKitty(kitty: ownedKittiesAdopted[i])
+                            } label: {
+                                Text(ownedKittiesAdopted[i].name)
                             }
                         }
-                    }.frame(height: UIScreen.main.bounds.height/4)
+                    }
                 } header: {
                     KMKSwiftUIStyles.i.renderSectionHeader(with: "Recently Adopted")
                 }
                 Section {
-                        ForEach(0..<ownedKittiesUID.count, id: \.self) { i in
+                    ForEach(0..<ownedKittiesUID.count, id: \.self) { i in
                                 NavigationLink {
                                     detailsViewForKitty(kitty: ownedKittiesUID[i])
                                 } label: {
                                     Text(ownedKittiesUID[i].name)
                                 }
-                    }.frame(height: UIScreen.main.bounds.height/4)
+                    }
                 } header: {
                     KMKSwiftUIStyles.i.renderSectionHeader(with: "All")
                 }
@@ -88,12 +85,30 @@ struct ListKittiesView: View {
                 showTutorial.toggle()
             }
         }
+        .navigationTitle(Text("List Of Cats"))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showTutorial.toggle()
+                }, label: {
+                    Image(systemName: "questionmark.circle")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .padding()
+                        .foregroundColor(Color("ultra-violet-1"))
+
+                })
+                
+            }
+            
+        }
     }
 }
 
 struct ListKittiesSwiftui_Previews: PreviewProvider {
+    @State static var el: Bool = false
     static var previews: some View {
-        ListKittiesView(onKittyClick: { id in
+        ListKittiesView(showTutorial: $el,onKittyClick: { id in
             print(id)
         })
     }

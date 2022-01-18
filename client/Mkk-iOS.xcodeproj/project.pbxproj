@@ -343,7 +343,6 @@
 			children = (
 				B5E7A62D25D6F7520076F12C /* Mkk-iOS */,
 				B5B54C6F2617A11D00B18377 /* Mkk-iOSTests */,
-				B54651A726F6A85400A16F38 /* SavedDataInfotainment */,
 				B5E7A62C25D6F7520076F12C /* Products */,
 				E843461F8CE973D865C722E2 /* Pods */,
 				5CD7AB02317EACA0A9753D80 /* Frameworks */,
@@ -371,6 +370,7 @@
 				B577223325D89FAA0024BA72 /* Extensions */,
 				B5E7A63C25D6F7540076F12C /* Info.plist */,
 				B5B54CE52617F9E600B18377 /* KITTY_API_CONFIG.swift */,
+				B54651A726F6A85400A16F38 /* SavedDataInfotainment */,
 			);
 			path = "Mkk-iOS";
 			sourceTree = "<group>";

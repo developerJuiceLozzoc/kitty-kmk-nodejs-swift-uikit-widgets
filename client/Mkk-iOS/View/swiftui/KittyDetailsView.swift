@@ -32,11 +32,12 @@ struct KittyDetailsView: View {
     var description: String
     var emojieSectionDetails = [RowCellDataSource]()
     var section1Details = [RowCellDataSource]()
+    let name: String
 
     init(stats: KittyBreed, pfp: UIImage, name: String, birthday: Double) {
         self.pfp = pfp
         self.description = stats.description
-        
+        self.name = name
         self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
         self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
         self.section1Details.append((name: "Adopted On", value: stats.intelligence, stringValue: doubleDateToString(from: birthday), varient: 1))
@@ -83,7 +84,8 @@ struct KittyDetailsView: View {
                 
                
             }
-        }
+        }.navigationTitle(Text(name))
+
         }
     }
 }

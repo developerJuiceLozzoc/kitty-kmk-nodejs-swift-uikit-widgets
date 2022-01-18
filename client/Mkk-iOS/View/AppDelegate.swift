@@ -32,19 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
         }
-        
-        UNUserNotificationCenter.current().delegate = self
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions){ authorized, error in
-            if authorized {
-                DispatchQueue.main.async{
-                    application.registerForRemoteNotifications()
-                }
-            }
-        }
-        // special link url here
-
         return true
     }
 

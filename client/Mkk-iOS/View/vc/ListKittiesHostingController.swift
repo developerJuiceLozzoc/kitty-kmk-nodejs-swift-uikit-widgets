@@ -12,17 +12,9 @@ struct ListKittiesWrapper: View {
     @State var shouldShowTutorial: Bool = false
     var body: some View {
         NavigationView<ListKittiesView> {
-            ListKittiesView()
-        }.toolbar {
-            Image("questionmark.circle")
-                .resizable()
-                
-                .frame(width: 30, height: 30)
-                .padding()
-                .onTapGesture {
-                    shouldShowTutorial.toggle()
-                }
+            ListKittiesView(showTutorial: $shouldShowTutorial)
         }
+        
         .popover(isPresented: $shouldShowTutorial, content: {
             if #available(iOS 15.0, *) {
                 ListTutorialPopup()

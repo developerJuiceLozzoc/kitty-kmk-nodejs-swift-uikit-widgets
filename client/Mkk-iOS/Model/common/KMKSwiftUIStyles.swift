@@ -97,7 +97,7 @@ struct ListTutorialPopup: View {
                 Text("This screen is where you can view and browse the cats you have collected during your time using the platform. You can filter and view the details of each cat from this screen.")
                 Text("You can always rewatch this tutorial by using the control in the Main Menu tab of the application.")
             } header: {
-                KMKSwiftUIStyles.i.renderSectionHeader(with: "Tutorial")
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "List Cats Tutorial")
             }
             
             Section {
@@ -128,7 +128,7 @@ struct TutorialPopup: View {
                     Text("This tutorial covers the basics for this screen called The Playground and its contents. It goes over how to interact with the screen and other subscriptions each experience includes.")
                     Text("You can always rewatch this tutorial by using the control in the Main Menu tab of the application.")
                 } header: {
-                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Tutorial")
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Playground Tutorial")
                 }
                 
                 Section {

@@ -38,8 +38,14 @@ struct FoodBowlTile: View {
                     FoodLevelIndicator(lvl: self.calculateFoodLevel())
                 }
                 Circle()
-                    .trim(from: 0, to: CGFloat(self.store.foodbowl) / CGFloat(MAX_VOLUME))
-                    .stroke(Color.blue)
+                    .trim(from: 0, to: 0.8)
+                    .stroke(Color("ultra-violet-1").opacity(0.25), lineWidth: 5)
+                
+                    .rotationEffect(Angle(degrees: 125))
+                Circle()
+                    .trim(from: 0, to: CGFloat(self.store.foodbowl) / CGFloat(MAX_VOLUME) * 0.8)
+                    .stroke(Color("ultra-violet-1"), lineWidth: 5)
+                
                     .rotationEffect(Angle(degrees: 125))
             }
             .padding()
