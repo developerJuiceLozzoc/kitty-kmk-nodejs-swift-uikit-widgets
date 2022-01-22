@@ -8,6 +8,14 @@
 import Foundation
 import SwiftUI
 
+struct StateableButton<Content>: ButtonStyle where Content: View {
+    var change: (Bool) -> Content
+    
+    func makeBody(configuration: Configuration) -> some View {
+        return change(configuration.isPressed)
+    }
+}
+
 func doubleDateToString(from date: Double) -> String{
     let birthday = Date(timeIntervalSince1970: date)
     let df = DateFormatter()

@@ -47,7 +47,6 @@ struct KittyBreed: Codable {
         self.intelligence = intelligence
         self.stranger_friendly = stranger_friendly
         self.origin = origin
-        self.image = image
     }
     
     init(fromRealm link: KStatsRealm) {
@@ -63,6 +62,20 @@ struct KittyBreed: Codable {
         self.stranger_friendly = link.stranger_friendly
         self.origin = link.origin
     }
+    init(fromCoreData link: KStats) {
+        self.id = link.breed_id ?? ""
+        self.name = link.name ?? ""
+        self.description = link.kitty_description ?? ""
+        self.temperament = link.temperament ?? ""
+        self.life_span = link.life_span ?? ""
+        self.dog_friendly = Int(link.dog_friendly)
+        self.energy_level = Int(link.energy_level)
+        self.intelligence = Int(link.intelligence)
+        self.shedding_level = Int(link.shedding_level)
+        self.stranger_friendly = Int(link.stranger_friendly)
+        self.origin = link.origin ?? ""
+        self.magic_level = Int(link.magic_level)
+    }
 
     var id: String
     var name: String
@@ -75,10 +88,7 @@ struct KittyBreed: Codable {
     var intelligence: Int
     var stranger_friendly: Int
     var origin: String
-    var image: imgtype?
-    // var mageLvl: Int // just a made up stat because all these other stats might as well be fake too
-    // var images: aggregate the entire array of kitties to retriev 50 urls and lazy load them
-    
+    var magic_level: Int = 0    
 }
 struct imgtype: Codable {
     var url: String?

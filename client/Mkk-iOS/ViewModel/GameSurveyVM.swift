@@ -67,7 +67,7 @@ class GameSurveyVM {
         
     }
     func stopListenToVoteChanges(){
-        NotificationCenter.default.removeObserver(observer)
+//        NotificationCenter.default.removeObserver(observer)
         observer = nil
     }
     

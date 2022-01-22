@@ -128,7 +128,7 @@ struct KittyActionButtonContainer: View {
                 }
             }
             .onDisappear {
-                if ds != reference {
+                if ds != reference && wanderingKitties.count == 0 {
                     if model.SaveItemFavorites(items: ds) {
                         reference = ds
                     }

@@ -19,18 +19,18 @@ struct ConfirmOrDiscardView: View {
     
     var emojieSectionDetails = [RowCellDataSource]()
     var section1Details = [RowCellDataSource]()
-    let kitty: UnownedKittyInPlayground
+    let kitty: WanderingKitty
     
     
-    init(kitty: UnownedKittyInPlayground, isPresented: Binding<Bool>, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
+    init(kitty: WanderingKitty, isPresented: Binding<Bool>, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
         self.kitty = kitty
         self._isPresented = isPresented
 
         self.onAdoptionClick = onAdoptionClick
        
-        guard let statsLink = kitty.statsLink  else { return } 
+        guard let statsLink = kitty.stats  else { return }
 
-        let stats = KittyBreed(fromRealm: statsLink)
+        let stats = KittyBreed(fromCoreData: statsLink)
 
         self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
         self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
@@ -57,7 +57,7 @@ struct ConfirmOrDiscardView: View {
                 KMKSwiftUIStyles.i.renderSectionHeader(with: "Kitty Breed")
             }
             Section {
-                Text(kitty.statsLink?.kitty_description ?? "Description")
+                Text(kitty.stats?.kitty_description ?? "Description")
             } header: {
                 KMKSwiftUIStyles.i.renderSectionHeader(with: "Description")
             }
@@ -88,8 +88,8 @@ struct ConfirmOrDiscardView: View {
             }
             Section {
                 Button {
-                    guard sirname.count > 0, selectedImage != -1, let selectedImageData = selectedImageData, let statsLink = kitty.statsLink  else {return}
-                    onAdoptionClick?(sirname, KittyBreed(fromRealm: statsLink), selectedImageData)
+                    guard sirname.count > 0, selectedImage != -1, let selectedImageData = selectedImageData, let statsLink = kitty.stats else {return}
+                    onAdoptionClick?(sirname, KittyBreed(fromCoreData: statsLink), selectedImageData)
                     isPresented.toggle()
                 } label: {
                     Text("Adopt this Kitty")

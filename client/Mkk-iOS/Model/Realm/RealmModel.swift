@@ -11,8 +11,6 @@ import RealmSwift
 class KPhotoRealm: Object {
     @objc dynamic var  img: Data? = nil;
     @objc dynamic var imgurl: String = ""
-
-
 }
 
 
@@ -47,8 +45,3 @@ class KStatsRealm: Object {
     @objc dynamic  var origin: String = ""
 }
 
-class WanderingKittyRealm: Object {
-    @objc dynamic var breedid: String = ""
-    @objc dynamic var toysInteracted: String = "" //comma seperated list of enums.. friggen rediculous array of strings is not supported. i guess i will ahve to find the equvilent
-    @objc dynamic var statsLink: KStatsRealm?
-}

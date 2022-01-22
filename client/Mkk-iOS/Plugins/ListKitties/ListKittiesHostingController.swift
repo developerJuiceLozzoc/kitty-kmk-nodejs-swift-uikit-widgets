@@ -7,14 +7,15 @@
 
 import UIKit
 import SwiftUI
+import RealmSwift
 
 struct ListKittiesWrapper: View {
+    
     @State var shouldShowTutorial: Bool = false
     var body: some View {
         NavigationView<ListKittiesView> {
             ListKittiesView(showTutorial: $shouldShowTutorial)
         }
-        
         .popover(isPresented: $shouldShowTutorial, content: {
             if #available(iOS 15.0, *) {
                 ListTutorialPopup()
@@ -29,6 +30,7 @@ struct ListKittiesWrapper: View {
                     }
             }
         })
+       
     }
 }
 

@@ -12,6 +12,7 @@ import RealmSwift
 class RealmCrud {
     let realm = try! Realm()
     
+    
     func fetchKittiesPlayingWithToys() -> Results<UnownedKittyInPlayground> {
         return realm.objects(UnownedKittyInPlayground.self)
     }
@@ -136,42 +137,5 @@ class RealmCrud {
             print(e.localizedDescription)
         }
         
-    }
-    func dangerousStuffDatabase(){
-        let names = [
-            "Salem",    "Snuggles", "Shadow",
-            "Cookie",   "Dusty",    "Willow",
-            "Cali",     "Scooter",  "Oliver",
-            "Milo",     "Muffin",   "Bubba",
-            "Whiskers", "Lola",     "Bubba",
-            "Leo",      "Boo",      "Snuggles",
-            "Leo",      "Felix",    "Sassy",
-            "Gizmo",    "Baby",     "Bubba",
-            "Callie",   "Snowball", "Oreo"
-          ]
-        guard let path = Bundle(for: Self.self).path(forResource: "breeds", ofType: "json") else { return; }
-        let fileURL = URL(fileURLWithPath: path)
-        do{
-            let data = try Data(contentsOf: fileURL);
-            let swiftkitty = try JSONDecoder().decode([KittyBreed].self, from: data)
-            for name in names {
-                if let breed = swiftkitty.randomElement(), let url = breed.image?.url, let iurl = URL(string: url) {
-                    URLSession.shared.dataTask(with: iurl){ data,_,_ in
-                        if let imgdata = data {
-                            DispatchQueue.main.async {
-                                self.addTodooeyToRealm(name: name, stats: breed, imgurl: url,imgdata: imgdata)
-                            }
-                            
-                        }
-                        
-                    }.resume()
-                    
-                }
-
-            }
-        }
-        catch let err{
-            print(err)
-        }
     }
 }
