@@ -102,16 +102,16 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             breeds.append(KITTY_BREEDS.randomElement() ?? "ycho")
         }
             
-        wkm.retrieveAndStoreKitties(with: breeds)
-    
-        DispatchQueue.main.async {
+        wkm.retrieveAndStoreKitties(with: breeds) {
             let tbc = getRootTabController()
             tbc?.selectedIndex = 0
             guard let vc = tbc?.selectedViewController as? KittyPlagroundHostingController else {return}
             
             vc.deepLink.showWanderingKittyRecap = true
-            
+
         }
+    
+        
             
     }
     

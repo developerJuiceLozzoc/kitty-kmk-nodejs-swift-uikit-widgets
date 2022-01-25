@@ -36,6 +36,7 @@ struct KittyDetailsView: View {
     let name: String
     let modelDelegate: KMKCoreData?
     let kittyUID: NSManagedObjectID
+    let temperment: String
 
     init(stats: KittyBreed, pfp: UIImage, name: String, birthday: Double, delegate: KMKCoreData?,id: NSManagedObjectID) {
         self.modelDelegate  = delegate
@@ -43,6 +44,7 @@ struct KittyDetailsView: View {
         self.description = stats.description
         self.name = name
         self.kittyUID = id
+        self.temperment = stats.temperament
         self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
         self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
         self.section1Details.append((name: "Adopted On", value: stats.intelligence, stringValue: doubleDateToString(from: birthday), varient: 1))
@@ -65,6 +67,9 @@ struct KittyDetailsView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(maxHeight: 200)
             List {
+                Section {
+                    TemperamentView(traits: parseTemperament(with: temperment))
+                }
                 Section {
                     ForEach(0..<section1Details.count, id: \.self) {
                         EmojiSectionView(screenWidth: metrics.size.width, ds: section1Details[$0])

@@ -13,8 +13,11 @@ class WanderingKittyModel {
     let apiModel: CatApier = KittyJsoner()
     
     
-    func retrieveAndStoreKitties(with breeds: [String]) {
+    func retrieveAndStoreKitties(with breeds: [String], completion: @escaping ()->Void) {
+        var group = DispatchGroup()
+        
         breeds.forEach { breed in
+            group.enter()
             apiModel.getJsonByBreed(with: breed) { [weak self] (result) in
                 guard let wself = self else {return}
                 switch result {
@@ -23,8 +26,13 @@ class WanderingKittyModel {
                 case .failure(let err):
                     print(err)
                 }
+                group.leave()
             }
       }
+        
+        group.notify(queue: .main) {
+            completion()
+        }
     }
     
     func addStrayCat(cat: [KittyApiResults]) {
