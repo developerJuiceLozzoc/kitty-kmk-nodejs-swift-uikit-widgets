@@ -82,7 +82,7 @@
 		C678C6582790C68200078926 /* FoodLevelIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678C6572790C68200078926 /* FoodLevelIndicator.swift */; };
 		C69EDAFA278A364300FE619E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAF9278A364300FE619E /* Date.swift */; };
 		C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAFB278A486300FE619E /* KMKButtons.swift */; };
-		C6A729D0279F3DD000FDDC8B /* WanderingKittyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A729CF279F3DD000FDDC8B /* WanderingKittyPresenter.swift */; };
+		C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */; };
 		C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */; };
 		C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */; };
 		C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */; };
@@ -171,7 +171,7 @@
 		C678C6572790C68200078926 /* FoodLevelIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLevelIndicator.swift; sourceTree = "<group>"; };
 		C69EDAF9278A364300FE619E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C69EDAFB278A486300FE619E /* KMKButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKButtons.swift; sourceTree = "<group>"; };
-		C6A729CF279F3DD000FDDC8B /* WanderingKittyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyPresenter.swift; sourceTree = "<group>"; };
+		C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyViewModel.swift; sourceTree = "<group>"; };
 		C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyItumListView.swift; sourceTree = "<group>"; };
 		C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesHostingController.swift; sourceTree = "<group>"; };
 		C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKImagePicker.swift; sourceTree = "<group>"; };
@@ -449,7 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */,
-				C6A729CF279F3DD000FDDC8B /* WanderingKittyPresenter.swift */,
+				C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */,
 			);
 			path = WhileYouWereAwaySheet;
 			sourceTree = "<group>";
@@ -753,7 +753,7 @@
 				C6FD1799279B03B500902DF9 /* ListKittiesPresenter.swift in Sources */,
 				B521F34A2618DA7400E7A87D /* CoreData.swift in Sources */,
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
-				C6A729D0279F3DD000FDDC8B /* WanderingKittyPresenter.swift in Sources */,
+				C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */,
 				C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
 				C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */,

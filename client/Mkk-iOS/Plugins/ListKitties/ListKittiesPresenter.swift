@@ -42,9 +42,53 @@ class ListKittiesPresenter: ObservableObject {
     
     func presentNoKittiesScreen() -> some View {
         return VStack {
-        
+            Text("Sorry you have no kitties yet.")
+            Divider()
+            Text("Try reading the tutorials to find out how to adopt kitties, or perhaps just set some toys out in the playground, kitties love toys.")
         }
     }
+    
+    func presentGroupedBreedsList(with sortOrder: KittySortOrderType) -> some View {
+        let kitties = model.fetchKitties(sortBy: "breed_id", sortOrder: sortOrder)
+        var breeds: [String: [Kitty]] = [:]
+        kitties.forEach { k in
+            breeds[k.breed_id ?? "",default: []].append(k)
+        }
+        var arr = breeds.keys.map { return $0 }.sorted { el, la in
+            if sortOrder == .ascend {
+                return el < la
+            } else {
+                return el > la
+            }
+        }
+        if sortOrder == .rand {
+            arr.shuffle()
+        }
+        
+        return List {
+            ForEach(0..<arr.count, id: \.self) { i in
+                Section {
+                    ForEach(breeds[arr[i]]!) { kitty in
+                        NavigationLink {
+                           KittyDetailsView(
+                            stats: KittyBreed(fromCoreData: kitty.stats),
+                            pfp: KMKSwiftUIStyles.i.KMKDataTransformUIImage(using: kitty.pfp),
+                            name: kitty.name!,
+                            birthday: kitty.birthday,
+                            delegate: self.model, id: kitty.objectID)
+                        } label: {
+                            Text(kitty.name!)
+                        }
+                    }
+                    
+                } header: {
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: arr[i])
+                }
+            }
+        }
+    }
+    
+    
     func presentGroupedDateList(sortOrder: KittySortOrderType) -> some View {
         let accessed: [Kitty] = model.fetchKitties(sortBy: "dateLastAccessed", sortOrder: sortOrder)
         let adopted: [Kitty] = model.fetchKitties(sortBy: "birthday", sortOrder: sortOrder)

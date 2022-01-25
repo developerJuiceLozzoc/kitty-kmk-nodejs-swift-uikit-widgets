@@ -1,5 +1,5 @@
 //
-//  WanderingKittyPresenter.swift
+//  WanderingKittyViewModel.swift
 //  Mkk-iOS
 //
 //  Created by Conner Maddalozzo on 1/24/22.
@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 
-class WanderingKittyPresenter: ObservableObject {
+class WanderingKittyViewModel: ObservableObject {
     let container: NSPersistentContainer
     @Published var kitties: [WanderingKitty] = []
     var hasLoaded = false

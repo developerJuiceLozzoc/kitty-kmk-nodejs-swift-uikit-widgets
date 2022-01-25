@@ -112,7 +112,7 @@ class KMKCoreData {
         let moc = persistentContainer.viewContext
         let kitty = NSEntityDescription.insertNewObject(forEntityName: "Kitty", into: moc) as! Kitty
         
-        
+        kitty.breed_id = stats.name
         kitty.stats = createKStats(using: stats)
         kitty.birthday = Date().timeIntervalSince1970
         kitty.dateLastAccessed = Date().timeIntervalSince1970

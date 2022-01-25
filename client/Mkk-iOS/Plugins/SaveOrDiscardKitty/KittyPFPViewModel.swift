@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class KittyPFPViewModel: ObservableObject {
-    @Published var cache = NSCache<AnyObject, UIImage>()
+    @Published var cache = [String:UIImage]()
     
     func loadImage(for imgurl: String) {
         DispatchQueue.global().async {
@@ -23,7 +23,7 @@ class KittyPFPViewModel: ObservableObject {
                 }
                 DispatchQueue.main.async { [weak self] in
                     guard let wself = self else { return }
-                    wself.cache.setObject(image, forKey: imgurl as AnyObject)
+                    wself.cache[imgurl] = image
                 }
 
             }

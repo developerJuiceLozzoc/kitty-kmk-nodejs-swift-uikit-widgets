@@ -50,13 +50,6 @@ class KittyPlagroundHostingController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if shouldDisplayNotification {
-            deepLink.showWanderingKittyRecap = true
-            shouldDisplayNotification = false
-        }
-    }
-    
     func refreshCheck() -> Bool {
         let moc = container.viewContext
         let request: NSFetchRequest<WanderingKitty> = WanderingKitty.fetchRequest()

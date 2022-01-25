@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Kitty" representedClassName="Kitty" syncable="YES" codeGenerationType="class">
         <attribute name="birthday" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="breed_id" attributeType="String" defaultValueString=""/>
         <attribute name="dateLastAccessed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="pfp" optional="YES" attributeType="Binary"/>
@@ -29,7 +30,7 @@
         <relationship name="stats" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KStats"/>
     </entity>
     <elements>
-        <element name="Kitty" positionX="-329.2578125" positionY="-187.33203125" width="128" height="119"/>
+        <element name="Kitty" positionX="-329.2578125" positionY="-187.33203125" width="128" height="134"/>
         <element name="KStats" positionX="-614.33203125" positionY="47.5625" width="128" height="14"/>
         <element name="WanderingKitty" positionX="-405" positionY="-45" width="128" height="89"/>
     </elements>

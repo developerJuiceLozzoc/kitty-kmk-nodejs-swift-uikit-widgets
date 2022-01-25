@@ -9,7 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct WhileYouWereAwayAlert: View {
-    @ObservedObject var presenter = WanderingKittyPresenter()
+    @ObservedObject var presenter = WanderingKittyViewModel()
     let ds: KittyPlaygroundState
     @ObservedObject var vm: KittyPFPViewModel = KittyPFPViewModel()
     let cd = KMKCoreData()
@@ -60,6 +60,9 @@ struct WhileYouWereAwayAlert: View {
                         presenter.update()
 
                     }
+                }
+                .onDisappear {
+                    vm.cache = [:]
                 }
                 
             }

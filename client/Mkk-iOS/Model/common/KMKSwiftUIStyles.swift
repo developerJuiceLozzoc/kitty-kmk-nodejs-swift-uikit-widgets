@@ -103,7 +103,7 @@ struct ListTutorialPopup: View {
         List {
             Section {
                 Text("This screen is where you can view and browse the cats you have collected during your time using the platform. You can filter and view the details of each cat from this screen.")
-                Text("You can always rewatch this tutorial by using the control in the Main Menu tab of the application.")
+                Text("You can always rewatch this tutorial by clicking the (?) icon in the respective screen.")
             } header: {
                 KMKSwiftUIStyles.i.renderSectionHeader(with: "List Cats Tutorial")
             }
@@ -111,17 +111,29 @@ struct ListTutorialPopup: View {
             Section {
                 Text("This list represents the cats you have saved in the tab called The Playground. They are persisted on disk inside this App's folder.")
                 Text("Cats can be removed by uninstalling the application, and reinstalling it. In the future we may or may not include functionality to delete individual items however we are hesitant because why delete cats when you can just own more of them instead?")
-                Text("Recently Accessed")
-                    .font(.title2)
-                Text("When you click a cat and see their details page this is considered an access. The application keeps track of 7 or so cats at a time in this list. So by clicking on a cat multiple times their name gets brought up in the list, otherwise it will disappear into the sort by breed list.")
-                Text("Recently Adopted")
-                    .font(.title2)
-                Text("Similar to recently accessed however it sorts based on the 'Birthday' of said cat, and takes the top 10 in the list")
-                Text("Breed")
-                    .font(.title2)
-                Text("Each breed is signified as section header in all caps and is colored by the App Theme, multiple cats of the same breed may be wrapped in the same section.")
+                Text("You can view the details of each kitty by clicking on the table row item, in the future sharing the details of a kitty may be avaiblie, tweets, sms or email.")
             } header: {
                 KMKSwiftUIStyles.i.renderSectionHeader(with: "The list")
+            }
+            Section {
+                Text("Recently Accessed")
+                    .font(.title2)
+                    .foregroundColor(Color("radio-button-text"))
+                Text("When you click a cat and see their details page this is considered an access. So by clicking on a cat multiple times their name gets brought up in this list. so if you have a favorite, keep visiting it often to bring it up closer on this list, and if you wish to view ones you havent seen in awhile, change the sort order to Descending.")
+                Text("Recently Adopted")
+                    .font(.title2)
+                    .foregroundColor(Color("radio-button-text"))
+                Text("Similar to recently accessed however it sorts based on the 'Birthday' of said cat.")
+                Text("Breed")
+                    .font(.title2)
+                    .foregroundColor(Color("radio-button-text"))
+                Text("Each breed is signified as section header in all caps and is colored by the App Theme, multiple cats of the same breed will be wrapped in the same section.")
+                Text("Alphabetical Names")
+                    .font(.title2)
+                    .foregroundColor(Color("radio-button-text"))
+                Text("This sorts by the words you named the cat, and is put all into one section.")
+            } header: {
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "The filter")
             }
         }
     }
@@ -134,7 +146,7 @@ struct TutorialPopup: View {
                 
                 Section {
                     Text("This tutorial covers the basics for this screen called The Playground and its contents. It goes over how to interact with the screen and other subscriptions each experience includes.")
-                    Text("You can always rewatch this tutorial by using the control in the Main Menu tab of the application.")
+                    Text("You can always rewatch this tutorial by clicking the (?) icon in the respective screen.")
                 } header: {
                     KMKSwiftUIStyles.i.renderSectionHeader(with: "Playground Tutorial")
                 }
@@ -147,10 +159,12 @@ struct TutorialPopup: View {
                 }
                 
                 Section {
-                    Text("To interact and to continue to have new cats stay waiting in the playground you will need to have toys out for them to play with")
+                    Text("To interact and to continue to have new cats stay waiting in the playground you will need to have toys out for them to play with!")
                     Text("Toys represent some sort of physical interface that allows the human and cat to bond, interact and incentivise the cat to stay around and get adopted.")
+                    KMKSwiftUIStyles.i.renderSectionHeader(with: "Basic Actions with Toys")
                     Text("Basic Actions with Toys")
                         .font(.title2)
+                        .foregroundColor(Color("radio-button-text"))
                     Text("When you bring some toys and interactables outside and set them up for cats to play with, this is how notifications get scheduled. So by setting up toys and leaving them out, a notification will be scheduled.")
                     Text("If you leave toys out for multiple days then you will continue to receive notifications daily")
                     Text("You can either explicitely clear your scheduled notifications by the long press Clear button, or by manually putting away all your toys.")
@@ -164,6 +178,7 @@ struct TutorialPopup: View {
                     HStack {
                         Text("Food")
                             .font(.title2)
+                            .foregroundColor(Color("radio-button-text"))
                         Spacer()
                     }
                     Text("There is some sort of food in here. It could be wet or dry food if you leave it up to your imagination. However this should have some fresh food in it 24/7 if you would like to feed the cats who hang out near the playground.")
@@ -171,6 +186,7 @@ struct TutorialPopup: View {
                     HStack {
                         Text("Water")
                             .font(.title2)
+                            .foregroundColor(Color("radio-button-text"))
                         Spacer()
                     }
                     Text("Only the most fresh distilled water availibe here directly for consumption. Nearby there is a water pouring can that used to transfer water into the watering bowl.")

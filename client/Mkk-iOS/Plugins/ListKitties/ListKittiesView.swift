@@ -28,7 +28,7 @@ struct ListKittiesView: View {
     var body: some View {
         ZStack {
             if presenter.isKittyListEmpty {
-                Text("Sorry you have no cats yet")
+                presenter.presentNoKittiesScreen()
                     .onAppear {
                         presenter.updateIsEmpty()
                     }
@@ -41,9 +41,7 @@ struct ListKittiesView: View {
                               print("generated a new UUID")
                           }
             } else if listFilter.grouping == .breeds {
-                List {
-                    
-                }
+                presenter.presentGroupedBreedsList(with: listFilter.sortOrder)
                 .id(refreshID)
                       .onReceive(self.didSave) { _ in   //the listener
                           self.refreshID = UUID()

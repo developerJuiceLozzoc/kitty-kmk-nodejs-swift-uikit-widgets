@@ -15,7 +15,7 @@ struct KMKImagePicker: View {
     let width: CGFloat
     
     func loadImage(for url: String) -> UIImage {
-        guard let image: UIImage = vm.cache.object(forKey: url as AnyObject) else {
+        guard let image: UIImage = vm.cache[url] else {
             vm.loadImage(for: url)
             return UIImage(named: "placeholder-image") ?? UIImage()
         }

@@ -109,7 +109,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             tbc?.selectedIndex = 0
             guard let vc = tbc?.selectedViewController as? KittyPlagroundHostingController else {return}
             
-            vc.shouldDisplayNotification = true
+            vc.deepLink.showWanderingKittyRecap = true
             
         }
             
