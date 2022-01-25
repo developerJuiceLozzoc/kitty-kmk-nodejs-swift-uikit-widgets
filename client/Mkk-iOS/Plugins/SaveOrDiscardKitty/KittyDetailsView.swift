@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import CoreData
 
 
 let dummyBreed =  KittyBreed(
@@ -33,11 +34,15 @@ struct KittyDetailsView: View {
     var emojieSectionDetails = [RowCellDataSource]()
     var section1Details = [RowCellDataSource]()
     let name: String
+    let modelDelegate: KMKCoreData?
+    let kittyUID: NSManagedObjectID
 
-    init(stats: KittyBreed, pfp: UIImage, name: String, birthday: Double) {
+    init(stats: KittyBreed, pfp: UIImage, name: String, birthday: Double, delegate: KMKCoreData?,id: NSManagedObjectID) {
+        self.modelDelegate  = delegate
         self.pfp = pfp
         self.description = stats.description
         self.name = name
+        self.kittyUID = id
         self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
         self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))
         self.section1Details.append((name: "Adopted On", value: stats.intelligence, stringValue: doubleDateToString(from: birthday), varient: 1))
@@ -85,6 +90,9 @@ struct KittyDetailsView: View {
                
             }
         }.navigationTitle(Text(name))
+        .onAppear {
+            modelDelegate?.updateKittyLastAccesed(using: self.kittyUID)
+        }
 
         }
     }
@@ -92,7 +100,7 @@ struct KittyDetailsView: View {
 
 struct KittyDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        KittyDetailsView(stats: dummyBreed, pfp: UIImage(named: "roxy-butt") ?? UIImage(), name: "Mock Name", birthday: Date().timeIntervalSince1970).preferredColorScheme(.light)
+        KittyDetailsView(stats: dummyBreed, pfp: UIImage(named: "roxy-butt") ?? UIImage(), name: "Mock Name", birthday: Date().timeIntervalSince1970, delegate: nil, id: NSManagedObjectID()).preferredColorScheme(.light)
 //        KittyDetailsView(stats: dummyBreed, pfp: UIImage(named: "roxy-butt") ?? UIImage(), name: "Mock Name", birthday: Date().timeIntervalSince1970).preferredColorScheme(.dark)
     }
 }

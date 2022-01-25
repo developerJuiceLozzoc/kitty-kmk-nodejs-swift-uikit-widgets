@@ -22,11 +22,10 @@
 		B54651D126F78F8E00A16F38 /* JumbotronLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54651CF26F78C6900A16F38 /* JumbotronLayout.swift */; };
 		B54651D526F7E13700A16F38 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54651D326F7E11F00A16F38 /* ProgressBar.swift */; };
 		B54651D626F7E14300A16F38 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54651D326F7E11F00A16F38 /* ProgressBar.swift */; };
-		B547291E274A949A005DCF8A /* SaveOrDiscardHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */; };
+		B547291E274A949A005DCF8A /* KittyPFPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B547291D274A949A005DCF8A /* KittyPFPViewModel.swift */; };
 		B5472920274AA0ED005DCF8A /* ConfirmOrDiscardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */; };
 		B5472922274AA91A005DCF8A /* KMKSwiftUIStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472921274AA91A005DCF8A /* KMKSwiftUIStyles.swift */; };
 		B5472924274B30FE005DCF8A /* KittyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472923274B30FE005DCF8A /* KittyDetailsView.swift */; };
-		B5472926274B4D56005DCF8A /* KittieDetailsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5472925274B4D56005DCF8A /* KittieDetailsHostingController.swift */; };
 		B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */; };
 		B57427FD2618AA3200532B21 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57427FC2618AA3200532B21 /* NetworkTests.swift */; };
 		B57428032618AC3A00532B21 /* MockNetwork.json in Resources */ = {isa = PBXBuildFile; fileRef = B57428022618AC3A00532B21 /* MockNetwork.json */; };
@@ -74,7 +73,6 @@
 		C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */; };
 		C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */; };
 		C6202D2C277AB19F003F4D32 /* UseToyTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D2B277AB19F003F4D32 /* UseToyTile.swift */; };
-		C6202D2E277AB2A0003F4D32 /* HintWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D2D277AB2A0003F4D32 /* HintWrapper.swift */; };
 		C6202D30277B82B4003F4D32 /* KittyPlagroundHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D2F277B82B4003F4D32 /* KittyPlagroundHostingController.swift */; };
 		C6202D33277B949C003F4D32 /* ActionButtonViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D32277B949C003F4D32 /* ActionButtonViewControllerTests.swift */; };
 		C6202D35277B99C2003F4D32 /* PlaygroundState.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6202D34277B99C2003F4D32 /* PlaygroundState.plist */; };
@@ -84,6 +82,7 @@
 		C678C6582790C68200078926 /* FoodLevelIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678C6572790C68200078926 /* FoodLevelIndicator.swift */; };
 		C69EDAFA278A364300FE619E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAF9278A364300FE619E /* Date.swift */; };
 		C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAFB278A486300FE619E /* KMKButtons.swift */; };
+		C6A729D0279F3DD000FDDC8B /* WanderingKittyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A729CF279F3DD000FDDC8B /* WanderingKittyPresenter.swift */; };
 		C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */; };
 		C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */; };
 		C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */; };
@@ -117,11 +116,10 @@
 		B54651AD26F6A85600A16F38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B54651CF26F78C6900A16F38 /* JumbotronLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumbotronLayout.swift; sourceTree = "<group>"; };
 		B54651D326F7E11F00A16F38 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
-		B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrDiscardHostingController.swift; sourceTree = "<group>"; };
+		B547291D274A949A005DCF8A /* KittyPFPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyPFPViewModel.swift; sourceTree = "<group>"; };
 		B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrDiscardView.swift; sourceTree = "<group>"; };
 		B5472921274AA91A005DCF8A /* KMKSwiftUIStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKSwiftUIStyles.swift; sourceTree = "<group>"; };
 		B5472923274B30FE005DCF8A /* KittyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyDetailsView.swift; sourceTree = "<group>"; };
-		B5472925274B4D56005DCF8A /* KittieDetailsHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittieDetailsHostingController.swift; sourceTree = "<group>"; };
 		B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		B57427FC2618AA3200532B21 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		B57428022618AC3A00532B21 /* MockNetwork.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockNetwork.json; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 		C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PourWaterTile.swift; sourceTree = "<group>"; };
 		C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBowlTile.swift; sourceTree = "<group>"; };
 		C6202D2B277AB19F003F4D32 /* UseToyTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseToyTile.swift; sourceTree = "<group>"; };
-		C6202D2D277AB2A0003F4D32 /* HintWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintWrapper.swift; sourceTree = "<group>"; };
 		C6202D2F277B82B4003F4D32 /* KittyPlagroundHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyPlagroundHostingController.swift; sourceTree = "<group>"; };
 		C6202D32277B949C003F4D32 /* ActionButtonViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonViewControllerTests.swift; sourceTree = "<group>"; };
 		C6202D34277B99C2003F4D32 /* PlaygroundState.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PlaygroundState.plist; sourceTree = "<group>"; };
@@ -174,6 +171,7 @@
 		C678C6572790C68200078926 /* FoodLevelIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLevelIndicator.swift; sourceTree = "<group>"; };
 		C69EDAF9278A364300FE619E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C69EDAFB278A486300FE619E /* KMKButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKButtons.swift; sourceTree = "<group>"; };
+		C6A729CF279F3DD000FDDC8B /* WanderingKittyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyPresenter.swift; sourceTree = "<group>"; };
 		C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyItumListView.swift; sourceTree = "<group>"; };
 		C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesHostingController.swift; sourceTree = "<group>"; };
 		C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKImagePicker.swift; sourceTree = "<group>"; };
@@ -447,9 +445,19 @@
 			path = Toys;
 			sourceTree = "<group>";
 		};
+		C6A729CE279F3DBA00FDDC8B /* WhileYouWereAwaySheet */ = {
+			isa = PBXGroup;
+			children = (
+				C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */,
+				C6A729CF279F3DD000FDDC8B /* WanderingKittyPresenter.swift */,
+			);
+			path = WhileYouWereAwaySheet;
+			sourceTree = "<group>";
+		};
 		C6FD1792279898B400902DF9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				C6A729CE279F3DBA00FDDC8B /* WhileYouWereAwaySheet */,
 				C6FD1795279898EA00902DF9 /* SaveOrDiscardKitty */,
 				C6FD1794279898DD00902DF9 /* Playground */,
 				C6FD1793279898C500902DF9 /* ListKitties */,
@@ -475,8 +483,6 @@
 				C678C6562790C64800078926 /* FoodBowl */,
 				C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */,
 				C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */,
-				C6202D2D277AB2A0003F4D32 /* HintWrapper.swift */,
-				C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */,
 				C6202D2F277B82B4003F4D32 /* KittyPlagroundHostingController.swift */,
 			);
 			path = Playground;
@@ -485,11 +491,10 @@
 		C6FD1795279898EA00902DF9 /* SaveOrDiscardKitty */ = {
 			isa = PBXGroup;
 			children = (
-				B5472925274B4D56005DCF8A /* KittieDetailsHostingController.swift */,
 				B5472923274B30FE005DCF8A /* KittyDetailsView.swift */,
 				C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */,
 				B547291F274AA0ED005DCF8A /* ConfirmOrDiscardView.swift */,
-				B547291D274A949A005DCF8A /* SaveOrDiscardHostingController.swift */,
+				B547291D274A949A005DCF8A /* KittyPFPViewModel.swift */,
 			);
 			path = SaveOrDiscardKitty;
 			sourceTree = "<group>";
@@ -742,13 +747,13 @@
 				C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */,
 				B5DBA93F2741B7CB0075A45D /* LoadingButton.swift in Sources */,
 				C69EDAFA278A364300FE619E /* Date.swift in Sources */,
-				B547291E274A949A005DCF8A /* SaveOrDiscardHostingController.swift in Sources */,
+				B547291E274A949A005DCF8A /* KittyPFPViewModel.swift in Sources */,
 				B54651AF26F6A85600A16F38 /* SavedDataInfotainment.intentdefinition in Sources */,
 				B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */,
 				C6FD1799279B03B500902DF9 /* ListKittiesPresenter.swift in Sources */,
 				B521F34A2618DA7400E7A87D /* CoreData.swift in Sources */,
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
-				B5472926274B4D56005DCF8A /* KittieDetailsHostingController.swift in Sources */,
+				C6A729D0279F3DD000FDDC8B /* WanderingKittyPresenter.swift in Sources */,
 				C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
 				C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */,
@@ -758,7 +763,6 @@
 				C6202D2C277AB19F003F4D32 /* UseToyTile.swift in Sources */,
 				B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */,
 				B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */,
-				C6202D2E277AB2A0003F4D32 /* HintWrapper.swift in Sources */,
 				B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */,
 				B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */,
 				C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */,
@@ -1024,7 +1028,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1032,7 +1036,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lozzoc.realmcatcollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -1049,7 +1053,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1057,7 +1061,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lozzoc.realmcatcollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;

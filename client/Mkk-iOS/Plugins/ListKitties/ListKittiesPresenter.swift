@@ -26,45 +26,44 @@ enum KittySortOrderType: Int, CaseIterable {
     }
 }
 
-class ListKittiesPresenter {
+
+class ListKittiesPresenter: ObservableObject {
     let model = KMKCoreData()
-    let isKittyListEmpty: Bool
+    @Published var isKittyListEmpty: Bool
     
     init() {
         isKittyListEmpty = model.ownedKittiesIsEmpty()
     }
     
-    /*
-    func gatherDataAndReturn(for filter: KittyListType) -> some View {
-        switch filter {
-        case .date:
-            return presentGroupedDateList(accessed: [], adopted: [])
-        default:
-            return presentAlphabeticalList()
-        }
+    func updateIsEmpty() {
+        isKittyListEmpty = model.ownedKittiesIsEmpty()
     }
-     */
+
+    
     func presentNoKittiesScreen() -> some View {
         return VStack {
         
         }
     }
-    func presentGroupedDateList() -> some View {
-        let accessed: [Kitty] = []
-        let adopted: [Kitty] = []
-        
+    func presentGroupedDateList(sortOrder: KittySortOrderType) -> some View {
+        let accessed: [Kitty] = model.fetchKitties(sortBy: "dateLastAccessed", sortOrder: sortOrder)
+        let adopted: [Kitty] = model.fetchKitties(sortBy: "birthday", sortOrder: sortOrder)
         
         return VStack {
             List{
                 Section {
                     ForEach(0..<accessed.count, id: \.self) { i in
-                        if i < 7 {
+
                             NavigationLink {
-                                Text("wooo")
+                               KittyDetailsView(
+                                stats: KittyBreed(fromCoreData: accessed[i].stats),
+                                pfp: KMKSwiftUIStyles.i.KMKDataTransformUIImage(using: accessed[i].pfp),
+                                name: accessed[i].name!,
+                                birthday: accessed[i].birthday,
+                                delegate: self.model, id: accessed[i].objectID)
                             } label: {
                                 Text(accessed[i].name!)
                             }
-                        }
                     }
 
                 } header: {
@@ -72,14 +71,16 @@ class ListKittiesPresenter {
                 }
                 Section {
                     ForEach(0..<adopted.count, id: \.self) { i in
-                        if i < 7 {
                             NavigationLink {
-                               Text("wooh")
-//                                detailsViewForKitty(kitty: ownedKittiesAccessed[i])
+                                KittyDetailsView(
+                                 stats: KittyBreed(fromCoreData: adopted[i].stats),
+                                 pfp: KMKSwiftUIStyles.i.KMKDataTransformUIImage(using: adopted[i].pfp),
+                                 name: adopted[i].name!,
+                                 birthday: adopted[i].birthday,
+                                 delegate: self.model, id: adopted[i].objectID)
                             } label: {
                                 Text(adopted[i].name!)
                             }
-                        }
                     }
 
                 } header: {
@@ -89,9 +90,21 @@ class ListKittiesPresenter {
         }
     }
     
-    func presentAlphabeticalList() -> some View {
+    func presentAlphabeticalList(sortOrder: KittySortOrderType) -> some View {
+        let kitties: [Kitty] = model.fetchKitties(sortBy: "name", sortOrder: sortOrder)
         return List {
-            
+            ForEach(0..<kitties.count, id: \.self) { i in
+                    NavigationLink {
+                       KittyDetailsView(
+                        stats: KittyBreed(fromCoreData: kitties[i].stats),
+                        pfp: KMKSwiftUIStyles.i.KMKDataTransformUIImage(using: kitties[i].pfp),
+                        name: kitties[i].name!,
+                        birthday: kitties[i].birthday,
+                        delegate: self.model, id: kitties[i].objectID)
+                    } label: {
+                        Text(kitties[i].name!)
+                    }
+            }
         }
     }
     

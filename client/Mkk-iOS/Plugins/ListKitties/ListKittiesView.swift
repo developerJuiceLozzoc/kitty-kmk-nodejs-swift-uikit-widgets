@@ -9,32 +9,56 @@ import SwiftUI
 import UIKit
 import RealmSwift
 
+//struct ListKittiesWithContent: View {
+//    var body: some View {
+//
+//    }
+//}
+
 struct ListKittiesView: View {
 
-    let presenter = ListKittiesPresenter()
+    @ObservedObject var presenter = ListKittiesPresenter()
     @Binding var showTutorial: Bool
     @State var shouldShowFilter: Bool = false
     @State var listFilter: ListKittyFilter = ListKittyFilter(grouping: .date, sortOrder: .rand)
+
+    @State private var refreshID = UUID()
+    let didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
     
     var body: some View {
-        if presenter.isKittyListEmpty {
-            Text("Sorry you have no cats yet")
+        ZStack {
+            if presenter.isKittyListEmpty {
+                Text("Sorry you have no cats yet")
+                    .onAppear {
+                        presenter.updateIsEmpty()
+                    }
+            }
+            else if listFilter.grouping == .date {
+                presenter.presentGroupedDateList(sortOrder: listFilter.sortOrder)
+                    .id(refreshID)
+                          .onReceive(self.didSave) { _ in   //the listener
+                              self.refreshID = UUID()
+                              print("generated a new UUID")
+                          }
+            } else if listFilter.grouping == .breeds {
+                List {
+                    
+                }
+                .id(refreshID)
+                      .onReceive(self.didSave) { _ in   //the listener
+                          self.refreshID = UUID()
+                          print("generated a new UUID")
+                      }
+            } else if listFilter.grouping == .atoz {
+                presenter.presentAlphabeticalList(sortOrder: listFilter.sortOrder)
+                    .id(refreshID)
+                      .onReceive(self.didSave) { _ in   //the listener
+                          self.refreshID = UUID()
+                          print("generated a new UUID")
+                      }
+            }
         }
-        else if listFilter.grouping == .date {
-            VStack{
-                
-            }
-        } else if listFilter.grouping == .breeds {
-            List {
-                
-            }
-        } else {
-            List {
-                
-            }
-        }
-        EmptyView()
-            .sheet(isPresented: $shouldShowFilter) {
+        .sheet(isPresented: $shouldShowFilter) {
             } content: {
                 ListKittyFilterView(isPresented: $shouldShowFilter, filter: listFilter) { f in
                     self.listFilter = f
@@ -46,6 +70,28 @@ struct ListKittiesView: View {
             }
         }
         .navigationTitle(Text("List Of Cats"))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    shouldShowFilter.toggle()
+                }, label: {
+                    Image(systemName: "slider.horizontal.3")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color("ultra-violet-1"))
+                })
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showTutorial.toggle()
+                }, label: {
+                    Image(systemName: "questionmark.circle")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color("ultra-violet-1"))
+                })
+            }
+        }
     }
 }
 

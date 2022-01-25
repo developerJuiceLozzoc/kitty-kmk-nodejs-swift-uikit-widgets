@@ -8,17 +8,26 @@
 import SwiftUI
 
 struct KMKImagePicker: View {
-    @EnvironmentObject var ds: KittyPFPViewModel
+    @EnvironmentObject var vm: KittyPFPViewModel
     @Binding var selectedImage: Int
     @Binding var selectedImageData: Data?
+    let urls: [String]
     let width: CGFloat
+    
+    func loadImage(for url: String) -> UIImage {
+        guard let image: UIImage = vm.cache.object(forKey: url as AnyObject) else {
+            vm.loadImage(for: url)
+            return UIImage(named: "placeholder-image") ?? UIImage()
+        }
+        return image
+    }
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: .init(.fixed(150),spacing: 25), count: 2)) {
-                ForEach(0..<ds.datas.count) { i in
-                    let data: Data? = ds.loadImage(for: i)
-                    let loadingData: Data = UIImage(named: "placeholder-image")?.pngData() ?? Data()
-                    let uiimage = UIImage(data: data ?? loadingData) ?? UIImage()
+                ForEach(0..<urls.count) { i in
+                    let uiimage = loadImage(for: urls[i])
+
                     ZStack {
                         Image(uiImage: uiimage)
                             .resizable()
@@ -41,7 +50,7 @@ struct KMKImagePicker: View {
                                 selectedImageData = nil
                             } else {
                                 selectedImage = i
-                                selectedImageData = ds.datas[selectedImage]
+                                selectedImageData = uiimage.pngData()
                             }
                         }
                     
@@ -56,12 +65,12 @@ struct KMKImagePicker_Previews: PreviewProvider {
     @State static var selectedImage: Int = -1
     @State static var selectedImageData: Data? = Data()
 
-    static let vm: KittyPFPViewModel = KittyPFPViewModel(count: 50, urls: Array.init(repeating: "https://placekitten.com/200/200", count: 50))
+    static let vm: KittyPFPViewModel = KittyPFPViewModel()
     
     static var previews: some View {
         List {
             Section {
-                KMKImagePicker(selectedImage: $selectedImage,selectedImageData: $selectedImageData, width: UIScreen.main.bounds.width)
+                KMKImagePicker(selectedImage: $selectedImage,selectedImageData: $selectedImageData, urls: ["https://placekitten.com/400/400"], width: UIScreen.main.bounds.width)
                     .environmentObject(vm)
             }
         }

@@ -10,22 +10,22 @@ import SwiftUI
 
 
 struct ConfirmOrDiscardView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var imageSelected: Int = -1
     @State var sirname: String = ""
     @State var selectedImage: Int = -1
     @State var selectedImageData: Data? = nil
-    @Binding var isPresented: Bool
     var onAdoptionClick: ((String,KittyBreed,Data) -> Void)?
+    var urls: [String]
     
     var emojieSectionDetails = [RowCellDataSource]()
     var section1Details = [RowCellDataSource]()
     let kitty: WanderingKitty
     
     
-    init(kitty: WanderingKitty, isPresented: Binding<Bool>, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
+    init(urls: [String], kitty: WanderingKitty, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
         self.kitty = kitty
-        self._isPresented = isPresented
-
+        self.urls = urls
         self.onAdoptionClick = onAdoptionClick
        
         guard let statsLink = kitty.stats  else { return }
@@ -79,7 +79,7 @@ struct ConfirmOrDiscardView: View {
                             text: $sirname
                         )
                 }
-                KMKImagePicker( selectedImage: $selectedImage, selectedImageData: $selectedImageData, width: metrics.size.width)
+                KMKImagePicker( selectedImage: $selectedImage, selectedImageData: $selectedImageData, urls: self.urls, width: metrics.size.width)
                 
                 
                     
@@ -90,7 +90,7 @@ struct ConfirmOrDiscardView: View {
                 Button {
                     guard sirname.count > 0, selectedImage != -1, let selectedImageData = selectedImageData, let statsLink = kitty.stats else {return}
                     onAdoptionClick?(sirname, KittyBreed(fromCoreData: statsLink), selectedImageData)
-                    isPresented.toggle()
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Adopt this Kitty")
                         .padding()

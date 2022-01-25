@@ -6,19 +6,19 @@
 //
 
 import SwiftUI
-import RealmSwift
 import Firebase
 
 struct KittyActionButtonContainer: View {
-    @ObservedResults(UnownedKittyInPlayground.self, sortDescriptor:
-        SortDescriptor(keyPath: "uid", ascending: true))
-        var wanderingKitties
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @EnvironmentObject var deeplink: KMKDeepLink
+    var refreshCheck: () -> Bool
     @State var ds: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [])
     @State var reference: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [])
-    @State var showWanderingKittiesRecap: Bool = false
     @State var backgroundNotificationClearDidFail = false
     @State var currentAlertType: KMKAlertType = .removeNotifFailureBackground
     @State var showTutorial = false
+    @State var wanderingKittiesisEmpty: Bool = true
+
     
     var model = KittyPlistManager()
     var network: KittyJsoner = KittyJsoner()
@@ -26,8 +26,6 @@ struct KittyActionButtonContainer: View {
     
     func registerForNotifications() {
         DispatchQueue.main.async {
-            let delegate = UIApplication.shared.delegate as! AppDelegate
-            UNUserNotificationCenter.current().delegate = delegate
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(
                 options: authOptions){ authorized, error in
@@ -113,6 +111,7 @@ struct KittyActionButtonContainer: View {
             }
             .frame(width: UIScreen.main.bounds.size.width, height: PourWaterTile.tileHeight + 75)
             .onAppear {
+                wanderingKittiesisEmpty = self.refreshCheck()
                 if let store = model.LoadItemFavorites() {
                     ds = store
                     reference = ds
@@ -128,7 +127,7 @@ struct KittyActionButtonContainer: View {
                 }
             }
             .onDisappear {
-                if ds != reference && wanderingKitties.count == 0 {
+                if ds != reference && wanderingKittiesisEmpty {
                     if model.SaveItemFavorites(items: ds) {
                         reference = ds
                     }
@@ -139,7 +138,7 @@ struct KittyActionButtonContainer: View {
                 }
             }
             
-            if wanderingKitties.count > 0 {
+            if !wanderingKittiesisEmpty {
                 Spacer()
                 KMKCustomSwipeUp(content: {
                     VStack {
@@ -147,7 +146,7 @@ struct KittyActionButtonContainer: View {
                         Text("Swipe up to view")
                     }
                     
-                }, gestureActivated: $showWanderingKittiesRecap)
+                }, gestureActivated: $deeplink.showWanderingKittyRecap)
                 
             }
         }
@@ -185,15 +184,19 @@ struct KittyActionButtonContainer: View {
         .alert(isPresented: $backgroundNotificationClearDidFail) {
             KMKSwiftUIStyles.i.renderAlertForType(type: currentAlertType)
         }
-        .sheet(isPresented: $showWanderingKittiesRecap, onDismiss: nil) {
-            WhileYouWereAwayAlert(ds: ds)
+        .sheet(isPresented: $deeplink.showWanderingKittyRecap, onDismiss: nil) {
+            WhileYouWereAwayAlert()
+                .environment(\.managedObjectContext, managedObjectContext)
         }
         
     }
 }
 
 struct KittyActionButtonContainer_Previews: PreviewProvider {
+    static var deepLink = KMKDeepLink()
+
     static var previews: some View {
-        KittyActionButtonContainer(ds: KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: 0, type: .chewytoy, hits: 10)]))
+        KittyActionButtonContainer( refreshCheck: { return false }, ds: KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: 0, type: .chewytoy, hits: 10)]))
+            .environmentObject(deepLink)
     }
 }

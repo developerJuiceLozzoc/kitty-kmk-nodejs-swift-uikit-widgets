@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SwiftUI
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Messaging.messaging().delegate = self
         application.registerForRemoteNotifications()
+        UNUserNotificationCenter.current().delegate = self
 
         
         KittyJsoner().fetchRemoteFeatureToggles { result in
@@ -103,10 +105,16 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         wkm.retrieveAndStoreKitties(with: breeds)
     
         DispatchQueue.main.async {
-            getRootTabController()?.selectedIndex = 0
+            let tbc = getRootTabController()
+            tbc?.selectedIndex = 0
+            guard let vc = tbc?.selectedViewController as? KittyPlagroundHostingController else {return}
+            
+            vc.shouldDisplayNotification = true
+            
         }
             
     }
+    
 
 
     completionHandler()

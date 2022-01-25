@@ -9,7 +9,6 @@ import Foundation
 
 
 class WanderingKittyModel {
-    let realmModel = RealmCrud()
     let coredataModel = KMKCoreData()
     let apiModel: CatApier = KittyJsoner()
     
@@ -67,8 +66,8 @@ class WanderingKittyModel {
         let _ = plister.SaveItemFavorites(items: pg)
         
         DispatchQueue.main.async {
-            _ = self.coredataModel.createWanderingKitty(id: breed.id, urls: cat.map { return $0.url }, toys: Array.init(toysPlayedWith), stats: breed)
-//            self.realmModel.storePossibleKittiesInBackground(stats: breed, urls: , toys: toysPlayedWith)
+            let didFail = self.coredataModel.createWanderingKitty(id: breed.id, urls: cat.map { return $0.url }, toys: Array.init(toysPlayedWith), stats: breed)
+            print(didFail)
         }
         
         

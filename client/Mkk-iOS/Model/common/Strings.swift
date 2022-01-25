@@ -67,7 +67,7 @@ struct ToyItemUsed: Hashable {
     }
 }
 
-enum ToyType: Int, CaseIterable {
+enum ToyType: Int, CaseIterable, Decodable {
     case yarnball = 0
     case shinystring
     case chewytoy

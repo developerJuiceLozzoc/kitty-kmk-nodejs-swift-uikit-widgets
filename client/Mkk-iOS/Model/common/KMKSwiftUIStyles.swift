@@ -240,6 +240,14 @@ class KMKSwiftUIStyles {
     
     private init() {}
     
+    func KMKDataTransformUIImage(using data: Data?) -> UIImage {
+        guard let d = data, let image = UIImage(data: d) else {
+            let defaultImage = UIImage(named: "image-not-found")!
+            return defaultImage
+        }
+        return image
+    }
+    
     func renderDashboardTileBorder() -> some View {
         RoundedRectangle(cornerRadius: 8)
             .stroke(
@@ -262,7 +270,7 @@ class KMKSwiftUIStyles {
     }
     func renderSelectableTileBG(isSelected: Bool?) -> some View {
         if isSelected == nil || isSelected == false {
-            return AngularGradient(gradient: Gradient(colors: [Color.white, Color.white]), center: .center)
+            return AngularGradient(gradient: Gradient(colors: [Color.clear, Color.clear]), center: .center)
         } else {
             return AngularGradient(gradient: Gradient(colors: [Color("dashboard-tile-bg-gradient-1"), Color("dashboard-tile-bg-gradient-end")]), center: .center)
         }

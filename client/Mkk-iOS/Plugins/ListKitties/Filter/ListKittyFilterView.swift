@@ -79,19 +79,9 @@ struct ListKittyFilterView: View {
             }
         }
         .navigationTitle("List Filter")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    print("done")
-                }, label: {
-                    Image(systemName: "questionmark.circle")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding()
-                        .foregroundColor(Color("ultra-violet-1"))
-
-                })
-            }
+        .onAppear {
+            groupingType = filter.grouping.rawValue
+            ordering = filter.sortOrder.rawValue
         }
     }
 }

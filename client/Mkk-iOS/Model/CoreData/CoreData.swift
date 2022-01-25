@@ -36,6 +36,16 @@ class KMKCoreData {
         }
         return false
     }
+    func deleteWanderingKitty(using id: NSManagedObjectID) -> Bool {
+        let moc = persistentContainer.viewContext
+        do{
+            let k = try moc.existingObject(with: id)
+            moc.delete(k)
+            return !saveContextDidFail()
+        } catch {
+            return false
+        }
+    }
     
     func fetchKitties(sortBy field: String, sortOrder: KittySortOrderType) -> [Kitty] {
         let moc = persistentContainer.viewContext
@@ -68,15 +78,12 @@ class KMKCoreData {
         }
     }
     
-    func updateKittyLastAccesed(using id: String ) -> Bool {
+    func updateKittyLastAccesed(using id: NSManagedObjectID ) -> Bool {
         let date = Date().timeIntervalSince1970
         let moc = persistentContainer.viewContext
-        let request: NSFetchRequest<Kitty> = Kitty.fetchRequest()
-        request.predicate = NSPredicate(format: "id == @", id)
         do{
-            let k = try moc.fetch(request)
-            guard k.count > 0 else {return false}
-            k[0].dateLastAccessed = date
+            let k = try! moc.existingObject(with: id) as! Kitty
+            k.dateLastAccessed = date
             return !saveContextDidFail()
         } catch {
             return false
@@ -97,6 +104,7 @@ class KMKCoreData {
         kstats.life_span = stats.life_span
         kstats.magic_level = Int16.random(in: 0...5)
         kstats.origin = stats.origin
+        kstats.temperament = stats.temperament
         return kstats
     }
     
@@ -120,13 +128,13 @@ class KMKCoreData {
         let wanderingk = NSEntityDescription.insertNewObject(forEntityName: "WanderingKitty", into: moc) as! WanderingKitty
         wanderingk.stats = createKStats(using: stats)
         
-        let toysAsString: String = toys.description
+        let toysAsString: String = toys.map{ $0.rawValue }.description
         let toyData = toysAsString.data(using: String.Encoding.utf16)
         wanderingk.toysInteracted = toyData
         
         let urlsAsString: String = urls.description
         let urlData = urlsAsString.data(using: String.Encoding.utf16)
-        wanderingk.toysInteracted = urlData
+        wanderingk.imgurls = urlData
         
         wanderingk.breed_id = id
         
