@@ -6,6 +6,8 @@ format. on the third tab you can dispatch a notification to receive a cat spirit
 on the next day, and decide to adopt them by saving their information locally
 on your device.
 
+YES I HAVE TESTFLIGHt, soon there will be app store link here.
+
 #### PRIVACY
 
 If you would like to view the information we(the owners) collection you can
