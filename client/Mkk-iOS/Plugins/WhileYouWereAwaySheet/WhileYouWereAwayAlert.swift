@@ -10,8 +10,8 @@ import RealmSwift
 
 struct WhileYouWereAwayAlert: View {
     @ObservedObject var presenter = WanderingKittyViewModel()
-    let ds: KittyPlaygroundState
     @ObservedObject var vm: KittyPFPViewModel = KittyPFPViewModel()
+    let ds: KittyPlaygroundState
     let cd = KMKCoreData()
     
     @State private var refreshID = UUID()

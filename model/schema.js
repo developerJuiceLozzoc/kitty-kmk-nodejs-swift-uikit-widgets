@@ -9,10 +9,11 @@ class Celeb {
 
 
 class KMKFutureNotification {
-  constructor(vapid,breed){
+  constructor(vapid,breed,did){
     this.device_token = vapid
     this.suggested_kitty = breed
     this.timestamp = Date.now()
+    this.device_identifier = did
   }
 }
 
@@ -58,6 +59,9 @@ class StaleSurveyReference {
     this.reference = gameid
   }
 }
+
+/* no longer uses this, a bunch of random cats are decided on the client. im not sure,
+ maybe the server should still be doing this, interacting with database stuff */
 const BreedMap  = {
   abys: 'Abyssinian',aege: 'Aegean',abob: 'American Bobtail',acur: 'American Curl',asho: 'American Shorthair',
   awir: 'American Wirehair',amau: 'Arabian Mau',amis: 'Australian Mist',bali: 'Balinese',bamb: 'Bambino',beng: 'Bengal',birm: 'Birman',bomb: 'Bombay',

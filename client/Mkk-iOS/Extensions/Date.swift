@@ -18,6 +18,14 @@ extension Calendar {
     
 }
 
+func doubleDateToString(from date: Double) -> String{
+    let birthday = Date(timeIntervalSince1970: date)
+    let df = DateFormatter()
+    df.dateFormat = "MMM dd, yyyy"
+    return df.string(from: birthday)
+}
+
+
 
 class KMKDateFormatter {
     enum LocalizedDays: String {
@@ -39,7 +47,11 @@ class KMKDateFormatter {
         let calendar = Calendar.current
         let differenceInDays: Int = calendar.numberOfDaysBetween(past, and: today)
         var yesturdayInt: Int
-        guard let pastInt = calendar.dateComponents([.weekday], from: past).weekday, let tempyesturdayInt = calendar.dateComponents([.weekday], from: today).weekday, let todayInt = calendar.dateComponents([.weekday], from: today).weekday else { return LocalizedDays.idk.rawValue }
+        guard
+            let pastInt = calendar.dateComponents([.weekday], from: past).weekday,
+            let tempyesturdayInt = calendar.dateComponents([.weekday], from: today).weekday,
+            let todayInt = calendar.dateComponents([.weekday], from: today).weekday
+        else { return LocalizedDays.idk.rawValue }
         print(pastInt,todayInt,differenceInDays)
         if  tempyesturdayInt - 1 < 0 {
             yesturdayInt = 6;

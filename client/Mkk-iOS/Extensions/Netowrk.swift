@@ -31,6 +31,29 @@ class KittyJsoner: CatApier {
         }.resume()
     }
     
+    func retreiveDocumentTokenForScheduledPushIfExists(completion: @escaping (Result<String, KMKNetworkError>) -> Void) {
+        guard let url = URL(string: "\(SERVER_URL)/notifications/dispatch") else {
+            completion(.failure(.urlError)); return;
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        URLSession.shared.dataTask(with: request){data,response,err in
+            if let resp = response as? HTTPURLResponse {
+                switch(resp.statusCode){
+                case 200:
+                    completion(.success("Object Identifier"))
+                case 400:
+                    completion(.failure(.invalidClientRequest))
+                default:
+                    completion(.failure(.serverCreateError))
+                }
+            }
+            else{
+                completion(.failure(.decodeFail))
+            }
+        }.resume()
+    }
+    
     
     
     func fetchRemoteFeatureToggles(completion: @escaping (Result<ZeusFeatureToggles, KMKNetworkError>) -> Void) {
@@ -130,6 +153,34 @@ class KittyJsoner: CatApier {
     
     func getKittyImageByBreed(with breed: String) {
         return 
+    }
+    
+    func discontinueCurrentNotificationSubscription(documentID: String, completion: @escaping (Result<Void,KMKNetworkError>) -> Void) {
+        guard let url = URL(string: "\(SERVER_URL)/notification/\(documentID)") else {
+            completion(.failure(.urlError))
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request){data,response,err in
+                if let error = err {
+                    print (error)
+                    completion(.failure(.invalidRequestError))
+                    return
+                }
+            if let resp = response as? HTTPURLResponse {
+                if(resp.statusCode != 200){
+                    completion(.failure(.noImageFoundError))
+                }
+                else{
+                    completion(.success(Void()))
+                }
+            }
+            else{
+                completion(.failure(.respNotHTTP))
+            }
+        }.resume()
     }
     
     func deleteOldNotification(id: String, with status: String, completion: @escaping (Result<Bool,KMKNetworkError>)->Void){

@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "coffeetoast",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:maeganwilson/CoffeeToast.git",
+      "state" : {
+        "revision" : "29fb9b44b5bc22dd1d19b613125922c186d314b5",
+        "version" : "2.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}

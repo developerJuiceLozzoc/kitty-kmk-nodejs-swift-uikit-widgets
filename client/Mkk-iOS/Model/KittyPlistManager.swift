@@ -33,7 +33,9 @@ class KittyPlistManager {
   
         var toysPreviously: [ToyItemUsed] = []
         
-        guard let foodInBowlValue = dict?.object(forKey: "foodbowl") as? Int, let waterInBowlAmnt = dict?.object(forKey: "waterbowl") as? Int else {
+        guard
+            let foodInBowlValue = dict?.object(forKey: "foodbowl") as? Int,
+            let waterInBowlAmnt = dict?.object(forKey: "waterbowl") as? Int else {
             return nil
         }
         
@@ -44,9 +46,10 @@ class KittyPlistManager {
                 guard let itemDict = arrayitems[i] as? NSDictionary else { continue }
     
                 let toy = ToyItemUsed(dictionary: itemDict)
-                guard toy.type != .unknown else { continue }
+                if toy.type != .unknown {
+                    toysPreviously.append(toy)
+                }
         
-                toysPreviously.append(toy)
             }
         }
         

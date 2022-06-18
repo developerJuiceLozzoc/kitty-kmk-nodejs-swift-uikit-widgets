@@ -95,7 +95,7 @@ enum KMKAlertType: Int {
 }
 
 
-enum KMKNetworkError: String,Error{
+enum KMKNetworkError: String, Error {
     case decodeFail = "Failed to code the GameSurvey Struct"
     case urlError = "Failed to create a url"
     case serverSaveError = "Server failed to respond to SaveSurvey"
@@ -104,6 +104,7 @@ enum KMKNetworkError: String,Error{
     case noImageFoundError = " the requested image was not availible"
     case noBreedsFoundError = "no breed images found wiht requested idv"
     case invalidClientRequest = "the server responded with errror"
+    case respNotHTTP = "could not convert response object."
 }
 
 enum ActionCellGestureType: String {

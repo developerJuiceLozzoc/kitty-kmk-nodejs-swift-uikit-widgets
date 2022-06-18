@@ -79,7 +79,10 @@
 		C6202D37277BA053003F4D32 /* KittyPlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D36277BA053003F4D32 /* KittyPlistManager.swift */; };
 		C643DBEF279B8123004157E1 /* LazyVRadioBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643DBEE279B8123004157E1 /* LazyVRadioBox.swift */; };
 		C643DBF0279B94EA004157E1 /* ListKittyFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FD179A279B346400902DF9 /* ListKittyFilterView.swift */; };
+		C649C53C27F0C3E800BCED16 /* Tutorials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C649C53B27F0C3E800BCED16 /* Tutorials.swift */; };
 		C678C6582790C68200078926 /* FoodLevelIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678C6572790C68200078926 /* FoodLevelIndicator.swift */; };
+		C68B405D285E343A004C8E0F /* ToyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68B405C285E343A004C8E0F /* ToyModel.swift */; };
+		C68B4060285E5833004C8E0F /* CoffeeToast in Frameworks */ = {isa = PBXBuildFile; productRef = C68B405F285E5833004C8E0F /* CoffeeToast */; };
 		C69EDAFA278A364300FE619E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAF9278A364300FE619E /* Date.swift */; };
 		C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAFB278A486300FE619E /* KMKButtons.swift */; };
 		C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */; };
@@ -168,7 +171,9 @@
 		C6202D34277B99C2003F4D32 /* PlaygroundState.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PlaygroundState.plist; sourceTree = "<group>"; };
 		C6202D36277BA053003F4D32 /* KittyPlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyPlistManager.swift; sourceTree = "<group>"; };
 		C643DBEE279B8123004157E1 /* LazyVRadioBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVRadioBox.swift; sourceTree = "<group>"; };
+		C649C53B27F0C3E800BCED16 /* Tutorials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorials.swift; sourceTree = "<group>"; };
 		C678C6572790C68200078926 /* FoodLevelIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLevelIndicator.swift; sourceTree = "<group>"; };
+		C68B405C285E343A004C8E0F /* ToyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyModel.swift; sourceTree = "<group>"; };
 		C69EDAF9278A364300FE619E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C69EDAFB278A486300FE619E /* KMKButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKButtons.swift; sourceTree = "<group>"; };
 		C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyViewModel.swift; sourceTree = "<group>"; };
@@ -203,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C68B4060285E5833004C8E0F /* CoffeeToast in Frameworks */,
 				0178B6DE9157D3E7691ACD72 /* Pods_Mkk_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +236,7 @@
 				B59BBF2F25D8509500A059C4 /* Strings.swift */,
 				B5DBA93C2741AF9B0075A45D /* ZeusToggles.swift */,
 				B5472921274AA91A005DCF8A /* KMKSwiftUIStyles.swift */,
+				C649C53B27F0C3E800BCED16 /* Tutorials.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -427,6 +434,13 @@
 			path = Filter;
 			sourceTree = "<group>";
 		};
+		C649C53A27F0C39E00BCED16 /* UndiscoveredNeighborhood */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UndiscoveredNeighborhood;
+			sourceTree = "<group>";
+		};
 		C678C6562790C64800078926 /* FoodBowl */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +455,7 @@
 			children = (
 				C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */,
 				C6202D2B277AB19F003F4D32 /* UseToyTile.swift */,
+				C68B405C285E343A004C8E0F /* ToyModel.swift */,
 			);
 			path = Toys;
 			sourceTree = "<group>";
@@ -457,6 +472,7 @@
 		C6FD1792279898B400902DF9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				C649C53A27F0C39E00BCED16 /* UndiscoveredNeighborhood */,
 				C6A729CE279F3DBA00FDDC8B /* WhileYouWereAwaySheet */,
 				C6FD1795279898EA00902DF9 /* SaveOrDiscardKitty */,
 				C6FD1794279898DD00902DF9 /* Playground */,
@@ -564,6 +580,9 @@
 			dependencies = (
 			);
 			name = "Mkk-iOS";
+			packageProductDependencies = (
+				C68B405F285E5833004C8E0F /* CoffeeToast */,
+			);
 			productName = "Mkk-iOS";
 			productReference = B5E7A62B25D6F7520076F12C /* Mkk-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -574,6 +593,9 @@
 		B5E7A62325D6F7520076F12C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
@@ -598,6 +620,9 @@
 				Base,
 			);
 			mainGroup = B5E7A62225D6F7520076F12C;
+			packageReferences = (
+				C68B405E285E5833004C8E0F /* XCRemoteSwiftPackageReference "CoffeeToast" */,
+			);
 			productRefGroup = B5E7A62C25D6F7520076F12C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -763,6 +788,7 @@
 				C6202D2C277AB19F003F4D32 /* UseToyTile.swift in Sources */,
 				B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */,
 				B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */,
+				C649C53C27F0C3E800BCED16 /* Tutorials.swift in Sources */,
 				B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */,
 				B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */,
 				C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */,
@@ -772,6 +798,7 @@
 				B5472924274B30FE005DCF8A /* KittyDetailsView.swift in Sources */,
 				C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */,
 				B5472922274AA91A005DCF8A /* KMKSwiftUIStyles.swift in Sources */,
+				C68B405D285E343A004C8E0F /* ToyModel.swift in Sources */,
 				B5DBA93D2741AF9B0075A45D /* ZeusToggles.swift in Sources */,
 				C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */,
 				B5A46C0D26250AB000F9E154 /* RealmCrud.swift in Sources */,
@@ -826,7 +853,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = SavedDataInfotainment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -848,7 +875,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = SavedDataInfotainment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -955,7 +982,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1010,7 +1037,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1031,7 +1058,7 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1056,7 +1083,7 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1110,6 +1137,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C68B405E285E5833004C8E0F /* XCRemoteSwiftPackageReference "CoffeeToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:maeganwilson/CoffeeToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C68B405F285E5833004C8E0F /* CoffeeToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C68B405E285E5833004C8E0F /* XCRemoteSwiftPackageReference "CoffeeToast" */;
+			productName = CoffeeToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B5B54CA52617C6BF00B18377 /* Model.xcdatamodeld */ = {

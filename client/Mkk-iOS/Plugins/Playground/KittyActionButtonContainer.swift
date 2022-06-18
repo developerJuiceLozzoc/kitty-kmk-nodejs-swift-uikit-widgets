@@ -7,22 +7,54 @@
 
 import SwiftUI
 import Firebase
+import CoffeeToast
 
 struct KittyActionButtonContainer: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var deeplink: KMKDeepLink
-    var refreshCheck: () -> Bool
+    @StateObject var networkManager = ToyNetworkManager()
+    
     @State var ds: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [])
     @State var reference: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [])
+    // action to show error that might happen on the client
+// idk maybe i should look into a toast
     @State var backgroundNotificationClearDidFail = false
     @State var currentAlertType: KMKAlertType = .removeNotifFailureBackground
     @State var showTutorial = false
     @State var wanderingKittiesisEmpty: Bool = true
 
-    
+    var refreshCheck: () -> Bool
     var model = KittyPlistManager()
     var network: KittyJsoner = KittyJsoner()
     let realmModel = RealmCrud()
+    
+    func viewDidAppear() {
+        wanderingKittiesisEmpty = self.refreshCheck()
+        if let store = model.LoadItemFavorites() {
+            ds = store
+            reference = ds
+        }
+        else {
+            ds = KittyPlaygroundState(foodbowl: 1, waterbowl: 1, toys: [])
+            reference = ds
+        }
+        
+        if !ZeusToggles.shared.hasReadTutorialCheck() {
+            showTutorial.toggle()
+        }
+    }
+    
+    func viewDidDisappear() {
+        if ds != reference && wanderingKittiesisEmpty {
+            if model.SaveItemFavorites(items: ds) {
+                reference = ds
+            }
+            else {
+                ds = reference // restore changes?
+                print("something went wrong saving preferences")
+            }
+        }
+    }
     
     func registerForNotifications() {
         DispatchQueue.main.async {
@@ -93,62 +125,51 @@ struct KittyActionButtonContainer: View {
                 VStack {
                     Spacer()
                     FoodBowlTile(store: $ds)
-                    UseToyTile(store: $ds, onSheetDisappear: {
-                        guard ds != reference else {return}
+                    UseToyTile(tnm: ToyNetworkManager(), store: $ds, onSheetDisappear: {
                         
+//                        update the playground if modified
+                        guard ds != reference else {return}
+                        let playgroundPersistDidFail = model.SaveItemFavorites(items: ds)
+                        if playgroundPersistDidFail {
+                            
+                        }
                         if ds.toys.isEmpty {
                             tryDeleteNotification()
                         }
                         if !ds.toys.isEmpty &&
-                                KittyPlistManager.getNotificationToken() == nil &&
-                            ZeusToggles.shared.didLoad {
-                            if model.SaveItemFavorites(items: ds){
-                                registerForNotifications()
-                            }
+                                
+                            KittyPlistManager.getNotificationToken() == nil &&
+                            
+                            ZeusToggles.shared.didLoad
+                            {
+                            
                         }
                     })
                 }
             }
             .frame(width: UIScreen.main.bounds.size.width, height: PourWaterTile.tileHeight + 75)
             .onAppear {
-                wanderingKittiesisEmpty = self.refreshCheck()
-                if let store = model.LoadItemFavorites() {
-                    ds = store
-                    reference = ds
-                }
-                else {
-                    print("there is no store")
-                    ds = KittyPlaygroundState(foodbowl: 1, waterbowl: 1, toys: [])
-                    reference = ds
-                }
-                
-                if !ZeusToggles.shared.hasReadTutorialCheck() {
-                    showTutorial.toggle()
-                }
+                self.viewDidAppear()
             }
             .onDisappear {
-                if ds != reference && wanderingKittiesisEmpty {
-                    if model.SaveItemFavorites(items: ds) {
-                        reference = ds
-                    }
-                    else {
-                        ds = reference // restore changes?
-                        print("something went wrong saving preferences")
-                    }
-                }
+                self.viewDidDisappear()
             }
             
-            if !wanderingKittiesisEmpty {
-                Spacer()
-                KMKCustomSwipeUp(content: {
-                    VStack {
-                        Text("You have cats waiting by your toys!")
-                        Text("Swipe up to view")
-                    }
+            ZStack {
+                if !wanderingKittiesisEmpty {
+                    Spacer()
+                    KMKCustomSwipeUp(content: {
+                        VStack {
+                            Text("You have cats waiting by your toys!")
+                            Text("Swipe up to view")
+                        }
+                        
+                    }, gestureActivated: $deeplink.showWanderingKittyRecap)
                     
-                }, gestureActivated: $deeplink.showWanderingKittyRecap)
+                }
                 
             }
+            
         }
         .overlay(
             VStack {
@@ -196,7 +217,7 @@ struct KittyActionButtonContainer_Previews: PreviewProvider {
     static var deepLink = KMKDeepLink()
 
     static var previews: some View {
-        KittyActionButtonContainer( refreshCheck: { return false }, ds: KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: 0, type: .chewytoy, hits: 10)]))
+        KittyActionButtonContainer( ds: KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: 0, type: .chewytoy, hits: 10)]), refreshCheck: { return false })
             .environmentObject(deepLink)
     }
 }
