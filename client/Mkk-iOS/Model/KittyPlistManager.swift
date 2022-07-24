@@ -12,7 +12,16 @@ import Foundation
 class KittyPlistManager {
     let ItemFavoritesFilePath = "ItemFavorites.plist"
     
-    
+    static func getDeviceHasOptedIn() -> Bool {
+        return UserDefaults.standard.bool(forKey: "push-notifs-device-has-opted-in")
+    }
+    static func setDeviceHasOptedIn(status: Bool?) {
+        if let status = status {
+            UserDefaults.standard.set(status, forKey: "push-notifs-device-has-opted-in")
+        } else {
+            UserDefaults.standard.removeObject(forKey: "push-notifs-device-has-opted-in")
+        }
+    }
     static func removeNotificationToken() {
         UserDefaults.standard.removeObject(forKey: "current-notification-event")
     }
@@ -23,6 +32,10 @@ class KittyPlistManager {
     static func getNotificationToken() -> String? {
         return UserDefaults.standard.string(forKey: "current-notification-event")
     }
+    
+    static func getFirebaseCloudMessagagingToken() -> String? {
+        UserDefaults.standard.string(forKey: "FCMDeviceToken")
+    }
 
     func LoadItemFavorites() -> KittyPlaygroundState?
     {
@@ -30,9 +43,9 @@ class KittyPlistManager {
         let docuDir = paths.firstObject as! String
         let path = "\(docuDir)/\(ItemFavoritesFilePath)"
         let dict = NSDictionary(contentsOfFile: path)
-  
         var toysPreviously: [ToyItemUsed] = []
         
+        let sub = dict?.object(forKey: "subscription") as? String ?? ""
         guard
             let foodInBowlValue = dict?.object(forKey: "foodbowl") as? Int,
             let waterInBowlAmnt = dict?.object(forKey: "waterbowl") as? Int else {
@@ -53,10 +66,11 @@ class KittyPlistManager {
             }
         }
         
-        return KittyPlaygroundState(foodbowl: foodInBowlValue, waterbowl: waterInBowlAmnt, toys: toysPreviously)
+        return KittyPlaygroundState(foodbowl: foodInBowlValue, waterbowl: waterInBowlAmnt, toys: toysPreviously, subscription: sub)
     }
     func SaveItemFavorites(items : KittyPlaygroundState) -> Bool
     {
+        //plist entry for playground state. not user defaults, we want seperate file.
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         let docuDir = paths.firstObject as! String
         let path = "\(docuDir)/\(ItemFavoritesFilePath)"
@@ -73,6 +87,7 @@ class KittyPlistManager {
         dict.setObject(items.foodbowl, forKey: "foodbowl" as NSCopying)
         dict.setObject(items.waterbowl, forKey: "waterbowl" as NSCopying)
         dict.setObject(array, forKey: "toys" as NSCopying)
+        dict.setObject(items.subscription, forKey: "subscription" as NSCopying)
 
         
         //check if file exists

@@ -265,6 +265,8 @@ class KMKSwiftUIStyles {
             return Alert(title: Text("Sorry to interrupt however there is an Error."), message: Text("We tried updating your preferences, but failed, please try again manually using the Clean Up button in the toy menu"))
         case .removeNotifSuccess:
             return Alert(title: Text("You have now cleaned up"), message: Text("Now that all the toys are removed, you will no longer receive notifications ie no more kitties daily."))
+        case .noneError:
+            return Alert(title: Text("🥸‼"))
         }
     }
     

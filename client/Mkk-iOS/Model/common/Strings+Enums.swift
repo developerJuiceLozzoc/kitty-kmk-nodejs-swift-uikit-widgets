@@ -37,10 +37,11 @@ let MOCK_NAMES: [String] = [
 
 
 let VOTE_CELL_REUSE:String = "This cell has a picture and a thick segmented control."
-let SERVER_URL = "https://kissmarrykill.herokuapp.com"
+//let SERVER_URL = "https://kissmarrykill.herokuapp.com"
 //let SERVER_URL = "http://localhost:3000"
 //let SERVER_URL = "http://10.1.10.76:3000"
 //let SERVER_URL = "http://10.0.0.74:3000"
+let SERVER_URL = "http://10.0.0.79:3000"
 
 struct ToyItemUsed: Hashable {
     let dateAdded: Double
@@ -65,6 +66,18 @@ struct ToyItemUsed: Hashable {
             self.timesInteracted = -1
         }
     }
+}
+
+enum PouringState: Int {
+    case idle = 0
+    case transition
+    case pouring
+    case overflowing
+}
+enum PouringSpeedEnum: String {
+    case notpouring = "Not Pouring"
+    case steady = "Steady"
+    case dumping = "Dumping that water"
 }
 
 enum ToyType: Int, CaseIterable, Decodable {
@@ -92,10 +105,12 @@ enum KMKAlertType: Int {
     case removeNotifFailureForeground
     case failedRegisterForPush
     case succRegisterForPush
+    case noneError
 }
 
 
 enum KMKNetworkError: String, Error {
+    case noneError = "idle state"
     case decodeFail = "Failed to code the GameSurvey Struct"
     case urlError = "Failed to create a url"
     case serverSaveError = "Server failed to respond to SaveSurvey"
@@ -105,6 +120,9 @@ enum KMKNetworkError: String, Error {
     case noBreedsFoundError = "no breed images found wiht requested idv"
     case invalidClientRequest = "the server responded with errror"
     case respNotHTTP = "could not convert response object."
+    case noDocumentSuccess = ""
+    case notificationServerError = "Sorry, we had problems looking up your opt in registraction status."
+    case deviceNotRegistered = "This device does not contain a notification token claiming authorization."
 }
 
 enum ActionCellGestureType: String {

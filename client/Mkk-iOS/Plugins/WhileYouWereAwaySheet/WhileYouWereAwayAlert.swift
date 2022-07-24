@@ -18,7 +18,7 @@ struct WhileYouWereAwayAlert: View {
     let didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
     
     init() {
-        ds = KittyPlistManager().LoadItemFavorites() ?? KittyPlaygroundState(foodbowl: 0, waterbowl: 0, toys: [])
+        ds = KittyPlistManager().LoadItemFavorites() ?? KittyPlaygroundState(foodbowl: 0, waterbowl: 0, toys: [], subscription: "")
     }
     
     var body: some View {

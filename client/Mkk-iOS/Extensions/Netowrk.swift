@@ -7,6 +7,10 @@
 
 import UIKit
 
+struct SimpleId: Decodable {
+    var id: String
+}
+
 class KittyJsoner: CatApier {
     func dispatchNotificationsImmediately(completion: @escaping (Result<Void, KMKNetworkError>) -> Void) {
         guard let url = URL(string: "\(SERVER_URL)/notifications/dispatch") else {
@@ -32,16 +36,26 @@ class KittyJsoner: CatApier {
     }
     
     func retreiveDocumentTokenForScheduledPushIfExists(completion: @escaping (Result<String, KMKNetworkError>) -> Void) {
-        guard let url = URL(string: "\(SERVER_URL)/notifications/dispatch") else {
+        guard let token = KittyPlistManager.getFirebaseCloudMessagagingToken(),
+        let did = UIDevice.current.identifierForVendor?.uuidString
+        else { completion(.failure(.deviceNotRegistered));return; }
+        
+        guard let url = URL(string: "\(SERVER_URL)/notifications/subscription?deviceid=\(did)&breed=any&fireToken=\(token)") else {
             completion(.failure(.urlError)); return;
         }
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         URLSession.shared.dataTask(with: request){data,response,err in
             if let resp = response as? HTTPURLResponse {
                 switch(resp.statusCode){
                 case 200:
-                    completion(.success("Object Identifier"))
+                    guard let data = data,
+                          let decoded = try? JSONDecoder().decode(SimpleId.self, from: data)
+                    else {
+                        completion(.failure(.decodeFail))
+                        return
+                    }
+                    completion(.success(decoded.id))
                 case 400:
                     completion(.failure(.invalidClientRequest))
                 default:
@@ -115,20 +129,51 @@ class KittyJsoner: CatApier {
         }.resume()
         
     }
+    private func registerForNotifications(completion: @escaping (Result<Void,KMKNetworkError>) -> Void) {
+        
+        
+        let semaphore = DispatchSemaphore(value: 1)
+
+    }
     
-    
-    func postNewNotification(withDeviceName name: String, completion: @escaping (Result<Bool,KMKNetworkError>)->Void){
+    func postNewNotification(completion: @escaping (Result<String,KMKNetworkError>)->Void){
         guard let selected_breed = KITTY_BREEDS.randomElement() else { completion(.failure(.noBreedsFoundError));return;}
-        
-        
-        guard let url = URL(string: "\(SERVER_URL)/notifications/schedule?deviceid=\(name)&breed=\(selected_breed)") else {
+        guard let token = KittyPlistManager.getFirebaseCloudMessagagingToken(),
+        let did = UIDevice.current.identifierForVendor?.uuidString
+        else { completion(.failure(.deviceNotRegistered));return; }
+        guard let url = URL(string: "\(SERVER_URL)/notifications/schedule?deviceid=\(did)&breed=any&fireToken=\(token)") else {
             completion(.failure(.urlError))
             return
+        }
+        let semaphore = DispatchSemaphore(value: 1)
+        var registrationError: Error?
+        semaphore.wait()
+        let authOptions: UNAuthorizationOptions = [.alert, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions){ authorized, error in
+                defer {
+                    semaphore.signal()
+                }
+                if !authorized {
+                    registrationError = NSError(domain: "Authorization denied", code: 500)
+                }
+                if error != nil {
+                    registrationError = error
+                }
+            }
+        
+        semaphore.wait()
+        if let error = registrationError {
+            print(String.init(describing: error))
+            completion(.failure(.deviceNotRegistered))
         }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
         URLSession.shared.dataTask(with: request){data,response,err in
+            defer {
+                semaphore.signal()
+            }
                 if let error = err {
                     print (error)
                     completion(.failure(.invalidRequestError))
@@ -137,7 +182,13 @@ class KittyJsoner: CatApier {
             if let resp = response as? HTTPURLResponse {
                 switch(resp.statusCode){
                 case 201:
-                    completion(.success(true))
+                    guard let data = data,
+                          let decoded = try? JSONDecoder().decode(SimpleId.self, from: data)
+                    else {
+                        completion(.failure(.decodeFail))
+                        return
+                    }
+                    completion(.success(decoded.id))
                 case 400:
                     completion(.failure(.invalidClientRequest))
                 default:
@@ -148,6 +199,8 @@ class KittyJsoner: CatApier {
                 completion(.failure(.decodeFail))
             }
         }.resume()
+        
+        print("selected breed", selected_breed)
         
     }
     
@@ -198,11 +251,14 @@ class KittyJsoner: CatApier {
                     return
                 }
             if let resp = response as? HTTPURLResponse {
-                if(resp.statusCode != 200){
-                    completion(.failure(.serverCreateError))
-                }
-                else{
+                switch resp.statusCode {
+                case 200:
                     completion(.success(true))
+                    break
+                case 404:
+                    completion(.failure(.noDocumentSuccess))
+                default:
+                    completion(.failure(.notificationServerError))
                 }
             }
             else{

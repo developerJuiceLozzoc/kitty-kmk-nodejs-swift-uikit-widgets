@@ -40,7 +40,7 @@
 		B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */; };
 		B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */; };
 		B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2B25D84DF100A059C4 /* MainTabController.swift */; };
-		B59BBF3025D8509500A059C4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2F25D8509500A059C4 /* Strings.swift */; };
+		B59BBF3025D8509500A059C4 /* Strings+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2F25D8509500A059C4 /* Strings+Enums.swift */; };
 		B5A46C0926250A6E00F9E154 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A46C0826250A6E00F9E154 /* RealmModel.swift */; };
 		B5A46C0D26250AB000F9E154 /* RealmCrud.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A46C0C26250AB000F9E154 /* RealmCrud.swift */; };
 		B5A46C3B262518BF00F9E154 /* breeds.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A46C3A262518BF00F9E154 /* breeds.json */; };
@@ -51,7 +51,7 @@
 		B5B54C802617A14F00B18377 /* Netowrk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544121A25EFD7B900C0D629 /* Netowrk.swift */; };
 		B5B54C832617A15E00B18377 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA52B25FA944F00621682 /* Schema.swift */; };
 		B5B54C862617A16300B18377 /* NotificationObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51784CA25D874E7004472DB /* NotificationObjects.swift */; };
-		B5B54C892617A16600B18377 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2F25D8509500A059C4 /* Strings.swift */; };
+		B5B54C892617A16600B18377 /* Strings+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2F25D8509500A059C4 /* Strings+Enums.swift */; };
 		B5B54C8C2617A34700B18377 /* GameSurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */; };
 		B5B54C902617A64100B18377 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C8F2617A64100B18377 /* Protocols.swift */; };
 		B5B54C932617A66100B18377 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B54C8F2617A64100B18377 /* Protocols.swift */; };
@@ -69,6 +69,7 @@
 		B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */; };
 		B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4317B27499289008DAE78 /* ListKittiesView.swift */; };
 		C6082C0327810D420005D81F /* WhileYouWereAwayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */; };
+		C60887A0288DA89A00D16FB6 /* ToySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C608879F288DA89900D16FB6 /* ToySheetView.swift */; };
 		C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */; };
 		C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */; };
 		C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */; };
@@ -133,7 +134,7 @@
 		B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyVM.swift; sourceTree = "<group>"; };
 		B59BBF2025D777D200A059C4 /* GameSurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyModel.swift; sourceTree = "<group>"; };
 		B59BBF2B25D84DF100A059C4 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
-		B59BBF2F25D8509500A059C4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		B59BBF2F25D8509500A059C4 /* Strings+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Enums.swift"; sourceTree = "<group>"; };
 		B5A46C0826250A6E00F9E154 /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		B5A46C0C26250AB000F9E154 /* RealmCrud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCrud.swift; sourceTree = "<group>"; };
 		B5A46C3A262518BF00F9E154 /* breeds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = breeds.json; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mkk_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhileYouWereAwayAlert.swift; sourceTree = "<group>"; };
+		C608879F288DA89900D16FB6 /* ToySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToySheetView.swift; sourceTree = "<group>"; };
 		C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KittyActionButtonContainer.swift; sourceTree = "<group>"; };
 		C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PourWaterTile.swift; sourceTree = "<group>"; };
 		C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBowlTile.swift; sourceTree = "<group>"; };
@@ -232,8 +234,7 @@
 			children = (
 				B51784CA25D874E7004472DB /* NotificationObjects.swift */,
 				B5B54C8F2617A64100B18377 /* Protocols.swift */,
-				B5CBA52B25FA944F00621682 /* Schema.swift */,
-				B59BBF2F25D8509500A059C4 /* Strings.swift */,
+				B59BBF2F25D8509500A059C4 /* Strings+Enums.swift */,
 				B5DBA93C2741AF9B0075A45D /* ZeusToggles.swift */,
 				B5472921274AA91A005DCF8A /* KMKSwiftUIStyles.swift */,
 				C649C53B27F0C3E800BCED16 /* Tutorials.swift */,
@@ -393,6 +394,7 @@
 		B5E7A64525D6F92C0076F12C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B5CBA52B25FA944F00621682 /* Schema.swift */,
 				B57512B3261A77AA00527CD5 /* SurveyCacheViewModel.swift */,
 				B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */,
 				B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */,
@@ -456,6 +458,7 @@
 				C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */,
 				C6202D2B277AB19F003F4D32 /* UseToyTile.swift */,
 				C68B405C285E343A004C8E0F /* ToyModel.swift */,
+				C608879F288DA89900D16FB6 /* ToySheetView.swift */,
 			);
 			path = Toys;
 			sourceTree = "<group>";
@@ -758,7 +761,7 @@
 				B5B54C802617A14F00B18377 /* Netowrk.swift in Sources */,
 				B5B54C712617A11D00B18377 /* VoteViewModelTests.swift in Sources */,
 				B5B54C832617A15E00B18377 /* Schema.swift in Sources */,
-				B5B54C892617A16600B18377 /* Strings.swift in Sources */,
+				B5B54C892617A16600B18377 /* Strings+Enums.swift in Sources */,
 				C6202D33277B949C003F4D32 /* ActionButtonViewControllerTests.swift in Sources */,
 				B57512C4261A7CF700527CD5 /* StatsModel.swift in Sources */,
 			);
@@ -780,6 +783,7 @@
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
 				C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */,
 				C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */,
+				C60887A0288DA89A00D16FB6 /* ToySheetView.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
 				C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */,
 				C6202D37277BA053003F4D32 /* KittyPlistManager.swift in Sources */,
@@ -811,7 +815,7 @@
 				B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */,
 				C6202D30277B82B4003F4D32 /* KittyPlagroundHostingController.swift in Sources */,
 				C678C6582790C68200078926 /* FoodLevelIndicator.swift in Sources */,
-				B59BBF3025D8509500A059C4 /* Strings.swift in Sources */,
+				B59BBF3025D8509500A059C4 /* Strings+Enums.swift in Sources */,
 				B5CBA52C25FA944F00621682 /* Schema.swift in Sources */,
 				B54651D026F78C6900A16F38 /* JumbotronLayout.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,

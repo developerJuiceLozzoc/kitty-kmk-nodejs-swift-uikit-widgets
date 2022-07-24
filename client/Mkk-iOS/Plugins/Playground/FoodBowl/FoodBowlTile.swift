@@ -154,7 +154,7 @@ struct ScrubbingGestureWrapper: UIViewRepresentable {
 }
 
 struct FoodBowl_Previews: PreviewProvider {
-    @State static var value = KittyPlaygroundState(foodbowl: 0, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 50)])
+    @State static var value = KittyPlaygroundState(foodbowl: 0, waterbowl: 50, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 50)], subscription: "")
 
     static var previews: some View {
         FoodBowlTile(store: $value)

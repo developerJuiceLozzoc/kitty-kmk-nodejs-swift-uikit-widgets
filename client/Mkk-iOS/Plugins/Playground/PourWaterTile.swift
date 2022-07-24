@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-enum PouringState: Int {
-    case idle = 0
-    case transition
-    case pouring
-    case overflowing
-}
-enum PouringSpeedEnum: String {
-    case notpouring = "Not Pouring"
-    case steady = "Steady"
-    case dumping = "Dumping that water"
-}
 
 struct PourWaterTile: View {
     @Binding var store: KittyPlaygroundState
@@ -206,7 +195,7 @@ struct TwoFingerDragDownWrapper: UIViewRepresentable {
 }
 
 struct PourWaterTile_Previews: PreviewProvider {
-    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 100, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 20)])
+    @State static var value = KittyPlaygroundState(foodbowl: 50, waterbowl: 100, toys: [ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: .chewytoy, hits: 20)], subscription: "abv")
 
     static var previews: some View {
         HStack(spacing: 21){

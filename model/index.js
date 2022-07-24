@@ -62,11 +62,12 @@ function insertCeleb(celeb, callback) {
  * @param {Int}  the type of game we would like to retrieve
  * @param {Int} the offset of results we would like to skip
  * @param {Int} the limit of results to find
- *
+ * @param {Object}
+ { vapid, breed, did }
  * @return {Promise}
  */
-function createScheduledNotification({ vapid, breed }) {
-  const ScheduledNotification = new KMKFutureNotification(vapid, breed);
+function createScheduledNotification(notificationDetails) {
+  const ScheduledNotification = new KMKFutureNotification(notificationDetails);
 
   return mongoc
     .db(MONGO_DB_NAME)
@@ -129,12 +130,16 @@ function findNotificationById(id) {
     resolve(cursor);
   });
 }
-function findNotificationByDeviceToken(id) {
+function findNotificationByDidAndFireToken(id,fireToken) {
   return new Promise(async function (resolve, reject) {
     let cursor = await mongoc
       .db(MONGO_DB_NAME)
       .collection(NTFCNS)
-      .findOne({ device_token: id });
+      .findOne(
+        {
+          device_identifier: id,
+          device_token: fireToken
+        });
     resolve(cursor);
   });
 }
@@ -233,6 +238,7 @@ function getRandomCeleb() {
           return;
         } else {
           var celebs = [];
+          // entity is a cursor, not entirely in memory.
           await entity.forEach(function (val) {
             celebs.push(val);
           });
@@ -353,7 +359,7 @@ module.exports = {
 readRemoteFeatureToggles,
   updateAdoptionStats,retrieveAdoptionStats,
   deleteNotification,
-  mapStaleGames, findNotificationByDeviceToken,
+  mapStaleGames,
   readAllScheduledNotifications,
   getRandomCeleb,
   createScheduledNotification,
@@ -362,6 +368,7 @@ readRemoteFeatureToggles,
   updateGameResultsWithID,
   insertCeleb,
   findNotificationById,
+  findNotificationByDidAndFireToken,
   bulk_deleteExpiredGames,
   bulk_rinseStaleCollection,
   updateStaleSurveyAsFulfilled,

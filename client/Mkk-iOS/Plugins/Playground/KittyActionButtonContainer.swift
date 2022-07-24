@@ -14,14 +14,18 @@ struct KittyActionButtonContainer: View {
     @EnvironmentObject var deeplink: KMKDeepLink
     @StateObject var networkManager = ToyNetworkManager()
     
-    @State var ds: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [])
-    @State var reference: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [])
+    @State var ds: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [], subscription: "")
+    @State var reference: KittyPlaygroundState = KittyPlaygroundState(foodbowl: -1, waterbowl: -1, toys: [], subscription: "")
     // action to show error that might happen on the client
 // idk maybe i should look into a toast
     @State var backgroundNotificationClearDidFail = false
     @State var currentAlertType: KMKAlertType = .removeNotifFailureBackground
     @State var showTutorial = false
     @State var wanderingKittiesisEmpty: Bool = true
+    private var marginSpacing: String {
+        let chars = (0...5).map { _ in " " }.joined(separator: "\t")
+        return chars
+    }
 
     var refreshCheck: () -> Bool
     var model = KittyPlistManager()
@@ -35,7 +39,7 @@ struct KittyActionButtonContainer: View {
             reference = ds
         }
         else {
-            ds = KittyPlaygroundState(foodbowl: 1, waterbowl: 1, toys: [])
+            ds = KittyPlaygroundState(foodbowl: 1, waterbowl: 1, toys: [], subscription: "")
             reference = ds
         }
         
@@ -55,66 +59,72 @@ struct KittyActionButtonContainer: View {
             }
         }
     }
-    
-    func registerForNotifications() {
-        DispatchQueue.main.async {
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions){ authorized, error in
-                if authorized {
-                    guard let DeviceToken = UserDefaults.standard.string(forKey: "FCMDeviceToken") else { return }
-                    DispatchQueue.global().async {
-                        dispatchPushRegistration(with: DeviceToken)
-
-                    }
-                }
-            }
-        }
-        
-    }
-    
-    func dispatchPushRegistration(with token: String) {
-        
-            network.postNewNotification(withDeviceName: token) { (result) in
+    func handlePossibleSubscription() {
+        let addedNewToys = reference.toys.count > 0
+        let addedFreshToys = reference.toys.count == 0
+        let hasToysOut = !ds.toys.isEmpty
+        guard hasToysOut, ZeusToggles.shared.didLoad else {return}
+        let dg = DispatchGroup()
+        if KittyPlistManager.getNotificationToken() != nil &&
+            addedFreshToys || addedNewToys {
+            // verify that our subscription is active
+            dg.enter()
+            network.retreiveDocumentTokenForScheduledPushIfExists { result in
+                defer { dg.leave() }
                 switch result {
-                    case .success(_):
-                    currentAlertType = .succRegisterForPush
-                    backgroundNotificationClearDidFail.toggle()
-                    if ZeusToggles.shared.toggles.instantPushKitty {
-                        network.dispatchNotificationsImmediately { result in
-                            switch result {
-                            case .success( _):
-
-                                return
-                            case .failure(let err):
-                                print(err)
-                                }
+                    // do not do anything because i guess this is fine, we are continuing our
+                // subscription
+                    case .success(let token):
+                        if addedNewToys {
+                            print("TOYMODAL - added more toys, confirming that we already had a ducument")
+                        } else if addedFreshToys {
+                            print("TOYMODAL - added new toys but already had a subscription?")
                         }
-                    }
-                    case .failure(_):
-                    currentAlertType = .failedRegisterForPush
-                    backgroundNotificationClearDidFail.toggle()
+                    case .failure(let error):
+                    //
+                    print(error)
+                        print("TOYMODAL - we did not have a token? idk")
+                    
                 }
+                
+                //possibly store one or two lurking kittins into core data immediately right now
+                //so that if they visit again in 20 minutes they are here.
+                 
             }
-    }
-    
-    func tryDeleteNotification() {
-        guard let nid = KittyPlistManager.getNotificationToken() else {return}
-        network.deleteOldNotification(id: nid, with: "adopted") { (result) in
+   
+        }
+        else {
+            if addedNewToys {
+                print("TOY_MODEL i wonder what happend to our token since we already had one.")
+            }
+            dg.enter()
             DispatchQueue.main.async {
-                switch result {
-                case .success(_):
-                    ds.toys = []
-                    KittyPlistManager.removeNotificationToken()
-                default:
-                    currentAlertType = .removeNotifFailureBackground
-                    backgroundNotificationClearDidFail.toggle()
-
+                network.postNewNotification() { result in
+                    defer { dg.leave() }
+                    switch result {
+                    case .success(let token):
+                        KittyPlistManager.setNotificationToken(with: token)
+                        ds.subscription = token
+                        
+                        break
+                    case .failure(let error):
+                        break
+                    }
                 }
             }
+            
+            
         }
         
+        
+        // or create new subscription or reset.
+        //not sure, unless we had toys previously.
+        dg.notify(queue: .main) {
+            return
+        }
     }
+    
+    
     var body: some View {
         VStack {
             HStack(spacing: 21){
@@ -125,24 +135,33 @@ struct KittyActionButtonContainer: View {
                 VStack {
                     Spacer()
                     FoodBowlTile(store: $ds)
-                    UseToyTile(tnm: ToyNetworkManager(), store: $ds, onSheetDisappear: {
-                        
+                    UseToyTile(tnm: networkManager, store: $ds, onSaveToys: {
 //                        update the playground if modified
                         guard ds != reference else {return}
                         let playgroundPersistDidFail = model.SaveItemFavorites(items: ds)
                         if playgroundPersistDidFail {
-                            
+                            print("CDM - failed to save persisted playground")
                         }
                         if ds.toys.isEmpty {
-                            tryDeleteNotification()
+                            networkManager.tryDeleteNotification { result in
+                                switch result {
+                                case .success(_):
+                                    ds.toys = []
+                                    currentAlertType = .noneError
+                                case .failure(.notificationServerError):
+                                    currentAlertType = .removeNotifFailureBackground
+                                default:
+                                    currentAlertType = .failedRegisterForPush
+                                    backgroundNotificationClearDidFail.toggle()
+
+                                }
+                            }
+                            return
                         }
-                        if !ds.toys.isEmpty &&
-                                
-                            KittyPlistManager.getNotificationToken() == nil &&
-                            
-                            ZeusToggles.shared.didLoad
-                            {
-                            
+                        handlePossibleSubscription()
+                    }, onSheetDisappear: {
+                        if currentAlertType != .noneError {
+                            backgroundNotificationClearDidFail.toggle()
                         }
                     })
                 }
@@ -155,9 +174,12 @@ struct KittyActionButtonContainer: View {
                 self.viewDidDisappear()
             }
             
+            if !wanderingKittiesisEmpty  || backgroundNotificationClearDidFail {
+                Spacer()
+            }
+            
             ZStack {
                 if !wanderingKittiesisEmpty {
-                    Spacer()
                     KMKCustomSwipeUp(content: {
                         VStack {
                             Text("You have cats waiting by your toys!")
@@ -165,9 +187,14 @@ struct KittyActionButtonContainer: View {
                         }
                         
                     }, gestureActivated: $deeplink.showWanderingKittyRecap)
-                    
                 }
                 
+               
+                Toast("\(marginSpacing)\(marginSpacing)\(marginSpacing)",
+                          duration: 4.75, isShown: $backgroundNotificationClearDidFail) {
+                        Text("")
+                }
+                .offset(x: 0, y: backgroundNotificationClearDidFail ? 0 : 100)
             }
             
         }
@@ -202,9 +229,6 @@ struct KittyActionButtonContainer: View {
             }
            
         })
-        .alert(isPresented: $backgroundNotificationClearDidFail) {
-            KMKSwiftUIStyles.i.renderAlertForType(type: currentAlertType)
-        }
         .sheet(isPresented: $deeplink.showWanderingKittyRecap, onDismiss: nil) {
             WhileYouWereAwayAlert()
                 .environment(\.managedObjectContext, managedObjectContext)
@@ -217,7 +241,7 @@ struct KittyActionButtonContainer_Previews: PreviewProvider {
     static var deepLink = KMKDeepLink()
 
     static var previews: some View {
-        KittyActionButtonContainer( ds: KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: 0, type: .chewytoy, hits: 10)]), refreshCheck: { return false })
+        KittyActionButtonContainer( ds: KittyPlaygroundState(foodbowl: 50, waterbowl: 50, toys: [ToyItemUsed(dateAdded: 0, type: .chewytoy, hits: 10)], subscription: ""), refreshCheck: { return false })
             .environmentObject(deepLink)
     }
 }

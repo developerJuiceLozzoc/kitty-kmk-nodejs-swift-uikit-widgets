@@ -11,6 +11,7 @@ struct KittyPlaygroundState: Equatable {
     var foodbowl: Int
     var waterbowl: Int
     var toys: [ToyItemUsed]
+    var subscription: String
 }
 
 struct ZeusFeatureToggles: Codable {

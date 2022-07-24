@@ -9,7 +9,7 @@ class Celeb {
 
 
 class KMKFutureNotification {
-  constructor(vapid,breed,did){
+  constructor({vapid,breed,did}){
     this.device_token = vapid
     this.suggested_kitty = breed
     this.timestamp = Date.now()

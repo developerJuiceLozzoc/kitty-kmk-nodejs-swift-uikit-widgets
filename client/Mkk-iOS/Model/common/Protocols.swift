@@ -15,7 +15,7 @@ protocol CatApier {
     func dispatchNotificationsImmediately(completion: @escaping (Result<Void,KMKNetworkError>) -> Void)
     func getJsonByBreed(with breed: String, completion: @escaping (Result<[KittyApiResults],KMKNetworkError>) -> Void)
     func getKittyImageByBreed(with breed: String, completion: @escaping (Result<UIImage,KMKNetworkError>) -> Void)
-    func postNewNotification(withDeviceName name: String, completion: @escaping (Result<Bool,KMKNetworkError>)->Void)
+    func postNewNotification(completion: @escaping (Result<String,KMKNetworkError>)->Void)
     func fetchRemoteFeatureToggles(completion: @escaping (Result<ZeusFeatureToggles,KMKNetworkError>)->Void)
 }
 

@@ -13,7 +13,7 @@ const {
   createScheduledNotification,
   readAllScheduledNotifications,
   deleteNotification,
-  findNotificationByDeviceToken,
+  findNotificationByDidAndFireToken,
   updateAdoptionStats,retrieveAdoptionStats,
   readRemoteFeatureToggles,
 } = require("../model");
@@ -108,10 +108,24 @@ module.exports.post("/game/:gameid", function (req, res) {
     });
 });
 
-module.exports.post("/notifications/schedule", function (req, res) {
-  const { deviceid, breed } = req.query;
+module.exports.get("/notifications/subscription", function (req, res){
+  const { deviceid, breed, fireToken } = req.query;
+  console.log(deviceid,fireToken);
   var status = null;
-  findNotificationByDeviceToken(deviceid)
+  findNotificationByDidAndFireToken(deviceid,fireToken)
+    .then(function (value) {
+      console.log(value);
+      res.status(200).json(value)
+    })
+    .catch(function (e) {
+      res.status(400).end();
+    })
+})
+
+module.exports.post("/notifications/schedule", function (req, res) {
+  const { deviceid, breed, fireToken } = req.query;
+  var status = null;
+  findNotificationByDidAndFireToken(deviceid,fireToken)
     .then(function (value) {
       console.log(value);
       if (value) {
@@ -126,10 +140,10 @@ module.exports.post("/notifications/schedule", function (req, res) {
       throw e;
     })
     .then(function () {
-      return createScheduledNotification({ vapid: deviceid, breed });
+      return createScheduledNotification({ vapid: fireToken, breed, did: deviceid });
     })
-    .then(function (success) {
-      res.status(201).end();
+    .then(function (result) {
+      res.status(201).json({id: result.insertedId})
     })
     .catch(function (err) {
       console.log(err);
@@ -169,13 +183,11 @@ module.exports.post("/notifications/dispatch", function (req, res) {
 
 module.exports.delete("/notifications", function (req, res) {
   const { adoption_status, notification_id } = req.query;
-  findNotificationById(notification_id)
-    .then(function (doc) {
+      findNotificationById(notification_id)
+      .then(function (doc) {
       if (!doc) {
+        notification_id = undefined
         throw "The document is no exist";
-      }
-      if (!doc.suggested_kitty) {
-        throw "Delete the document";
       }
       return new Promise(async function (resolve, reject) {
         try{
@@ -193,14 +205,17 @@ module.exports.delete("/notifications", function (req, res) {
       });
     })
     .finally(function () {
+      console.log("CDM finally block", notification_id);
       if (notification_id) {
         return deleteNotification(notification_id);
       }
     })
     .then(function () {
+      console.log("CDM successfully deleted")
       res.status(200).end();
     })
     .catch(function () {
+      console.log("CDM error block");
       res.status(300).end();
     });
 });
