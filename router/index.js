@@ -205,7 +205,6 @@ module.exports.delete("/notifications", function (req, res) {
       });
     })
     .finally(function () {
-      console.log("CDM finally block", notification_id);
       if (notification_id) {
         return deleteNotification(notification_id);
       }

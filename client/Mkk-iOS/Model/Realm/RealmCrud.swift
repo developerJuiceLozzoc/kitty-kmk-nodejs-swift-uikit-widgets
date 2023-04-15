@@ -8,7 +8,7 @@
 import UIKit
 
 import RealmSwift
-
+/*
 class RealmCrud {
     let realm = try! Realm()
     
@@ -139,3 +139,5 @@ class RealmCrud {
         
     }
 }
+
+*/

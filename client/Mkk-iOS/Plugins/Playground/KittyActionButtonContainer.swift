@@ -30,7 +30,7 @@ struct KittyActionButtonContainer: View {
     var refreshCheck: () -> Bool
     var model = KittyPlistManager()
     var network: KittyJsoner = KittyJsoner()
-    let realmModel = RealmCrud()
+//    let realmModel = RealmCrud()
     
     func viewDidAppear() {
         wanderingKittiesisEmpty = self.refreshCheck()

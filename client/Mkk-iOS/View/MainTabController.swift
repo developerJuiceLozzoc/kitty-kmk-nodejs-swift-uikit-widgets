@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class MainTabController: UITabBarController {
 
@@ -21,8 +22,11 @@ class MainTabController: UITabBarController {
         
         let playgroundvc = KittyPlagroundHostingController()
         playgroundvc.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house"), selectedImage: UIImage(named: "house.circle.fill"))
+
         
-        viewControllers = [playgroundvc,listvc]
+        let neighborhoodvc = UIHostingController(rootView: ListNeighborhoodCatsView())
+        neighborhoodvc.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "mappin.and.ellipse"), selectedImage: UIImage(systemName: "mappin.and.ellipse"))
+        viewControllers = [playgroundvc, neighborhoodvc, listvc]
         selectedIndex = 1
     }
     
