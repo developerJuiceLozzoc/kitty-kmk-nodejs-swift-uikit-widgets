@@ -137,3 +137,45 @@ extension Notification.Name {
     static let gamesurveyDidLoad = Notification.Name("Finished loading new survey from API")
     static let radiobttnUpdate = Notification.Name("Assign this button this state")
 }
+
+public enum OSEnvironment {
+    case mac, iphone, simulator
+}
+
+func kmk_readOsType() -> OSEnvironment? {
+    /*
+  path to the "Documents" folder on iOS:
+    "/var/mobile/Containers/Data/Application/8C2D631A-DCBB-44FE-8F86-429A89FCE921/Documents" -> iOS
+
+  path to the "Documents" folder on macOS:
+    "/Users/USER_NAME/Library/Containers/4EE76C41-2BE8-4A65-B26C-080773E0EB31/Data/Documents"  -> Mac
+     
+     
+     simulator /Users/USER/Library/Developer/CoreSimulator/Devices/C065C350-8DC0-4CA5-AF63-A19D998B41DF/data/Containers/Data/Application/5A45A272-AD16-4F1C-939F-BCED22E4A7B4/Documents
+     
+     macos
+     n /Users/USER/Library/Containers/43B15322-8173-4D40-BE9A-D7539EFC41A7/Data/Documents"
+    */
+    var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    guard let documentsDirectory = paths.first else {
+        return nil
+    }
+    let isMacAppleSilicon = documentsDirectory.hasPrefix("/Library/Containers")
+    let isSimulator = documentsDirectory.hasPrefix("/CoreSimulator")
+    let isNative = documentsDirectory.hasPrefix("/var/mobile")
+    
+    if !isSimulator && !isMacAppleSilicon && !isMacAppleSilicon {
+        return nil
+    }
+    
+    if isMacAppleSilicon {
+        return .mac
+    } else if isSimulator {
+        return .simulator
+    } else if isNative {
+        return .iphone
+    }
+
+
+    return nil
+}

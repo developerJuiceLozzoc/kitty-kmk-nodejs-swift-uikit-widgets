@@ -96,7 +96,7 @@ struct KittyDetailsView: View {
             }
         }.navigationTitle(Text(name))
         .onAppear {
-            modelDelegate?.updateKittyLastAccesed(using: self.kittyUID)
+            let _ = modelDelegate?.updateKittyLastAccesed(using: self.kittyUID)
         }
 
         }

@@ -37,7 +37,7 @@ struct InfoXRowYStars: View {
     var datasource: StarStatHead2Head
     var body: some View {
         VStack{
-            ForEach(0..<datasource.names.count){ i in
+            ForEach(0..<datasource.names.count, id: \.self){ i in
                 HStack {
                     KMKProgressRectangle(percent: datasource.ratings[0][i] / 5.0, alignment: .leading, edge: .leading)
                     renderPetName(name: datasource.names[i])

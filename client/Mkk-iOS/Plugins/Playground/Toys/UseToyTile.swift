@@ -33,8 +33,8 @@ struct UseToyTile: View {
     @State var shouldShowWanderingModelInstead: Bool = false
     @State var alert = AlertText(title: "", message: "")
     @State var helppop = false
-    var onSaveToys: () -> ()
-    var onSheetDisappear: () -> ()
+    var onSaveToys: () -> Void
+    var onSheetDisappear: () -> Void
 
     var body: some View {
         VStack{
@@ -50,7 +50,7 @@ struct UseToyTile: View {
         .onTapGesture(count: 1, perform: {
             showToyMenu.toggle()
         })
-        .sheet(isPresented: $showToyMenu, onDismiss: onSheetDisappear) {
+        .knobby(isPresented: $showToyMenu, onDismiss: onSheetDisappear) {
             ToyItemSheet(updateFlag: $showToyMenu, tnm: tnm, store: $store, onSaveToys: onSaveToys)
         }
     }
@@ -92,7 +92,7 @@ struct ToyItemSheet: View {
                 case .success(_):
                     store.subscription = ""
                     break
-                case .failure(let error):
+                case .failure(_):
                     break
                 }
             }

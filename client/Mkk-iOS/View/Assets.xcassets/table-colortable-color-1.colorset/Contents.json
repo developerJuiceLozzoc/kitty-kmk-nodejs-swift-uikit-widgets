@@ -19,6 +19,36 @@
         "reference" : "unemphasizedSelectedTextBackgroundColor"
       },
       "idiom" : "universal"
+    },
+    {
+      "color" : {
+        "color-space" : "srgb",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0.902",
+          "green" : "0.902",
+          "red" : "0.902"
+        }
+      },
+      "idiom" : "iphone"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "color" : {
+        "color-space" : "srgb",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0.275",
+          "green" : "0.275",
+          "red" : "0.275"
+        }
+      },
+      "idiom" : "iphone"
     }
   ],
   "info" : {

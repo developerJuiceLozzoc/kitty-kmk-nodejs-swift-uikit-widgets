@@ -24,7 +24,7 @@ class MainTabController: UITabBarController {
         playgroundvc.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "house"), selectedImage: UIImage(named: "house.circle.fill"))
 
         
-        let neighborhoodvc = UIHostingController(rootView: ListNeighborhoodCatsView())
+        let neighborhoodvc = NeighborhoodSceneViewHostingController(rootView: NeighborhoodSceneView())
         neighborhoodvc.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "mappin.and.ellipse"), selectedImage: UIImage(systemName: "mappin.and.ellipse"))
         viewControllers = [playgroundvc, neighborhoodvc, listvc]
         selectedIndex = 1

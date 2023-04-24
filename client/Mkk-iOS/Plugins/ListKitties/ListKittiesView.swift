@@ -56,12 +56,11 @@ struct ListKittiesView: View {
                       }
             }
         }
-        .sheet(isPresented: $shouldShowFilter) {
-            } content: {
-                ListKittyFilterView(isPresented: $shouldShowFilter, filter: listFilter) { f in
-                    self.listFilter = f
-                }
+        .knobby(isPresented: $shouldShowFilter) {
+            ListKittyFilterView(isPresented: $shouldShowFilter, filter: listFilter) { f in
+                self.listFilter = f
             }
+        }
         .onAppear {
             if !ZeusToggles.shared.hasReadListTutorialCheck() {
                 showTutorial.toggle()

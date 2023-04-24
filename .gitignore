@@ -4,7 +4,7 @@ client/Pods
 client/Mkk-iOS/KITTY_API_CONFIG.swift
 assets
 
-client/Mkk-iOS/Plugins/NeighborhoodCats/Scene/assets.scnassets
+client/Mkk-iOS/Plugins/NeighborhoodCats/SceneAssets/assets.scnassets
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/xcode

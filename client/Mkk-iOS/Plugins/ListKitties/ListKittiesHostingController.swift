@@ -16,20 +16,22 @@ struct ListKittiesWrapper: View {
         NavigationView<ListKittiesView> {
             ListKittiesView(showTutorial: $shouldShowTutorial)
         }
-        .popover(isPresented: $shouldShowTutorial, content: {
-            if #available(iOS 15.0, *) {
+        .knobby(isPresented: $shouldShowTutorial) {
+            VStack {
+//                HStack {
+//                    Spacer()
+//                    RoundedRectangle(cornerRadius: 5)
+//                        .stroke(Color("ultra-violet-1"))
+////                        .gesture(.init(=))
+//                    Spacer()
+//                }
                 ListTutorialPopup()
                     .textSelection(.enabled)
                     .onDisappear {
                         ZeusToggles.shared.setHasReadListTutorial()
-                    }
-            } else {
-                ListTutorialPopup()
-                    .onDisappear {
-                        ZeusToggles.shared.setHasReadListTutorial()
-                    }
+                }
             }
-        })
+        }
        
     }
 }

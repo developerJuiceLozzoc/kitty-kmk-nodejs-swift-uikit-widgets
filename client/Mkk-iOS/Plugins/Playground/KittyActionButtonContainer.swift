@@ -74,7 +74,7 @@ struct KittyActionButtonContainer: View {
                 switch result {
                     // do not do anything because i guess this is fine, we are continuing our
                 // subscription
-                    case .success(let token):
+                    case .success( _):
                         if addedNewToys {
                             print("TOYMODAL - added more toys, confirming that we already had a ducument")
                         } else if addedFreshToys {
@@ -107,7 +107,7 @@ struct KittyActionButtonContainer: View {
                         ds.subscription = token
                         
                         break
-                    case .failure(let error):
+                    case .failure( _):
                         break
                     }
                 }
@@ -214,22 +214,14 @@ struct KittyActionButtonContainer: View {
                 Spacer()
             }
         )
-        .popover(isPresented: $showTutorial, content: {
-            if #available(iOS 15.0, *) {
-                TutorialPopup()
-                    .textSelection(.enabled)
-                    .onDisappear {
-                        ZeusToggles.shared.setHasReadTutorial()
-                    }
-            } else {
-                TutorialPopup()
-                    .onDisappear {
-                        ZeusToggles.shared.setHasReadTutorial()
-                    }
-            }
-           
-        })
-        .sheet(isPresented: $deeplink.showWanderingKittyRecap, onDismiss: nil) {
+        .knobby(isPresented: $showTutorial) {
+            TutorialPopup()
+                .textSelection(.enabled)
+                .onDisappear {
+                    ZeusToggles.shared.setHasReadTutorial()
+                }
+        }
+        .knobby(isPresented: $deeplink.showWanderingKittyRecap) {
             WhileYouWereAwayAlert()
                 .environment(\.managedObjectContext, managedObjectContext)
         }

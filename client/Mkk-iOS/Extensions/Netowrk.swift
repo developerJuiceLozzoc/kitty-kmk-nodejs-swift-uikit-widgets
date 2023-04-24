@@ -132,7 +132,7 @@ class KittyJsoner: CatApier {
     private func registerForNotifications(completion: @escaping (Result<Void,KMKNetworkError>) -> Void) {
         
         
-        let semaphore = DispatchSemaphore(value: 1)
+//        let semaphore = DispatchSemaphore(value: 1)
 
     }
     

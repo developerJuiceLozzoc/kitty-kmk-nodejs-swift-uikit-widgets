@@ -25,7 +25,7 @@ struct KMKImagePicker: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: .init(.fixed(150),spacing: 25), count: 2)) {
-                ForEach(0..<urls.count) { i in
+                ForEach(0..<urls.count, id: \.self) { i in
                     let uiimage = loadImage(for: urls[i])
 
                     ZStack {

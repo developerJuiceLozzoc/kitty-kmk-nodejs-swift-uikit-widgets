@@ -71,8 +71,13 @@
 		C6082C0327810D420005D81F /* WhileYouWereAwayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */; };
 		C60887A0288DA89A00D16FB6 /* ToySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C608879F288DA89900D16FB6 /* ToySheetView.swift */; };
 		C60CE97829EB0AA700DE43CB /* ShapeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CE97729EB0AA700DE43CB /* ShapeCreator.swift */; };
-		C60CE97A29EB0B1D00DE43CB /* Scene.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE97929EB0B1D00DE43CB /* Scene.scn */; };
 		C60CE97C29EB0CDC00DE43CB /* assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C60CE97B29EB0CDC00DE43CB /* assets.scnassets */; };
+		C60CE98129EB42D100DE43CB /* Highrise_1.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98029EB42D100DE43CB /* Highrise_1.scn */; };
+		C60CE98329EB458000DE43CB /* Highrise_2.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98229EB458000DE43CB /* Highrise_2.scn */; };
+		C60CE98729EB48BB00DE43CB /* Highrise_3.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98629EB48BB00DE43CB /* Highrise_3.scn */; };
+		C60CE98929EB533100DE43CB /* House_1.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98829EB533000DE43CB /* House_1.scn */; };
+		C60CE98B29EB657C00DE43CB /* Highrise_4.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98A29EB657C00DE43CB /* Highrise_4.scn */; };
+		C60CE98E29EB6C7C00DE43CB /* castle.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98D29EB6C7C00DE43CB /* castle.scn */; };
 		C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */; };
 		C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */; };
 		C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */; };
@@ -82,17 +87,25 @@
 		C6202D35277B99C2003F4D32 /* PlaygroundState.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6202D34277B99C2003F4D32 /* PlaygroundState.plist */; };
 		C6202D37277BA053003F4D32 /* KittyPlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D36277BA053003F4D32 /* KittyPlistManager.swift */; };
 		C62359B029E4710400B66D2C /* NeighborhoodCatsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62359AF29E4710400B66D2C /* NeighborhoodCatsHostingController.swift */; };
-		C62359B229E471E600B66D2C /* ListNeighborhoodCatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62359B129E471E600B66D2C /* ListNeighborhoodCatsView.swift */; };
+		C62359B229E471E600B66D2C /* NeighborhoodSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62359B129E471E600B66D2C /* NeighborhoodSceneView.swift */; };
 		C643DBEF279B8123004157E1 /* LazyVRadioBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643DBEE279B8123004157E1 /* LazyVRadioBox.swift */; };
 		C643DBF0279B94EA004157E1 /* ListKittyFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FD179A279B346400902DF9 /* ListKittyFilterView.swift */; };
 		C649C53C27F0C3E800BCED16 /* Tutorials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C649C53B27F0C3E800BCED16 /* Tutorials.swift */; };
+		C6749F9929EB900E0068F1FC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749F9829EB900E0068F1FC /* ViewModel.swift */; };
+		C6749F9C29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749F9B29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift */; };
+		C6749F9F29EC42470068F1FC /* KMKLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749F9E29EC42470068F1FC /* KMKLoadingIndicator.swift */; };
+		C6749FA129EC60D80068F1FC /* KnobGrabberPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749FA029EC60D80068F1FC /* KnobGrabberPopover.swift */; };
 		C678C6582790C68200078926 /* FoodLevelIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678C6572790C68200078926 /* FoodLevelIndicator.swift */; };
 		C68B405D285E343A004C8E0F /* ToyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68B405C285E343A004C8E0F /* ToyModel.swift */; };
 		C68B4060285E5833004C8E0F /* CoffeeToast in Frameworks */ = {isa = PBXBuildFile; productRef = C68B405F285E5833004C8E0F /* CoffeeToast */; };
+		C68BB0B029F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68BB0AF29F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift */; };
+		C68BB0B229F0619F000CFB05 /* CatMaterialFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68BB0B129F0619F000CFB05 /* CatMaterialFactory.swift */; };
+		C68BB0B429F061AD000CFB05 /* CatPuppeteer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68BB0B329F061AD000CFB05 /* CatPuppeteer.swift */; };
 		C69EDAFA278A364300FE619E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAF9278A364300FE619E /* Date.swift */; };
 		C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAFB278A486300FE619E /* KMKButtons.swift */; };
 		C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */; };
 		C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */; };
+		C6CBC05F29EB769D00EE2336 /* Neighborhood.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE97D29EB0E1F00DE43CB /* Neighborhood.scn */; };
 		C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */; };
 		C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */; };
 		C6FB3E602780C3AF0010C076 /* WanderingKittyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */; };
@@ -170,9 +183,14 @@
 		C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhileYouWereAwayAlert.swift; sourceTree = "<group>"; };
 		C608879F288DA89900D16FB6 /* ToySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToySheetView.swift; sourceTree = "<group>"; };
 		C60CE97729EB0AA700DE43CB /* ShapeCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeCreator.swift; sourceTree = "<group>"; };
-		C60CE97929EB0B1D00DE43CB /* Scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Scene.scn; sourceTree = "<group>"; };
 		C60CE97B29EB0CDC00DE43CB /* assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = assets.scnassets; sourceTree = "<group>"; };
-		C60CE97D29EB0E1F00DE43CB /* OfficeRoomScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = OfficeRoomScene.scn; sourceTree = "<group>"; };
+		C60CE97D29EB0E1F00DE43CB /* Neighborhood.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Neighborhood.scn; sourceTree = "<group>"; };
+		C60CE98029EB42D100DE43CB /* Highrise_1.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Highrise_1.scn; sourceTree = "<group>"; };
+		C60CE98229EB458000DE43CB /* Highrise_2.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Highrise_2.scn; sourceTree = "<group>"; };
+		C60CE98629EB48BB00DE43CB /* Highrise_3.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Highrise_3.scn; sourceTree = "<group>"; };
+		C60CE98829EB533000DE43CB /* House_1.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = House_1.scn; sourceTree = "<group>"; };
+		C60CE98A29EB657C00DE43CB /* Highrise_4.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Highrise_4.scn; sourceTree = "<group>"; };
+		C60CE98D29EB6C7C00DE43CB /* castle.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = castle.scn; sourceTree = "<group>"; };
 		C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KittyActionButtonContainer.swift; sourceTree = "<group>"; };
 		C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PourWaterTile.swift; sourceTree = "<group>"; };
 		C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBowlTile.swift; sourceTree = "<group>"; };
@@ -182,11 +200,18 @@
 		C6202D34277B99C2003F4D32 /* PlaygroundState.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PlaygroundState.plist; sourceTree = "<group>"; };
 		C6202D36277BA053003F4D32 /* KittyPlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KittyPlistManager.swift; sourceTree = "<group>"; };
 		C62359AF29E4710400B66D2C /* NeighborhoodCatsHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborhoodCatsHostingController.swift; sourceTree = "<group>"; };
-		C62359B129E471E600B66D2C /* ListNeighborhoodCatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNeighborhoodCatsView.swift; sourceTree = "<group>"; };
+		C62359B129E471E600B66D2C /* NeighborhoodSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborhoodSceneView.swift; sourceTree = "<group>"; };
 		C643DBEE279B8123004157E1 /* LazyVRadioBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVRadioBox.swift; sourceTree = "<group>"; };
 		C649C53B27F0C3E800BCED16 /* Tutorials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorials.swift; sourceTree = "<group>"; };
+		C6749F9829EB900E0068F1FC /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		C6749F9B29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborhoodSceneViewModel.swift; sourceTree = "<group>"; };
+		C6749F9E29EC42470068F1FC /* KMKLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKLoadingIndicator.swift; sourceTree = "<group>"; };
+		C6749FA029EC60D80068F1FC /* KnobGrabberPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnobGrabberPopover.swift; sourceTree = "<group>"; };
 		C678C6572790C68200078926 /* FoodLevelIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLevelIndicator.swift; sourceTree = "<group>"; };
 		C68B405C285E343A004C8E0F /* ToyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyModel.swift; sourceTree = "<group>"; };
+		C68BB0AF29F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborHoodSceneViewRepresentable.swift; sourceTree = "<group>"; };
+		C68BB0B129F0619F000CFB05 /* CatMaterialFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatMaterialFactory.swift; sourceTree = "<group>"; };
+		C68BB0B329F061AD000CFB05 /* CatPuppeteer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatPuppeteer.swift; sourceTree = "<group>"; };
 		C69EDAF9278A364300FE619E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C69EDAFB278A486300FE619E /* KMKButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKButtons.swift; sourceTree = "<group>"; };
 		C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyViewModel.swift; sourceTree = "<group>"; };
@@ -247,7 +272,6 @@
 				B5B54C8F2617A64100B18377 /* Protocols.swift */,
 				B59BBF2F25D8509500A059C4 /* Strings+Enums.swift */,
 				B5DBA93C2741AF9B0075A45D /* ZeusToggles.swift */,
-				B5472921274AA91A005DCF8A /* KMKSwiftUIStyles.swift */,
 				C649C53B27F0C3E800BCED16 /* Tutorials.swift */,
 			);
 			path = common;
@@ -297,7 +321,6 @@
 				B5D9458225E49E52005C6DC6 /* KMKFonts.swift */,
 				B544121A25EFD7B900C0D629 /* Netowrk.swift */,
 				B5B54C4C2616183C00B18377 /* EmptySegue.swift */,
-				B5DBA93E2741B7CB0075A45D /* LoadingButton.swift */,
 				C69EDAF9278A364300FE619E /* Date.swift */,
 			);
 			path = Extensions;
@@ -410,6 +433,7 @@
 				B59BBF1C25D776EB00A059C4 /* GameSurveyVM.swift */,
 				B5527DC225E57AD900DE2096 /* ImagesViewModel.swift */,
 				B5CBA52525FA8AB900621682 /* CollectionViewModel.swift */,
+				C6749F9829EB900E0068F1FC /* ViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -430,15 +454,31 @@
 			path = swiftui;
 			sourceTree = "<group>";
 		};
-		C60CE97629EB0A9600DE43CB /* Scene */ = {
+		C60CE97629EB0A9600DE43CB /* SceneAssets */ = {
 			isa = PBXGroup;
 			children = (
-				C60CE97D29EB0E1F00DE43CB /* OfficeRoomScene.scn */,
+				C60CE98A29EB657C00DE43CB /* Highrise_4.scn */,
+				C60CE98D29EB6C7C00DE43CB /* castle.scn */,
+				C60CE97D29EB0E1F00DE43CB /* Neighborhood.scn */,
+				C60CE98229EB458000DE43CB /* Highrise_2.scn */,
+				C60CE98029EB42D100DE43CB /* Highrise_1.scn */,
+				C60CE98829EB533000DE43CB /* House_1.scn */,
+				C60CE98629EB48BB00DE43CB /* Highrise_3.scn */,
 				C60CE97B29EB0CDC00DE43CB /* assets.scnassets */,
 				C60CE97729EB0AA700DE43CB /* ShapeCreator.swift */,
-				C60CE97929EB0B1D00DE43CB /* Scene.scn */,
 			);
-			path = Scene;
+			path = SceneAssets;
+			sourceTree = "<group>";
+		};
+		C60CE98C29EB695C00DE43CB /* ScenePlugin */ = {
+			isa = PBXGroup;
+			children = (
+				C62359B129E471E600B66D2C /* NeighborhoodSceneView.swift */,
+				C62359AF29E4710400B66D2C /* NeighborhoodCatsHostingController.swift */,
+				C6749F9B29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift */,
+				C68BB0AF29F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift */,
+			);
+			path = ScenePlugin;
 			sourceTree = "<group>";
 		};
 		C6202D31277B9449003F4D32 /* KittyPlayground */ = {
@@ -461,11 +501,31 @@
 		C649C53A27F0C39E00BCED16 /* NeighborhoodCats */ = {
 			isa = PBXGroup;
 			children = (
-				C60CE97629EB0A9600DE43CB /* Scene */,
-				C62359AF29E4710400B66D2C /* NeighborhoodCatsHostingController.swift */,
-				C62359B129E471E600B66D2C /* ListNeighborhoodCatsView.swift */,
+				C6749F9A29EB9AFD0068F1FC /* CatPuppeteer */,
+				C60CE98C29EB695C00DE43CB /* ScenePlugin */,
+				C60CE97629EB0A9600DE43CB /* SceneAssets */,
 			);
 			path = NeighborhoodCats;
+			sourceTree = "<group>";
+		};
+		C6749F9A29EB9AFD0068F1FC /* CatPuppeteer */ = {
+			isa = PBXGroup;
+			children = (
+				C68BB0B129F0619F000CFB05 /* CatMaterialFactory.swift */,
+				C68BB0B329F061AD000CFB05 /* CatPuppeteer.swift */,
+			);
+			path = CatPuppeteer;
+			sourceTree = "<group>";
+		};
+		C6749F9D29EC410E0068F1FC /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				B5472921274AA91A005DCF8A /* KMKSwiftUIStyles.swift */,
+				B5DBA93E2741B7CB0075A45D /* LoadingButton.swift */,
+				C6749F9E29EC42470068F1FC /* KMKLoadingIndicator.swift */,
+				C6749FA029EC60D80068F1FC /* KnobGrabberPopover.swift */,
+			);
+			path = CommonUI;
 			sourceTree = "<group>";
 		};
 		C678C6562790C64800078926 /* FoodBowl */ = {
@@ -500,6 +560,7 @@
 		C6FD1792279898B400902DF9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				C6749F9D29EC410E0068F1FC /* CommonUI */,
 				C649C53A27F0C39E00BCED16 /* NeighborhoodCats */,
 				C6A729CE279F3DBA00FDDC8B /* WhileYouWereAwaySheet */,
 				C6FD1795279898EA00902DF9 /* SaveOrDiscardKitty */,
@@ -685,12 +746,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C60CE97C29EB0CDC00DE43CB /* assets.scnassets in Resources */,
+				C60CE98929EB533100DE43CB /* House_1.scn in Resources */,
 				B5DBA93B27418FC50075A45D /* GoogleService-Info.plist in Resources */,
+				C60CE98329EB458000DE43CB /* Highrise_2.scn in Resources */,
 				B5A46C3B262518BF00F9E154 /* breeds.json in Resources */,
-				C60CE97A29EB0B1D00DE43CB /* Scene.scn in Resources */,
+				C60CE98129EB42D100DE43CB /* Highrise_1.scn in Resources */,
+				C60CE98B29EB657C00DE43CB /* Highrise_4.scn in Resources */,
 				B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */,
+				C6CBC05F29EB769D00EE2336 /* Neighborhood.scn in Resources */,
 				B57428062618B28B00532B21 /* MockNetwork.json in Resources */,
+				C60CE98729EB48BB00DE43CB /* Highrise_3.scn in Resources */,
 				B5E7A63825D6F7540076F12C /* Assets.xcassets in Resources */,
+				C60CE98E29EB6C7C00DE43CB /* castle.scn in Resources */,
 				C6202D35277B99C2003F4D32 /* PlaygroundState.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -799,6 +866,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5CBA52625FA8AB900621682 /* CollectionViewModel.swift in Sources */,
+				C6749FA129EC60D80068F1FC /* KnobGrabberPopover.swift in Sources */,
 				C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */,
 				B5DBA93F2741B7CB0075A45D /* LoadingButton.swift in Sources */,
 				C69EDAFA278A364300FE619E /* Date.swift in Sources */,
@@ -830,7 +898,7 @@
 				B5B54CA72617C6BF00B18377 /* Model.xcdatamodeld in Sources */,
 				B5472924274B30FE005DCF8A /* KittyDetailsView.swift in Sources */,
 				C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */,
-				C62359B229E471E600B66D2C /* ListNeighborhoodCatsView.swift in Sources */,
+				C62359B229E471E600B66D2C /* NeighborhoodSceneView.swift in Sources */,
 				B5472922274AA91A005DCF8A /* KMKSwiftUIStyles.swift in Sources */,
 				C68B405D285E343A004C8E0F /* ToyModel.swift in Sources */,
 				B5DBA93D2741AF9B0075A45D /* ZeusToggles.swift in Sources */,
@@ -844,11 +912,17 @@
 				B577223625D89FC90024BA72 /* BossConstrains.swift in Sources */,
 				B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */,
 				C6202D30277B82B4003F4D32 /* KittyPlagroundHostingController.swift in Sources */,
+				C68BB0B029F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift in Sources */,
 				C678C6582790C68200078926 /* FoodLevelIndicator.swift in Sources */,
 				B59BBF3025D8509500A059C4 /* Strings+Enums.swift in Sources */,
+				C6749F9F29EC42470068F1FC /* KMKLoadingIndicator.swift in Sources */,
+				C6749F9C29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift in Sources */,
 				B5CBA52C25FA944F00621682 /* Schema.swift in Sources */,
+				C6749F9929EB900E0068F1FC /* ViewModel.swift in Sources */,
+				C68BB0B429F061AD000CFB05 /* CatPuppeteer.swift in Sources */,
 				B54651D026F78C6900A16F38 /* JumbotronLayout.swift in Sources */,
 				B5E7A63125D6F7520076F12C /* SceneDelegate.swift in Sources */,
+				C68BB0B229F0619F000CFB05 /* CatMaterialFactory.swift in Sources */,
 				B5472920274AA0ED005DCF8A /* ConfirmOrDiscardView.swift in Sources */,
 				C6FB3E602780C3AF0010C076 /* WanderingKittyModel.swift in Sources */,
 				C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */,
@@ -1092,6 +1166,8 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Cat Collector";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.simulation-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1117,6 +1193,8 @@
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Cat Collector";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.simulation-games";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
