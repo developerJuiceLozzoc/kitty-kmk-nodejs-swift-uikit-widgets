@@ -1,17 +1,13 @@
 //
-//  CatPuppeteer.swift
+//  HikesCatGoes.swift
 //  Mkk-iOS
 //
-//  Created by Conner Maddalozzo on 4/19/23.
+//  Created by Conner Maddalozzo on 4/24/23.
 //
 
 import SceneKit
 
-typealias CatHike = (end1: SCNVector3, end2: SCNVector3)
-/* this makes action on a scene and will render a cat walking
- each render. They will stick to bumping around */
-
-enum HikesCatGoes: CaseIterable {
+enum HikesCatGoes: CaseIterable, Equatable {
     case mansionPath
     case apartments
     case bootlegDistrict
@@ -31,8 +27,9 @@ enum HikesCatGoes: CaseIterable {
         24.0
     }
     
-    
-    
+    var normalTowardsSky: SCNVector3{
+        .init(x: 0, y: 1, z: 0)
+    }
     
     /*
      General Form of the Sine Function y = a sin b(x – h) + k
@@ -41,26 +38,44 @@ enum HikesCatGoes: CaseIterable {
      Since x represents an angle in degrees or radians, h will also be expressed in degrees or radians.
      k is the vertical translation
      Since y represents a number, k will also be expressed as a number.
-     
-     
-    
-     
-     
      */
     func postion(time: Float) -> SCNVector3?
     {
         /* x ranges from 0 to pi */
         switch self {
-            case .apartments:
-//            var pathEquation: (Float) -> SCNVector3 = { x in
-//                let result = amplitude * sin(x * period)
-//
-//            }
-            return nil
+        case .apartments:
+            let nextX: (Float) -> Float = { time in
+                (-26) / (Float.pi) * (time) + 43
+            }
+            let nextY: (Float) -> Float = { time in
+                (-47) / (Float.pi) * (time) + 67
+            }
+            let nextZ: (Float) -> Float = { time in
+                (281) / (Float.pi) * (time) + -335
+            }
+            return SCNVector3Make(nextX(time), nextY(time), nextZ(time))
         case .bootlegDistrict:
-            return nil
+            let nextX: (Float) -> Float = { time in
+                (229) / (Float.pi) * (time) + 17
+            }
+            let nextY: (Float) -> Float = { time in
+                (78) / (Float.pi) * (time) + 20
+            }
+            let nextZ: (Float) -> Float = { time in
+                (-169) / (Float.pi) * (time) + -54
+            }
+            return SCNVector3Make(nextX(time), nextY(time), nextZ(time))
         case .mansionPath:
-            return nil
+            let nextX: (Float) -> Float = { time in
+                (-156) / (Float.pi) * (time) + 43
+            }
+            let nextY: (Float) -> Float = { time in
+                (-75) / (Float.pi) * (time) + 67
+            }
+            let nextZ: (Float) -> Float = { time in
+                (120) / (Float.pi) * (time)  + -335
+            }
+            return SCNVector3Make(nextX(time), nextY(time), nextZ(time))
         }
     }
     
@@ -87,28 +102,4 @@ enum HikesCatGoes: CaseIterable {
             )
         }
     }
-    /*
-     mansion
-     time = 0, z = -335; time = pi, z = -215.
-     z = 
-
-     time = 0, y = 67; time = pi, y = -8.
-
-     time = 0, x = 43; time = pi, x = -113
-
-     
-     apartments
-     time = 0, z = -335; time = pi, z = -54.
-
-     time = 0, y = 67; time = pi, y = 20.
-
-     time = 0, x = 43; time = pi, x = 17
-
-     bootlegdistrict
-     time = 0, z = -54; time = pi, z = -223.
-
-     time = 0, y = 20; time = pi, y = 98.
-
-     time = 0, x = 17; time = pi, x = 246
-     */
 }

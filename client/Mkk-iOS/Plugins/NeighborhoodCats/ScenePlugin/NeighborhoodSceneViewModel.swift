@@ -16,13 +16,13 @@ extension NeighborhoodScene {
     typealias ViewModel = StateManagementViewModel<Observable, NonObservable, Action>
     
     struct Observable {
-        var sceneDelegate: SCNSceneRendererDelegate?
+        var sceneDelegate: SimpleSceneDelegate?
         var isSceneLoading: Bool = true
         var orientation = UIDeviceOrientation.landscapeLeft
     }
     
     struct NonObservable {
-        
+//        var catAnimator =
     }
     
     enum Action {
@@ -34,8 +34,7 @@ extension NeighborhoodScene {
 extension NeighborhoodScene.ViewModel {
     convenience init() {
         self.init(observables: .init(), nonobservables: .init())
-        let sceneD = SimpleSceneDelegate()
-        sceneD.sceneDidLoad = { [weak self] scene in
+        let sceneD = SimpleSceneDelegate(catAnimator: .init(catCount: 6)) { [weak self] scene in
             guard let self = self else {
                 return
             }
@@ -51,9 +50,33 @@ extension NeighborhoodScene.ViewModel {
 
 class SimpleSceneDelegate: NSObject, SCNSceneRendererDelegate {
     var sceneDidLoad: ((SCNScene) -> Void)?
+    var catAnimator: CatAnimator
+    var time: Float = 0
     
-    func renderer(aRenderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        
+    public init(
+        catAnimator: CatAnimator,
+        sceneDidLoad: ((SCNScene) -> Void)? = nil
+    ) {
+        self.sceneDidLoad = sceneDidLoad
+        self.catAnimator = catAnimator
+    }
+    
+    func renderer(
+        _ renderer: SCNSceneRenderer,
+        updateAtTime time: TimeInterval
+    ) {
+        if let scene = renderer.scene,
+           !catAnimator.hasLoaded
+        {
+            SCNTransaction.begin()
+            catAnimator.load(into: scene)
+            SCNTransaction.commit()
+        } else {
+            self.time = Float((time + 0.01)).truncatingRemainder(dividingBy: Float.pi)
+            SCNTransaction.begin()
+            catAnimator.startAnimating(at: self.time)
+            SCNTransaction.commit()
+        }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
