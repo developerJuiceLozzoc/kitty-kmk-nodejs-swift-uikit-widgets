@@ -7,6 +7,8 @@
 
 import SceneKit
 import MetalKit
+import SceneKit.ModelIO
+
 
 typealias CatHike = (end1: SCNVector3, end2: SCNVector3)
 /* this makes action on a scene and will render a cat walking
@@ -14,13 +16,40 @@ typealias CatHike = (end1: SCNVector3, end2: SCNVector3)
 
 struct SceneCat {
     
-    public init?(role desinatedHike: HikesCatGoes) {
+    var hasLoaded = false
+    var phaseShift: Double
+    
+    public init(role desinatedHike: HikesCatGoes, delay: TimeInterval) {
         self.currentHike = desinatedHike
-        if let sceneURL = Bundle.main.url(forResource: "cat", withExtension: "obj") {
-            self.sceneURL = sceneURL
-        } else {
+        self.phaseShift = delay
+    }
+    /*
+     let directoryPath = Bundle.main.resourcePath?.appending("/SceneAssets") ?? ""
+     let options: FileManager.DirectoryEnumerationOptions = [.skipsHiddenFiles, .skipsPackageDescendants, .skipsSubdirectoryDescendants, .skipsPackageDotFiles, .skipsHiddenFileExtensions]
+     let enumerator = FileManager.default.enumerator(atPath: directoryPath)
+     while let filename = enumerator?.nextObject() as? String {
+         if filename.hasSuffix(".jpg") {
+             let filePath = directoryPath.appending("/\(filename)")
+             print("Found file: \(filePath)")
+             // Do something with the file...
+         }
+     }
+
+     */
+    private func urlForFile(named: String) -> String? {
+
+        if let url = Bundle.main.path(forResource: named, ofType: "tif", inDirectory: "assets.scnassets") {
+            return url
+        } else if let url = Bundle.main.path(forResource: named, ofType: "png", inDirectory: "assets.scnassets") {
+            return url
+        } else if let url = Bundle.main.path(forResource: named, ofType: "jpg", inDirectory: "assets.scnassets") {
+            return url
+        }
+        else {
             return nil
         }
+
+
     }
     
     private func material(named prefix: String) -> SCNMaterial? {
@@ -30,16 +59,27 @@ struct SceneCat {
         let textureLoader = MTKTextureLoader(device: device)
 
         
-        if let roughnessTexture = try? textureLoader.newTexture(name: "\(prefix)roughness", scaleFactor: 1.0, bundle: Bundle.main, options: nil) {
+        if let path = urlForFile(named: "\(prefix)roughness"),
+           let roughnessData = try? Data(contentsOf: .init(fileURLWithPath: path)),
+           let roughnessTexture = try? textureLoader.newTexture(data: roughnessData) {
             material.roughness.contents = roughnessTexture
         }
-        if let metallicTexture = try? textureLoader.newTexture(name: "\(prefix)metallic", scaleFactor: 1.0, bundle: Bundle.main, options: nil) {
+        
+        if let path = urlForFile(named: "\(prefix)metallic"),
+           let metalData = try? Data(contentsOf: .init(fileURLWithPath: path)),
+            let metallicTexture = try? textureLoader.newTexture(data: metalData) {
             material.metalness.contents = metallicTexture
         }
-        if let diffuseTexture = try? textureLoader.newTexture(name: "\(prefix)diffuse", scaleFactor: 1.0, bundle: Bundle.main, options: nil) {
+        
+        if let path = urlForFile(named: "\(prefix)diffuse"),
+           let diffuseData = try? Data(contentsOf: .init(fileURLWithPath: path)),
+           let diffuseTexture = try? textureLoader.newTexture(data: diffuseData) {
             material.diffuse.contents = diffuseTexture
         }
-        if let ambientOcclusionTexture = try? textureLoader.newTexture(name: "\(prefix)ao", scaleFactor: 1.0, bundle: Bundle.main, options: nil) {
+        
+        if let path = urlForFile(named: "\(prefix)ao"),
+           let ambientOcclusionData = try? Data(contentsOf: .init(fileURLWithPath: path)),
+           let ambientOcclusionTexture = try? textureLoader.newTexture(data: ambientOcclusionData) {
             material.ambientOcclusion.contents = ambientOcclusionTexture
         }
 
@@ -47,8 +87,8 @@ struct SceneCat {
     }
     
     var randomTexturePrefix: String {
-        [
-            "Concrete_Wall_008",
+        let arr = [
+            "Concrete_Wall_008_",
             "TexturesCom_Wall_BrickIndustrial5_2x2_1K_",
             "TexturesCom_Brick_CinderblocksPainted2_1K_",
             "Jungle_Floor_001_",
@@ -57,26 +97,26 @@ struct SceneCat {
             "TexturesCom_SolarCells_1K_",
             "TexturesCom_Wood_SidingOutdoor6_2x2_1K_"
         ]
-        .first ?? "Concrete_Wall_008"
+        return arr.randomElement() ?? "Concrete_Wall_008_"
     }
     
     public func loadGeometry() -> SCNNode? {
-        let sceneSource = SCNSceneSource(url: sceneURL, options: nil)
-        guard let geometry = sceneSource?.entryWithIdentifier("cat_node", withClass: SCNGeometry.self),
+        guard let scene = SCNScene(named: "cat.scn"),
+              let nodeToMove = scene.rootNode.childNode(withName: "grp1", recursively: true),
               let material = material(named: randomTexturePrefix) else {
+            print("Node is not in a scene")
             return nil
         }
-        geometry.materials.append(material)
-        let node = SCNNode(geometry: geometry)
-        
-        
-        return node
-        
+
+        // Remove the node from its current scene
+        nodeToMove.removeFromParentNode()
+
+        nodeToMove.geometry?.materials = [material]
+        return nodeToMove
     }
     
-    var sceneURL: URL
     var currentHike: HikesCatGoes
-    var node: SCNNode?
+    var p: SCNNode?
 }
 
 

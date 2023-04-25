@@ -23,10 +23,11 @@ class CatAnimator {
         }
         return true
     }
-    init(catCount: Int) {
-        for _ in (0..<catCount) {
+    init(catCount: Int, start time: TimeInterval) {
+        for i in (0..<catCount) {
             let role = HikesCatGoes.allCases.randomElement() ?? .apartments
-            let cat = SceneCat(role: role )
+            let delay = Double.pi / 2 * Double(i) + time
+            let cat = SceneCat(role: role, delay: delay)
             self.cats.append(cat)
             
         }
@@ -49,10 +50,17 @@ class CatAnimator {
         
     }
     
-    func startAnimating(at time: Float) {
+    func startAnimating(at time: TimeInterval) {
         self.cats.forEach { cat in
+            var sinusoidalTime = (Float((time - cat.phaseShift)).truncatingRemainder(dividingBy: Float.pi * 2) + -Float.pi)
+            if sinusoidalTime < 0 {
+                sinusoidalTime *= -1
+            }
+
+            
             if let node = cat.p,
-                let nextPosition = cat.currentHike.postion(time: time) {
+               let nextPosition = cat.currentHike.postion(time: sinusoidalTime),
+               time > cat.phaseShift {
                 node.position = nextPosition
             }
         }

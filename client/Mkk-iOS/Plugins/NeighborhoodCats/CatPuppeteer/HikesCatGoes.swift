@@ -45,35 +45,38 @@ enum HikesCatGoes: CaseIterable, Equatable {
         switch self {
         case .apartments:
             let nextX: (Float) -> Float = { time in
-                (-26) / (Float.pi) * (time) + 43
+                (229) / (Float.pi) * (time) + 12
             }
             let nextY: (Float) -> Float = { time in
-                (-47) / (Float.pi) * (time) + 67
+                (78) / (Float.pi) * (time) + 17
             }
             let nextZ: (Float) -> Float = { time in
-                (281) / (Float.pi) * (time) + -335
+                (-169) / (Float.pi) * (time) + -43
             }
             return SCNVector3Make(nextX(time), nextY(time), nextZ(time))
         case .bootlegDistrict:
+            /*
+             18,18,-50
+             */
             let nextX: (Float) -> Float = { time in
-                (229) / (Float.pi) * (time) + 17
+                (145) / (Float.pi) * time + -127
             }
             let nextY: (Float) -> Float = { time in
-                (78) / (Float.pi) * (time) + 20
+                (33) / (Float.pi) * time + -15
             }
             let nextZ: (Float) -> Float = { time in
-                (-169) / (Float.pi) * (time) + -54
+                (163) / (Float.pi) * time + -213
             }
             return SCNVector3Make(nextX(time), nextY(time), nextZ(time))
         case .mansionPath:
             let nextX: (Float) -> Float = { time in
-                (-156) / (Float.pi) * (time) + 43
+                (-171)/(Float.pi) * time + 44
             }
             let nextY: (Float) -> Float = { time in
-                (-75) / (Float.pi) * (time) + 67
+                (-58) / (Float.pi) * time + 43
             }
             let nextZ: (Float) -> Float = { time in
-                (120) / (Float.pi) * (time)  + -335
+                (132) / (Float.pi) * (time)  + -350
             }
             return SCNVector3Make(nextX(time), nextY(time), nextZ(time))
         }

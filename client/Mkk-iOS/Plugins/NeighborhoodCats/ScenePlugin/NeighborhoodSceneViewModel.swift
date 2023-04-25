@@ -34,8 +34,9 @@ extension NeighborhoodScene {
 extension NeighborhoodScene.ViewModel {
     convenience init() {
         self.init(observables: .init(), nonobservables: .init())
-        let sceneD = SimpleSceneDelegate(catAnimator: .init(catCount: 6)) { [weak self] scene in
-            guard let self = self else {
+        let sceneD = SimpleSceneDelegate() { [weak self] scene in
+            guard let self = self,
+                  self.isSceneLoading else {
                 return
             }
             DispatchQueue.main.async {
@@ -50,21 +51,20 @@ extension NeighborhoodScene.ViewModel {
 
 class SimpleSceneDelegate: NSObject, SCNSceneRendererDelegate {
     var sceneDidLoad: ((SCNScene) -> Void)?
-    var catAnimator: CatAnimator
+    var catAnimator: CatAnimator?
     var time: Float = 0
     
     public init(
-        catAnimator: CatAnimator,
         sceneDidLoad: ((SCNScene) -> Void)? = nil
     ) {
         self.sceneDidLoad = sceneDidLoad
-        self.catAnimator = catAnimator
     }
     
     func renderer(
         _ renderer: SCNSceneRenderer,
         updateAtTime time: TimeInterval
     ) {
+        guard let catAnimator = catAnimator else { return }
         if let scene = renderer.scene,
            !catAnimator.hasLoaded
         {
@@ -72,19 +72,22 @@ class SimpleSceneDelegate: NSObject, SCNSceneRendererDelegate {
             catAnimator.load(into: scene)
             SCNTransaction.commit()
         } else {
-            self.time = Float((time + 0.01)).truncatingRemainder(dividingBy: Float.pi)
+            self.time += 0.01
             SCNTransaction.begin()
-            catAnimator.startAnimating(at: self.time)
+            catAnimator.startAnimating(at: time)
             SCNTransaction.commit()
         }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+        guard catAnimator == nil else { return }
+        catAnimator = .init(catCount: 6, start: time)
         
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
         sceneDidLoad?(scene)
+
     }
     
     
