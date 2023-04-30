@@ -23,7 +23,7 @@ class CatAnimator {
         }
         return true
     }
-    init(catCount: Int, start time: TimeInterval) {
+    init(zipcodeCats: [ZipcodeCat], start time: TimeInterval) {
         for i in (0..<catCount) {
             let role = HikesCatGoes.allCases.randomElement() ?? .apartments
             let delay = Double.pi / 2 * Double(i) + time

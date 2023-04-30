@@ -41,6 +41,10 @@ public extension StateManagementViewModel {
         cancellables.insert(cancellable)
     }
     
+    func flushCancellables() {
+        cancellables = .init()
+    }
+    
     @discardableResult
     func bindReceiveValue<P: Publisher, Input>(
         observables observablesPublisher: P,

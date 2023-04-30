@@ -85,24 +85,5 @@ enum HikesCatGoes: CaseIterable, Equatable {
     func hikeCatIsHiking(at position: SCNVector3) -> Self? {
         return nil
     }
-    
-    var hikeForPath: CatHike {
-        switch self {
-        case .mansionPath:
-            return (
-                end1: .init(x: 43, y: 67, z: -335),
-                end2: .init(x: -113, y: -8, z: -215)
-            )
-        case .apartments:
-            return (
-                end1: .init(x: 43, y: 67, z: -335),
-                end2: .init(x: 17, y: 20, z: -54)
-            )
-        case .bootlegDistrict:
-            return (
-                end1: .init(x: 17, y: 20, z: -54),
-                end2: .init(x: 246, y: 98, z: -223)
-            )
-        }
-    }
+
 }

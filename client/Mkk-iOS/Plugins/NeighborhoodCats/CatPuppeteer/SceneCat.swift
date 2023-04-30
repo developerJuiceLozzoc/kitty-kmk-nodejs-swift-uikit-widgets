@@ -15,27 +15,25 @@ typealias CatHike = (end1: SCNVector3, end2: SCNVector3)
  each render. They will stick to bumping around */
 
 struct SceneCat {
+    /* how many unique cats can i make?
+     preferably 10,000
+     */
     
     var hasLoaded = false
     var phaseShift: Double
+    var currentHike: HikesCatGoes
+    let catDetails: ZipcodeCat?
+    var p: SCNNode?
     
-    public init(role desinatedHike: HikesCatGoes, delay: TimeInterval) {
+    init(role desinatedHike: HikesCatGoes, delay: TimeInterval) {
         self.currentHike = desinatedHike
         self.phaseShift = delay
     }
-    /*
-     let directoryPath = Bundle.main.resourcePath?.appending("/SceneAssets") ?? ""
-     let options: FileManager.DirectoryEnumerationOptions = [.skipsHiddenFiles, .skipsPackageDescendants, .skipsSubdirectoryDescendants, .skipsPackageDotFiles, .skipsHiddenFileExtensions]
-     let enumerator = FileManager.default.enumerator(atPath: directoryPath)
-     while let filename = enumerator?.nextObject() as? String {
-         if filename.hasSuffix(".jpg") {
-             let filePath = directoryPath.appending("/\(filename)")
-             print("Found file: \(filePath)")
-             // Do something with the file...
-         }
-     }
-
-     */
+    
+    init(zipcodeCat: ZipcodeCat, role hike: HikesCatGoes) {
+        
+    }
+    
     private func urlForFile(named: String) -> String? {
 
         if let url = Bundle.main.path(forResource: named, ofType: "tif", inDirectory: "assets.scnassets") {
@@ -86,8 +84,29 @@ struct SceneCat {
         return material
     }
     
-    var randomTexturePrefix: String {
+    static var randomActiveColor: String {
         let arr = [
+            "purple",
+            "blue",
+            "border-gradient-topleft",
+            "dashboard-tile-bg-gradient-1",
+            "dashboard-tile-bg-gradient-end",
+            "emoji-foreground",
+            "form-label-color",
+            "list-kitty-name-gradient-end-color",
+            "ultra-violet-1"
+        ]
+        return arr.randomElement() ?? "ultra-violet-1"
+    }
+    
+    static var randomTexturePrefix: String {
+        let arr = [
+            "TexturesCom_Wood_GrateShipdeck_1x1_512_",
+            "TexturesCom_Wood_BarkYucca1_0.125x0.125_512_",
+            "TexturesCom_Snow_TireMarks4_3x3_1K_",
+            "TexturesCom_Snow_Footsteps_2x2_1K_",
+            "TexturesCom_Pipe_AluminiumExpanded_0.30x0.30_1K_",
+            "TexturesCom_Metal_RustedPlates1_1x1_512_",
             "Concrete_Wall_008_",
             "TexturesCom_Wall_BrickIndustrial5_2x2_1K_",
             "TexturesCom_Brick_CinderblocksPainted2_1K_",
@@ -103,7 +122,7 @@ struct SceneCat {
     public func loadGeometry() -> SCNNode? {
         guard let scene = SCNScene(named: "cat.scn"),
               let nodeToMove = scene.rootNode.childNode(withName: "grp1", recursively: true),
-              let material = material(named: randomTexturePrefix) else {
+              let material = material(named: SceneCat.randomTexturePrefix) else {
             print("Node is not in a scene")
             return nil
         }
@@ -115,8 +134,7 @@ struct SceneCat {
         return nodeToMove
     }
     
-    var currentHike: HikesCatGoes
-    var p: SCNNode?
+    
 }
 
 

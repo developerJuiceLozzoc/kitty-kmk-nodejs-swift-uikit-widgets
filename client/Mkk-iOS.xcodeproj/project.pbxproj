@@ -81,6 +81,10 @@
 		C61199CC29F760F900F20A04 /* HikesCatGoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61199CB29F760F900F20A04 /* HikesCatGoes.swift */; };
 		C61199CE29F7613700F20A04 /* CatAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61199CD29F7613700F20A04 /* CatAnimator.swift */; };
 		C61199DA29F8498B00F20A04 /* cat.scn in Resources */ = {isa = PBXBuildFile; fileRef = C61199D929F8498B00F20A04 /* cat.scn */; };
+		C61199DD29F88E6E00F20A04 /* NeighborHoodCatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61199DC29F88E6E00F20A04 /* NeighborHoodCatTableView.swift */; };
+		C61199E029F8AEC100F20A04 /* KMKNeighborhoodCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61199DF29F8AEC100F20A04 /* KMKNeighborhoodCoder.swift */; };
+		C61199E229FECEAA00F20A04 /* NeighborhoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61199E129FECEAA00F20A04 /* NeighborhoodModel.swift */; };
+		C61199E429FEF0A700F20A04 /* KMKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61199E329FEF0A600F20A04 /* KMKExtensions.swift */; };
 		C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */; };
 		C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */; };
 		C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */; };
@@ -196,6 +200,10 @@
 		C61199CB29F760F900F20A04 /* HikesCatGoes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikesCatGoes.swift; sourceTree = "<group>"; };
 		C61199CD29F7613700F20A04 /* CatAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatAnimator.swift; sourceTree = "<group>"; };
 		C61199D929F8498B00F20A04 /* cat.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = cat.scn; sourceTree = "<group>"; };
+		C61199DC29F88E6E00F20A04 /* NeighborHoodCatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborHoodCatTableView.swift; sourceTree = "<group>"; };
+		C61199DF29F8AEC100F20A04 /* KMKNeighborhoodCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKNeighborhoodCoder.swift; sourceTree = "<group>"; };
+		C61199E129FECEAA00F20A04 /* NeighborhoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborhoodModel.swift; sourceTree = "<group>"; };
+		C61199E329FEF0A600F20A04 /* KMKExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKExtensions.swift; sourceTree = "<group>"; };
 		C6202D23277AA617003F4D32 /* KittyActionButtonContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KittyActionButtonContainer.swift; sourceTree = "<group>"; };
 		C6202D27277AB0C6003F4D32 /* PourWaterTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PourWaterTile.swift; sourceTree = "<group>"; };
 		C6202D29277AB0E0003F4D32 /* FoodBowlTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBowlTile.swift; sourceTree = "<group>"; };
@@ -277,6 +285,7 @@
 				B59BBF2F25D8509500A059C4 /* Strings+Enums.swift */,
 				B5DBA93C2741AF9B0075A45D /* ZeusToggles.swift */,
 				C649C53B27F0C3E800BCED16 /* Tutorials.swift */,
+				C61199E329FEF0A600F20A04 /* KMKExtensions.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -486,6 +495,23 @@
 			path = ScenePlugin;
 			sourceTree = "<group>";
 		};
+		C61199DB29F88E4600F20A04 /* CatList */ = {
+			isa = PBXGroup;
+			children = (
+				C61199DC29F88E6E00F20A04 /* NeighborHoodCatTableView.swift */,
+			);
+			path = CatList;
+			sourceTree = "<group>";
+		};
+		C61199DE29F8AEA300F20A04 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C61199DF29F8AEC100F20A04 /* KMKNeighborhoodCoder.swift */,
+				C61199E129FECEAA00F20A04 /* NeighborhoodModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C6202D31277B9449003F4D32 /* KittyPlayground */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +532,8 @@
 		C649C53A27F0C39E00BCED16 /* NeighborhoodCats */ = {
 			isa = PBXGroup;
 			children = (
+				C61199DE29F8AEA300F20A04 /* Model */,
+				C61199DB29F88E4600F20A04 /* CatList */,
 				C6749F9A29EB9AFD0068F1FC /* CatPuppeteer */,
 				C60CE98C29EB695C00DE43CB /* ScenePlugin */,
 				C60CE97629EB0A9600DE43CB /* SceneAssets */,
@@ -877,6 +905,7 @@
 				C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */,
 				B5DBA93F2741B7CB0075A45D /* LoadingButton.swift in Sources */,
 				C69EDAFA278A364300FE619E /* Date.swift in Sources */,
+				C61199E429FEF0A700F20A04 /* KMKExtensions.swift in Sources */,
 				B547291E274A949A005DCF8A /* KittyPFPViewModel.swift in Sources */,
 				B54651AF26F6A85600A16F38 /* SavedDataInfotainment.intentdefinition in Sources */,
 				C60CE97829EB0AA700DE43CB /* ShapeCreator.swift in Sources */,
@@ -885,6 +914,7 @@
 				C6FD1799279B03B500902DF9 /* ListKittiesPresenter.swift in Sources */,
 				B521F34A2618DA7400E7A87D /* CoreData.swift in Sources */,
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
+				C61199DD29F88E6E00F20A04 /* NeighborHoodCatTableView.swift in Sources */,
 				C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */,
 				C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */,
 				C60887A0288DA89A00D16FB6 /* ToySheetView.swift in Sources */,
@@ -912,11 +942,13 @@
 				C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */,
 				B5A46C0D26250AB000F9E154 /* RealmCrud.swift in Sources */,
 				C643DBEF279B8123004157E1 /* LazyVRadioBox.swift in Sources */,
+				C61199E029F8AEC100F20A04 /* KMKNeighborhoodCoder.swift in Sources */,
 				B5B54C4D2616183C00B18377 /* EmptySegue.swift in Sources */,
 				B54651D626F7E14300A16F38 /* ProgressBar.swift in Sources */,
 				B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */,
 				B5A46C0926250A6E00F9E154 /* RealmModel.swift in Sources */,
 				B577223625D89FC90024BA72 /* BossConstrains.swift in Sources */,
+				C61199E229FECEAA00F20A04 /* NeighborhoodModel.swift in Sources */,
 				B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */,
 				C6202D30277B82B4003F4D32 /* KittyPlagroundHostingController.swift in Sources */,
 				C68BB0B029F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift in Sources */,

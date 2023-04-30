@@ -81,6 +81,9 @@ enum PouringSpeedEnum: String {
     case dumping = "Dumping that water"
 }
 
+
+/* TODO: Add more toys for more combinations
+ */
 enum ToyType: Int, CaseIterable, Decodable {
     case yarnball = 0
     case shinystring
@@ -124,6 +127,9 @@ enum KMKNetworkError: String, Error {
     case noDocumentSuccess = ""
     case notificationServerError = "Sorry, we had problems looking up your opt in registraction status."
     case deviceNotRegistered = "This device does not contain a notification token claiming authorization."
+    case serverGateway = "The request with the server gateway failed"
+    case notFound = "the page you requested could not be found."
+    case clientRejectedRequest = "The client has rejected our request"
 }
 
 enum ActionCellGestureType: String {

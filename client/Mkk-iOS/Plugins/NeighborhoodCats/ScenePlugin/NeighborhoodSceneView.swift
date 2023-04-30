@@ -60,33 +60,29 @@ struct NeighborhoodSceneView: View {
         
     }
     
-   
     
-    var sceneView: some View {
+    private var sceneView: some View {
         ZStack {
-            if viewModel.observables.sceneDelegate != nil &&
-                viewModel.observables.orientation != .unknown
-            {
-                SceneKitView(
-                    scene: scene,
-                    onNodeSelected: self.hitTestSelected,
-                    delegate: viewModel.observables.sceneDelegate
-                )
-                .frame(
-                    width: UIScreen.main.bounds.width * 0.66,
-                    height: UIScreen.main.bounds.height
-                )
-                .padding(.top, 16)
-                .overlay {
-                    if !viewModel.observables.isSceneLoading {
-                        Rectangle()
-                            .stroke(lineWidth: 4)
-                            .fill(Color("ultra-violet-1"))
-                    }
-                    
+            SceneKitView(
+                scene: scene,
+                onNodeSelected: self.hitTestSelected,
+                delegate: viewModel.observables.sceneDelegate
+            )
+            .frame(
+                width: UIScreen.main.bounds.width * 0.66,
+                height: UIScreen.main.bounds.height
+            )
+            .padding(.top, 16)
+            .onAppear(perform: viewModel.sceneVieOnAppear)
+            .overlay {
+                if !viewModel.observables.isSceneLoading {
+                    Rectangle()
+                        .stroke(lineWidth: 4)
+                        .fill(Color("ultra-violet-1"))
                 }
                 
             }
+            
             activityIndicator
         }
     }
@@ -100,7 +96,11 @@ struct NeighborhoodSceneView: View {
     var landscapeBody: some View {
         /* cringe scenekit meow thing */
         HStack {
-            sceneView
+            if viewModel.observables.sceneDelegate != nil &&
+                viewModel.observables.orientation != .unknown
+            {
+                sceneView
+            }
             VStack {
                 rightDrawerTableView
                 currentSelectedView
