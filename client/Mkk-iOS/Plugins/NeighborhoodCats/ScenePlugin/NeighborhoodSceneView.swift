@@ -31,30 +31,8 @@ struct NeighborhoodSceneView: View {
     
     var portraitBody: some View {
         /* a mobile app styled table view */
-        List {
-            Text("Cat 1")
-            Text("cat 2")
-        }
+        NeighborHoodCatTableView(cats: viewModel.nonObservables.cats?.cats ?? [])
     }
-    
-    var rightDrawerTableView: some View {
-        return List {
-            Text("Cat 1")
-            Text("Cat 2")
-            Text("Cat 2")
-            Text("Cat 2")
-            Text("Cat 2")
-        }
-    }
-//    func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
-//        let sceneView = self.scene
-//        let touchLocation = gestureRecognizer.location(in: self.sceneView)
-//
-//        let hitTestResults = sceneView.hitTest(touchLocation, options: [:])
-//        if let node = hitTestResults.first?.node {
-//            // Handle the tap on the node here
-//        }
-//    }
     
     func hitTestSelected(node: SCNNode?) {
         
@@ -66,14 +44,14 @@ struct NeighborhoodSceneView: View {
             SceneKitView(
                 scene: scene,
                 onNodeSelected: self.hitTestSelected,
-                delegate: viewModel.observables.sceneDelegate
+                delegate: viewModel.nonObservables.sceneDelegate
             )
             .frame(
                 width: UIScreen.main.bounds.width * 0.66,
                 height: UIScreen.main.bounds.height
             )
             .padding(.top, 16)
-            .onAppear(perform: viewModel.sceneVieOnAppear)
+            .onAppear(perform: viewModel.neighborHoodOnAppear)
             .overlay {
                 if !viewModel.observables.isSceneLoading {
                     Rectangle()
@@ -86,27 +64,16 @@ struct NeighborhoodSceneView: View {
             activityIndicator
         }
     }
-    
-    var currentSelectedView: some View {
-        HStack {
-            
-        }
-    }
-    
+ 
     var landscapeBody: some View {
         /* cringe scenekit meow thing */
         HStack {
-            if viewModel.observables.sceneDelegate != nil &&
+            if viewModel.nonObservables.sceneDelegate != nil &&
                 viewModel.observables.orientation != .unknown
             {
                 sceneView
             }
-            VStack {
-                rightDrawerTableView
-                currentSelectedView
-                    .frame(height: UIScreen.main.bounds.height * 0.33)
-            }
-            
+            portraitBody
         }
     }
     
@@ -134,19 +101,11 @@ struct NeighborhoodSceneView: View {
             }
         }
         .edgesIgnoringSafeArea(edgesIgnored)
-        /*
         .onReceive(
             NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
         ) { _ in
             viewModel.observables.orientation = UIDevice.current.orientation
         }
-        .onAppear {
-            if viewModel.observables.orientation != .unknown {
-                return
-            }
-            viewModel.observables.orientation = UIDevice.current.orientation
-        }
-         */
     }
 }
 

@@ -5,6 +5,7 @@
 //  Created by Conner Maddalozzo on 4/19/23.
 //
 
+import SwiftUI
 import SceneKit
 import MetalKit
 import SceneKit.ModelIO
@@ -14,24 +15,37 @@ typealias CatHike = (end1: SCNVector3, end2: SCNVector3)
 /* this makes action on a scene and will render a cat walking
  each render. They will stick to bumping around */
 
-struct SceneCat {
+struct SceneCat: Identifiable {
     /* how many unique cats can i make?
      preferably 10,000
      */
+    var id: UUID {
+        .init()
+    }
     
     var hasLoaded = false
     var phaseShift: Double
     var currentHike: HikesCatGoes
+    
     let catDetails: ZipcodeCat?
     var p: SCNNode?
-    
-    init(role desinatedHike: HikesCatGoes, delay: TimeInterval) {
-        self.currentHike = desinatedHike
-        self.phaseShift = delay
+
+    var material: SCNMaterial? {
+        guard let details = catDetails else { return nil }
+        return material(named: details.material)
     }
     
-    init(zipcodeCat: ZipcodeCat, role hike: HikesCatGoes) {
-        
+    var highlightMaterial: SCNMaterial? {
+        guard let details = catDetails else { return nil }
+        let material = SCNMaterial()
+        material.diffuse.contents = Color(details.activeColorName)
+        return material
+    }
+    
+    init(zipcodeCat: ZipcodeCat, role hike: HikesCatGoes, delay: TimeInterval) {
+        self.catDetails = zipcodeCat
+        self.currentHike = hike
+        self.phaseShift = delay
     }
     
     private func urlForFile(named: String) -> String? {
@@ -132,6 +146,14 @@ struct SceneCat {
 
         nodeToMove.geometry?.materials = [material]
         return nodeToMove
+    }
+    
+    public func getMyCat(from scene: SCNScene?) -> SCNNode? {
+        if let scene = scene,
+           let nodeToMove = scene.rootNode.childNode(withName: "grp1", recursively: true) {
+            return nodeToMove
+        }
+        return nil
     }
     
     

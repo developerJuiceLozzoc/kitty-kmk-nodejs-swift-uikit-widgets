@@ -29,6 +29,10 @@ class NeighborhoodModel: NSObject {
 
 
 extension NeighborhoodModel: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        self.neighborHoodPublisher?.send(completion: .failure(.decodeFail))
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             guard let location = locations.last else { return }
             
