@@ -104,6 +104,7 @@
 		C6749FA129EC60D80068F1FC /* KnobGrabberPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749FA029EC60D80068F1FC /* KnobGrabberPopover.swift */; };
 		C678C6582790C68200078926 /* FoodLevelIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678C6572790C68200078926 /* FoodLevelIndicator.swift */; };
 		C688E6EF2A01CE2E00945F96 /* NeighborHoodCatTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C688E6EE2A01CE2E00945F96 /* NeighborHoodCatTableViewModel.swift */; };
+		C688E6F12A05F50200945F96 /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C688E6F02A05F50200945F96 /* OrientationManager.swift */; };
 		C68B405D285E343A004C8E0F /* ToyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68B405C285E343A004C8E0F /* ToyModel.swift */; };
 		C68B4060285E5833004C8E0F /* CoffeeToast in Frameworks */ = {isa = PBXBuildFile; productRef = C68B405F285E5833004C8E0F /* CoffeeToast */; };
 		C68BB0B029F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68BB0AF29F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift */; };
@@ -223,6 +224,7 @@
 		C6749FA029EC60D80068F1FC /* KnobGrabberPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnobGrabberPopover.swift; sourceTree = "<group>"; };
 		C678C6572790C68200078926 /* FoodLevelIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLevelIndicator.swift; sourceTree = "<group>"; };
 		C688E6EE2A01CE2E00945F96 /* NeighborHoodCatTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborHoodCatTableViewModel.swift; sourceTree = "<group>"; };
+		C688E6F02A05F50200945F96 /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
 		C68B405C285E343A004C8E0F /* ToyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyModel.swift; sourceTree = "<group>"; };
 		C68BB0AF29F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborHoodSceneViewRepresentable.swift; sourceTree = "<group>"; };
 		C68BB0B329F061AD000CFB05 /* SceneCat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCat.swift; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 				C62359AF29E4710400B66D2C /* NeighborhoodCatsHostingController.swift */,
 				C6749F9B29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift */,
 				C68BB0AF29F05D47000CFB05 /* NeighborHoodSceneViewRepresentable.swift */,
+				C688E6F02A05F50200945F96 /* OrientationManager.swift */,
 			);
 			path = ScenePlugin;
 			sourceTree = "<group>";
@@ -961,6 +964,7 @@
 				C6749F9C29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift in Sources */,
 				B5CBA52C25FA944F00621682 /* Schema.swift in Sources */,
 				C6749F9929EB900E0068F1FC /* ViewModel.swift in Sources */,
+				C688E6F12A05F50200945F96 /* OrientationManager.swift in Sources */,
 				C68BB0B429F061AD000CFB05 /* SceneCat.swift in Sources */,
 				B54651D026F78C6900A16F38 /* JumbotronLayout.swift in Sources */,
 				C688E6EF2A01CE2E00945F96 /* NeighborHoodCatTableViewModel.swift in Sources */,
@@ -1206,6 +1210,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
@@ -1220,6 +1225,7 @@
 				MARKETING_VERSION = 1.5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lozzoc.realmcatcollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1233,6 +1239,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Mkk-iOS/Mkk-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
@@ -1247,6 +1254,7 @@
 				MARKETING_VERSION = 1.5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lozzoc.realmcatcollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

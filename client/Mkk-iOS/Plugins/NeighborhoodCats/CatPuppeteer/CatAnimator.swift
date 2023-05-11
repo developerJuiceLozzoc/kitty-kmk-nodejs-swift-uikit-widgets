@@ -30,7 +30,7 @@ class CatAnimator {
         var i = 0
         zipcodeCats.forEach { zipped in
             let role = HikesCatGoes.allCases.randomElement() ?? .apartments
-            let delay = Double.pi / 2 * Double(i) + time
+            let delay = Double.pi / 2 * Double(i) + time + Double.random(in: 0...1.69)
             let cat = SceneCat(zipcodeCat: zipped, role: role, delay: delay)
             self.cats.append(cat)
             i += 1
@@ -44,9 +44,11 @@ class CatAnimator {
                let node = cat.loadGeometry() {
                 self.cats[index].hasLoaded = true
                 self.cats[index].p = node
+                SCNTransaction.begin()
                 scene.rootNode.addChildNode(node)
                 node.position = initialPosition
-                node.scale = .init(SIMD3<Float>.init(repeating: 0.06))
+                node.scale = .init(SIMD3<Float>.init(repeating: 0.069))
+                SCNTransaction.commit()
             }
         }
     }
@@ -68,13 +70,14 @@ class CatAnimator {
     }
     
     
+    /* TODO: tap gestures on the scene */
     func startAnimating(cat: SceneCat, at time: TimeInterval) {
         let numCatsToAnimate = catsCurrentlyActive.count
         for i in (0..<numCatsToAnimate) {
             let animatingTime = catsCurrentlyActive[i].timeInteracted
             let cat = catsCurrentlyActive[i].cat
-            guard let node = cat.p
-            else { continue }
+//            guard let node = cat.p
+//            else { continue }
             
             
             if time > animatingTime {

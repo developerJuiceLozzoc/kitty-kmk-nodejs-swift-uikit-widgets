@@ -18,7 +18,7 @@ extension NeighborhoodScene {
     struct Observable {
         var isSceneLoading: Bool = true
         var isZipcodeLoading: Result<NetworkState, KMKNetworkError> = .success(.idle)
-        var orientation = UIDeviceOrientation.landscapeLeft
+        var orientation:  OrientationAwareModifier.Orientation
     }
     
     struct NonObservable {
@@ -26,11 +26,27 @@ extension NeighborhoodScene {
         var neighborhoodModel = NeighborhoodModel()
         var cats: KMKNeighborhood?
         var sceneCats: [SceneCat] = []
+        var neighborhoddScene = SCNScene(named: "Neighborhood.scn")
+        var tableViewModel: NeighborhoodCatTables.ViewModel?
     }
     
     enum Action {
         
     }
+}
+
+extension NeighborhoodScene.ViewModel {
+    
+    convenience init() {
+        self.init(observables: .init(orientation: kmk_initialOrientation()), nonobservables: .init())
+        let sceneD = SimpleSceneDelegate() { [weak self] (scene, delay) in
+            guard let self = self else { return }
+            self.shouldRenderCats(in: scene, offset: delay)
+        }
+        
+        self.nonObservables.sceneDelegate = sceneD
+    }
+    
 }
 
 
@@ -73,17 +89,7 @@ extension NeighborhoodScene.ViewModel {
             return
         }
     }
-    
-    convenience init() {
-        self.init(observables: .init(), nonobservables: .init())
-        let sceneD = SimpleSceneDelegate() { [weak self] (scene, delay) in
-            guard let self = self else { return }
-            self.shouldRenderCats(in: scene, offset: delay)
-        }
-        
-        self.nonObservables.sceneDelegate = sceneD
-    }
-    
+
     private func shouldRenderCats(in scene: SCNScene, offset time: TimeInterval) {
         guard let zipCats = self.nonObservables.cats?.cats else { return }
         let animator: CatAnimator = .init(zipcodeCats: zipCats, start: time)
@@ -100,7 +106,7 @@ extension NeighborhoodScene.ViewModel {
 class SimpleSceneDelegate: NSObject, SCNSceneRendererDelegate {
     var sceneDidLoad: ((SCNScene, TimeInterval) -> Void)?
     var catAnimator: CatAnimator?
-    var time: Float = 0
+    var phaseTime: Float = 0
     
     public init(
         sceneDidLoad:  ((SCNScene, TimeInterval) -> Void)? = nil
@@ -113,13 +119,10 @@ class SimpleSceneDelegate: NSObject, SCNSceneRendererDelegate {
         updateAtTime time: TimeInterval
     ) {
         guard let catAnimator = catAnimator else { return }
-//        if let scene = renderer.scene,
-//           !catAnimator.hasLoaded
-//        {
-//
-//        } else {
+
+        
         if catAnimator.hasLoaded {
-            self.time += 0.01
+            self.phaseTime += 0.01
             SCNTransaction.begin()
             catAnimator.updatePosidons(at: time)
             SCNTransaction.commit()
@@ -138,16 +141,18 @@ class SimpleSceneDelegate: NSObject, SCNSceneRendererDelegate {
            animator.hasLoaded,
            sceneDidLoad != nil
         {
+            phaseTime = Float(time)
             sceneDidLoad = nil
             return
         }
-        
-        SCNTransaction.begin()
-        sceneDidLoad?(scene, time)
-        SCNTransaction.commit()
+        if let completion = sceneDidLoad {
+            DispatchQueue.main.async {
+                completion(scene, time)
+            }
+        }
+       
         
         
     }
-    
     
 }

@@ -19,11 +19,14 @@ struct SceneKitView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> SCNView {
         let scnView = SCNView(frame: .zero)
-        scnView.scene = scene
         scnView.delegate = delegate
         scnView.backgroundColor = .clear
         scnView.allowsCameraControl = true
         scnView.autoenablesDefaultLighting = true
+        
+        if let node = scene?.rootNode.childNode(withName: "camera-omni", recursively: false) {
+            scnView.pointOfView = node
+        }
         
         let tapGesture = UITapGestureRecognizer(target: context.coordinator,
                                                  action: #selector(Coordinator.handleTap(_:)))
@@ -33,7 +36,8 @@ struct SceneKitView: UIViewRepresentable {
     }
     
     func updateUIView(_ scnView: SCNView, context: Context) {
-        // Nothing to do here
+        scnView.scene = scene
+
     }
     
     func makeCoordinator() -> Coordinator {

@@ -24,7 +24,7 @@ struct ZipcodeCat: Codable, Identifiable {
 extension ZipcodeCat {
     static var previews: [ZipcodeCat] {
         var arr: [ZipcodeCat] = []
-        (0..<10).forEach { _ in
+        (0..<6).forEach { _ in
             arr.append(
                 .init(
                     id: UUID().uuidString,
@@ -68,7 +68,7 @@ struct KMKNeighborhoodCatCoder {
     
     func decode() -> KMKNeighborhood? {
         guard !kmk_isPreviews() else {
-            return KMKNeighborhood(zipcode: "48202", cats: ZipcodeCat.previews)
+            return KMKNeighborhood(zipcode: "80304", cats: ZipcodeCat.previews)
         }
         let encoder = PropertyListDecoder()
         var format = PropertyListSerialization.PropertyListFormat.xml
@@ -80,7 +80,9 @@ struct KMKNeighborhoodCatCoder {
         {
             return decoded
         } else {
-            return nil
+            
+            /*TODO: return nil*/
+            return .init(zipcode: "80304", cats: ZipcodeCat.previews)
         }
     }
 }

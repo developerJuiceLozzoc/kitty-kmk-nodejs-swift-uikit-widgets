@@ -13,13 +13,16 @@ import Combine
 
 struct NeighborhoodSceneView: View {
     
-    var scene = SCNScene(named: "Neighborhood.scn")
-    var cameraNode: SCNNode? {
-        scene?.rootNode.childNode(withName: "camera-omni", recursively: false)
+    private let orientationChanged = NotificationCenter.default
+          .publisher(for: UIDevice.orientationDidChangeNotification)
+          .makeConnectable()
+          .autoconnect()
+
+    
+    @ObservedObject var viewModel: NeighborhoodScene.ViewModel
+    public init(viewModel: NeighborhoodScene.ViewModel) {
+        self.viewModel = viewModel
     }
-    
-    @ObservedObject var viewModel = NeighborhoodScene.ViewModel()
-    
     
     var activityIndicator: some View {
         VStack {
@@ -30,8 +33,14 @@ struct NeighborhoodSceneView: View {
     }
     
     var portraitBody: some View {
+        VStack(spacing: 0){
+            if viewModel.isZipcodeLoading == .success(.success) {
+                NeighborHoodCatTableView(from: self.viewModel)
+            }
+        }
+        
         /* a mobile app styled table view */
-        NeighborHoodCatTableView(cats: viewModel.nonObservables.cats?.cats ?? [])
+        
     }
     
     func hitTestSelected(node: SCNNode?) {
@@ -42,16 +51,15 @@ struct NeighborhoodSceneView: View {
     private var sceneView: some View {
         ZStack {
             SceneKitView(
-                scene: scene,
+                scene: viewModel.nonObservables.neighborhoddScene,
                 onNodeSelected: self.hitTestSelected,
                 delegate: viewModel.nonObservables.sceneDelegate
             )
             .frame(
-                width: UIScreen.main.bounds.width * 0.66,
+                width: UIScreen.main.bounds.width * 0.6,// + 25 = 85,
                 height: UIScreen.main.bounds.height
             )
             .padding(.top, 16)
-            .onAppear(perform: viewModel.neighborHoodOnAppear)
             .overlay {
                 if !viewModel.observables.isSceneLoading {
                     Rectangle()
@@ -68,8 +76,7 @@ struct NeighborhoodSceneView: View {
     var landscapeBody: some View {
         /* cringe scenekit meow thing */
         HStack {
-            if viewModel.nonObservables.sceneDelegate != nil &&
-                viewModel.observables.orientation != .unknown
+            if viewModel.nonObservables.sceneDelegate != nil
             {
                 sceneView
             }
@@ -87,27 +94,47 @@ struct NeighborhoodSceneView: View {
             return []
         }
     }
-    
+    @State private var orientationPublisher = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+
     var body: some View {
-        VStack(spacing: 0) {
-            switch viewModel.observables.orientation {
-            case .landscapeLeft, .landscapeRight :
+        GeometryReader { geometry in
+            let size = geometry.size
+            let isLandscape = size.width > size.height
+            if isLandscape,
+               #available(iOS 16.0, *) {
                 landscapeBody
-                    .edgesIgnoringSafeArea(.all)
-            case .portrait:
+                    .toolbar(.hidden, for: .tabBar)
+                    .environment(\.myCustomValue, true)
+            } else if isLandscape {
+                    landscapeBody
+                        .environment(\.myCustomValue, true)
+            } else {
                 portraitBody
-            default:
-                Text("We do not support this device orientation, Sorry.")
             }
-        }
+        }.onAppear(perform: viewModel.neighborHoodOnAppear)
+       
+        
         .edgesIgnoringSafeArea(edgesIgnored)
-        .onReceive(
-            NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
-        ) { _ in
-            viewModel.observables.orientation = UIDevice.current.orientation
-        }
+    }
+
+}
+
+/// Create custom environment values by defining a key
+/// that conforms to the ``EnvironmentKey`` protocol, and then using that
+/// key with the subscript operator of the ``EnvironmentValues`` structure
+/// to get and set a value for that key:
+///
+private struct NeighborHoodLayoutIsLandscape: EnvironmentKey {
+    static let defaultValue: Bool = false
+}
+
+extension EnvironmentValues {
+    var myCustomValue: Bool {
+        get { self[NeighborHoodLayoutIsLandscape.self] }
+        set { self[NeighborHoodLayoutIsLandscape.self] = newValue }
     }
 }
+
 
 /*
  
@@ -128,6 +155,6 @@ struct NeighborhoodSceneView: View {
 
 struct ListNeighborhoodCatsView_Previews: PreviewProvider {
     static var previews: some View {
-        NeighborhoodSceneView()
+        NeighborhoodSceneView(viewModel: .init())
     }
 }
