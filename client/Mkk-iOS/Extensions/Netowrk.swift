@@ -103,7 +103,7 @@ class KittyJsoner: CatApier {
     }
     
     func getJsonByBreed(with breed: String, completion: @escaping (Result<[KittyApiResults], KMKNetworkError>) -> Void) {
-        guard let url = URL(string: "\(KITTY_URL)&breed_ids=\(breed)") else {
+        guard let url = URL(string: "\(KITTY_BREEDS_URL)\(breed)") else {
             completion(.failure(.urlError)); return;
         }
         URLSession.shared.dataTask(with: url){data,resp,err in

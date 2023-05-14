@@ -39,7 +39,7 @@ extension NeighborhoodModel: CLLocationManagerDelegate {
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
                 guard let self = self else { return }
-                if let error = error {
+                if error != nil {
                     self.neighborHoodPublisher?.send(completion: .failure(.clientRejectedRequest))
                 } else if let placemark = placemarks?.first {
                     if let postalCode = placemark.postalCode {

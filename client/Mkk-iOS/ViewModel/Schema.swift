@@ -31,6 +31,14 @@ struct KittyApiResults: Codable {
     
 }
 struct KittyBreed: Codable {
+    static var previewsDummy: Self {
+        .init(id: "", name: "", temperament: "", description: "", life_span: "", dog_friendly: 5, energy_level: 5, shedding_level: 5, intelligence: 5, stranger_friendly: 5, origin: "", image: .init())
+    }
+    static var previews: Self {
+        .init(id: "abys", name: "Abyssinian",
+              temperament: "Active, Energetic, Independent, Intelligent, Gentle",
+              description: "The Abyssinian is easy to care for, and a joy to have in your home. They’re affectionate cats and love both people and other animals.", life_span: "14 - 15", dog_friendly: 1, energy_level: 5, shedding_level: 2, intelligence: 5, stranger_friendly: 5, origin: "Egypt", image: .init())
+    }
     init(id: String,name: String,temperament: String,description: String, life_span: String,dog_friendly: Int,
          energy_level: Int,
          shedding_level: Int,

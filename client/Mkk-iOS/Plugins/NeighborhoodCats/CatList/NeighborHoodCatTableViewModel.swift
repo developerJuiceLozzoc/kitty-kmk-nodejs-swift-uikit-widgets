@@ -31,8 +31,8 @@ extension NeighborhoodCatTables.ViewModel {
         self.init(observables: .init(), nonobservables: .init())
         self.nonObservables.sceneDelegate = SimpleSceneDelegate() { [weak self] (scene, delay) in
             print("cdm may early escape")
-            guard let self = self,
-                let theCat = scene.rootNode.childNode(withName: "grp1", recursively: true)
+            guard let self = self
+//                let theCat = scene.rootNode.childNode(withName: "grp1", recursively: true)
             else {
                 return
             }
@@ -53,17 +53,32 @@ extension NeighborhoodCatTables.ViewModel {
         if let node = cat.getMyCat(from: self.nonObservables.scene),
            let finalMaterial = cat.highlightMaterial,
            let initialMaterial = cat.material {
-//            SCNTransaction.begin()
-//            node.geometry?.materials = [initialMaterial, finalMaterial]
-//            SCNTransaction.commit()
             
             SCNTransaction.begin()
-//            SCNTransaction.animationDuration = 1.25
-//            SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: .easeOut)
-
-            // Add the material to the node's geometry
-            node.geometry?.materials = [initialMaterial]
+            node.geometry?.materials = [finalMaterial]
             SCNTransaction.commit()
+            
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+               
+                // Create a custom timing function using control points
+                let timingFunction = CAMediaTimingFunction(name: .linear)
+
+                // Begin the SCNTransaction with the desired animation timing function
+                SCNTransaction.begin()
+                SCNTransaction.animationTimingFunction = timingFunction
+
+                // Perform your changes within the transaction
+                // For example, animate the position of a node
+                SCNTransaction.animationDuration = 1
+                node.geometry?.materials = [initialMaterial]
+
+                // Commit the transaction
+                SCNTransaction.commit()
+            }
+
+            
+            
+            
         }
     }
         

@@ -35,7 +35,9 @@ struct NeighborhoodSceneView: View {
     var portraitBody: some View {
         VStack(spacing: 0){
             if viewModel.isZipcodeLoading == .success(.success) {
-                NeighborHoodCatTableView(from: self.viewModel)
+                NeighborHoodCatTableView(from: self.viewModel) { details in
+                    viewModel.onSelected(cat: details)
+                }
             }
         }
         

@@ -7,6 +7,86 @@
 
 import SwiftUI
 
+struct KMKListLink: View {
+    @GestureState var isDetectingLongPress = false
+    var config: Configuration
+
+    struct Configuration {
+        var titleStyle: Font
+        var subtitleStyle: Font
+        var title: String
+        var subtitle: String?
+        var action: (() -> Void)?
+        
+         init(
+            titleStyle: Font,
+            subtitleStyle: Font? = nil,
+            title: String,
+            subtitle: String? = nil,
+            action:  (() -> Void)? = nil
+         ) {
+            if let sub = subtitle,
+                let style = subtitleStyle {
+                self.subtitle = sub
+                self.subtitleStyle = style
+            } else {
+                self.subtitleStyle = titleStyle
+            }
+             
+            self.titleStyle = titleStyle
+            self.title = title
+            self.action = action
+        }
+    }
+    
+    var onEndedDuration: Double {
+        0.25
+    }
+    
+    var tap: some Gesture {
+        LongPressGesture(minimumDuration: onEndedDuration)
+            .updating($isDetectingLongPress) { currentState, gestureState,
+                    transaction in
+                gestureState = currentState
+                transaction.animation = Animation.easeIn(duration: onEndedDuration)
+            }
+            .onEnded { finished in
+                config.action?()
+            }
+    }
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(config.title)
+                    .font(config.titleStyle)
+                if let subtitle = config.subtitle {
+                    Text(subtitle)
+                        .font(config.subtitleStyle)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+            }
+            .padding(12)
+            .background(isDetectingLongPress ? Color("dashboard-tile-bg-gradient-1") : Color.clear )
+            .cornerRadius(8)
+            .contentShape(Rectangle())
+            .gesture(tap)
+            .animation(.easeOut(duration: onEndedDuration), value: isDetectingLongPress)
+        }
+        .padding(4)
+        .background(isDetectingLongPress ? Color("ultra-violet-1") : Color.clear )
+        .cornerRadius(4)
+
+        .contentShape(Rectangle())
+        .gesture(tap)
+        .animation(.easeOut(duration: 0.25), value: isDetectingLongPress)
+        
+        
+        
+    }
+}
+
 struct KMKLongPressYellow: View {
     @GestureState var isDetectingLongPress = false
     var buttonTitle: String
@@ -96,6 +176,7 @@ struct KMKButtons_Previews: PreviewProvider {
                 }.buttonStyle(BlueButtonStyle())
             }
             KMKLongPressYellow(buttonTitle: "cool", onLongPress: onLongPress)
+            KMKListLink(config: .init(titleStyle: .body, subtitleStyle: .body, title: "Title is super long to type"))
         }
         
         

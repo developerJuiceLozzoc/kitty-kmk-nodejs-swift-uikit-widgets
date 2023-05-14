@@ -75,7 +75,7 @@ class CatAnimator {
         let numCatsToAnimate = catsCurrentlyActive.count
         for i in (0..<numCatsToAnimate) {
             let animatingTime = catsCurrentlyActive[i].timeInteracted
-            let cat = catsCurrentlyActive[i].cat
+//            let cat = catsCurrentlyActive[i].cat
 //            guard let node = cat.p
 //            else { continue }
             

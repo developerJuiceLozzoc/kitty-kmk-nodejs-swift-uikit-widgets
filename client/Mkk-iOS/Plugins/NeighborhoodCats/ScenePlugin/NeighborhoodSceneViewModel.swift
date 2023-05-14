@@ -25,7 +25,6 @@ extension NeighborhoodScene {
         var sceneDelegate: SimpleSceneDelegate?
         var neighborhoodModel = NeighborhoodModel()
         var cats: KMKNeighborhood?
-        var sceneCats: [SceneCat] = []
         var neighborhoddScene = SCNScene(named: "Neighborhood.scn")
         var tableViewModel: NeighborhoodCatTables.ViewModel?
     }
@@ -51,6 +50,47 @@ extension NeighborhoodScene.ViewModel {
 
 
 extension NeighborhoodScene.ViewModel {
+    func onSelected(cat: ZipcodeCat) {
+        let animateCat: (SceneCat) -> Void = { cat in
+            if let node = cat.p,
+               let finalMaterial = cat.highlightMaterial,
+               let initialMaterial = cat.material
+            {
+                SCNTransaction.begin()
+                node.geometry?.materials = [finalMaterial]
+                SCNTransaction.commit()
+                
+                DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+                    
+                    // Create a custom timing function using control points
+                    let timingFunction = CAMediaTimingFunction(name: .linear)
+                    
+                    // Begin the SCNTransaction with the desired animation timing function
+                    SCNTransaction.begin()
+                    SCNTransaction.animationTimingFunction = timingFunction
+                    
+                    // Perform your changes within the transaction
+                    // For example, animate the position of a node
+                    SCNTransaction.animationDuration = 1
+                    node.geometry?.materials = [initialMaterial]
+                    
+                    // Commit the transaction
+                    SCNTransaction.commit()
+                }
+            }
+        }
+        if let animator = self.nonObservables.sceneDelegate?.catAnimator {
+            animator.cats.forEach {
+                if let details = $0.catDetails,
+                   details == cat {
+                    animateCat($0)
+                }
+                    
+            }
+        }
+        
+    }
+    
     private func zipCodeCompletion(_ completion: Subscribers.Completion<KMKNetworkError>) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -88,6 +128,7 @@ extension NeighborhoodScene.ViewModel {
         default:
             return
         }
+
     }
 
     private func shouldRenderCats(in scene: SCNScene, offset time: TimeInterval) {

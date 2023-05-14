@@ -98,6 +98,7 @@
 		C643DBEF279B8123004157E1 /* LazyVRadioBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643DBEE279B8123004157E1 /* LazyVRadioBox.swift */; };
 		C643DBF0279B94EA004157E1 /* ListKittyFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FD179A279B346400902DF9 /* ListKittyFilterView.swift */; };
 		C649C53C27F0C3E800BCED16 /* Tutorials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C649C53B27F0C3E800BCED16 /* Tutorials.swift */; };
+		C65002082A0E956D006A47F4 /* KMKStyledComponentEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65002072A0E956D006A47F4 /* KMKStyledComponentEnum.swift */; };
 		C6749F9929EB900E0068F1FC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749F9829EB900E0068F1FC /* ViewModel.swift */; };
 		C6749F9C29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749F9B29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift */; };
 		C6749F9F29EC42470068F1FC /* KMKLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749F9E29EC42470068F1FC /* KMKLoadingIndicator.swift */; };
@@ -218,6 +219,7 @@
 		C62359B129E471E600B66D2C /* NeighborhoodSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborhoodSceneView.swift; sourceTree = "<group>"; };
 		C643DBEE279B8123004157E1 /* LazyVRadioBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVRadioBox.swift; sourceTree = "<group>"; };
 		C649C53B27F0C3E800BCED16 /* Tutorials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorials.swift; sourceTree = "<group>"; };
+		C65002072A0E956D006A47F4 /* KMKStyledComponentEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKStyledComponentEnum.swift; sourceTree = "<group>"; };
 		C6749F9829EB900E0068F1FC /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		C6749F9B29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborhoodSceneViewModel.swift; sourceTree = "<group>"; };
 		C6749F9E29EC42470068F1FC /* KMKLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKLoadingIndicator.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 				B5DBA93E2741B7CB0075A45D /* LoadingButton.swift */,
 				C6749F9E29EC42470068F1FC /* KMKLoadingIndicator.swift */,
 				C6749FA029EC60D80068F1FC /* KnobGrabberPopover.swift */,
+				C65002072A0E956D006A47F4 /* KMKStyledComponentEnum.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
@@ -722,11 +725,12 @@
 		B5E7A62325D6F7520076F12C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				KnownAssetTags = (
 					New,
 				);
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					B54651A126F6A85400A16F38 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -921,6 +925,7 @@
 				B521F34A2618DA7400E7A87D /* CoreData.swift in Sources */,
 				B5E7A62F25D6F7520076F12C /* AppDelegate.swift in Sources */,
 				C61199DD29F88E6E00F20A04 /* NeighborHoodCatTableView.swift in Sources */,
+				C65002082A0E956D006A47F4 /* KMKStyledComponentEnum.swift in Sources */,
 				C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */,
 				C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */,
 				C60887A0288DA89A00D16FB6 /* ToySheetView.swift in Sources */,

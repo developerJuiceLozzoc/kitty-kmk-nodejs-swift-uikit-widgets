@@ -183,7 +183,7 @@ struct KittyActionButtonContainer: View {
                     KMKCustomSwipeUp(content: {
                         VStack {
                             Text("You have cats waiting by your toys!")
-                            Text("Swipe up to view")
+                            Text("Click to view")
                         }
                         
                     }, gestureActivated: $deeplink.showWanderingKittyRecap)

@@ -13,12 +13,18 @@ struct CatAdoption: Codable {
     var owner: String
 }
 
-struct ZipcodeCat: Codable, Identifiable {
+struct ZipcodeCat: Codable, Identifiable, Equatable {
+    static func == (lhs: ZipcodeCat, rhs: ZipcodeCat) -> Bool {
+        return lhs.id == rhs.id
+        
+    }
+    
     var id: String
     var breedid: String
     var material: String
     var activeColorName: String
     var adoption: CatAdoption?
+    var breed: KittyBreed
 }
 
 extension ZipcodeCat {
@@ -30,7 +36,7 @@ extension ZipcodeCat {
                     id: UUID().uuidString,
                     breedid: KITTY_BREEDS.randomElement() ?? "jbob",
                     material: SceneCat.randomTexturePrefix,
-                    activeColorName: SceneCat.randomActiveColor
+                    activeColorName: SceneCat.randomActiveColor, breed: KittyBreed.previews
                 )
             )
         }
@@ -39,8 +45,12 @@ extension ZipcodeCat {
 }
 
 struct KMKNeighborhood: Codable {
+    typealias Breed = String
     var zipcode: String
     var cats: [ZipcodeCat]
+    
+    // BREED
+//    var pokedex: [Breed: KittyBreed]
 }
 
 
@@ -64,6 +74,7 @@ struct KMKNeighborhoodCatCoder {
         }
        
     }
+    
     
     
     func decode() -> KMKNeighborhood? {

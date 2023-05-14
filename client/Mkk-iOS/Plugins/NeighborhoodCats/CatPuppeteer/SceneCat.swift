@@ -38,7 +38,7 @@ struct SceneCat: Identifiable {
     var highlightMaterial: SCNMaterial? {
         guard let details = catDetails else { return nil }
         let material = SCNMaterial()
-        material.diffuse.contents = Color(details.activeColorName)
+        material.diffuse.contents = UIColor(named: details.activeColorName)
         return material
     }
     

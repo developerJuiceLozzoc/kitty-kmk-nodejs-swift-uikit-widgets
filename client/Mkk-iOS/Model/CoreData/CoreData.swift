@@ -82,7 +82,7 @@ class KMKCoreData {
         let date = Date().timeIntervalSince1970
         let moc = persistentContainer.viewContext
         do{
-            let k = try! moc.existingObject(with: id) as! Kitty
+            let k = try moc.existingObject(with: id) as! Kitty
             k.dateLastAccessed = date
             return !saveContextDidFail()
         } catch {

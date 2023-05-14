@@ -12,9 +12,11 @@ struct NeighborHoodCatTableView: View {
     @Environment(\.myCustomValue) var isLandscape: Bool
     @ObservedObject var viewModel: NeighborhoodCatTables.ViewModel
     
-    public init?(from aviewModel: NeighborhoodScene.ViewModel) {
+    var handler: ((ZipcodeCat) -> Void)?
+    
+    public init(from aviewModel: NeighborhoodScene.ViewModel, onNodeSelected: ((ZipcodeCat) -> Void)?){
         let cats = aviewModel.nonObservables.cats?.cats ?? []
-        
+        self.handler = onNodeSelected
         if aviewModel.nonObservables.tableViewModel == nil {
             let viewModel: NeighborhoodCatTables.ViewModel = .init(with: cats)
             self.viewModel = viewModel
@@ -26,16 +28,19 @@ struct NeighborHoodCatTableView: View {
         }
     }
     
-    @ViewBuilder
-    func listActionButton(cat: SceneCat) -> some View {
-        HStack {
-            Text(cat.catDetails?.breedid ?? "American Shorthair")
-            Spacer()
-            Image("chevron.down")
+    func listActionButton(cat: SceneCat) -> KMKListLink {
+        let config = KMKListLink.Configuration(
+            titleStyle: .title3,
+            title: ""
+        ) {
+            if let details = cat.catDetails {
+                
+                viewModel.didTap(cat: cat)
+                self.handler?(details)
+            }
         }
-        .onTapGesture {
-            viewModel.didTap(cat: cat)
-        }
+        
+        return KMKListLink(config: config)
     }
     
     var sceneFrame: CGSize {
@@ -73,7 +78,7 @@ struct NeighborHoodCatTableView: View {
     var body: some View {
         VStack(spacing: 0) {
             if viewModel.observables.minTimeCanRenderCat < .infinity {
-                List {
+                ScrollView {
                     ForEach(viewModel.nonObservables.cats) {
                         listActionButton(cat: $0)
                     }
@@ -83,6 +88,17 @@ struct NeighborHoodCatTableView: View {
             Spacer()
             sceneView
         }
+        .onAppear {
+            let api = KittyJsoner()
+            api.getJsonByBreed(with: "norw") { result in
+                switch result {
+                case .success(let arr):
+                    print(arr)
+                case .failure(let err):
+                    print(err)
+                }
+            }
+        }
         
     }
 }
@@ -90,11 +106,13 @@ struct NeighborHoodCatTableView: View {
 struct NeighborHoodCatTableView_Previews: PreviewProvider {
     static var cats = ZipcodeCat.previews
     static var viewModel: NeighborhoodScene.ViewModel {
-        var viewModel: NeighborhoodScene.ViewModel = .init()
+        let viewModel: NeighborhoodScene.ViewModel = .init()
         viewModel.nonObservables.cats = .init(zipcode: "80304", cats: ZipcodeCat.previews)
         return viewModel
     }
     static var previews: some View {
-        NeighborHoodCatTableView(from: viewModel)
+        NeighborHoodCatTableView(from: viewModel) { details in 
+            
+        }
     }
 }

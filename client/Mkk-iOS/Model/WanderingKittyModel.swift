@@ -14,7 +14,7 @@ class WanderingKittyModel {
     
     
     func retrieveAndStoreKitties(with breeds: [String], completion: @escaping ()->Void) {
-        var group = DispatchGroup()
+        let group = DispatchGroup()
         
         breeds.forEach { breed in
             group.enter()

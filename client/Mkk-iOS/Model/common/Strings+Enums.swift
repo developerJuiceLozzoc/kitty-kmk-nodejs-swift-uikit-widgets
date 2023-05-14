@@ -10,6 +10,7 @@ import Foundation
                 /* action a     action b            action c*/
 let VOTE_LIST = ["Adopt Kitty","Have Konversation", "Give Petz"]
 
+let KITTY_BREEDS_URL = "https://api.thecatapi.com/v1/breeds/"
 let KITTY_URL = "https://api.thecatapi.com/v1/images/search?limit=50"
 
 let KITTY_BREEDS: [String]  = [
@@ -162,7 +163,7 @@ func kmk_readOsType() -> OSEnvironment? {
      macos
      n /Users/USER/Library/Containers/43B15322-8173-4D40-BE9A-D7539EFC41A7/Data/Documents"
     */
-    var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     guard let documentsDirectory = paths.first else {
         return nil
     }
