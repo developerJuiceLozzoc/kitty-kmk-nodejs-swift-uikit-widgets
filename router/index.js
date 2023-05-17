@@ -27,10 +27,10 @@ module.exports = express();
 module.exports.get('/ZeusToggles', function (req,res){
   readRemoteFeatureToggles()
   .then(function(toggles){
+    console.log(toggles);
     res.status(200).json(toggles);
   })
   .catch(function(err){
-    console.log(err);
     res.status(300).end()
   })
 })
@@ -110,7 +110,7 @@ module.exports.post("/game/:gameid", function (req, res) {
 
 module.exports.get("/notifications/subscription", function (req, res){
   const { deviceid, breed, fireToken } = req.query;
-  console.log(deviceid,fireToken);
+  console.log("GET SUBSCRIPTION", deviceid,fireToken);
   var status = null;
   findNotificationByDidAndFireToken(deviceid,fireToken)
     .then(function (value) {
@@ -153,7 +153,6 @@ module.exports.post("/notifications/schedule", function (req, res) {
 });
 
 module.exports.post("/notifications/dispatch", function (req, res) {
-  console.log("dispathcing notification");
   readAllScheduledNotifications()
     .then(function (cursor) {
       cursor.forEach(function (val) {

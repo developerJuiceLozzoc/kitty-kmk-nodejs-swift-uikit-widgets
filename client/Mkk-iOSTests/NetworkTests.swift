@@ -8,6 +8,10 @@
 import XCTest
 
 class MockNetwork: CatApier {
+    func postNewNotification(completion: @escaping (Result<String, KMKNetworkError>) -> Void) {
+        
+    }
+    
     func dispatchNotificationsImmediately(completion: @escaping (Result<Void, KMKNetworkError>) -> Void) {
         
     }
@@ -22,7 +26,8 @@ class MockNetwork: CatApier {
     
     func getJsonByBreed(with breed: String, completion: @escaping (Result<[KittyApiResults], KMKNetworkError>) -> Void) {
         guard let path = Bundle(for: Self.self).path(forResource: "MockNetwork", ofType: "json") else {
-            completion(.failure(.urlError)); return;
+            completion(.failure(.urlError))
+            return
         }
         let fileURL = URL(fileURLWithPath: path)
 

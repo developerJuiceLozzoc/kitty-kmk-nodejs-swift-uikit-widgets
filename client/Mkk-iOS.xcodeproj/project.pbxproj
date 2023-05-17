@@ -99,6 +99,8 @@
 		C643DBF0279B94EA004157E1 /* ListKittyFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FD179A279B346400902DF9 /* ListKittyFilterView.swift */; };
 		C649C53C27F0C3E800BCED16 /* Tutorials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C649C53B27F0C3E800BCED16 /* Tutorials.swift */; };
 		C65002082A0E956D006A47F4 /* KMKStyledComponentEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65002072A0E956D006A47F4 /* KMKStyledComponentEnum.swift */; };
+		C650020B2A107B01006A47F4 /* ZipcodeAdoptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C650020A2A107B01006A47F4 /* ZipcodeAdoptionView.swift */; };
+		C650020D2A107DA5006A47F4 /* ZipcodeAdoptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C650020C2A107DA5006A47F4 /* ZipcodeAdoptionViewModel.swift */; };
 		C6749F9929EB900E0068F1FC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749F9829EB900E0068F1FC /* ViewModel.swift */; };
 		C6749F9C29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749F9B29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift */; };
 		C6749F9F29EC42470068F1FC /* KMKLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6749F9E29EC42470068F1FC /* KMKLoadingIndicator.swift */; };
@@ -220,6 +222,8 @@
 		C643DBEE279B8123004157E1 /* LazyVRadioBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVRadioBox.swift; sourceTree = "<group>"; };
 		C649C53B27F0C3E800BCED16 /* Tutorials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorials.swift; sourceTree = "<group>"; };
 		C65002072A0E956D006A47F4 /* KMKStyledComponentEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKStyledComponentEnum.swift; sourceTree = "<group>"; };
+		C650020A2A107B01006A47F4 /* ZipcodeAdoptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeAdoptionView.swift; sourceTree = "<group>"; };
+		C650020C2A107DA5006A47F4 /* ZipcodeAdoptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeAdoptionViewModel.swift; sourceTree = "<group>"; };
 		C6749F9829EB900E0068F1FC /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		C6749F9B29EB9B1E0068F1FC /* NeighborhoodSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborhoodSceneViewModel.swift; sourceTree = "<group>"; };
 		C6749F9E29EC42470068F1FC /* KMKLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKLoadingIndicator.swift; sourceTree = "<group>"; };
@@ -505,6 +509,7 @@
 		C61199DB29F88E4600F20A04 /* CatList */ = {
 			isa = PBXGroup;
 			children = (
+				C65002092A107AE5006A47F4 /* ConfirmAdoption */,
 				C61199DC29F88E6E00F20A04 /* NeighborHoodCatTableView.swift */,
 				C688E6EE2A01CE2E00945F96 /* NeighborHoodCatTableViewModel.swift */,
 			);
@@ -547,6 +552,15 @@
 				C60CE97629EB0A9600DE43CB /* SceneAssets */,
 			);
 			path = NeighborhoodCats;
+			sourceTree = "<group>";
+		};
+		C65002092A107AE5006A47F4 /* ConfirmAdoption */ = {
+			isa = PBXGroup;
+			children = (
+				C650020A2A107B01006A47F4 /* ZipcodeAdoptionView.swift */,
+				C650020C2A107DA5006A47F4 /* ZipcodeAdoptionViewModel.swift */,
+			);
+			path = ConfirmAdoption;
 			sourceTree = "<group>";
 		};
 		C6749F9A29EB9AFD0068F1FC /* CatPuppeteer */ = {
@@ -929,6 +943,7 @@
 				C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */,
 				C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */,
 				C60887A0288DA89A00D16FB6 /* ToySheetView.swift in Sources */,
+				C650020B2A107B01006A47F4 /* ZipcodeAdoptionView.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
 				C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */,
 				C6202D37277BA053003F4D32 /* KittyPlistManager.swift in Sources */,
@@ -939,6 +954,7 @@
 				B5527DC325E57AD900DE2096 /* ImagesViewModel.swift in Sources */,
 				C649C53C27F0C3E800BCED16 /* Tutorials.swift in Sources */,
 				B59BBF2C25D84DF100A059C4 /* MainTabController.swift in Sources */,
+				C650020D2A107DA5006A47F4 /* ZipcodeAdoptionViewModel.swift in Sources */,
 				B5D9458325E49E52005C6DC6 /* KMKFonts.swift in Sources */,
 				C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */,
 				B57512B4261A77AA00527CD5 /* SurveyCacheViewModel.swift in Sources */,

@@ -59,9 +59,6 @@ function insertCeleb(celeb, callback) {
  * to an ios device. this information is accessed reguarly
  * and the nthe sever sends notification at that time
  *
- * @param {Int}  the type of game we would like to retrieve
- * @param {Int} the offset of results we would like to skip
- * @param {Int} the limit of results to find
  * @param {Object}
  { vapid, breed, did }
  * @return {Promise}
@@ -98,8 +95,12 @@ function insertStaleGameReference(gameid) {
 
 //-------------------------------------------
 //-------------------------------------------
-
 /* read */
+
+
+function readBreedDetails(breed) {
+
+}
 
 function readRemoteFeatureToggles() {
   return new Promise(async function (resolv,rej) {

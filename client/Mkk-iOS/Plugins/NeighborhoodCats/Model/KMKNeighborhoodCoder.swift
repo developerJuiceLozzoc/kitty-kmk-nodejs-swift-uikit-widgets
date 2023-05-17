@@ -20,7 +20,6 @@ struct ZipcodeCat: Codable, Identifiable, Equatable {
     }
     
     var id: String
-    var breedid: String
     var material: String
     var activeColorName: String
     var adoption: CatAdoption?
@@ -34,9 +33,9 @@ extension ZipcodeCat {
             arr.append(
                 .init(
                     id: UUID().uuidString,
-                    breedid: KITTY_BREEDS.randomElement() ?? "jbob",
                     material: SceneCat.randomTexturePrefix,
-                    activeColorName: SceneCat.randomActiveColor, breed: KittyBreed.previews
+                    activeColorName: SceneCat.randomActiveColor,
+                    breed: KittyBreed.previews
                 )
             )
         }
@@ -91,9 +90,33 @@ struct KMKNeighborhoodCatCoder {
         {
             return decoded
         } else {
+            guard let path = Bundle.main.path(forResource: "breeds", ofType: "json"),
+              let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+                  let kittys = try? JSONDecoder().decode([KittyBreed].self, from: data) else {
+                return nil
+            }
+            var cats = [String: KittyBreed]()
+            kittys.forEach { cat in
+                cats[cat.id] = cat
+            }
             
-            /*TODO: return nil*/
-            return .init(zipcode: "80304", cats: ZipcodeCat.previews)
+            
+            var result = KMKNeighborhood(zipcode: "80304", cats: [])
+            
+            
+            ZipcodeCat.previews
+                .forEach { b in
+                    var breed = b
+                    if let random = KITTY_BREEDS.randomElement(),
+                        let randomCat = cats[random] {
+                        breed.breed = randomCat
+                        result.cats.append(breed)
+                    }
+                    
+                }
+            
+            
+            return result
         }
     }
 }

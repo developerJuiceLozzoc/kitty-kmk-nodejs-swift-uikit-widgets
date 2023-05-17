@@ -105,12 +105,3 @@ struct ConfirmOrDiscardView: View {
     }
 }
 
-//struct ConfirmOrDiscardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            ConfirmOrDiscardView(stats: dummyBreed, onAdoptionClick: { name,stats, data in }).preferredColorScheme(.dark).environmentObject(dummyEnv)
-//            ConfirmOrDiscardView(stats: dummyBreed, onAdoptionClick: { name,stats, data in }).preferredColorScheme(.light)
-//                .environmentObject(dummyEnv)
-//        }
-//    }
-//}
