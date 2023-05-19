@@ -9,10 +9,25 @@ import SwiftUI
 import SceneKit
 import Combine
 
+extension View {
+    var getStatusBarHeight: CGFloat {
+        if let windowScene = UIApplication.shared.connectedScenes
+            .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
+        {
+            return windowScene
+                .windows
+                .first { $0.isKeyWindow }?
+                .windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        } else {
+            return 0
+        }
+    }
+    
+}
+
 
 
 struct NeighborhoodSceneView: View {
-    
     private let orientationChanged = NotificationCenter.default
           .publisher(for: UIDevice.orientationDidChangeNotification)
           .makeConnectable()
@@ -57,19 +72,18 @@ struct NeighborhoodSceneView: View {
                 onNodeSelected: self.hitTestSelected,
                 delegate: viewModel.nonObservables.sceneDelegate
             )
-            .frame(
-                width: UIScreen.main.bounds.width * 0.6,// + 25 = 85,
-                height: UIScreen.main.bounds.height
-            )
-            .padding(.top, 16)
             .overlay {
-                if !viewModel.observables.isSceneLoading {
+                if viewModel.observables.isSceneLoading {
                     Rectangle()
                         .stroke(lineWidth: 4)
                         .fill(Color("ultra-violet-1"))
                 }
                 
             }
+            .frame(
+                width: UIScreen.main.bounds.width * 0.6,// + 25 = 85,
+                height: UIScreen.main.bounds.height
+            )
             
             activityIndicator
         }
@@ -77,13 +91,15 @@ struct NeighborhoodSceneView: View {
  
     var landscapeBody: some View {
         /* cringe scenekit meow thing */
-        HStack {
+        HStack(spacing: 0) {
             if viewModel.nonObservables.sceneDelegate != nil
             {
                 sceneView
             }
             portraitBody
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .edgesIgnoringSafeArea([.leading])
     }
     
     var edgesIgnored: Edge.Set {
@@ -114,9 +130,7 @@ struct NeighborhoodSceneView: View {
                 portraitBody
             }
         }.onAppear(perform: viewModel.neighborHoodOnAppear)
-       
         
-        .edgesIgnoringSafeArea(edgesIgnored)
     }
 
 }

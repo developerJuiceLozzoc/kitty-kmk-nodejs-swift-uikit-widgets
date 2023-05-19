@@ -42,8 +42,11 @@ struct KMKListLink: View {
     var onEndedDuration: Double {
         0.25
     }
+    @State private var isLinkActive = false
+   @State private var isLongPress = false
+   @GestureState private var dragOffset: CGSize = .zero
     
-    var tap: some Gesture {
+    var longPress: some Gesture {
         LongPressGesture(minimumDuration: onEndedDuration)
             .updating($isDetectingLongPress) { currentState, gestureState,
                     transaction in
@@ -67,23 +70,17 @@ struct KMKListLink: View {
                 Spacer()
                 Image(systemName: "chevron.right")
             }
+            .contentShape(Rectangle())
+            .simultaneousGesture(longPress)
+            
             .padding(12)
             .background(isDetectingLongPress ? Color("dashboard-tile-bg-gradient-1") : Color.clear )
             .cornerRadius(8)
-            .contentShape(Rectangle())
-            .gesture(tap)
             .animation(.easeOut(duration: onEndedDuration), value: isDetectingLongPress)
         }
         .padding(4)
         .background(isDetectingLongPress ? Color("ultra-violet-1") : Color.clear )
         .cornerRadius(4)
-
-        .contentShape(Rectangle())
-        .gesture(tap)
-        .animation(.easeOut(duration: 0.25), value: isDetectingLongPress)
-        
-        
-        
     }
 }
 

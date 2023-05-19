@@ -31,7 +31,7 @@ struct NeighborHoodCatTableView: View {
     func listActionButton(cat: SceneCat) -> KMKListLink {
         let config = KMKListLink.Configuration(
             titleStyle: .title3,
-            title: ""
+            title: cat.catDetails?.breed.name ?? ""
         ) {
             if let details = cat.catDetails {
                 
@@ -75,31 +75,75 @@ struct NeighborHoodCatTableView: View {
         }
     }
     
-    var body: some View {
-        VStack(spacing: 0) {
-            if viewModel.observables.minTimeCanRenderCat < .infinity {
-                ScrollView {
-                    ForEach(viewModel.nonObservables.cats) {
-                        listActionButton(cat: $0)
+    @ViewBuilder
+    func nav(for link: KMKListLink, breed: ZipcodeCat) -> some View {
+        ZStack {
+            NavigationLink(
+                destination: VStack {
+                    if let details = viewModel.detailsCatSelected {
+                        detailsView(for: details)
+                    } else {
+                        EmptyView()
                     }
+                },
+                isActive: viewModel.bindingDetailsIsActive) {
+                    Text("")
+            }
+            link
+        }
+    }
+
+    @ViewBuilder
+    func detailsView(for cat: ZipcodeCat) -> some View {
+        ZipcodeAdoptionView(kitty: cat){ name, breed, imagedata in
+            // present coming soon feature
+        }
+        .environmentObject(KittyPFPViewModel())
+
+    }
+    
+    var mainContent: some View {
+        VStack(spacing: 0) {
+            ScrollView {
+                ForEach(viewModel.nonObservables.cats) { cat in
+                    VStack(spacing: 0) {
+                        var shouldShimmer: Bool {
+                            if let lhs = viewModel.shimmeringTowardsCat,
+                               let rhs = cat.catDetails
+                            {
+                                return lhs != rhs
+                            }
+                            return false
+                        }
+                        if let breed = cat.catDetails {
+                            nav(for: listActionButton(cat: cat), breed: breed)
+                                .redacted(reason: shouldShimmer ? .placeholder : [])
+                        }
+                        Spacer(minLength: 8)
+                        Rectangle()
+                            .fill(Color("list-kitty-name-gradient-end-color"))
+                            .frame(width: sceneFrame.width * 0.8, height: 10)
+                            .allowsHitTesting(false)
+                            
+                        Spacer(minLength: 8)
+                    }
+                    
+
                 }
             }
-            
             Spacer()
             sceneView
         }
-        .onAppear {
-            let api = KittyJsoner()
-            api.getJsonByBreed(with: "norw") { result in
-                switch result {
-                case .success(let arr):
-                    print(arr)
-                case .failure(let err):
-                    print(err)
-                }
+    }
+    
+    var body: some View {
+        if isLandscape {
+            mainContent
+        } else {
+            NavigationView {
+                mainContent
             }
         }
-        
     }
 }
 

@@ -114,6 +114,8 @@
 		C68BB0B429F061AD000CFB05 /* SceneCat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68BB0B329F061AD000CFB05 /* SceneCat.swift */; };
 		C69EDAFA278A364300FE619E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAF9278A364300FE619E /* Date.swift */; };
 		C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69EDAFB278A486300FE619E /* KMKButtons.swift */; };
+		C6A1874F2A17EC4C004E4BD6 /* ZipcodeCatDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A1874E2A17EC4C004E4BD6 /* ZipcodeCatDetailsView.swift */; };
+		C6A187512A17EC5E004E4BD6 /* ZipcodeCatDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A187502A17EC5E004E4BD6 /* ZipcodeCatDetailsViewModel.swift */; };
 		C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */; };
 		C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */; };
 		C6CBC05F29EB769D00EE2336 /* Neighborhood.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE97D29EB0E1F00DE43CB /* Neighborhood.scn */; };
@@ -236,6 +238,8 @@
 		C68BB0B329F061AD000CFB05 /* SceneCat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCat.swift; sourceTree = "<group>"; };
 		C69EDAF9278A364300FE619E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C69EDAFB278A486300FE619E /* KMKButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKButtons.swift; sourceTree = "<group>"; };
+		C6A1874E2A17EC4C004E4BD6 /* ZipcodeCatDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeCatDetailsView.swift; sourceTree = "<group>"; };
+		C6A187502A17EC5E004E4BD6 /* ZipcodeCatDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeCatDetailsViewModel.swift; sourceTree = "<group>"; };
 		C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyViewModel.swift; sourceTree = "<group>"; };
 		C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyItumListView.swift; sourceTree = "<group>"; };
 		C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesHostingController.swift; sourceTree = "<group>"; };
@@ -509,7 +513,7 @@
 		C61199DB29F88E4600F20A04 /* CatList */ = {
 			isa = PBXGroup;
 			children = (
-				C65002092A107AE5006A47F4 /* ConfirmAdoption */,
+				C65002092A107AE5006A47F4 /* Adoption */,
 				C61199DC29F88E6E00F20A04 /* NeighborHoodCatTableView.swift */,
 				C688E6EE2A01CE2E00945F96 /* NeighborHoodCatTableViewModel.swift */,
 			);
@@ -554,13 +558,15 @@
 			path = NeighborhoodCats;
 			sourceTree = "<group>";
 		};
-		C65002092A107AE5006A47F4 /* ConfirmAdoption */ = {
+		C65002092A107AE5006A47F4 /* Adoption */ = {
 			isa = PBXGroup;
 			children = (
 				C650020A2A107B01006A47F4 /* ZipcodeAdoptionView.swift */,
 				C650020C2A107DA5006A47F4 /* ZipcodeAdoptionViewModel.swift */,
+				C6A1874E2A17EC4C004E4BD6 /* ZipcodeCatDetailsView.swift */,
+				C6A187502A17EC5E004E4BD6 /* ZipcodeCatDetailsViewModel.swift */,
 			);
-			path = ConfirmAdoption;
+			path = Adoption;
 			sourceTree = "<group>";
 		};
 		C6749F9A29EB9AFD0068F1FC /* CatPuppeteer */ = {
@@ -975,6 +981,7 @@
 				B59BBF1D25D776EB00A059C4 /* GameSurveyVM.swift in Sources */,
 				B5A46C0926250A6E00F9E154 /* RealmModel.swift in Sources */,
 				B577223625D89FC90024BA72 /* BossConstrains.swift in Sources */,
+				C6A1874F2A17EC4C004E4BD6 /* ZipcodeCatDetailsView.swift in Sources */,
 				C61199E229FECEAA00F20A04 /* NeighborhoodModel.swift in Sources */,
 				B544121B25EFD7B900C0D629 /* Netowrk.swift in Sources */,
 				C6202D30277B82B4003F4D32 /* KittyPlagroundHostingController.swift in Sources */,
@@ -997,6 +1004,7 @@
 				B5B54CE62617F9E600B18377 /* KITTY_API_CONFIG.swift in Sources */,
 				B59BBF2125D777D200A059C4 /* GameSurveyModel.swift in Sources */,
 				C61199CE29F7613700F20A04 /* CatAnimator.swift in Sources */,
+				C6A187512A17EC5E004E4BD6 /* ZipcodeCatDetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

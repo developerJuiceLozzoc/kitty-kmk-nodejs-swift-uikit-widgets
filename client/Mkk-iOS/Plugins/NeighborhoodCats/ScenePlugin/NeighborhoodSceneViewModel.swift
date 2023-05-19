@@ -10,6 +10,8 @@ import Combine
 import SceneKit
 
 
+
+
 enum NeighborhoodScene {}
 
 extension NeighborhoodScene {
@@ -48,42 +50,16 @@ extension NeighborhoodScene.ViewModel {
     
 }
 
-
 extension NeighborhoodScene.ViewModel {
     func onSelected(cat: ZipcodeCat) {
-        let animateCat: (SceneCat) -> Void = { cat in
-            if let node = cat.p,
-               let finalMaterial = cat.highlightMaterial,
-               let initialMaterial = cat.material
-            {
-                SCNTransaction.begin()
-                node.geometry?.materials = [finalMaterial]
-                SCNTransaction.commit()
-                
-                DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-                    
-                    // Create a custom timing function using control points
-                    let timingFunction = CAMediaTimingFunction(name: .linear)
-                    
-                    // Begin the SCNTransaction with the desired animation timing function
-                    SCNTransaction.begin()
-                    SCNTransaction.animationTimingFunction = timingFunction
-                    
-                    // Perform your changes within the transaction
-                    // For example, animate the position of a node
-                    SCNTransaction.animationDuration = 1
-                    node.geometry?.materials = [initialMaterial]
-                    
-                    // Commit the transaction
-                    SCNTransaction.commit()
-                }
-            }
-        }
         if let animator = self.nonObservables.sceneDelegate?.catAnimator {
-            animator.cats.forEach {
-                if let details = $0.catDetails,
+            animator.cats.forEach { scenecat in
+                if let details = scenecat.catDetails,
                    details == cat {
-                    animateCat($0)
+                    let duration: CFTimeInterval = 2.25
+                    let workItem2 = DispatchWorkItem {
+                    }
+                    CatColorAnimator.shared.animateCat(cat: scenecat, duration: duration, completion: workItem2)
                 }
                     
             }
@@ -191,9 +167,36 @@ class SimpleSceneDelegate: NSObject, SCNSceneRendererDelegate {
                 completion(scene, time)
             }
         }
-       
-        
         
     }
-    
 }
+
+/*
+class MaterialAnimation: SCNAnimation {
+    override func u
+    override func updateAnimation(_ animation: CAAnimation, animatedNode: SCNNode) {
+        guard let player = animation as? SCNAnimationPlayer,
+              let geometry = animatedNode.geometry,
+              let geometryMaterials = geometry.materials,
+              geometryMaterials.count == materials.count else {
+            return
+        }
+        
+        let time = player.animation.currentTime / player.animation.duration
+        
+        // Interpolate the alpha value based on the time
+        let interpolatedAlpha = blendValues(from: 1.0, to: 0.0, with: time)
+        
+        // Update the material's diffuse property with the interpolated alpha
+        let material = geometryMaterials[0]
+        let color = material.diffuse.contents as? UIColor
+        let updatedColor = color?.withAlphaComponent(interpolatedAlpha)
+        material.diffuse.contents = updatedColor
+    }
+    
+    // Function to interpolate values
+    private func blendValues(from startValue: CGFloat, to endValue: CGFloat, with progress: CGFloat) -> CGFloat {
+        return startValue + (endValue - startValue) * progress
+    }
+}
+*/

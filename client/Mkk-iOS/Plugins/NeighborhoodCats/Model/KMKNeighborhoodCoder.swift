@@ -8,12 +8,12 @@
 import Foundation
 
 
-struct CatAdoption: Codable {
+struct CatAdoption: Codable, Hashable {
     var date: String
     var owner: String
 }
 
-struct ZipcodeCat: Codable, Identifiable, Equatable {
+struct ZipcodeCat: Codable, Identifiable, Equatable, Hashable {
     static func == (lhs: ZipcodeCat, rhs: ZipcodeCat) -> Bool {
         return lhs.id == rhs.id
         

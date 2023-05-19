@@ -30,7 +30,7 @@ struct KittyApiResults: Codable {
     var url: String
     
 }
-struct KittyBreed: Codable {
+struct KittyBreed: Codable, Hashable {
     static var previewsDummy: Self {
         .init(id: "", name: "", temperament: "", description: "", life_span: "", dog_friendly: 5, energy_level: 5, shedding_level: 5, intelligence: 5, stranger_friendly: 5, origin: "", image: .init())
     }

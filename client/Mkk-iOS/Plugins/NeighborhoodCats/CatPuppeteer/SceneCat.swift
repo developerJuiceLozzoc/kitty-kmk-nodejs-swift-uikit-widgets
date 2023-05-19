@@ -42,6 +42,15 @@ struct SceneCat: Identifiable {
         return material
     }
     
+    var materialDiffuseContent: UIImage? {
+        if let prefix = catDetails?.material,
+            let path = urlForFile(named: "\(prefix)diffuse"),
+           let diffuseData = try? Data(contentsOf: .init(fileURLWithPath: path)) {
+            return UIImage(data: diffuseData)
+        }
+        return nil
+    }
+    
     init(zipcodeCat: ZipcodeCat, role hike: HikesCatGoes, delay: TimeInterval) {
         self.catDetails = zipcodeCat
         self.currentHike = hike

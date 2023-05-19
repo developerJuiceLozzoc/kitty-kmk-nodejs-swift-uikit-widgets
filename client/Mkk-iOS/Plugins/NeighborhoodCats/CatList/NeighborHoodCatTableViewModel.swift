@@ -6,6 +6,7 @@
 //
 
 import SceneKit
+import SwiftUI
 
 enum NeighborhoodCatTables {
     typealias ViewModel = StateManagementViewModel<Observable, NonObservable, Action>
@@ -13,6 +14,8 @@ enum NeighborhoodCatTables {
     struct Observable {
         var isSceneLoading: Bool = true
         var minTimeCanRenderCat: TimeInterval = .infinity
+        var detailsCatSelected: ZipcodeCat?
+        var shimmeringTowardsCat: ZipcodeCat?
     }
     
     struct NonObservable {
@@ -49,37 +52,35 @@ extension NeighborhoodCatTables.ViewModel {
 
 extension NeighborhoodCatTables.ViewModel {
     
-    func didTap(cat: SceneCat) {
-        if let node = cat.getMyCat(from: self.nonObservables.scene),
-           let finalMaterial = cat.highlightMaterial,
-           let initialMaterial = cat.material {
-            
-            SCNTransaction.begin()
-            node.geometry?.materials = [finalMaterial]
-            SCNTransaction.commit()
-            
-            DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-               
-                // Create a custom timing function using control points
-                let timingFunction = CAMediaTimingFunction(name: .linear)
-
-                // Begin the SCNTransaction with the desired animation timing function
-                SCNTransaction.begin()
-                SCNTransaction.animationTimingFunction = timingFunction
-
-                // Perform your changes within the transaction
-                // For example, animate the position of a node
-                SCNTransaction.animationDuration = 1
-                node.geometry?.materials = [initialMaterial]
-
-                // Commit the transaction
-                SCNTransaction.commit()
+    var bindingDetailsIsActive: Binding<Bool> {
+        .init {
+            self.observables.detailsCatSelected != nil
+        } set: { newValue in
+            if !newValue {
+                self.observables.detailsCatSelected = nil
             }
-
-            
-            
-            
         }
+
+    }
+    
+    func didTap(cat: SceneCat) {
+        let duration: CFTimeInterval = 2.25
+        var catScene = cat
+        catScene.p = cat.getMyCat(from: self.nonObservables.scene)
+        let workItem2 = DispatchWorkItem { [weak self] in
+            // animation has completed, now we shimmer.
+            guard let self = self else { return }
+            self.observables.shimmeringTowardsCat = cat.catDetails
+            Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+                guard let self = self else { return }
+                var observables = self.observables
+                observables.detailsCatSelected = catScene.catDetails
+                observables.shimmeringTowardsCat = nil
+                self.observables = observables
+            }
+        }
+        CatColorAnimator.shared.animateCat(cat: catScene, duration: duration, completion: workItem2)
+        
     }
         
     

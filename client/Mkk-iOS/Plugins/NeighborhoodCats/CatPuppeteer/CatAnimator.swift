@@ -87,3 +87,71 @@ class CatAnimator {
         }
     }
 }
+
+class CatColorAnimator {
+    static let shared = CatColorAnimator()
+    private init() { }
+    
+    static func averageColor(image: UIImage) -> UIColor? {
+        guard let cgImage = image.cgImage else { return nil}
+        let ciImage = CIImage(cgImage: cgImage)
+        let extent = ciImage.extent
+        
+        let context = CIContext(options: nil)
+        let filter = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: ciImage, kCIInputExtentKey: extent])!
+        let outputImage = filter.outputImage!
+        
+        var bitmap = [UInt8](repeating: 0, count: 4)
+        context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
+        
+        let red = CGFloat(bitmap[0]) / 255.0
+        let green = CGFloat(bitmap[1]) / 255.0
+        let blue = CGFloat(bitmap[2]) / 255.0
+        let alpha = CGFloat(bitmap[3]) / 255.0
+            
+       return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
+    // Schedule the asyncAfter task
+    var workItems: [DispatchWorkItem] = []
+
+    func animateCat(cat: SceneCat, duration: CFTimeInterval, completion: DispatchWorkItem) {
+        if workItems.count > 0 {
+            workItems.forEach { item in
+                item.cancel()
+            }
+            workItems = []
+        }
+        
+        let group = DispatchGroup()
+        guard let highlightMaterial = cat.highlightMaterial,
+              let finalMaterial = cat.material,
+              let finalDiffuseImage = cat.materialDiffuseContent
+        else {
+            return
+        }
+        
+        SCNTransaction.begin()
+        cat.p?.geometry?.materials = [highlightMaterial, finalMaterial]
+        SCNTransaction.commit()
+        
+        SCNTransaction.begin()
+        SCNTransaction.animationDuration = duration
+        highlightMaterial.diffuse.contents = CatColorAnimator.averageColor(image: finalDiffuseImage)
+        SCNTransaction.commit()
+        
+        group.enter()
+        let workItem1 = DispatchWorkItem {
+            defer { group.leave() }
+            cat.p?.geometry?.materials.removeFirst()
+        }
+        
+        workItems = [workItem1, completion]
+        
+        // Execute work item 1
+        Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: workItem1)
+
+        // Notify when work item 1 completes and execute work item 2
+        group.notify(queue: .global(), work: completion)        
+    }
+}

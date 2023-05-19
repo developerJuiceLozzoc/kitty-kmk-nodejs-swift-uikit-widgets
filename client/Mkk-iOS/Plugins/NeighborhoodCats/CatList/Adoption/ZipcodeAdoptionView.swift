@@ -17,33 +17,40 @@ struct ZipcodeAdoptionView: View {
     @State var selectedImageData: Data? = nil
     var onAdoptionClick: ((String,KittyBreed,Data) -> Void)
     var urls: [String]
-    let _cdkitty: WanderingKitty?
-    let _kittybreed: KittyBreed?
+    let kitty: ZipcodeCat
     
     @State var imageUrls: [String] = []
+    @ObservedObject var viewModel: ZipcodeAdoptions.ViewModel
     
-
-    //previews
-    init(breed: String,
-         onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void) = { (_, _, _) in } ) {
+    
+    
+    init( kitty: ZipcodeCat, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
+        self.urls = ["https://placekitten.com/400/400"]
         self.onAdoptionClick = onAdoptionClick
-        self._cdkitty = nil
-        self.urls = []
-        self._kittybreed = nil
+        self.kitty = kitty
+        self.viewModel = ZipcodeAdoptions.ViewModel(with: kitty)
     }
     
-    init(urls: [String], kitty: WanderingKitty, onAdoptionClick: @escaping ((String,KittyBreed,Data) -> Void)) {
-        self._cdkitty = kitty
-        self.urls = urls
-        self.onAdoptionClick = onAdoptionClick
-        self._kittybreed = nil
+    private var sceneView: some View {
+        ZStack {
+            SceneKitView(
+                scene: viewModel.nonObservables.scene,
+                onNodeSelected: { _ in },
+                delegate: viewModel.nonObservables.sceneDelegate
+            )
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.25)
+            if viewModel.observables.isSceneLoading == .success(true) {
+                KMKLoadingIndicator(bodyText: "Neighboorhood scene resources Loading")
+            }
+        }
     }
-   
     
 
     var body: some View {
         GeometryReader { metrics in
         List {
+            sceneView
+            
             Section {
                 ForEach(0..<section1Details.count, id: \.self) {
                     EmojiSectionView(screenWidth: metrics.size.width, ds: section1Details[$0])
@@ -104,11 +111,7 @@ struct ZipcodeAdoptionView: View {
     }
     
     var breed: KittyBreed? {
-        if let cd = _cdkitty?.stats {
-            return KittyBreed(fromCoreData: cd)
-        } else {
-            return _kittybreed
-        }
+        return kitty.breed
     }
     
     var  longText: String {
