@@ -60,22 +60,32 @@ extension NeighborhoodCatTables.ViewModel {
                 self.observables.detailsCatSelected = nil
             }
         }
+        
+    }
+    
+    func didTap(with cat: SceneCat) {
+        var scene = cat
+        scene.p = cat.getMyCat(from: self.nonObservables.scene)
+        let task = DispatchWorkItem() {
+            
+        }
+        
+        CatColorAnimator.shared.animateCat(cat: scene, duration: 1.0, completion: task)
 
     }
     
-    func didTap(cat: SceneCat) {
+    func didLongPress(cat: SceneCat) {
+        self.observables.shimmeringTowardsCat = cat.catDetails
         let duration: CFTimeInterval = 2.25
         var catScene = cat
         catScene.p = cat.getMyCat(from: self.nonObservables.scene)
         let workItem2 = DispatchWorkItem { [weak self] in
             // animation has completed, now we shimmer.
             guard let self = self else { return }
-            self.observables.shimmeringTowardsCat = cat.catDetails
             Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
                 guard let self = self else { return }
                 var observables = self.observables
                 observables.detailsCatSelected = catScene.catDetails
-                observables.shimmeringTowardsCat = nil
                 self.observables = observables
             }
         }

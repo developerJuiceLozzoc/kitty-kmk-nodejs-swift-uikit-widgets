@@ -29,16 +29,23 @@ struct NeighborHoodCatTableView: View {
     }
     
     func listActionButton(cat: SceneCat) -> KMKListLink {
-        let config = KMKListLink.Configuration(
-            titleStyle: .title3,
-            title: cat.catDetails?.breed.name ?? ""
-        ) {
+        let longPressAction: () -> Void = {
+            viewModel.didLongPress(cat: cat)
             if let details = cat.catDetails {
-                
-                viewModel.didTap(cat: cat)
                 self.handler?(details)
             }
         }
+        let tapAction: () -> Void = {
+            viewModel.didTap(with: cat)
+        }
+        let config = KMKListLink.Configuration(
+            titleStyle: .title3,
+            title: cat.catDetails?.breed.name ?? "",
+            tapAction: tapAction,
+            longPressAction: longPressAction
+        )
+            
+            
         
         return KMKListLink(config: config)
     }
@@ -95,11 +102,7 @@ struct NeighborHoodCatTableView: View {
 
     @ViewBuilder
     func detailsView(for cat: ZipcodeCat) -> some View {
-        ZipcodeAdoptionView(kitty: cat){ name, breed, imagedata in
-            // present coming soon feature
-        }
-        .environmentObject(KittyPFPViewModel())
-
+        ZipcodeCatDetailsView(kitty: cat)
     }
     
     var mainContent: some View {
@@ -142,6 +145,9 @@ struct NeighborHoodCatTableView: View {
         } else {
             NavigationView {
                 mainContent
+                    .onAppear {
+                        viewModel.observables.shimmeringTowardsCat = nil
+                    }
             }
         }
     }

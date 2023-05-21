@@ -16,14 +16,16 @@ struct KMKListLink: View {
         var subtitleStyle: Font
         var title: String
         var subtitle: String?
-        var action: (() -> Void)?
+        var tapAction: (() -> Void)?
+        var longPressAction: (() -> Void)?
         
          init(
             titleStyle: Font,
             subtitleStyle: Font? = nil,
             title: String,
             subtitle: String? = nil,
-            action:  (() -> Void)? = nil
+            tapAction: (() -> Void)? = nil,
+            longPressAction: (() -> Void)? = nil
          ) {
             if let sub = subtitle,
                 let style = subtitleStyle {
@@ -35,7 +37,8 @@ struct KMKListLink: View {
              
             self.titleStyle = titleStyle
             self.title = title
-            self.action = action
+            self.tapAction = tapAction
+             self.longPressAction = longPressAction
         }
     }
     
@@ -54,8 +57,15 @@ struct KMKListLink: View {
                 transaction.animation = Animation.easeIn(duration: onEndedDuration)
             }
             .onEnded { finished in
-                config.action?()
+                config.longPressAction?()
             }
+    }
+    
+    var tap: some Gesture {
+        TapGesture()
+            .onEnded {
+            config.tapAction?()
+        }
     }
     
     var body: some View {
@@ -70,9 +80,7 @@ struct KMKListLink: View {
                 Spacer()
                 Image(systemName: "chevron.right")
             }
-            .contentShape(Rectangle())
             .simultaneousGesture(longPress)
-            
             .padding(12)
             .background(isDetectingLongPress ? Color("dashboard-tile-bg-gradient-1") : Color.clear )
             .cornerRadius(8)
@@ -81,6 +89,9 @@ struct KMKListLink: View {
         .padding(4)
         .background(isDetectingLongPress ? Color("ultra-violet-1") : Color.clear )
         .cornerRadius(4)
+        .contentShape(Rectangle())
+        .simultaneousGesture(tap)
+
     }
 }
 

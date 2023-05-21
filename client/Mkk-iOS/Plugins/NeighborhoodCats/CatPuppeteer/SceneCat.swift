@@ -32,13 +32,16 @@ struct SceneCat: Identifiable {
 
     var material: SCNMaterial? {
         guard let details = catDetails else { return nil }
-        return material(named: details.material)
+        let m = material(named: details.material)
+        m?.isDoubleSided = true
+        return m
     }
     
     var highlightMaterial: SCNMaterial? {
         guard let details = catDetails else { return nil }
         let material = SCNMaterial()
         material.diffuse.contents = UIColor(named: details.activeColorName)
+        material.isDoubleSided = true
         return material
     }
     

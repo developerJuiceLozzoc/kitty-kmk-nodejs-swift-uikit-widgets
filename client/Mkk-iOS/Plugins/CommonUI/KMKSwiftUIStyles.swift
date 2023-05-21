@@ -104,22 +104,33 @@ struct EmojiSectionView: View {
     var screenWidth: CGFloat
     var ds: RowCellDataSource
     var body: some View {
-            if #available(iOS 15.0, *) {
-                if ds.varient == 0 {
-                    KMKSwiftUIStyles.i.renderLabelWithEmojis(with: ds.stringValue, label: ds.name, value: ds.value, width: screenWidth)
-                        .listRowSeparatorTint(Color("ultra-violet-1"))
-                } else if ds.varient == 1 {
-                    KMKSwiftUIStyles.i.renderTextWithLabel(with: ds.stringValue, label: ds.name, width: screenWidth)
-                    .listRowSeparatorTint(Color("ultra-violet-1"))
+        if #available(iOS 15.0, *) {
+            if ds.varient == 0 {
+                HStack(spacing: 0) {
+                    Text(ds.name)
+                        .foregroundColor(Color("form-label-color"))
+                        .font(.system(.body))
+                    Spacer()
+                    Text(String(repeating: ds.stringValue, count: ds.value))
+                            .font(.system(.title3))
+                }.frame(maxWidth: .infinity)
+            } else if ds.varient == 1 {
+
+                HStack {
+                    Text(ds.name)
+                        .foregroundColor(Color("form-label-color"))
+                        .font(.system(.body))
+                    Spacer()
+                    Text(ds.stringValue)
+                        .font(.system(.caption))
                 }
-            } else {
-                if ds.varient == 0 {
-                    KMKSwiftUIStyles.i.renderLabelWithEmojis(with: ds.stringValue, label: ds.name, value: ds.value, width: screenWidth)
-                } else if ds.varient == 1 {
-                    KMKSwiftUIStyles.i.renderTextWithLabel(with: ds.stringValue, label: ds.name, width: screenWidth)
-                }
-                
+                .frame(maxWidth: .infinity)
+                .listRowSeparatorTint(Color("ultra-violet-1"))
+
             }
+        } else {
+            Text("oops")
+        }
         
     }
 }

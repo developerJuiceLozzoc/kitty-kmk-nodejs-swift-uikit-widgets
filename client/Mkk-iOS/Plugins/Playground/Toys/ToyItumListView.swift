@@ -12,12 +12,12 @@ struct ToyItumListView: View {
     let df = KMKDateFormatter()
     var body: some View {
         HStack {
-            VStack {
-                KMKSwiftUIStyles.i.toyImageForToyType(of: ds.type)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 75)
-            }
+            KMKSwiftUIStyles.i.toyImageForToyType(of: ds.type)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 75)
+            
+            
             Text(ds.type.toString())
                 .lineLimit(2)
                 .multilineTextAlignment(.center)

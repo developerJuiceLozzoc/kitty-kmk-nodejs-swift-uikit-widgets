@@ -115,6 +115,7 @@ class CatColorAnimator {
     // Schedule the asyncAfter task
     var workItems: [DispatchWorkItem] = []
 
+
     func animateCat(cat: SceneCat, duration: CFTimeInterval, completion: DispatchWorkItem) {
         if workItems.count > 0 {
             workItems.forEach { item in
@@ -152,6 +153,6 @@ class CatColorAnimator {
         Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: workItem1)
 
         // Notify when work item 1 completes and execute work item 2
-        group.notify(queue: .global(), work: completion)        
+        group.notify(queue: .main, work: completion)        
     }
 }

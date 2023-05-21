@@ -59,7 +59,6 @@ struct UseToyTile: View {
 }
 
 struct ToyItemSheet: View {
-    let colums: [GridItem] = Array.init(repeating: .init(.fixed((UIScreen.main.bounds.width-10)/3)), count: 3)
     let ALL_TOYS: [ToyType] = ToyType.allCases.map { return $0 }.filter { return $0 != .unknown   }
     @Binding var updateFlag: Bool
     @ObservedObject var tnm: ToyNetworkManager
@@ -98,6 +97,52 @@ struct ToyItemSheet: View {
             }
         }
     }
+    
+    var toysOnSite: some View {
+        ScrollView {
+            
+                Section {
+                     ForEach(store.toys, id: \.self) {
+                         ToyItumListView(ds: $0 )
+                     }
+                 } header: {
+                     KMKSwiftUIStyles.i.renderSectionHeader(with: "Current toys in use on site")
+                         .padding(.top, 50)
+                 }
+        }
+        .overlay(
+            KMKSwiftUIStyles.i.renderDashboardTileBorder())
+        .frame(height:  heightConsideringClearButton)
+        .padding([.trailing,.leading], 7)
+    }
+    let colums: [GridItem] = Array.init(repeating: .init(.fixed((UIScreen.main.bounds.width-10)/3)), count: 3)
+
+    var allToys: some View {
+        
+        ScrollView {
+            LazyVGrid(columns: colums) {
+                ForEach(0..<ALL_TOYS.count) {
+                    let toy = ALL_TOYS[$0]
+                    KMKSwiftUIStyles.i.renderSelectedTile(
+                        isSelected: store.toys.contains(where: {$0.type == toy}),
+                        text: toy.toString()
+                    )
+                    .onTapGesture {
+                        if store.toys.firstIndex(where: {$0.type == toy}) != nil {
+                            store.toys = store.toys.filter({ toyCurrentlyActive in
+                                return toyCurrentlyActive.type != toy
+                            })
+                        } else {
+                            store.toys.append(ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: toy, hits: 0))
+                        }
+                        
+                        
+                    }
+                }
+            }
+        }
+        .frame(height: UIScreen.main.bounds.height * 0.3)
+    }
 
     var  body: some View {
         ScrollView {
@@ -131,52 +176,18 @@ struct ToyItemSheet: View {
                 Text("")
                     .frame(height:20)
             }
-            if !store.toys.isEmpty {
-            ScrollView {
-                
-                    Section {
-                         ForEach(store.toys, id: \.self) {
-                             ToyItumListView(ds: $0 )
-                         }
-                     } header: {
-                         KMKSwiftUIStyles.i.renderSectionHeader(with: "Current toys in use on site")
-                             .padding(.top, 50)
-                     }
-            }
-            .overlay(
-                KMKSwiftUIStyles.i.renderDashboardTileBorder())
-            .frame(height:  heightConsideringClearButton)
-            .padding([.trailing,.leading], 7)
-        }
             
+            if !store.toys.isEmpty {
+             toysOnSite
+            }
             Spacer()
                 .overlay(
                     KMKSwiftUIStyles.i.renderDashboardTileBorder())
                 .frame(height:  UIScreen.main.bounds.height*0.05)
                 .padding([.trailing,.leading], 7)
-            ScrollView {
-                LazyVGrid(columns: colums) {
-                    ForEach(0..<ALL_TOYS.count) {
-                        let toy = ALL_TOYS[$0]
-                        KMKSwiftUIStyles.i.renderSelectedTile(
-                            isSelected: store.toys.contains(where: {$0.type == toy}),
-                            text: toy.toString()
-                        )
-                        .onTapGesture {
-                            if store.toys.firstIndex(where: {$0.type == toy}) != nil {
-                                store.toys = store.toys.filter({ toyCurrentlyActive in
-                                    return toyCurrentlyActive.type != toy
-                                })
-                            } else {
-                                store.toys.append(ToyItemUsed(dateAdded: Date().timeIntervalSince1970, type: toy, hits: 0))
-                            }
-                            
-                            
-                        }
-                    }
-                }
-            }
-            .frame(height: UIScreen.main.bounds.height * 0.3)
+            allToys
+            
+            
             Divider()
             Spacer()
             HStack {

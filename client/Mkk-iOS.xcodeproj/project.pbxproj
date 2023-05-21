@@ -69,7 +69,6 @@
 		B5E7A63B25D6F7540076F12C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E7A63925D6F7540076F12C /* LaunchScreen.storyboard */; };
 		B5F4317C27499289008DAE78 /* ListKittiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F4317B27499289008DAE78 /* ListKittiesView.swift */; };
 		C6082C0327810D420005D81F /* WhileYouWereAwayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */; };
-		C60887A0288DA89A00D16FB6 /* ToySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C608879F288DA89900D16FB6 /* ToySheetView.swift */; };
 		C60CE97829EB0AA700DE43CB /* ShapeCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CE97729EB0AA700DE43CB /* ShapeCreator.swift */; };
 		C60CE97C29EB0CDC00DE43CB /* assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C60CE97B29EB0CDC00DE43CB /* assets.scnassets */; };
 		C60CE98129EB42D100DE43CB /* Highrise_1.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98029EB42D100DE43CB /* Highrise_1.scn */; };
@@ -120,6 +119,7 @@
 		C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */; };
 		C6CBC05F29EB769D00EE2336 /* Neighborhood.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE97D29EB0E1F00DE43CB /* Neighborhood.scn */; };
 		C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */; };
+		C6F685BC2A1A6935001D12BB /* RequiredToyTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F685BB2A1A6935001D12BB /* RequiredToyTableCellView.swift */; };
 		C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */; };
 		C6FB3E602780C3AF0010C076 /* WanderingKittyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */; };
 		C6FD1799279B03B500902DF9 /* ListKittiesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FD1798279B03B500902DF9 /* ListKittiesPresenter.swift */; };
@@ -194,7 +194,6 @@
 		B7470C11F53A223B807CB112 /* Pods-Mkk-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mkk-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mkk-iOS/Pods-Mkk-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BFEDF294E5679BC97DB1DC51 /* Pods_Mkk_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mkk_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6082C0227810D420005D81F /* WhileYouWereAwayAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhileYouWereAwayAlert.swift; sourceTree = "<group>"; };
-		C608879F288DA89900D16FB6 /* ToySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToySheetView.swift; sourceTree = "<group>"; };
 		C60CE97729EB0AA700DE43CB /* ShapeCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeCreator.swift; sourceTree = "<group>"; };
 		C60CE97B29EB0CDC00DE43CB /* assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = assets.scnassets; sourceTree = "<group>"; };
 		C60CE97D29EB0E1F00DE43CB /* Neighborhood.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Neighborhood.scn; sourceTree = "<group>"; };
@@ -243,6 +242,7 @@
 		C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyViewModel.swift; sourceTree = "<group>"; };
 		C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyItumListView.swift; sourceTree = "<group>"; };
 		C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesHostingController.swift; sourceTree = "<group>"; };
+		C6F685BB2A1A6935001D12BB /* RequiredToyTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredToyTableCellView.swift; sourceTree = "<group>"; };
 		C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKImagePicker.swift; sourceTree = "<group>"; };
 		C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyModel.swift; sourceTree = "<group>"; };
 		C6FD1798279B03B500902DF9 /* ListKittiesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesPresenter.swift; sourceTree = "<group>"; };
@@ -565,6 +565,7 @@
 				C650020C2A107DA5006A47F4 /* ZipcodeAdoptionViewModel.swift */,
 				C6A1874E2A17EC4C004E4BD6 /* ZipcodeCatDetailsView.swift */,
 				C6A187502A17EC5E004E4BD6 /* ZipcodeCatDetailsViewModel.swift */,
+				C6F685BB2A1A6935001D12BB /* RequiredToyTableCellView.swift */,
 			);
 			path = Adoption;
 			sourceTree = "<group>";
@@ -606,7 +607,6 @@
 				C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */,
 				C6202D2B277AB19F003F4D32 /* UseToyTile.swift */,
 				C68B405C285E343A004C8E0F /* ToyModel.swift */,
-				C608879F288DA89900D16FB6 /* ToySheetView.swift */,
 			);
 			path = Toys;
 			sourceTree = "<group>";
@@ -948,7 +948,6 @@
 				C65002082A0E956D006A47F4 /* KMKStyledComponentEnum.swift in Sources */,
 				C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */,
 				C6202D28277AB0C6003F4D32 /* PourWaterTile.swift in Sources */,
-				C60887A0288DA89A00D16FB6 /* ToySheetView.swift in Sources */,
 				C650020B2A107B01006A47F4 /* ZipcodeAdoptionView.swift in Sources */,
 				B5B54C902617A64100B18377 /* Protocols.swift in Sources */,
 				C69EDAFC278A486300FE619E /* KMKButtons.swift in Sources */,
@@ -975,6 +974,7 @@
 				C6202D24277AA618003F4D32 /* KittyActionButtonContainer.swift in Sources */,
 				B5A46C0D26250AB000F9E154 /* RealmCrud.swift in Sources */,
 				C643DBEF279B8123004157E1 /* LazyVRadioBox.swift in Sources */,
+				C6F685BC2A1A6935001D12BB /* RequiredToyTableCellView.swift in Sources */,
 				C61199E029F8AEC100F20A04 /* KMKNeighborhoodCoder.swift in Sources */,
 				B5B54C4D2616183C00B18377 /* EmptySegue.swift in Sources */,
 				B54651D626F7E14300A16F38 /* ProgressBar.swift in Sources */,
