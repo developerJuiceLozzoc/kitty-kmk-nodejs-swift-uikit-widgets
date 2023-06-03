@@ -31,6 +31,7 @@ struct ConfirmOrDiscardView: View {
         guard let statsLink = kitty.stats  else { return }
 
         let stats = KittyBreed(fromCoreData: statsLink)
+        
 
         self.section1Details.append((name: "Name", value: stats.intelligence, stringValue: stats.name, varient: 1))
         self.section1Details.append((name: "Country Of Origin", value: stats.intelligence, stringValue:stats.origin, varient: 1))

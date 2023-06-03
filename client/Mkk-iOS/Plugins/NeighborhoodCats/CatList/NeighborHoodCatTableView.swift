@@ -38,8 +38,13 @@ struct NeighborHoodCatTableView: View {
         let tapAction: () -> Void = {
             viewModel.didTap(with: cat)
         }
+        
+        var titleStyle: Font {
+            .init(.init("papyrus" as CFString, size: 24))
+        }
+        
         let config = KMKListLink.Configuration(
-            titleStyle: .title3,
+            titleStyle: titleStyle,
             title: cat.catDetails?.breed.name ?? "",
             tapAction: tapAction,
             longPressAction: longPressAction
@@ -87,8 +92,8 @@ struct NeighborHoodCatTableView: View {
         ZStack {
             NavigationLink(
                 destination: VStack {
-                    if let details = viewModel.detailsCatSelected {
-                        detailsView(for: details)
+                    if let detailsviewmodel = viewModel.detailsViewModel {
+                        ZipcodeCatDetailsView(viewModel: detailsviewmodel)
                     } else {
                         EmptyView()
                     }
@@ -98,11 +103,6 @@ struct NeighborHoodCatTableView: View {
             }
             link
         }
-    }
-
-    @ViewBuilder
-    func detailsView(for cat: ZipcodeCat) -> some View {
-        ZipcodeCatDetailsView(kitty: cat)
     }
     
     var mainContent: some View {
@@ -148,6 +148,7 @@ struct NeighborHoodCatTableView: View {
                     .onAppear {
                         viewModel.observables.shimmeringTowardsCat = nil
                     }
+                    .navigationBarHidden(true)
             }
         }
     }

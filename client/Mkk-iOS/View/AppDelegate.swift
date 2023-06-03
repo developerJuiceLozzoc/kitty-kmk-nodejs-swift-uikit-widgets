@@ -22,8 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         application.registerForRemoteNotifications()
         UNUserNotificationCenter.current().delegate = self
+        let fontFamilies = UIFont.familyNames
 
-        
+        print("Font Familys: \(fontFamilies.joined(separator: ", "))")
+
         KittyJsoner().fetchRemoteFeatureToggles { result in
             switch(result) {
             case .success(let toggles):

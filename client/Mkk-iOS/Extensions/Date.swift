@@ -38,56 +38,65 @@ class KMKDateFormatter {
         case thu = "Thursday"
         case fri = "Friday"
         case sat = "Saturday"
+        case oneWeek = "over a week ago"
         case idk = "Undefined"
     }
     
-    func convertTimestampToLabel(from day: Double) -> String {
-        let past = Date.init(timeIntervalSince1970: day)
-        let today = Date.init()
-        let calendar = Calendar.current
-        let differenceInDays: Int = calendar.numberOfDaysBetween(past, and: today)
-        var yesturdayInt: Int
-        guard
-            let pastInt = calendar.dateComponents([.weekday], from: past).weekday,
-            let tempyesturdayInt = calendar.dateComponents([.weekday], from: today).weekday,
-            let todayInt = calendar.dateComponents([.weekday], from: today).weekday
-        else { return LocalizedDays.idk.rawValue }
-        print(pastInt,todayInt,differenceInDays)
-        if  tempyesturdayInt - 1 < 0 {
-            yesturdayInt = 6;
-          } else {
-              yesturdayInt = tempyesturdayInt - 1;
-          }
-
-          if yesturdayInt == pastInt && differenceInDays < 2 {
-              return LocalizedDays.yesturday.rawValue;
-          } else if differenceInDays >= 7 {
-              return "69/69/69"
-              
-          } else if (differenceInDays >= 1 && differenceInDays < 7) {
-            switch (pastInt) {
-              case 0:
-                return LocalizedDays.sun.rawValue
-              case 1:
-                return LocalizedDays.mon.rawValue
-              case 2:
-                return LocalizedDays.tue.rawValue
-              case 3:
-                return LocalizedDays.wed.rawValue
-              case 4:
-                return LocalizedDays.thu.rawValue
-              case 5:
-                return LocalizedDays.fri.rawValue
-            default:
-                return LocalizedDays.sat.rawValue
-                
-            }
-          }
-
-          if todayInt == pastInt {
-              return LocalizedDays.today.rawValue
-          }
-
-          return LocalizedDays.idk.rawValue
+    static var yesturday: Date? {
+        Calendar.current.date(byAdding: .day, value: -1, to: Date.now)
     }
-}
+    
+    static var lastWeek: Date? {
+        
+            let calendar = Calendar.current
+
+            // Define the duration in days and hours
+            let days = 6
+            let hours = 20
+
+            // Create a DateComponents object with the specified duration
+            var dateComponents = DateComponents()
+            dateComponents.day = -days
+            dateComponents.hour = -hours
+
+           return calendar.date(byAdding: dateComponents, to: Date())
+    }
+    
+    func describeDate(_ timeInterval: Double) -> String {
+        let date = Date(timeIntervalSince1970: timeInterval)
+
+        let calendar = Calendar.current
+        let now = Date()
+        
+        // Check if the date is today
+        if calendar.isDateInToday(date) {
+            return "Today"
+        }
+        
+        // Check if the date is yesterday
+        if calendar.isDateInYesterday(date) {
+            return "Yesterday"
+        }
+        
+        // Calculate the number of days between the date and today
+        if let daysAgo = calendar.dateComponents([.day], from: date, to: now).day {
+            // Check if it's within the last 7 days
+            if daysAgo > -7 && daysAgo < 0 {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "EEEE"  // Full weekday name in English
+                return formatter.string(from: date)
+            }
+            
+            // Check if it's over a week ago
+            if daysAgo <= -7 && daysAgo > -14 {
+                return "Over a week ago"
+            }
+            
+            // Check if it's beyond 14 days ago
+            if daysAgo <= -14 {
+                return "Distant past"
+            }
+        }
+        
+        return "?" // Default value if any unwrapping fails
+    }}

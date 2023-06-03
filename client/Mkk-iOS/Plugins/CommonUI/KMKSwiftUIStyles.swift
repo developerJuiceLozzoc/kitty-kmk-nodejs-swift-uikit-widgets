@@ -101,37 +101,59 @@ struct KMKCustomSwipeUp<Content: View>: View {
  }
  */
 struct EmojiSectionView: View {
+    var longTextStyle: Font {
+        .body
+    }
     var screenWidth: CGFloat
     var ds: RowCellDataSource
-    var body: some View {
-        if #available(iOS 15.0, *) {
-            if ds.varient == 0 {
-                HStack(spacing: 0) {
-                    Text(ds.name)
-                        .foregroundColor(Color("form-label-color"))
-                        .font(.system(.body))
-                    Spacer()
-                    Text(String(repeating: ds.stringValue, count: ds.value))
-                            .font(.system(.title3))
-                }.frame(maxWidth: .infinity)
-            } else if ds.varient == 1 {
-
-                HStack {
-                    Text(ds.name)
-                        .foregroundColor(Color("form-label-color"))
-                        .font(.system(.body))
-                    Spacer()
-                    Text(ds.stringValue)
-                        .font(.system(.caption))
-                }
-                .frame(maxWidth: .infinity)
-                .listRowSeparatorTint(Color("ultra-violet-1"))
-
-            }
-        } else {
-            Text("oops")
+    
+    var emojiStyle: Font {
+        .system(.title3)
+    }
+    
+    var fontStyle: Font {
+        .init(.init("noteworthy" as CFString, size: 20))
+    }
+    
+    var statTypeFontStyle: Font {
+        .init(.init("noteworthy" as CFString, size: 16))
+    }
+    var varient0: some View {
+        HStack(spacing: 0) {
+            Text(ds.name)
+                .foregroundColor(Color("form-label-color"))
+                .font(fontStyle)
+            Spacer()
+            Text(String(repeating: ds.stringValue, count: ds.value))
+                    .font(emojiStyle)
+        }.frame(maxWidth: .infinity)
+    }
+    var variant1: some View {
+        HStack(spacing: 0) {
+            Text(ds.name)
+                .foregroundColor(Color("form-label-color"))
+                .font(fontStyle)
+            Spacer()
+            Text(ds.stringValue)
+                .font(statTypeFontStyle)
         }
-        
+        .frame(maxWidth: .infinity)
+        .listRowSeparatorTint(Color("ultra-violet-1"))
+    }
+    
+    var mainContent: some View {
+        ZStack {
+            if ds.varient == 0 {
+                varient0
+            } else if ds.varient == 1 {
+                variant1
+            }
+        }
+    }
+    
+    var body: some View {
+        mainContent
+            .padding(.bottom,  16)
     }
 }
 

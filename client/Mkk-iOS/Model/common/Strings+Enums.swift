@@ -36,6 +36,8 @@ let MOCK_NAMES: [String] = [
     "Ena Kendal",    "Athelstan Chatham"
     ]
 
+let possibleFontNames = "noteworty, papyrus, PARTY LET, Zapino"
+
 
 let VOTE_CELL_REUSE:String = "This cell has a picture and a thick segmented control."
 //let SERVER_URL = "https://kissmarrykill.herokuapp.com"

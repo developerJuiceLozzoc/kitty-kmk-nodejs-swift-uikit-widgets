@@ -14,7 +14,7 @@ enum NeighborhoodCatTables {
     struct Observable {
         var isSceneLoading: Bool = true
         var minTimeCanRenderCat: TimeInterval = .infinity
-        var detailsCatSelected: ZipcodeCat?
+        var detailsViewModel: ZipcodeDetails.ViewModel?
         var shimmeringTowardsCat: ZipcodeCat?
     }
     
@@ -33,9 +33,7 @@ extension NeighborhoodCatTables.ViewModel {
     convenience init(with cats: [ZipcodeCat]) {
         self.init(observables: .init(), nonobservables: .init())
         self.nonObservables.sceneDelegate = SimpleSceneDelegate() { [weak self] (scene, delay) in
-            print("cdm may early escape")
             guard let self = self
-//                let theCat = scene.rootNode.childNode(withName: "grp1", recursively: true)
             else {
                 return
             }
@@ -54,10 +52,10 @@ extension NeighborhoodCatTables.ViewModel {
     
     var bindingDetailsIsActive: Binding<Bool> {
         .init {
-            self.observables.detailsCatSelected != nil
+            self.observables.detailsViewModel != nil
         } set: { newValue in
             if !newValue {
-                self.observables.detailsCatSelected = nil
+                self.observables.detailsViewModel = nil
             }
         }
         
@@ -83,10 +81,10 @@ extension NeighborhoodCatTables.ViewModel {
             // animation has completed, now we shimmer.
             guard let self = self else { return }
             Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-                guard let self = self else { return }
-                var observables = self.observables
-                observables.detailsCatSelected = catScene.catDetails
-                self.observables = observables
+                guard let self = self,
+                let cat = catScene.catDetails else { return }
+                
+                self.observables.detailsViewModel = .init(with: cat)
             }
         }
         CatColorAnimator.shared.animateCat(cat: catScene, duration: duration, completion: workItem2)

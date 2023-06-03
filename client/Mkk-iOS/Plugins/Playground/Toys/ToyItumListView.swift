@@ -28,7 +28,7 @@ struct ToyItumListView: View {
                 HStack {
                     Text("Since:")
                     Spacer()
-                    Text(self.df.convertTimestampToLabel(from: ds.dateAdded))
+                    Text(self.df.describeDate(ds.dateAdded))
                     Spacer()
                 }
                 HStack {

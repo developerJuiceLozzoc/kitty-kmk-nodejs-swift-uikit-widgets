@@ -72,6 +72,7 @@ struct KMKListLink: View {
         VStack {
             HStack {
                 Text(config.title)
+                
                     .font(config.titleStyle)
                 if let subtitle = config.subtitle {
                     Text(subtitle)

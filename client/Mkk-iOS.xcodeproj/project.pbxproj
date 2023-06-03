@@ -118,6 +118,7 @@
 		C6A729D0279F3DD000FDDC8B /* WanderingKittyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */; };
 		C6B1AD792780FE0600BFA90B /* ToyItumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */; };
 		C6CBC05F29EB769D00EE2336 /* Neighborhood.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE97D29EB0E1F00DE43CB /* Neighborhood.scn */; };
+		C6EA160F2A2966A4008D3A5D /* SimpleSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA160E2A2966A4008D3A5D /* SimpleSceneDelegate.swift */; };
 		C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */; };
 		C6F685BC2A1A6935001D12BB /* RequiredToyTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F685BB2A1A6935001D12BB /* RequiredToyTableCellView.swift */; };
 		C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */; };
@@ -241,6 +242,7 @@
 		C6A187502A17EC5E004E4BD6 /* ZipcodeCatDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeCatDetailsViewModel.swift; sourceTree = "<group>"; };
 		C6A729CF279F3DD000FDDC8B /* WanderingKittyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyViewModel.swift; sourceTree = "<group>"; };
 		C6B1AD782780FE0600BFA90B /* ToyItumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyItumListView.swift; sourceTree = "<group>"; };
+		C6EA160E2A2966A4008D3A5D /* SimpleSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSceneDelegate.swift; sourceTree = "<group>"; };
 		C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesHostingController.swift; sourceTree = "<group>"; };
 		C6F685BB2A1A6935001D12BB /* RequiredToyTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredToyTableCellView.swift; sourceTree = "<group>"; };
 		C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKImagePicker.swift; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 				C6749F9A29EB9AFD0068F1FC /* CatPuppeteer */,
 				C60CE98C29EB695C00DE43CB /* ScenePlugin */,
 				C60CE97629EB0A9600DE43CB /* SceneAssets */,
+				C6EA160E2A2966A4008D3A5D /* SimpleSceneDelegate.swift */,
 			);
 			path = NeighborhoodCats;
 			sourceTree = "<group>";
@@ -937,6 +940,7 @@
 				C69EDAFA278A364300FE619E /* Date.swift in Sources */,
 				C61199E429FEF0A700F20A04 /* KMKExtensions.swift in Sources */,
 				B547291E274A949A005DCF8A /* KittyPFPViewModel.swift in Sources */,
+				C6EA160F2A2966A4008D3A5D /* SimpleSceneDelegate.swift in Sources */,
 				B54651AF26F6A85600A16F38 /* SavedDataInfotainment.intentdefinition in Sources */,
 				C60CE97829EB0AA700DE43CB /* ShapeCreator.swift in Sources */,
 				B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */,

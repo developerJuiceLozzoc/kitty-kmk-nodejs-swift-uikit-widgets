@@ -14,17 +14,18 @@ struct ZipcodeCatDetailsView: View {
     @State var selectedImage: Int = -1
     @State var selectedImageData: Data? = nil
     var urls: [String]
-    let kitty: ZipcodeCat
+    var kitty: ZipcodeCat {
+        viewModel.nonObservables.token
+    }
     
     @State var imageUrls: [String] = []
-    @ObservedObject var viewModel: ZipcodeAdoptions.ViewModel
+    @ObservedObject var viewModel: ZipcodeDetails.ViewModel
     
     
     
-    init( kitty: ZipcodeCat) {
+    init(viewModel: ZipcodeDetails.ViewModel) {
         self.urls = ["https://placekitten.com/400/400"]
-        self.kitty = kitty
-        self.viewModel = ZipcodeAdoptions.ViewModel(with: kitty)
+        self.viewModel = viewModel
     }
     
     @State var metrics: GeometryProxy?
@@ -33,8 +34,11 @@ struct ZipcodeCatDetailsView: View {
             
             ScrollView {
                 VStack(spacing: 24) {
-                    sceneView
-                        .padding(.horizontal, 16)
+                    if viewModel.nonObservables.sceneDelegate != nil {
+                        sceneView
+                            .padding(.horizontal, 16)
+                    }
+                    
                     requiredToysView
                     
                     breedinfo
@@ -42,6 +46,8 @@ struct ZipcodeCatDetailsView: View {
                     description
                         .padding(.horizontal, 16)
                 }
+                .navigationTitle(viewModel.nonObservables.token.breed.name)
+                .onAppear(perform: viewModel.viewDidAppear)
                 
             }.onAppear {
                 metrics = proxy
@@ -74,27 +80,27 @@ struct ZipcodeCatDetailsView: View {
         ToyType.allCases.map { return $0 }.filter { return $0 != .unknown   }
     }
     
-    var toysAlreadyExisting: [ToyItemUsed] {
-        return []
-    }
+    
 
     var columnscolums: [GridItem] = Array.init(repeating: .init(.fixed((UIScreen.main.bounds.width-10)/3)), count: 3)
 
-    
+    func tableCell(for toy: ToyType) -> RequiredToyTableCellView {
+        if let matchingToy = viewModel.observables.toysAlreadyExisting?.first(where: { lhs in
+            lhs.type == toy
+        }) {
+             return RequiredToyTableCellView(ds: matchingToy)
+        } else {
+            return RequiredToyTableCellView(ds: .init(dateAdded: 0, type: toy, hits: 0))
+        }
+    }
     
     var requiredToysView: some View {
         
         VStack {
-            KMKSwiftUIStyles.i.renderSectionHeader(with: "Current toys in use on site")
+            KMKSwiftUIStyles.i.renderSectionHeader(with: "Required Toys to attract -> adopt")
                 .padding(.top, 50)
             ForEach(toysNeeded, id: \.self) { toy in
-                if let matchingToy = toysAlreadyExisting.first(where: { lhs in
-                    lhs.type == toy
-                }) {
-                    RequiredToyTableCellView(ds: matchingToy)
-                } else {
-                    RequiredToyTableCellView(ds: .init(dateAdded: 0, type: toy, hits: 0))
-                }
+               tableCell(for: toy)
             }
         }
         .background()
@@ -197,7 +203,7 @@ struct ZipcodeCatDetailsView: View {
 struct ZipcodeCatDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ZipcodeCatDetailsView(kitty: ZipcodeCat.previews[0])
+            ZipcodeCatDetailsView(viewModel: .init(with: ZipcodeCat.previews[0]))
                 .previewLayout(.fixed(width: 500, height: 1690)) // Set the desired height
 //            ConfirmOrDiscardView(urls: ["https://placekitty.com/690/690"], kitty: KittyBreed.previews)
 //                .environmentObject(KittyPFPViewModel())
