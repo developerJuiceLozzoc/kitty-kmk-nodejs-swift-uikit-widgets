@@ -1,4 +1,110 @@
 var generate = require('project-name-generator');
+const KITTY_BREEDS = [
+    "abys", "aege", "abob", "acur", "asho", "awir",
+    "amau", "amis", "bali", "bamb", "beng", "birm",
+    "bomb", "bslo", "bsho", "bure", "buri", "cspa",
+    "ctif", "char", "chau", "chee", "csho", "crex",
+    "cymr", "cypr", "drex", "dons", "lihu", "emau",
+    "ebur", "esho", "hbro", "hima", "jbob", "java",
+    "khao", "kora", "kuri", "lape", "mcoo", "mala",
+    "manx", "munc", "nebe", "norw", "ocic", "orie",
+    "pers", "pixi", "raga", "ragd", "rblu", "sava",
+    "sfol", "srex", "siam", "sibe", "singsstrub", "snow",
+    "soma", "sphy", "tonk", "toyg", "tang", "tvan",
+    "ycho"
+  ]
+const randomActiveColors = [
+          "purple",
+          "blue",
+          "border-gradient-topleft",
+          "dashboard-tile-bg-gradient-1",
+          "dashboard-tile-bg-gradient-end",
+          "emoji-foreground",
+          "form-label-color",
+          "list-kitty-name-gradient-end-color",
+          "ultra-violet-1"
+]
+
+const randomTexturePrefix = [
+          "TexturesCom_Wood_GrateShipdeck_1x1_512_",
+          "TexturesCom_Wood_BarkYucca1_0.125x0.125_512_",
+          "TexturesCom_Snow_TireMarks4_3x3_1K_",
+          "TexturesCom_Snow_Footsteps_2x2_1K_",
+          "TexturesCom_Pipe_AluminiumExpanded_0.30x0.30_1K_",
+          "TexturesCom_Metal_RustedPlates1_1x1_512_",
+          "Concrete_Wall_008_",
+          "TexturesCom_Wall_BrickIndustrial5_2x2_1K_",
+          "TexturesCom_Brick_CinderblocksPainted2_1K_",
+          "Jungle_Floor_001_",
+          "Ground_Forest_002_",
+          "Concrete_Wall_012_",
+          "TexturesCom_SolarCells_1K_",
+          "TexturesCom_Wood_SidingOutdoor6_2x2_1K_"
+]
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomElementFromArray(arr) {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
+}
+
+class ZipcodeCat {
+  constructor(stuff) {
+    const {
+      material,
+      activeColorName,
+      adoption,
+      breed
+    } = stuff;
+    this.material = material
+    this.activeColorName = activeColorName
+    if(!!adoption){
+      this.adoption = adoption
+    }
+    this.breed = breed
+  }
+}
+
+class KMKNeighborhood {
+
+  createCats() {
+
+    return cats;
+  }
+
+  constructor(stuff) {
+    const {
+      cats,
+      usazipcode
+    } = stuff;
+    if(!cats) {
+      var temp = []
+      // Perform the for loop with the random count
+      for (let i = 0; i < getRandomInt(5, 10); i++) {
+        temp.push(new ZipcodeCat({
+          material: getRandomElementFromArray(randomTexturePrefix),
+          activeColorName: getRandomElementFromArray(randomActiveColors),
+          adoption: undefined,
+          breed: getRandomElementFromArray(KITTY_BREEDS)
+        }))
+      }
+      this.cats = temp
+    } else {
+      cats.forEach((item, i) => {
+        if (!(item instanceof ZipcodeCat)) {
+          throw "bad init for KMKNeighborhood"
+        }
+      });
+      this.cats = cats
+    }
+
+    this.zipcode = usazipcode
+  }
+}
+
 
 class Celeb {
   constructor(imgurl){
@@ -123,6 +229,7 @@ const BreedMap  = {
 
 
 module.exports = {
+  KMKNeighborhood,
   MongoCollectionSurvey,
   Celeb, BreedMap,
   StaleSurveyReference,

@@ -16,6 +16,9 @@ const {
   findNotificationByDidAndFireToken,
   updateAdoptionStats,retrieveAdoptionStats,
   readRemoteFeatureToggles,
+
+  fetchUSA,
+  createNewUSANeighborhood,
 } = require("../model");
 
 const { postNotificationToDevice } = require("../model/FCMdao");
@@ -108,13 +111,54 @@ module.exports.post("/game/:gameid", function (req, res) {
     });
 });
 
+module.exports.post("/game/usazipcode/:zipcode", function (req, res) {
+    const gameid = req.params.zipcode
+    const {
+      author,
+      cat,
+    } = req.body;
+
+    // i can gather the author information here, and send it toa  query
+    //that finds the neighborhood document, and updates the cat sub document.
+    //unfortunately the subdocument means its inside an array inside a document.
+
+
+    /*
+    i can see a time where two cats are identical in which case
+    ....hmm the same author cant have this cat. sorry.
+
+    */
+
+
+})
+
+
+module.exports.get("/game/usazipcode/:zipcode", function (req, res) {
+  let gameid = req.params.zipcode;
+  fetchUSA(gameid)
+  .then(function (value) {
+    if (!value) {
+      return createNewUSANeighborhood(gameid)
+    }
+    res.status(200).json(value)
+  })
+  .then(function (value) {
+    res.status(200).json(value)
+  })
+  .catch(function (e) {
+    res.status(400).end();
+  })
+})
+
+/*
+//////
+////
+*/
 module.exports.get("/notifications/subscription", function (req, res){
   const { deviceid, breed, fireToken } = req.query;
-  console.log("GET SUBSCRIPTION", deviceid,fireToken);
   var status = null;
   findNotificationByDidAndFireToken(deviceid,fireToken)
     .then(function (value) {
-      console.log(value);
       res.status(200).json(value)
     })
     .catch(function (e) {

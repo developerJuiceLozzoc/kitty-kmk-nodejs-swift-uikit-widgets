@@ -6,9 +6,11 @@ const {
   GameSurveySwift,
   StaleSurveyReference,
   MongoCollectionSurvey,
+  KMKNeighborhood,
 } = require("./schema.js");
 const { ObjectId } = require("mongodb");
 const { MONGO_DB_NAME } = require("./configureEnv");
+const USAZIP = "usa-neighborhoods"
 
 const SURVEYS = "gamesurveys";
 const CELEBS = "celebs";
@@ -16,6 +18,54 @@ const STALE = "stale-surveys";
 const NTFCNS = "future-kitty-pushes";
 
 /* Crud operations */
+
+
+
+/* // July 2023 Conner maddalozzo developerjuice
+////
+*/
+function fetchUSA(zipcode) {
+  const local = mongoc.db(MONGO_DB_NAME)
+  const query = {
+    zipcode
+  };
+  const response = {
+    zipcode,
+    titties: new Array(),
+  };
+  return new Promise(async function (resolve, reject) {
+    let cursor = local.collection(USAZIP).find(query);
+    const documentsArray = await cursor.toArray();
+
+  // Access the first element of the array (if any)
+    resolve(documentsArray.length > 0 ? documentsArray[0] : null);
+  });
+}
+
+function createNewUSANeighborhood(usazipcode) {
+  console.log("About to create new neighborhood");
+
+  let neighborhood = new KMKNeighborhood({
+    usazipcode
+  })
+  console.log(neighborhood);
+
+  const local = mongoc.db(MONGO_DB_NAME)
+
+  return new Promise(async function (resolve, reject) {
+    let cursor = local.collection(USAZIP)
+    try {
+      let stuff = await local
+        .collection(USAZIP)
+        .insertOne(neighborhood);
+        console.log("Created new zipcode");
+      resolve(neighborhood);
+    } catch (e) {
+      reject(e);
+    }
+  });
+}
+
 
 //-------------------------------------------
 //-------------------------------------------
@@ -297,6 +347,26 @@ function updateGameResultsWithID(gameid, game) {
   });
 }
 
+function updateNeighborHoodWithAdoption(stuff) {
+  const { zipcode, author, cat } = stuff;
+  fetchUSA(gameid)
+  .then(function(neighborhood){
+
+  })
+  .catch
+  db.collection("gamesurveys")
+    .updateOne(
+      { _id: ObjectId(gameid) },
+      { $set: { actiona, actionb, actionc } }
+    )
+    .then(function (status) {
+      resolve();
+    })
+    .catch(function (e) {
+      reject(e);
+    });
+}
+
 //-------------------------------------------
 //-------------------------------------------
 
@@ -357,7 +427,9 @@ function bulk_rinseStaleCollection(ids) {
 }
 
 module.exports = {
-readRemoteFeatureToggles,
+  fetchUSA,
+  createNewUSANeighborhood,
+  readRemoteFeatureToggles,
   updateAdoptionStats,retrieveAdoptionStats,
   deleteNotification,
   mapStaleGames,
