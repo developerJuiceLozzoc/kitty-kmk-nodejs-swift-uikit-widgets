@@ -16,6 +16,8 @@ const {
   findNotificationByDidAndFireToken,
   updateAdoptionStats,retrieveAdoptionStats,
   readRemoteFeatureToggles,
+  updateNeighborHoodWithAdoption,
+
 
   fetchUSA,
   createNewUSANeighborhood,
@@ -110,13 +112,24 @@ module.exports.post("/game/:gameid", function (req, res) {
       res.status(300).send("error updateing ", gameid);
     });
 });
-
 module.exports.post("/game/usazipcode/:zipcode", function (req, res) {
     const gameid = req.params.zipcode
     const {
       author,
-      cat,
+      catId,
     } = req.body;
+    let data = {
+      author, zipcode: gameid,
+      country: "USA",
+      updateCatId: catId,
+    }
+    updateNeighborHoodWithAdoption(data)
+    .then(function() {
+      res.status(200).end();
+    }).catch(function(e){
+      console.log(e);
+      res.status(300).send(e);
+    })
 
     // i can gather the author information here, and send it toa  query
     //that finds the neighborhood document, and updates the cat sub document.
@@ -128,8 +141,6 @@ module.exports.post("/game/usazipcode/:zipcode", function (req, res) {
     ....hmm the same author cant have this cat. sorry.
 
     */
-
-
 })
 
 

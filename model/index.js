@@ -11,6 +11,7 @@ const {
 const { ObjectId } = require("mongodb");
 const { MONGO_DB_NAME } = require("./configureEnv");
 const USAZIP = "usa-neighborhoods"
+const CAZIP = "canada-neighborhoods"
 
 const SURVEYS = "gamesurveys";
 const CELEBS = "celebs";
@@ -24,6 +25,21 @@ const NTFCNS = "future-kitty-pushes";
 /* // July 2023 Conner maddalozzo developerjuice
 ////
 */
+function fetchCanada(zipcode) {
+  const local = mongoc.db(MONGO_DB_NAME)
+  const query = {
+    zipcode
+  };
+  return new Promise(async function (resolve, reject) {
+
+    let cursor = local.collection(CAZIP).find(query);
+    const documentsArray = await cursor.toArray();
+
+  // Access the first element of the array (if any)
+    resolve(documentsArray.length > 0 ? documentsArray[0] : null);
+  });
+}
+
 function fetchUSA(zipcode) {
   const local = mongoc.db(MONGO_DB_NAME)
   const query = {
@@ -34,6 +50,7 @@ function fetchUSA(zipcode) {
     titties: new Array(),
   };
   return new Promise(async function (resolve, reject) {
+
     let cursor = local.collection(USAZIP).find(query);
     const documentsArray = await cursor.toArray();
 
@@ -43,12 +60,11 @@ function fetchUSA(zipcode) {
 }
 
 function createNewUSANeighborhood(usazipcode) {
-  console.log("About to create new neighborhood");
+  console.log("About to create new neighborhood. now, this neighborhood is not accessible currently. sorry.  each neighborhood to be used, some maintainer has not checked his email and forgot about it.");
 
   let neighborhood = new KMKNeighborhood({
     usazipcode
   })
-  console.log(neighborhood);
 
   const local = mongoc.db(MONGO_DB_NAME)
 
@@ -305,7 +321,7 @@ function getRandomCeleb() {
 
 /* update */
 
-function updateAdoptionStats(value,breedName) {
+function updateAdoptionStats(value, breedName) {
   let stats = mongoc.db(MONGO_DB_NAME).collection("stats");
   const filter = {
     "TYPE": "adoption-rates"
@@ -316,7 +332,7 @@ function updateAdoptionStats(value,breedName) {
   return stats.updateOne(
       filter,
       { "$inc": updateDoc},
-    )
+  )
 }
 /**
  * Returns promise after updating a new game result,
@@ -347,24 +363,74 @@ function updateGameResultsWithID(gameid, game) {
   });
 }
 
-function updateNeighborHoodWithAdoption(stuff) {
-  const { zipcode, author, cat } = stuff;
-  fetchUSA(gameid)
-  .then(function(neighborhood){
 
-  })
-  .catch
-  db.collection("gamesurveys")
+function updateNeighborHoodTaskDetermineCountry(stuff) {
+  const {country} = stuff;
+  return new Promise(async function (resolve, reject) {
+    switch(country) {
+      case "USA":
+        resolve(fetchUSA)
+      case "CA":
+        resolve(fetchCanada)
+      default:
+        reject("unsupported country")
+    }
+});
+}
+function updateNeighborHoodTaskUpdateNeighborhoodCat(stuff) {
+  const { neighborhoodId, author, PUT_CATS } = stuff;
+  const db = mongoc.db();
+  return new Promise(async function (resolve, reject) {
+  db.collection(USAZIP)
     .updateOne(
-      { _id: ObjectId(gameid) },
-      { $set: { actiona, actionb, actionc } }
+      { _id: ObjectId(neighborhoodId) },
+      { $set: { cats: PUT_CATS } }
     )
     .then(function (status) {
       resolve();
     })
-    .catch(function (e) {
+    .catch(function(e){
       reject(e);
-    });
+    })
+});
+}
+
+/*public*/function updateNeighborHoodWithAdoption(stuff) {
+  const { zipcode, author, updateCatId, country } = stuff;
+  return new Promise(async function (finalresolve, reject) {
+  updateNeighborHoodTaskDetermineCountry({country})
+  .then((foo) => {
+    if(foo != null){
+      return foo(zipcode);
+    }
+  })
+  .then(function(neighborhood){
+    return new Promise(function(resolve, rject){
+      resolve({
+        neighborhoodId: neighborhood._id,
+        PUT_CATS: neighborhood.cats.map(function(cat){
+          if(cat.localid == updateCatId) {
+            cat.maintainer = author
+          }
+          return cat;
+        }),
+      })
+    })
+  })
+  .then(function(stuff){
+    const {neighborhoodId, PUT_CATS } = stuff;
+    let request = {
+      neighborhoodId, author, PUT_CATS }
+    return updateNeighborHoodTaskUpdateNeighborhoodCat(request)
+  })
+  .then(function() {
+    finalresolve()
+  })
+  .catch(function(e){
+    reject(e)
+  })
+})
+
 }
 
 //-------------------------------------------
@@ -448,6 +514,7 @@ module.exports = {
   insertStaleGameReference,
   fetchSurveysInRange,
   getCelebImgUrlsFromSurveys,
+  updateNeighborHoodWithAdoption,
 };
 
 function WARNING_bulkwrite_kitties() {

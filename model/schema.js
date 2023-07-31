@@ -1,4 +1,6 @@
 var generate = require('project-name-generator');
+const { ObjectId } = require('mongodb');
+
 const KITTY_BREEDS = [
     "abys", "aege", "abob", "acur", "asho", "awir",
     "amau", "amis", "bali", "bamb", "beng", "birm",
@@ -65,6 +67,7 @@ class ZipcodeCat {
       this.adoption = adoption
     }
     this.breed = breed
+    this.localid = new ObjectId();
   }
 }
 
