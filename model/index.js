@@ -409,7 +409,9 @@ function updateNeighborHoodTaskUpdateNeighborhoodCat(stuff) {
       resolve({
         neighborhoodId: neighborhood._id,
         PUT_CATS: neighborhood.cats.map(function(cat){
-          if(cat.localid == updateCatId) {
+          if(cat.localid == updateCatId && cat.maintainer) {
+            reject(`${updateCatId} is already adopted. cannot adopt this cat`)
+          } else if(cat.localid == updateCatId){
             cat.maintainer = author
           }
           return cat;
