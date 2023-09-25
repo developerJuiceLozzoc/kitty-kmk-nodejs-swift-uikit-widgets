@@ -12,7 +12,7 @@ struct ToyItumListView: View {
     let df = KMKDateFormatter()
     var body: some View {
         HStack {
-            KMKSwiftUIStyles.i.toyImageForToyType(of: ds.type)
+            ds.type.image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 75)

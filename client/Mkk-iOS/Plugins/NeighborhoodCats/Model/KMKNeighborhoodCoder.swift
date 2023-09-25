@@ -9,8 +9,9 @@ import Foundation
 
 
 struct CatAdoption: Codable, Hashable {
-    var date: String
-    var owner: String
+    let name: String
+    let email: String
+    let date: String
 }
 
 struct ZipcodeCat: Codable, Identifiable, Equatable, Hashable {
@@ -18,11 +19,11 @@ struct ZipcodeCat: Codable, Identifiable, Equatable, Hashable {
         return lhs.id == rhs.id
         
     }
-    
+    var requiredToys: [Int]
     var id: String
     var material: String
     var activeColorName: String
-    var adoption: CatAdoption?
+    var maintainer: CatAdoption?
     var breed: KittyBreed
 }
 
@@ -32,6 +33,7 @@ extension ZipcodeCat {
         (0..<6).forEach { _ in
             arr.append(
                 .init(
+                    requiredToys: [0,4],
                     id: UUID().uuidString,
                     material: SceneCat.randomTexturePrefix,
                     activeColorName: SceneCat.randomActiveColor,

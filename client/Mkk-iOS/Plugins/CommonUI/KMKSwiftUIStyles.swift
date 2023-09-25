@@ -271,21 +271,6 @@ class KMKSwiftUIStyles {
         return LinearGradient(colors: [Color("list-kitty-name-gradient-end-color"),Color.purple], startPoint: .trailing, endPoint: .leading)
     }
     
-    func toyImageForToyType(of type: ToyType) -> Image {
-        switch type {
-        case .chewytoy:
-            return Image("toy_chew-toy")
-        case .scratchpost:
-            return Image("toy_scratching-post")
-        case .shinystring:
-            return Image("toy_shiny-toy")
-        case .yarnball:
-            return Image("toy_yarn-ball")
-        default:
-             return Image("pizza-100")
-        }
-    }
-    
     func renderAlertForType(type: KMKAlertType) -> Alert {
         switch type {
         case .succRegisterForPush:

@@ -5,7 +5,7 @@
 //  Created by Conner M on 2/13/21.
 //
 
-import Foundation
+import SwiftUI
 
                 /* action a     action b            action c*/
 let VOTE_LIST = ["Adopt Kitty","Have Konversation", "Give Petz"]
@@ -87,15 +87,60 @@ enum PouringSpeedEnum: String {
 
 /* TODO: Add more toys for more combinations
  */
-enum ToyType: Int, CaseIterable, Decodable {
+enum ToyType: Int, CaseIterable, Decodable, Identifiable {
+    var id: Int {
+        self.rawValue
+    }
+    
     case yarnball = 0
     case shinystring
     case chewytoy
     case scratchpost
-    case unknown
+    case humanMouse
+    case catMouse
+    case foodPuzzle
+    case unknown = 7
     
     func toString() -> String {
-        return ["Yarn Ball","Shiny String","Chewy Toy","Scratch Post", "Unknown"][self.rawValue]
+        switch self {
+        case .foodPuzzle:
+            return "Silly Delicious Food Trap"
+        case .yarnball:
+            return "Yarn Ball"
+        case .shinystring:
+            return "Shiny String"
+        case .chewytoy:
+            return "Chewy Toy"
+        case .scratchpost:
+            return "Scratch Post"
+        case .humanMouse:
+            return "Mundane Human Mouse"
+        case .catMouse:
+            return "Silly Mouse"
+        case .unknown:
+            return "Unknown"
+        }
+    }
+    
+    var image: Image {
+        switch self {
+        case .foodPuzzle:
+            return Image("toy_food_puzzle")
+        case .chewytoy:
+            return Image("toy_chew-toy")
+        case .scratchpost:
+            return Image("toy_scratching-post")
+        case .shinystring:
+            return Image("toy_shiny-toy")
+        case .yarnball:
+            return Image("toy_yarn-ball")
+        case .humanMouse:
+            return Image("toy_cat_mouse")
+        case .catMouse:
+            return Image("toy_mouse_cat")
+        case .unknown:
+            return Image("pizza100")
+        }
     }
 }
 

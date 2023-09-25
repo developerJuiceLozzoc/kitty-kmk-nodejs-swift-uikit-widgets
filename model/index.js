@@ -394,7 +394,16 @@ function updateNeighborHoodTaskUpdateNeighborhoodCat(stuff) {
     })
 });
 }
+function formatDateToISOWithZeroPadding() {
+  let date = new Date();
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
 
+  return `${year}-${month}-${day}T${hours}:${minutes}:00Z`;
+}
 /*public*/function updateNeighborHoodWithAdoption(stuff) {
   const { zipcode, author, updateCatId, country } = stuff;
   return new Promise(async function (finalresolve, reject) {
@@ -412,6 +421,7 @@ function updateNeighborHoodTaskUpdateNeighborhoodCat(stuff) {
           if(cat.localid == updateCatId && cat.maintainer) {
             reject(`${updateCatId} is already adopted. cannot adopt this cat`)
           } else if(cat.localid == updateCatId){
+            author.date = formatDateToISOWithZeroPadding()
             cat.maintainer = author
           }
           return cat;

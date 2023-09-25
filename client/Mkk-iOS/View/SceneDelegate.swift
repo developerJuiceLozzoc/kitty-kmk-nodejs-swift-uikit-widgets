@@ -19,7 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.windowScene = scene
         window?.makeKeyAndVisible()
-//        window?.rootViewController = MainTabController()
+        
+        // have they launched the app before? if not than onboarding flow perhaps.
+        // after they dismiss that they may see the main app.
         window?.rootViewController = UIHostingController(rootView: MainTabView())
 
         

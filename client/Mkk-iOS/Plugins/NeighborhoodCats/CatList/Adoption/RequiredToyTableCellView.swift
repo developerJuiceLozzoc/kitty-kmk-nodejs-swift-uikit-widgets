@@ -42,7 +42,7 @@ struct RequiredToyTableCellView: View {
     }
     var body: some View {
         HStack {
-            KMKSwiftUIStyles.i.toyImageForToyType(of: ds.type)
+            ds.type.image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 75)

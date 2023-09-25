@@ -45,10 +45,18 @@ struct ZipcodeAdoptionView: View {
         }
     }
     
-
+    let placeHolderName =
+    MOCK_NAMES.randomElement() ?? "Steven Burg McFartyPants"
     var body: some View {
         GeometryReader { metrics in
         List {
+            Section {
+                ResizingAdoptionRequirementsView(toysExisting: [.init(dateAdded: Date.now.timeIntervalSince1970, type: .catMouse, hits: 3)], toysNeeded: [.catMouse, .foodPuzzle,.unknown,.yarnball])
+            } header: {
+                KMKSwiftUIStyles.i.renderSectionHeader(with: "Required Toys")
+            }
+            
+            
             sceneView
             
             Section {
@@ -71,17 +79,16 @@ struct ZipcodeAdoptionView: View {
                 KMKSwiftUIStyles.i.renderSectionHeader(with: "Personality Traits")
 
             }
-            
+
             Section {
                 HStack{
                     Text("Name").foregroundColor(Color("form-label-color"))
                     Spacer()
-                    TextField(
-                        MOCK_NAMES.randomElement() ?? "Steven Burg McFartyPants",
+                    TextField(placeHolderName,
                             text: $sirname
                         )
                 }
-                KMKImagePicker( selectedImage: $selectedImage, selectedImageData: $selectedImageData, urls: self.urls, width: metrics.size.width)
+                /*KMKImagePicker( selectedImage: $selectedImage, selectedImageData: $selectedImageData, urls: self.urls, width: metrics.size.width)*/
                 
                 
                     
@@ -150,9 +157,9 @@ struct ZipcodeAdoptionView: View {
 struct ZipcodeAdoptionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-//            ConfirmOrDiscardView(urls: ["https://placekitty.com/690/690"], kitty: KittyBreed.previews)
-//                .environmentObject(KittyPFPViewModel())
-//                .preferredColorScheme(.dark)
+            ZipcodeAdoptionView(kitty: ZipcodeCat.previews[0]) { _, _, _ in
+                
+            }
         }
     }
 }

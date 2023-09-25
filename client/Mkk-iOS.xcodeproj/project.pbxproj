@@ -77,6 +77,7 @@
 		C60CE98929EB533100DE43CB /* House_1.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98829EB533000DE43CB /* House_1.scn */; };
 		C60CE98B29EB657C00DE43CB /* Highrise_4.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98A29EB657C00DE43CB /* Highrise_4.scn */; };
 		C60CE98E29EB6C7C00DE43CB /* castle.scn in Resources */ = {isa = PBXBuildFile; fileRef = C60CE98D29EB6C7C00DE43CB /* castle.scn */; };
+		C60D6B602AC0ECE800E1AD72 /* RequiredToyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60D6B5F2AC0ECE800E1AD72 /* RequiredToyView.swift */; };
 		C61199CC29F760F900F20A04 /* HikesCatGoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61199CB29F760F900F20A04 /* HikesCatGoes.swift */; };
 		C61199CE29F7613700F20A04 /* CatAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61199CD29F7613700F20A04 /* CatAnimator.swift */; };
 		C61199DA29F8498B00F20A04 /* cat.scn in Resources */ = {isa = PBXBuildFile; fileRef = C61199D929F8498B00F20A04 /* cat.scn */; };
@@ -121,6 +122,7 @@
 		C6EA160F2A2966A4008D3A5D /* SimpleSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA160E2A2966A4008D3A5D /* SimpleSceneDelegate.swift */; };
 		C6EEB63F2790FCFC00EACF27 /* ListKittiesHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */; };
 		C6F685BC2A1A6935001D12BB /* RequiredToyTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F685BB2A1A6935001D12BB /* RequiredToyTableCellView.swift */; };
+		C6F7F56A2A79D95100698DCD /* ResizingAdoptionRequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7F5692A79D95100698DCD /* ResizingAdoptionRequirementsView.swift */; };
 		C6FB3E5E277F83270010C076 /* KMKImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */; };
 		C6FB3E602780C3AF0010C076 /* WanderingKittyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */; };
 		C6FD1799279B03B500902DF9 /* ListKittiesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FD1798279B03B500902DF9 /* ListKittiesPresenter.swift */; };
@@ -204,6 +206,7 @@
 		C60CE98829EB533000DE43CB /* House_1.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = House_1.scn; sourceTree = "<group>"; };
 		C60CE98A29EB657C00DE43CB /* Highrise_4.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Highrise_4.scn; sourceTree = "<group>"; };
 		C60CE98D29EB6C7C00DE43CB /* castle.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = castle.scn; sourceTree = "<group>"; };
+		C60D6B5F2AC0ECE800E1AD72 /* RequiredToyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredToyView.swift; sourceTree = "<group>"; };
 		C61199CB29F760F900F20A04 /* HikesCatGoes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikesCatGoes.swift; sourceTree = "<group>"; };
 		C61199CD29F7613700F20A04 /* CatAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatAnimator.swift; sourceTree = "<group>"; };
 		C61199D929F8498B00F20A04 /* cat.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = cat.scn; sourceTree = "<group>"; };
@@ -245,6 +248,7 @@
 		C6EA160E2A2966A4008D3A5D /* SimpleSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSceneDelegate.swift; sourceTree = "<group>"; };
 		C6EEB63E2790FCFC00EACF27 /* ListKittiesHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesHostingController.swift; sourceTree = "<group>"; };
 		C6F685BB2A1A6935001D12BB /* RequiredToyTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredToyTableCellView.swift; sourceTree = "<group>"; };
+		C6F7F5692A79D95100698DCD /* ResizingAdoptionRequirementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizingAdoptionRequirementsView.swift; sourceTree = "<group>"; };
 		C6FB3E5D277F83270010C076 /* KMKImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMKImagePicker.swift; sourceTree = "<group>"; };
 		C6FB3E5F2780C3AF0010C076 /* WanderingKittyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderingKittyModel.swift; sourceTree = "<group>"; };
 		C6FD1798279B03B500902DF9 /* ListKittiesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListKittiesPresenter.swift; sourceTree = "<group>"; };
@@ -569,6 +573,8 @@
 				C6A1874E2A17EC4C004E4BD6 /* ZipcodeCatDetailsView.swift */,
 				C6A187502A17EC5E004E4BD6 /* ZipcodeCatDetailsViewModel.swift */,
 				C6F685BB2A1A6935001D12BB /* RequiredToyTableCellView.swift */,
+				C6F7F5692A79D95100698DCD /* ResizingAdoptionRequirementsView.swift */,
+				C60D6B5F2AC0ECE800E1AD72 /* RequiredToyView.swift */,
 			);
 			path = Adoption;
 			sourceTree = "<group>";
@@ -937,10 +943,12 @@
 				C6749FA129EC60D80068F1FC /* KnobGrabberPopover.swift in Sources */,
 				C6202D2A277AB0E0003F4D32 /* FoodBowlTile.swift in Sources */,
 				B5DBA93F2741B7CB0075A45D /* LoadingButton.swift in Sources */,
+				C60D6B602AC0ECE800E1AD72 /* RequiredToyView.swift in Sources */,
 				C69EDAFA278A364300FE619E /* Date.swift in Sources */,
 				C61199E429FEF0A700F20A04 /* KMKExtensions.swift in Sources */,
 				B547291E274A949A005DCF8A /* KittyPFPViewModel.swift in Sources */,
 				C6EA160F2A2966A4008D3A5D /* SimpleSceneDelegate.swift in Sources */,
+				C6F7F56A2A79D95100698DCD /* ResizingAdoptionRequirementsView.swift in Sources */,
 				B54651AF26F6A85600A16F38 /* SavedDataInfotainment.intentdefinition in Sources */,
 				C60CE97829EB0AA700DE43CB /* ShapeCreator.swift in Sources */,
 				B51784CB25D874E7004472DB /* NotificationObjects.swift in Sources */,
@@ -1042,7 +1050,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = SavedDataInfotainment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1064,7 +1072,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3463GQXGTB;
 				INFOPLIST_FILE = SavedDataInfotainment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1171,7 +1179,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1226,7 +1234,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1250,7 +1258,7 @@
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Cat Collector";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.simulation-games";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1279,7 +1287,7 @@
 				INFOPLIST_FILE = "Mkk-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Cat Collector";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.simulation-games";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

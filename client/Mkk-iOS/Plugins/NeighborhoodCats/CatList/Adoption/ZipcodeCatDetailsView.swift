@@ -28,6 +28,12 @@ struct ZipcodeCatDetailsView: View {
         self.viewModel = viewModel
     }
     
+    var requiredToysView: some View {
+        VStack(spacing: 16) {
+            Text("toy")
+        }
+    }
+    
     @State var metrics: GeometryProxy?
     var body: some View {
         GeometryReader { proxy in
@@ -82,34 +88,7 @@ struct ZipcodeCatDetailsView: View {
     
     
 
-    var columnscolums: [GridItem] = Array.init(repeating: .init(.fixed((UIScreen.main.bounds.width-10)/3)), count: 3)
-
-    func tableCell(for toy: ToyType) -> RequiredToyTableCellView {
-        if let matchingToy = viewModel.observables.toysAlreadyExisting?.first(where: { lhs in
-            lhs.type == toy
-        }) {
-             return RequiredToyTableCellView(ds: matchingToy)
-        } else {
-            return RequiredToyTableCellView(ds: .init(dateAdded: 0, type: toy, hits: 0))
-        }
-    }
-    
-    var requiredToysView: some View {
-        
-        VStack {
-            KMKSwiftUIStyles.i.renderSectionHeader(with: "Required Toys to attract -> adopt")
-                .padding(.top, 50)
-            ForEach(toysNeeded, id: \.self) { toy in
-               tableCell(for: toy)
-            }
-        }
-        .background()
-        .cornerRadius(8)
-        
-        .overlay(
-            KMKSwiftUIStyles.i.renderDashboardTileBorder())
-        .padding([.trailing,.leading], 7)
-    }
+  
     
     var breedinfo: some View {
         VStack(spacing: 0) {

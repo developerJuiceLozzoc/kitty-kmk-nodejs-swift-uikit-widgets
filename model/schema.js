@@ -54,6 +54,40 @@ function getRandomElementFromArray(arr) {
 }
 
 class ZipcodeCat {
+  generateUniqueRandomNumbers(min, max, count) {
+    const uniqueNumbers = new Set();
+
+    while (uniqueNumbers.size < count) {
+      const randomNumber = this.getRandomInt(min, max);
+      uniqueNumbers.add(randomNumber);
+    }
+
+    return Array.from(uniqueNumbers);
+  }
+
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+ getToysRequired() {
+   let NUM_TOYS = 8
+   const min = 0
+   let arr = []
+   for(let i = 0; i<this.getRandomInt(2,5) ; i++) {
+     arr.push(this.getRandomInt(0,NUM_TOYS))
+   }
+   return arr
+ }
+ getToysRequired() {
+   let NUM_TOYS = 8
+
+   const MIN_TOYS = 2;
+   const MAX_TOYS = 5;
+   return this.generateUniqueRandomNumbers(0, 8, this.getRandomInt(MIN_TOYS, MAX_TOYS))
+ }
+
   constructor(stuff) {
     const {
       material,
@@ -61,6 +95,7 @@ class ZipcodeCat {
       adoption,
       breed
     } = stuff;
+    this.requiredToys = this.getToysRequired()
     this.material = material
     this.activeColorName = activeColorName
     if(!!adoption){
