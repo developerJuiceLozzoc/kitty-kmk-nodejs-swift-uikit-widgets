@@ -28,24 +28,21 @@ struct ZipcodeCatDetailsView: View {
         self.viewModel = viewModel
     }
     
-    var requiredToysView: some View {
-        VStack(spacing: 16) {
-            Text("toy")
-        }
-    }
-    
     @State var metrics: GeometryProxy?
     var body: some View {
         GeometryReader { proxy in
             
             ScrollView {
                 VStack(spacing: 24) {
+              
+                    Text("Specialized Varient form")
                     if viewModel.nonObservables.sceneDelegate != nil {
                         sceneView
                             .padding(.horizontal, 16)
                     }
-                    
-                    requiredToysView
+                    Text("Required Toys To Adopt")
+                    ResizingAdoptionRequirementsView(toysExisting: [.init(dateAdded: Date.now.timeIntervalSince1970, type: .catMouse, hits: 3)], toysNeeded: ToyType.allCases)
+                        .aspectRatio(1, contentMode: .fill)
                     
                     breedinfo
                         .padding(.horizontal, 16)

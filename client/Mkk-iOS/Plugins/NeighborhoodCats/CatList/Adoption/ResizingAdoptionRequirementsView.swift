@@ -33,11 +33,7 @@ struct ResizingAdoptionRequirementsView: View {
     let toysExisting: [ToyItemUsed]
     let toysNeeded: [ToyType]
     
-    
-    
-    
-    
-    @State private var currentIndex = 0
+    @State private var currentIndex = -1
     @State private var isDraggingEnabled = true
     @State private var offset: CGSize = .zero
     
@@ -81,105 +77,62 @@ struct ResizingAdoptionRequirementsView: View {
             lhs.type.rawValue == toy.rawValue
         } ?? .init(dateAdded: 0.0, type: toy, hits: 0)
     }
-
     
-    @State var text = "f"
-    var cool: some View {
-        VStack(spacing: 0) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                ScrollViewReader { proxy in
-                    HStack(spacing: 0) {
-                        ForEach((0..<toysNeeded.count), id: \.self) { index in
-                          HStack(spacing: 0) {
-                                Spacer(minLength: 100)
-                              RequiredToyView(toy: toyUsed(for: toysNeeded[index]), id: idMaker(index))
-                                Spacer(minLength: 100)
-                            }
-                           
+    var scrollable: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            ScrollViewReader { proxy in
+                HStack(spacing: 0) {
+                    ForEach((0..<toysNeeded.count), id: \.self) { index in
+                      HStack(spacing: 0) {
+                            Spacer(minLength: 200)
+                          RequiredToyView(toy: toyUsed(for: toysNeeded[index]), id: idMaker(index))
+                            Spacer(minLength: 200)
                         }
+                       
                     }
-                    .onChange(of: currentIndex) { newValue in
-                        withAnimation {
-                            proxy.scrollTo(idMaker(newValue), anchor: .center)
-                        }
+                }
+                .onChange(of: currentIndex) { newValue in
+                    withAnimation {
+                        proxy.scrollTo(idMaker(newValue), anchor: .center)
                     }
                 }
             }
-            Spacer(minLength: 16.0)
-            HStack {
-                Button("Previous", action: {
-                    if currentIndex == 0 {
-                        currentIndex = toysNeeded.count - 1
-                    } else {
-                        currentIndex = max(currentIndex - 1, 0)
-                    }
-                })
-                .buttonStyle(CustomButtonStyle())
-                
-                
-                Button("Next", action: {
-                    if currentIndex == toysNeeded.count - 1 {
-                        currentIndex = 0
-                    } else {
-                        currentIndex = min(currentIndex + 1, toysNeeded.count - 1)
-                    }
-                })
-                .buttonStyle(CustomButtonStyle())
-            }
+        }
+        .onAppear {
+            currentIndex = 0
+        }
+    }
+
+    var demand: some View {
+        HStack {
+            Button("Previous", action: {
+                if currentIndex == 0 {
+                    currentIndex = toysNeeded.count - 1
+                } else {
+                    currentIndex = max(currentIndex - 1, 0)
+                }
+            })
+            .buttonStyle(CustomButtonStyle())
+            Button("Next", action: {
+                if currentIndex == toysNeeded.count - 1 {
+                    currentIndex = 0
+                } else {
+                    currentIndex = min(currentIndex + 1, toysNeeded.count - 1)
+                }
+            })
+            .buttonStyle(CustomButtonStyle())
         }
     }
     
+    @State var text = "f"
     
     var columnscolums: [GridItem] = Array.init(repeating: .init(.fixed((UIScreen.main.bounds.width-10)/3)), count: 3)
     
-    
-    var missingToysView: some View {
-        VStack {
-            KMKSwiftUIStyles.i.renderSectionHeader(with: "Required Toys to attract -> adopt")
-                .padding(.top, 50)
-            ForEach(toysNeeded, id: \.self) { toy in
-                tableCell(for: toy)
-            }
-        }
-        .background()
-        .cornerRadius(8)
-        
-        .overlay(
-            KMKSwiftUIStyles.i.renderDashboardTileBorder())
-        .padding([.trailing,.leading], 7)
-    }
-    
- 
-    
-    
     @State var selectedTabItem: Int = 0
     var body: some View {
-        cool
-            .frame(width: 400, height: 600)
-//        TabView(selection: $selectedTabItem) {
-//            ForEach(toysExisting) { toyType in
-//                kittyToyView(toyType: toyType)
-//                    .tabItem {
-//
-//                    }
-//                    .tag(toyType.rawValue)
-//
-//            }
-//
-//        }
-            
-    }
-    
-    
-    
-    func tableCell(for toy: ToyType) -> RequiredToyTableCellView {
-        if let matchingToy = toysExisting.first(where: { lhs in
-            lhs.type.rawValue == toy.rawValue
-        }) {
-            /* FIXME: two different color pallates for a matching toy that i have */
-            return RequiredToyTableCellView(ds: .init(dateAdded: 0, type: toy, hits: 0))
-        } else {
-            return RequiredToyTableCellView(ds: .init(dateAdded: 0, type: toy, hits: 0))
+        VStack(spacing: 0) {
+            scrollable
+           demand
         }
     }
     

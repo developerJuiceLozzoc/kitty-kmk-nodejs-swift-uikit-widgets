@@ -13,46 +13,72 @@ struct RequiredToyView: View, Identifiable {
     
     var content: some View {
         ZStack {
-        
+     
+            
             VStack {
-                toy.type.image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .background(Color(SceneCat.randomActiveColor))
-                    .opacity(0.7)
-
-                    .frame(width: 300)
-                    .blur(radius: 40)
-                
-                Text(toy.type.toString())
-                    .foregroundColor(.white)
-                    .font(.title)
-                    .lineLimit(nil)
-                if toy.dateAdded != 0 {
-                    Text("Adopted on this date")
-                        .foregroundColor(.white)
-                        .font(.custom("Arial", size: 24))
-                        .lineLimit(nil)
-                }
+                Spacer()
             }
-            .padding(.all, toy.dateAdded == 0.0 ? 0.0 : 16)
-            .border(toy.dateAdded == 0.0 ? .clear : .purple, width: 5)
-           
             toy.type.image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 150, height:  150)
                 .id(id)
+            VStack {
+               
+            }
+            .padding(.all, toy.dateAdded == 0.0 ? 0.0 : 16)
+           
+           
                 
         }
     }
+    
+    var textViews: some View {
+        VStack(spacing: 12) {
+            Text(toy.type.toString())
+                .fixedSize(horizontal: false, vertical: true)
+                .foregroundColor(.white)
+                .font(.body)
+                .lineLimit(nil)
+            if toy.dateAdded != 0 {
+                Text("Adopted on this date")
+                    .fixedSize(horizontal: false, vertical: true)
+                    .foregroundColor(.white)
+                    .font(.custom("Arial", size: 12))
+                    .lineLimit(nil)
+            }
+        }
+        .padding()
+        .overlay {
+            RoundedRectangle(cornerRadius: 4)
+                .stroke(style: .init(lineWidth: 1))
+                .foregroundColor(Color.gray)
+                .shadow(radius: 5)
+
+            
+            
+        }
+        .shadow(radius: 5)
+    }
     var body: some View {
-        content
-            .padding(.all, 32)
-            .background(
-                KMKSwiftUIStyles.i.renderDashboardTileBG()
-            )
-            .shadow(radius: 5)
+        toy.type.image
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .background(Color(SceneCat.randomActiveColor))
+            .opacity(0.7)
+            .blur(radius: 20)
+            .overlay {
+                VStack {
+                    content
+                        .frame( width: 100, height: 100)
+                        .padding(.all, 32)
+                        .background(
+                            KMKSwiftUIStyles.i.renderDashboardTileBG()
+                        )
+                        .shadow(radius: 5)
+                   textViews
+                }
+                
+            }
     }
 }
 
